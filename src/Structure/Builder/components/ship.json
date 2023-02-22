@@ -419,7 +419,7 @@
         "directory": "{path}/Mails/Mailables",
         "namespace": "{namespace}\\Mails\\Mailables",
         "class": "Content",
-        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailables\\Content",
+        "parentClass": "{namespace}\\Abstracts\\Mails\\Mailables\\Content",
         "parentAlias": "AbstractContent",
         "template": "extended.class.stub"
     },
@@ -427,7 +427,7 @@
         "directory": "{path}/Mails/Mailables",
         "namespace": "{namespace}\\Mails\\Mailables",
         "class": "Envelope",
-        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailables\\Envelope",
+        "parentClass": "{namespace}\\Abstracts\\Mails\\Mailables\\Envelope",
         "parentAlias": "AbstractEnvelope",
         "template": "extended.class.stub"
     },
