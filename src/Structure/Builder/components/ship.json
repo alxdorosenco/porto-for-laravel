@@ -90,18 +90,18 @@
         "template": "abstract-mail.class.stub"
     },
     {
-        "directory": "{path}/Abstracts/Mails/Mailable",
-        "namespace": "{namespace}\\Abstracts\\Mails\\Mailable",
+        "directory": "{path}/Abstracts/Mails/Mailables",
+        "namespace": "{namespace}\\Abstracts\\Mails\\Mailables",
         "class": "Content",
-        "parentClass": "Illuminate\\Mail\\Mailable\\Content",
+        "parentClass": "Illuminate\\Mail\\Mailables\\Content",
         "parentAlias": "LaravelContent",
         "template": "abstract-extended.class.stub"
     },
     {
-        "directory": "{path}/Abstracts/Mails/Mailable",
-        "namespace": "{namespace}\\Abstracts\\Mails\\Mailable",
+        "directory": "{path}/Abstracts/Mails/Mailables",
+        "namespace": "{namespace}\\Abstracts\\Mails\\Mailables",
         "class": "Envelope",
-        "parentClass": "Illuminate\\Mail\\Mailable\\Envelope",
+        "parentClass": "Illuminate\\Mail\\Mailables\\Envelope",
         "parentAlias": "LaravelEnvelope",
         "template": "abstract-extended.class.stub"
     },
@@ -416,18 +416,18 @@
         "template": "kernel-http.class.stub"
     },
     {
-        "directory": "{path}/Mails/Mailable",
-        "namespace": "{namespace}\\Mails\\Mailable",
+        "directory": "{path}/Mails/Mailables",
+        "namespace": "{namespace}\\Mails\\Mailables",
         "class": "Content",
-        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailable\\Content",
+        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailables\\Content",
         "parentAlias": "AbstractContent",
         "template": "extended.class.stub"
     },
     {
-        "directory": "{path}/Mails/Mailable",
-        "namespace": "{namespace}\\Mails\\Mailable",
+        "directory": "{path}/Mails/Mailables",
+        "namespace": "{namespace}\\Mails\\Mailables",
         "class": "Envelope",
-        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailable\\Envelope",
+        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailables\\Envelope",
         "parentAlias": "AbstractEnvelope",
         "template": "extended.class.stub"
     },
