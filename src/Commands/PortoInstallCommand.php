@@ -91,7 +91,7 @@ class PortoInstallCommand extends LaravelCommand
 
         $this->output->newLine();
 
-        $this->components->info('Porto structure ['.$rootPath.'] installed successfully');
+        $this->components->info('Porto structure in the ['.$rootPath.'] directory has been successfully installed');
 
         if($this->option('container')){
             $containerCommandParams = [

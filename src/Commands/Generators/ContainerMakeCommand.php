@@ -115,7 +115,7 @@ class ContainerMakeCommand extends LaravelCommand
 
         $this->output->newLine();
 
-        $this->components->info('Container ['.$rootPath.'] created successfully');
+        $this->components->info('Container ['.$this->argument('name').'] has been successfully created');
 
         return static::SUCCESS;
     }
