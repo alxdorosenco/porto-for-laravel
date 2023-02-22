@@ -1,0 +1,675 @@
+[
+    {
+        "directory": "{path}/Abstracts/Broadcasting",
+        "namespace": "{namespace}\\Abstracts\\Broadcasting",
+        "class": "Channel",
+        "parentClass": "Illuminate\\Broadcasting\\Channel",
+        "parentAlias": "LaravelChannel",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Broadcasting",
+        "namespace": "{namespace}\\Abstracts\\Broadcasting",
+        "class": "PresenceChannel",
+        "parentClass": "Illuminate\\Broadcasting\\PresenceChannel",
+        "parentAlias": "LaravelPresenceChannel",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Broadcasting",
+        "namespace": "{namespace}\\Abstracts\\Broadcasting",
+        "class": "PrivateChannel",
+        "parentClass": "Illuminate\\Broadcasting\\PrivateChannel",
+        "parentAlias": "LaravelPrivateChannel",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Commands",
+        "namespace": "{namespace}\\Abstracts\\Commands",
+        "class": "ConsoleCommand",
+        "parentClass": "Illuminate\\Console\\Command",
+        "parentAlias": "LaravelCommand",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Components",
+        "namespace": "{namespace}\\Abstracts\\Components",
+        "class": "ConsoleCommand",
+        "parentClass": "Illuminate\\View\\Component",
+        "parentAlias": "LaravelComponent",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Controllers",
+        "namespace": "{namespace}\\Abstracts\\Controllers",
+        "class": "Controller",
+        "parentClass": "Illuminate\\Routing\\Controller",
+        "parentAlias": "LaravelBaseController",
+        "template": "abstract-controller.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Events",
+        "namespace": "{namespace}\\Abstracts\\Events",
+        "class": "Event",
+        "template": "abstract-event.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Exceptions",
+        "namespace": "{namespace}\\Abstracts\\Exceptions",
+        "class": "Handler",
+        "parentClass": "Illuminate\\Foundation\\Exceptions\\Handler",
+        "parentAlias": "LaravelExceptionHandler",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Factories",
+        "namespace": "{namespace}\\Abstracts\\Factories",
+        "class": "Factory",
+        "parentClass": "Illuminate\\Database\\Eloquent\\Factories\\Factory",
+        "parentAlias": "LaravelFactory",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Jobs",
+        "namespace": "{namespace}\\Abstracts\\Jobs",
+        "class": "Job",
+        "template": "abstract-job.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Jobs",
+        "namespace": "{namespace}\\Abstracts\\Jobs",
+        "class": "JobQueued",
+        "template": "abstract-job-queued.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Mails",
+        "namespace": "{namespace}\\Abstracts\\Mails",
+        "class": "Mailable",
+        "parentClass": "Illuminate\\Mail\\Mailable",
+        "parentAlias": "LaravelMailable",
+        "template": "abstract-mail.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Mails/Mailable",
+        "namespace": "{namespace}\\Abstracts\\Mails\\Mailable",
+        "class": "Content",
+        "parentClass": "Illuminate\\Mail\\Mailable\\Content",
+        "parentAlias": "LaravelContent",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Mails/Mailable",
+        "namespace": "{namespace}\\Abstracts\\Mails\\Mailable",
+        "class": "Envelope",
+        "parentClass": "Illuminate\\Mail\\Mailable\\Envelope",
+        "parentAlias": "LaravelEnvelope",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "Authenticate",
+        "parentClass": "Illuminate\\Auth\\Middleware\\Authenticate",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "EncryptCookies",
+        "parentClass": "Illuminate\\Cookie\\Middleware\\EncryptCookies",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "PreventRequestsDuringMaintenance",
+        "parentClass": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "TrimStrings",
+        "parentClass": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "TrustHosts",
+        "parentClass": "Illuminate\\Http\\Middleware\\TrustHosts",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "TrustProxies",
+        "parentClass": "Illuminate\\Http\\Middleware\\TrustProxies",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "ValidateSignature",
+        "parentClass": "Illuminate\\Routing\\Middleware\\ValidateSignature",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Middleware",
+        "namespace": "{namespace}\\Abstracts\\Middleware",
+        "class": "VerifyCsrfToken",
+        "parentClass": "Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken",
+        "parentAlias": "LaravelMiddleware",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Models",
+        "namespace": "{namespace}\\Abstracts\\Models",
+        "class": "BaseModel",
+        "parentClass": "Illuminate\\Database\\Eloquent\\Model",
+        "parentAlias": "LaravelModel",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Models",
+        "namespace": "{namespace}\\Abstracts\\Models",
+        "class": "UserModel",
+        "parentClass": "Illuminate\\Foundation\\Auth\\User",
+        "parentAlias": "LaravelAuthenticate",
+        "template": "abstract-user-model.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Models",
+        "namespace": "{namespace}\\Abstracts\\Models",
+        "class": "Pivot",
+        "parentClass": "Illuminate\\Database\\Eloquent\\Relations\\Pivot",
+        "parentAlias": "LaravelPivot",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Models",
+        "namespace": "{namespace}\\Abstracts\\Models",
+        "class": "MorphPivot",
+        "parentClass": "Illuminate\\Database\\Eloquent\\Relations\\MorphPivot",
+        "parentAlias": "LaravelMorphPivot",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Models",
+        "namespace": "{namespace}\\Abstracts\\Models",
+        "class": "Builder",
+        "parentClass": "Illuminate\\Database\\Eloquent\\Builder",
+        "parentAlias": "LaravelBuilder",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Notifications",
+        "namespace": "{namespace}\\Abstracts\\Notifications",
+        "class": "Notification",
+        "parentClass": "Illuminate\\Notifications\\Notification",
+        "parentAlias": "LaravelNotification",
+        "template": "abstract-notification.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Notifications/Messages",
+        "namespace": "{namespace}\\Abstracts\\Notifications\\Messages",
+        "class": "MailMessage",
+        "parentClass": "Illuminate\\Notifications\\Messages\\MailMessage",
+        "parentAlias": "LaravelMailMessage",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Policies",
+        "namespace": "{namespace}\\Abstracts\\Policies",
+        "class": "Policy",
+        "template": "abstract-policy-class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Providers",
+        "namespace": "{namespace}\\Abstracts\\Providers",
+        "class": "AuthServiceProvider",
+        "parentClass": "Illuminate\\Foundation\\Support\\Providers\\AuthServiceProvider",
+        "parentAlias": "LaravelAuthServiceProvider",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Providers",
+        "namespace": "{namespace}\\Abstracts\\Providers",
+        "class": "ServiceProvider",
+        "parentClass": "Illuminate\\Support\\ServiceProvider",
+        "parentAlias": "LaravelServiceProvider",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Providers",
+        "namespace": "{namespace}\\Abstracts\\Providers",
+        "class": "EventServiceProvider",
+        "parentClass": "Illuminate\\Foundation\\Support\\Providers\\EventServiceProvider",
+        "parentAlias": "LaravelEventServiceProvider",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Providers",
+        "namespace": "{namespace}\\Abstracts\\Providers",
+        "class": "RouteServiceProvider",
+        "parentClass": "Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider",
+        "parentAlias": "LaravelRouteServiceProvider",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Requests",
+        "namespace": "{namespace}\\Abstracts\\Requests",
+        "class": "Request",
+        "parentClass": "Illuminate\\Http\\Request",
+        "parentAlias": "LaravelRequest",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Requests",
+        "namespace": "{namespace}\\Abstracts\\Requests",
+        "class": "FormRequest",
+        "parentClass": "Illuminate\\Foundation\\Http\\FormRequest",
+        "parentAlias": "LaravelFormRequest",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Responses",
+        "namespace": "{namespace}\\Abstracts\\Responses",
+        "class": "Response",
+        "parentClass": "Illuminate\\Http\\Response",
+        "parentAlias": "LaravelResponse",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Responses",
+        "namespace": "{namespace}\\Abstracts\\Responses",
+        "class": "RedirectResponse",
+        "parentClass": "Illuminate\\Http\\RedirectResponse",
+        "parentAlias": "LaravelRedirectResponse",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Resources",
+        "namespace": "{namespace}\\Abstracts\\Resources",
+        "class": "JsonResource",
+        "parentClass": "Illuminate\\Http\\Resources\\Json\\JsonResource",
+        "parentAlias": "LaravelJsonResource",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Resources",
+        "namespace": "{namespace}\\Abstracts\\Resources",
+        "class": "ResourceCollection",
+        "parentClass": "Illuminate\\Http\\Resources\\Json\\ResourceCollection",
+        "parentAlias": "LaravelResourceCollection",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Seeders",
+        "namespace": "{namespace}\\Abstracts\\Seeders",
+        "class": "Seeder",
+        "parentClass": "Illuminate\\Database\\Seeder",
+        "parentAlias": "LaravelSeeder",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Tests/PhpUnit",
+        "namespace": "{namespace}\\Abstracts\\Tests\\PhpUnit",
+        "class": "TestCase",
+        "parentClass": "Illuminate\\Foundation\\Testing\\TestCase",
+        "parentAlias": "LaravelTestCase",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Translations",
+        "namespace": "{namespace}\\Abstracts\\Translations",
+        "class": "PotentiallyTranslatedString",
+        "parentClass": "Illuminate\\Translation\\PotentiallyTranslatedString",
+        "parentAlias": "LaravelPotentiallyTranslatedString",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Abstracts/Views",
+        "namespace": "{namespace}\\Abstracts\\Views",
+        "class": "Component",
+        "parentClass": "Illuminate\\View\\Component",
+        "parentAlias": "LaravelComponent",
+        "template": "abstract-extended.class.stub"
+    },
+    {
+        "directory": "{path}/Broadcasting",
+        "namespace": "{namespace}\\Broadcasting",
+        "class": "Channel",
+        "parentClass": "{namespace}\\Abstracts\\Broadcasting\\Channel",
+        "parentAlias": "AbstractsChannel",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Broadcasting",
+        "namespace": "{namespace}\\Broadcasting",
+        "class": "PresenceChannel",
+        "parentClass": "{namespace}\\Abstracts\\Broadcasting\\PresenceChannel",
+        "parentAlias": "AbstractsPresenceChannel",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Broadcasting",
+        "namespace": "{namespace}\\Broadcasting",
+        "class": "PrivateChannel",
+        "parentClass": "{namespace}\\Abstracts\\Broadcasting\\PrivateChannel",
+        "parentAlias": "AbstractsPrivateChannel",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Configs"
+    },
+    {
+        "directory": "{path}/Controllers",
+        "namespace": "{namespace}\\Controllers",
+        "class": "Controller",
+        "parentClass": "{namespace}\\Abstracts\\Controllers\\Controller",
+        "parentAlias": "AbstractBaseController",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Events",
+        "namespace": "{namespace}\\Events",
+        "class": "Event",
+        "parentClass": "{namespace}\\Abstracts\\Events\\Event",
+        "parentAlias": "AbstractEvent",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Exceptions",
+        "namespace": "{namespace}\\Exceptions",
+        "class": "Handler",
+        "parentClass": "{namespace}\\Abstracts\\Exceptions\\Handler",
+        "parentAlias": "AbstractHandler",
+        "template": "exception-handler.class.stub"
+    },
+    {
+        "directory": "{path}/Helpers",
+        "file": "helper"
+    },
+    {
+        "directory": "{path}/Kernels",
+        "namespace": "{namespace}\\Kernels",
+        "class": "ConsoleKernel",
+        "parentClass": "Illuminate\\Foundation\\Console\\Kernel",
+        "parentAlias": "LaravelConsoleKernel",
+        "template": "kernel-console.class.stub"
+    },
+    {
+        "directory": "{path}/Kernels",
+        "namespace": "{namespace}\\Kernels",
+        "class": "HttpKernel",
+        "middlewareNamespace": "{namespace}\\Middleware",
+        "parentClass": "Illuminate\\Foundation\\Http\\Kernel",
+        "parentAlias": "LaravelHttpKernel",
+        "template": "kernel-http.class.stub"
+    },
+    {
+        "directory": "{path}/Mails/Mailable",
+        "namespace": "{namespace}\\Mails\\Mailable",
+        "class": "Content",
+        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailable\\Content",
+        "parentAlias": "AbstractContent",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Mails/Mailable",
+        "namespace": "{namespace}\\Mails\\Mailable",
+        "class": "Envelope",
+        "parentClass": "{namespace}\\Abstracts\\Mais\\Mailable\\Envelope",
+        "parentAlias": "AbstractEnvelope",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "Authenticate",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\Authenticate",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-authenticate.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "EncryptCookies",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\EncryptCookies",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-encrypt-cookies.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "PreventRequestsDuringMaintenance",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\PreventRequestsDuringMaintenance",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-prevent-requests-during-maintenance.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "RedirectIfAuthenticated",
+        "template": "middleware-redirect-If-authenticated.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "TrimStrings",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\TrimStrings",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-trim-strings.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "TrustHosts",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\TrustHosts",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-trust-hosts.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "TrustProxies",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\TrustProxies",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-trust-proxies.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "ValidateSignature",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\ValidateSignature",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-validate-signature.class.stub"
+    },
+    {
+        "directory": "{path}/Middleware",
+        "namespace": "{namespace}\\Middleware",
+        "class": "VerifyCsrfToken",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\VerifyCsrfToken",
+        "parentAlias": "AbstractMiddleware",
+        "template": "middleware-verify-csrf-token.class.stub"
+    },
+    {
+        "directory": "{path}/Migrations"
+    },
+    {
+        "directory": "{path}/Models",
+        "namespace": "{namespace}\\Models",
+        "class": "Model",
+        "parentClass": "{namespace}\\Abstracts\\Models\\BaseModel",
+        "parentAlias": "AbstractBaseModel",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Models",
+        "namespace": "{namespace}\\Models",
+        "class": "UserModel",
+        "parentClass": "{namespace}\\Abstracts\\Models\\UserModel",
+        "parentAlias": "AbstractUserModel",
+        "template": "model-user.class.stub"
+    },
+    {
+        "directory": "{path}/Models",
+        "namespace": "{namespace}\\Models",
+        "class": "Pivot",
+        "parentClass": "{namespace}\\Abstracts\\Models\\Pivot",
+        "parentAlias": "AbstractPivot",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Models",
+        "namespace": "{namespace}\\Models",
+        "class": "MorphPivot",
+        "parentClass": "{namespace}\\Abstracts\\Models\\MorphPivot",
+        "parentAlias": "AbstractMorphPivot",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Models",
+        "namespace": "{namespace}\\Models",
+        "class": "Builder",
+        "parentClass": "{namespace}\\Abstracts\\Models\\Builder",
+        "parentAlias": "AbstractBuilder",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Models",
+        "namespace": "{namespace}\\Models",
+        "interface": "Scope",
+        "template": "scope.interface.stub"
+    },
+    {
+        "directory": "{path}/Notifications",
+        "namespace": "{namespace}\\Notifications",
+        "class": "Notification",
+        "parentClass": "{namespace}\\Abstracts\\Notifications\\Notification",
+        "parentAlias": "AbstractsNotification",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Notifications/Messages",
+        "namespace": "{namespace}\\Notifications\\Messages",
+        "class": "MailMessage",
+        "parentClass": "{namespace}\\Abstracts\\Notifications\\Messages\\MailMessage",
+        "parentAlias": "AbstractsMailMessage",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Policies",
+        "namespace": "{namespace}\\Policies",
+        "class": "Policy",
+        "parentClass": "{namespace}\\Abstracts\\Policies\\Policy",
+        "parentAlias": "AbstractsPolicy",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Providers",
+        "namespace": "{namespace}\\Providers",
+        "class": "AuthServiceProvider",
+        "parentClass": "{namespace}\\Abstracts\\Providers\\AuthServiceProvider",
+        "parentAlias": "AbstractAuthServiceProvider",
+        "template": "provider-auth-service.class.stub"
+    },
+    {
+        "directory": "{path}/Providers",
+        "namespace": "{namespace}\\Providers",
+        "class": "BroadcastServiceProvider",
+        "parentClass": "{namespace}\\Abstracts\\Providers\\ServiceProvider",
+        "parentAlias": "AbstractServiceProvider",
+        "template": "provider-broadcast-service.class.stub"
+    },
+    {
+        "directory": "{path}/Providers",
+        "namespace": "{namespace}\\Providers",
+        "class": "EventServiceProvider",
+        "parentClass": "{namespace}\\Abstracts\\Providers\\EventServiceProvider",
+        "parentAlias": "AbstractEventServiceProvider",
+        "template": "provider-event-service.class.stub"
+    },
+    {
+        "directory": "{path}/Providers",
+        "namespace": "{namespace}\\Providers",
+        "class": "RouteServiceProvider",
+        "parentClass": "{namespace}\\Abstracts\\Providers\\RouteServiceProvider",
+        "parentAlias": "AbstractRouteServiceProvider",
+        "template": "provider-route-service.class.stub"
+    },
+    {
+        "directory": "{path}/Requests",
+        "namespace": "{namespace}\\Requests",
+        "class": "Request",
+        "parentClass": "{namespace}\\Abstracts\\Requests\\Request",
+        "parentAlias": "AbstractRequest",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Requests",
+        "namespace": "{namespace}\\Requests",
+        "class": "FormRequest",
+        "parentClass": "{namespace}\\Abstracts\\Requests\\FormRequest",
+        "parentAlias": "AbstractFormRequest",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Responses",
+        "namespace": "{namespace}\\Responses",
+        "class": "Response",
+        "parentClass": "{namespace}\\Abstracts\\Responses\\Response",
+        "parentAlias": "AbstractResponse",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Responses",
+        "namespace": "{namespace}\\Responses",
+        "class": "RedirectResponse",
+        "parentClass": "{namespace}\\Abstracts\\Responses\\RedirectResponse",
+        "parentAlias": "AbstractRedirectResponse",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Resources",
+        "namespace": "{namespace}\\Resources",
+        "class": "JsonResource",
+        "parentClass": "{namespace}\\Abstracts\\Resources\\JsonResource",
+        "parentAlias": "AbstractJsonResource",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Resources",
+        "namespace": "{namespace}\\Resources",
+        "class": "ResourceCollection",
+        "parentClass": "{namespace}\\Abstracts\\Resources\\ResourceCollection",
+        "parentAlias": "AbstractResourceCollection",
+        "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Tests",
+        "namespace": "{namespace}\\Tests",
+        "class": "TestCase",
+        "traitsNamespace": "{namespace}\\Traits",
+        "parentClass": "{namespace}\\Abstracts\\Tests\\PhpUnit\\TestCase",
+        "parentAlias": "AbstractTestCase",
+        "template": "abstract-test-case.class.stub"
+    },
+    {
+        "directory": "{path}/Traits",
+        "namespace": "{namespace}\\Traits",
+        "class": "CreatesApplication",
+        "template": "trait-creates-application.class.stub"
+    },
+    {
+        "directory": "{path}/Translations"
+    }
+]

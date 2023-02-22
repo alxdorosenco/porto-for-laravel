@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Support\Facades\Broadcast;
+use {{ parentClass }} as {{ parentAlias }};
+
+class {{ class }} extends {{ parentAlias }}
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Broadcast::routes();
+
+        require base_path('routes/channels.php');
+    }
+}

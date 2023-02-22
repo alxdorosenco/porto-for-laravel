@@ -1,0 +1,85 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Ship\Controllers\Controller;
+use {{ namespaceRequest }};
+
+class {{ class }} extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \{{ namespaceResponse }}
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \{{ namespaceResponse }}
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \{{ namespaceRequest }}  $request
+     * @return \{{ namespaceResponse }}
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \{{ namespaceResponse }}
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \{{ namespaceResponse }}
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \{{ namespaceRequest }}  $request
+     * @param  int  $id
+     * @return \{{ namespaceResponse }}
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \{{ namespaceResponse }}
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

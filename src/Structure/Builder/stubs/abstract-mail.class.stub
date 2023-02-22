@@ -1,0 +1,12 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Bus\Queueable;
+use {{ parentClass }} as {{ parentAlias }};
+use Illuminate\Queue\SerializesModels;
+
+abstract class {{ class }} extends {{ parentAlias }}
+{
+    use Queueable, SerializesModels;
+}

@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ namespace }};
+
+use Exception;
+
+class {{ class }} extends Exception
+{
+    /**
+     * Render the exception as an HTTP response.
+     *
+     * @param  \{{ namespaceRequest }}  $request
+     * @return \{{ namespaceResponse }}
+     */
+    public function render($request)
+    {
+        //
+    }
+}

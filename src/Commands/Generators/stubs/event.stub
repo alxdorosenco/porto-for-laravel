@@ -1,0 +1,32 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Ship\Events\Event;
+use {{ rootNamespace }}Ship\Broadcasting\Channel;
+use {{ rootNamespace }}Ship\Broadcasting\PresenceChannel;
+use {{ rootNamespace }}Ship\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+class {{ class }} extends Event
+{
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return PrivateChannel
+     */
+    public function broadcastOn()
+    {
+        return new PrivateChannel('channel-name');
+    }
+}

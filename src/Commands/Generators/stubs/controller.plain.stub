@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Ship\Controllers\Controller;
+use {{ namespaceRequest }};
+
+class {{ class }} extends Controller
+{
+    //
+}

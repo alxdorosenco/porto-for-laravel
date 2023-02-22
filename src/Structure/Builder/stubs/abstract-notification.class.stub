@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ parentClass }} as {{ parentAlias }};
+use Illuminate\Bus\Queueable;
+
+abstract class {{ class }} extends {{ parentAlias }}
+{
+    use Queueable;
+}

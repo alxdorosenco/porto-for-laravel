@@ -1,0 +1,71 @@
+[
+    {
+        "directory": "{path}/Actions"
+    },
+    {
+        "directory": "{path}/Tasks"
+    },
+    {
+        "directory": "{path}/Models"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "AliasesLoader",
+        "template": "loader-aliases.class.stub"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "ProvidersLoader",
+        "template": "loader-providers.class.stub"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "MiddlewareLoader",
+        "template": "loader-middleware.class.stub"
+    },
+    {
+        "directory": "{path}/UI/WEB/Routes",
+        "file": "home",
+        "class": "\\{namespace}\\UI\\WEB\\Controllers\\HomeController",
+        "template": "route-home.stub"
+    },
+    {
+        "directory": "{path}/UI/WEB/Controllers",
+        "namespace": "{namespace}\\UI\\WEB\\Controllers",
+        "class": "HomeController",
+        "parentClass": "{rootNamespace}\\Ship\\Controllers\\Controller",
+        "extends": "Controller",
+        "template": "home-controller.class.stub"
+    },
+    {
+        "directory": "{path}/UI/WEB/Views",
+        "file": "home.blade",
+        "template": "home.blade.stub"
+    },
+    {
+        "directory": "{path}/UI/API/Routes"
+    },
+    {
+        "directory": "{path}/UI/API/Controllers"
+    },
+    {
+        "directory": "{path}/UI/API/Transformers"
+    },
+    {
+        "directory": "{path}/UI/WEB/Tests/Functional",
+        "namespace": "{namespace}\\UI\\WEB\\Tests\\Functional",
+        "class": "ExampleTest",
+        "parentClass": "{rootNamespace}\\Ship\\Tests\\TestCase",
+        "extends": "TestCase",
+        "template": "test-functional-example.class.stub"
+    },
+    {
+        "directory": "{path}/UI/CLI/Routes"
+    },
+    {
+        "directory": "{path}/UI/CLI/Commands"
+    }
+]

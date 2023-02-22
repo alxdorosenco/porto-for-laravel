@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Ship\Models\Pivot;
+
+class {{ class }} extends Pivot
+{
+    //
+}

@@ -1,0 +1,20 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Ship\Controllers\Controller;
+use {{ namespaceRequest }};
+
+class {{ class }} extends Controller
+{
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \{{ namespaceRequest }}  $request
+     * @return \{{ namespaceResponse }}
+     */
+    public function __invoke(Request $request)
+    {
+        //
+    }
+}

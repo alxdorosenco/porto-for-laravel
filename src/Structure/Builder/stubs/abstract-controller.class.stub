@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use {{ parentClass }} as {{ parentAlias }};
+
+abstract class {{ class }} extends {{ parentAlias }}
+{
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+}

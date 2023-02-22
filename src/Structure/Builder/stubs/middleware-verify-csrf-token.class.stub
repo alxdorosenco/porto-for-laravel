@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ parentClass }} as {{ parentAlias }};
+
+class {{ class }} extends {{ parentAlias }}
+{
+    /**
+     * The URIs that should be excluded from CSRF verification.
+     *
+     * @var array<int, string>
+     */
+    protected $except = [
+        //
+    ];
+}

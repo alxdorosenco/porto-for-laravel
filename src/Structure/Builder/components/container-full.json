@@ -1,0 +1,134 @@
+[
+    {
+        "directory": "{path}/Actions"
+    },
+    {
+        "directory": "{path}/Tasks"
+    },
+    {
+        "directory": "{path}/Models"
+    },
+    {
+        "directory": "{path}/Values"
+    },
+    {
+        "directory": "{path}/Events"
+    },
+    {
+        "directory": "{path}/Listeners"
+    },
+    {
+        "directory": "{path}/Policies"
+    },
+    {
+        "directory": "{path}/Exceptions"
+    },
+    {
+        "directory": "{path}/Contracts"
+    },
+    {
+        "directory": "{path}/Traits"
+    },
+    {
+        "directory": "{path}/Jobs"
+    },
+    {
+        "directory": "{path}/Notifications"
+    },
+    {
+        "directory": "{path}/Providers"
+    },
+    {
+        "directory": "{path}/Configs"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "AliasesLoader",
+        "template": "loader-aliases.class.stub"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "ProvidersLoader",
+        "template": "loader-providers.class.stub"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "MiddlewareLoader",
+        "template": "loader-middleware.class.stub"
+    },
+    {
+        "directory": "{path}/Mails/Templates"
+    },
+    {
+        "directory": "{path}/Data/Migrations"
+    },
+    {
+        "directory": "{path}/Data/Seeders"
+    },
+    {
+        "directory": "{path}/Data/Factories"
+    },
+    {
+        "directory": "{path}/Data/Criteria"
+    },
+    {
+        "directory": "{path}/Data/Repositories"
+    },
+    {
+        "directory": "{path}/Data/Validators"
+    },
+    {
+        "directory": "{path}/Data/Transporters"
+    },
+    {
+        "directory": "{path}/Data/Rules"
+    },
+    {
+        "directory": "{path}/Tests/Unit"
+    },
+    {
+        "directory": "{path}/Tests/Traits"
+    },
+    {
+        "directory": "{path}/UI/API/Routes"
+    },
+    {
+        "directory": "{path}/UI/API/Controllers"
+    },
+    {
+        "directory": "{path}/UI/API/Requests"
+    },
+    {
+        "directory": "{path}/UI/API/Transformers"
+    },
+    {
+        "directory": "{path}/UI/API/Tests/Functional"
+    },
+    {
+        "directory": "{path}/UI/WEB/Controllers"
+    },
+    {
+        "directory": "{path}/UI/WEB/Routes"
+    },
+    {
+        "directory": "{path}/UI/WEB/Requests"
+    },
+    {
+        "directory": "{path}/UI/WEB/Tests/Functional"
+    },
+    {
+        "directory": "{path}/UI/WEB/Views"
+    },
+    {
+        "directory": "{path}/UI/CLI/Routes"
+    },
+    {
+        "directory": "{path}/UI/CLI/Commands"
+    },
+    {
+        "directory": "{path}/UI/CLI/Tests/Functional"
+    }
+]

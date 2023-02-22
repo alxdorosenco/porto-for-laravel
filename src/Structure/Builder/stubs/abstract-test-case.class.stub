@@ -1,0 +1,11 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ parentClass }} as {{ parentAlias }};
+use {{ traitsNamespace }}\CreatesApplication;
+
+abstract class {{ class }} extends {{ parentAlias }}
+{
+    use CreatesApplication;
+}

@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ rootNamespace }}Ship\Models\Model;
+
+class {{ class }} extends Model
+{
+
+}

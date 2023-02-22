@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+abstract class {{ class }}
+{
+    use HandlesAuthorization;
+}

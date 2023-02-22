@@ -1,0 +1,35 @@
+[
+    {
+        "directory": "{path}/Actions"
+    },
+    {
+        "directory": "{path}/Tasks"
+    },
+    {
+        "directory": "{path}/Models"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "AliasesLoader",
+        "template": "loader-aliases.class.stub"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "ProvidersLoader",
+        "template": "loader-providers.class.stub"
+    },
+    {
+        "directory": "{path}/Loaders",
+        "namespace": "{namespace}\\Loaders",
+        "class": "MiddlewareLoader",
+        "template": "loader-middleware.class.stub"
+    },
+    {
+        "directory": "{path}/UI/CLI/Routes"
+    },
+    {
+        "directory": "{path}/UI/CLI/Commands"
+    }
+]

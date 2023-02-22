@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ parentClass }} as {{ parentAlias }};
+
+class {{ class }} extends {{ parentAlias }}
+{
+
+}

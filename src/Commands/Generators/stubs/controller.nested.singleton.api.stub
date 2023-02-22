@@ -1,0 +1,57 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use {{ rootNamespace }}Ship\Controllers\Controller;
+use {{ namespaceRequest }};
+use {{ namespacedParentModel }};
+
+class {{ class }} extends Controller
+{
+    /**
+     * Store the newly created resource in storage.
+     *
+     * @param  \{{ namespaceRequest }}  $request
+     * @param  \{{ namespacedParentModel }}  ${{ parentModelVariable }}
+     * @return \{{ namespaceResponse }}
+     */
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }})
+    {
+        abort(404);
+    }
+
+    /**
+     * Display the resource.
+     *
+     * @param  \{{ namespacedParentModel }}  ${{ parentModelVariable }}
+     * @return \{{ namespaceResponse }}
+     */
+    public function show({{ parentModel }} ${{ parentModelVariable }})
+    {
+        //
+    }
+
+    /**
+     * Update the resource in storage.
+     *
+     * @param  \{{ namespaceRequest }}  $request
+     * @param  \{{ namespacedParentModel }}  ${{ parentModelVariable }}
+     * @return \{{ namespaceResponse }}
+     */
+    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }})
+    {
+        //
+    }
+
+    /**
+     * Remove the resource from storage.
+     *
+     * @param  \{{ namespacedParentModel }}  ${{ parentModelVariable }}
+     * @return \{{ namespaceResponse }}
+     */
+    public function destroy({{ parentModel }} ${{ parentModelVariable }})
+    {
+        abort(404);
+    }
+}
