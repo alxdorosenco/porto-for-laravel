@@ -35,11 +35,15 @@ class PortoServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->loadConfigsForRegister();
-        $this->loadProvidersForRegister();
-        $this->loadAliasesForRegister();
-        $this->loadMiddlewareForRegister();
-        $this->loadCommandsForRegister();
+        $this->loadConfigsFromPackage();
+
+        if(config('porto.enabled')){
+            $this->loadConfigsForRegister();
+            $this->loadProvidersForRegister();
+            $this->loadAliasesForRegister();
+            $this->loadMiddlewareForRegister();
+            $this->loadCommandsForRegister();
+        }
     }
 
     /**
@@ -49,10 +53,12 @@ class PortoServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadRoutesForBoot();
-        $this->loadTranslationsForBoot();
-        $this->loadHelpersForBoot();
-        $this->loadMigrationsForBoot();
-        $this->loadViewsForBoot();
+        if(config('porto.enabled')){
+            $this->loadRoutesForBoot();
+            $this->loadTranslationsForBoot();
+            $this->loadHelpersForBoot();
+            $this->loadMigrationsForBoot();
+            $this->loadViewsForBoot();
+        }
     }
 }

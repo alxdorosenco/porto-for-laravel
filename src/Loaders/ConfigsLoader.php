@@ -28,9 +28,21 @@ trait ConfigsLoader
     /**
      * @return array
      */
-    private function getConfigsFromCore(): array
+    private function getConfigsFromPackage(): array
     {
         return $this->findFilesInDirectories(__DIR__.'/../../config');
+    }
+
+    /**
+     * Load configs from current package
+     */
+    protected function loadConfigsFromPackage(): void
+    {
+        $packageConfigs = $this->getConfigsFromPackage();
+        foreach ($packageConfigs as $file){
+            $filename = pathinfo($file, PATHINFO_FILENAME);
+            $this->mergeConfigFrom($file, $filename);
+        }
     }
 
     /**
@@ -38,12 +50,6 @@ trait ConfigsLoader
      */
     protected function loadConfigsForRegister(): void
     {
-        $coreConfigs = $this->getConfigsFromCore();
-        foreach ($coreConfigs as $file){
-            $filename = pathinfo($file, PATHINFO_FILENAME);
-            $this->mergeConfigFrom($file, $filename);
-        }
-
         $shipConfigs = $this->getConfigsFromShip();
         $containersConfigs = $this->getConfigsFromContainers();
 
