@@ -7,7 +7,7 @@ return [
      |--------------------------------------------------------------------------
      |
      | Porto is disabled by default.
-     | You can enable porto putting APP_PORTO_ENABLED=true
+     | You can enable porto putting PORTO_ENABLED=true
      | in your .env file.
      |
      */
