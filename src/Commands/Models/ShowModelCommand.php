@@ -27,7 +27,7 @@ class ShowModelCommand extends LaravelShowModelCommand
      *
      * @see \Illuminate\Console\GeneratorCommand
      */
-    protected function qualifyModel(string $model)
+    protected function qualifyModel(string $model): string
     {
         $model = ltrim($model, '\\/');
 

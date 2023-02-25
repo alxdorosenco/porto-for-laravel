@@ -1,8 +1,8 @@
 # Porto for Laravel
 
-This is a package who gives flexible way to build a structure of the 
-Porto (Software Architectural Pattern) in your Laravel project.
-You should no longer to migrate a lot of files and folders handly. 
+This is a package who gives flexible way to build a structure of the Porto (Software Architectural Pattern) in your Laravel project.
+You should no longer to migrate a lot of files and folders handle. 
+
 This package will do the job for you in some clicks. 
 
 - [Introduction](#Introduction)
@@ -28,8 +28,7 @@ This package will do the job for you in some clicks.
       - [make:job](#makeJob)
       - [make:listener](#makeListener)
       - [make:mail](#makeMail)
-      - [make:mail](#makeMiddleware)
-      - [make:mail](#makeMigration)
+      - [make:middleware](#makeMiddleware)
       - [make:model](#makeModel)
       - [make:notification](#makeNotification)
       - [make:observer](#makeObserver)
@@ -47,11 +46,108 @@ This package will do the job for you in some clicks.
 <a id="Introduction"></a>
 # Introduction
 
+Laravel is a popular and beautiful PHP framework who helps a lot to make your web applications. 
+But web applications tend to grow and become harder to maintain and optimize.
+Unfortunately, Laravel, like other frameworks, does not have standard tools that allow you to write flexible, 
+readable and easily maintainable code.
+
+Porto (Software Architectural Pattern) is a brilliant solution for building large applications.
+This pattern helps you and your team to organize and maintain your code. 
+
+You can find more information about Porto by this link: https://github.com/Mahmoudz/Porto
+
 <a id="HowToInstall?"></a>
 # How to install?
 
+1. First of all you need to install the package:
+    ```
+    composer require alxdorosenco/porto-for-laravel
+    ```
+2. You need to enable installed package in your .env file: 
+    ```
+   PORTO_ENABLED=true
+    ```
+   You also can enable package in the config file named porto.php
+   ```php
+   php artisan vendor:publish --provider="AlxDorosenco\PortoForLaravel\PortoServiceProvider" --tag="config"
+   ```
+3. You can install porto structure using this command: 
+   ```
+   php artisan porto:install --container=<Container Name> --container-<Container Type>
+   ```  
+   You need to put directory path when the Porto structure will be installed 
+   or you can confirm installation in the default app/ directory. 
+
+   You also can add directory name of your first container.
+   For example: 
+   ```
+   --container=<Container Name>
+   ```
+   This container will be installed in the Containers directory with standard structure.
+   You also can force another container structures like:
+   ```
+   --container-default
+   --container-api
+   --container-cli
+   --container-web
+   --container-full
+   ```
+4. At last you need to put some changes in the bootstrap/app.php file.
+
+   From:
+   ```php
+    $app->singleton(
+        Illuminate\Contracts\Http\Kernel::class,
+        App\Http\Kernel::class
+    );
+    
+    $app->singleton(
+        Illuminate\Contracts\Console\Kernel::class,
+        App\Console\Kernel::class
+    );
+    
+    $app->singleton(
+        Illuminate\Contracts\Debug\ExceptionHandler::class,
+        App\Exceptions\Handler::class
+    );
+   ```
+   To: 
+   ```php
+    $app->singleton(
+        Illuminate\Contracts\Http\Kernel::class,
+        <Porto path name>\Ship\Kernels\HttpKernel::class
+    );
+    
+    $app->singleton(
+        Illuminate\Contracts\Console\Kernel::class,
+        <Porto path name>\Ship\Kernels\ConsoleKernel::class
+    );
+    
+    $app->singleton(
+        Illuminate\Contracts\Debug\ExceptionHandler::class,
+        <Porto path name>\Ship\Exceptions\Handler::class
+    );
+   ```
+5. You need to comment or clear Application Service Providers in the file config/app.php. 
+   Because you don't need them. The package loads automatically all providers from Ship and Containers
+   ```php
+   /*
+   * Application Service Providers...
+   */
+   //App\Providers\AppServiceProvider::class,
+   //App\Providers\AuthServiceProvider::class,
+   // App\Providers\BroadcastServiceProvider::class,
+   //App\Providers\EventServiceProvider::class,
+   //App\Providers\RouteServiceProvider::class
+   ```
+6. That's all. 
+   Below you can find the skeleton structure of ship, each type of containers 
+   and information about adapted laravel console commands.
+
 <a id="ShipStructure"></a>
 # Ship structure
+
+This is a skeleton of the installed Ship structure.
 
 ```
 Ship
@@ -194,9 +290,11 @@ Ship
 <a id="Standard"></a>
 ## 1. Standard
 
+To create container with necessary files and folders you need to put this command:
 ```
 php artisan make:container <Name>
 ```
+Without forced container type will be created standard container structure.  
 
 #### Standard Container's Structure
 
@@ -225,6 +323,8 @@ Container
 
 <a id="Default"></a>
 ## 2. Default
+
+To create container with default route, controller, view and test file you can via command below:
 
 ```
 php artisan make:container <Name> --default
@@ -264,6 +364,8 @@ Container
 <a id="API"></a>
 ## 3. API
 
+To create container only for API needles you can via command below:
+
 ```
 php artisan make:container <Name> --api
 ```
@@ -289,6 +391,8 @@ Container
 <a id="CLI"></a>
 ## 4. CLI
 
+To create container only for command line interface needles you can via command below:
+
 ```
 php artisan make:container <Name> --cli
 ```
@@ -312,6 +416,8 @@ Container
 
 <a id="WEB"></a>
 ## 5. WEB
+
+To create container only for web needles you can via command below:
 
 ```
 php artisan make:container <Name> --web
@@ -337,6 +443,8 @@ Container
 
 <a id="Full"></a>
 ## 6. Full
+
+To create container with full structure you can via command below:
 
 ```
 php artisan make:container <Name> --full
@@ -406,181 +514,177 @@ Container
 <a id="Make"></a>
 ## 1. Make
 
+This is a list of adapted laravel console commands for the Porto.
+
+Without container name some commands will be create class in the Ship.
+
+Other commands require the container name
+
 <a id="makeCast"></a>
-<details>
-    <summary>make:cast</summary>
 
-    php artisan make:cast
-
-</details>
+```
+php artisan make:cast --container=<Container Name>
+```
 
 <a id="makeChannel"></a>
-<details>
-    <summary>make:channel</summary>
 
-    php artisan make:channel
-</details>
+```
+php artisan make:channel --container=<Container Name>
+```
 
 <a id="makeCommand"></a>
-<details>
-    <summary>make:command</summary>
-    
-    php artisan make:command
-</details>
+
+```
+php artisan make:command
+
+php artisan make:command --container=<Container Name>
+```
 
 <a id="makeComponent"></a>
-<details>
-    <summary>make:component</summary>
 
-    php artisan make:component
-</details>
+```
+php artisan make:component --container=<Container Name>
+```
 
 <a id="makeController"></a>
-<details>
-    <summary>make:controller</summary>
 
-    php artisan make:controller
-</details>
+```
+php artisan make:controller --container=<Container Name>
+```
 
 <a id="makeEvent"></a>
-<details>
-    <summary>make:event</summary>
 
-    php artisan make:event
-</details>
+```
+php artisan make:event
+
+php artisan make:event --container=<Container Name>
+```
 
 <a id="makeException"></a>
-<details>
-    <summary>make:exception</summary>
 
-    php artisan make:exception
-</details>
+```
+php artisan make:exception
+
+php artisan make:exception --container=<Container Name>
+```
 
 <a id="makeFactory"></a>
-<details>
-    <summary>make:factory</summary>
 
-    php artisan make:factory
-</details>
+```
+php artisan make:factory --container=<Container Name>
+```
 
 <a id="makeJob"></a>
-<details>
-    <summary>make:job</summary>
 
-    php artisan make:job
-</details>
+```
+php artisan make:job
+
+php artisan make:job --container=<Container Name>
+```
 
 <a id="makeListener"></a>
-<details>
-    <summary>make:listener</summary>
 
-    php artisan make:listener
-</details>
+```
+php artisan make:listener --container=<Container Name>
+```
 
 <a id="makeMail"></a>
-<details>
-    <summary>make:mail</summary>
 
-    php artisan make:mail
-</details>
+```
+php artisan make:mail
+
+php artisan make:mail --container=<Container Name>
+```
 
 <a id="makeMiddleware"></a>
-<details>
-    <summary>make:middleware</summary>
 
-    php artisan make:middleware
-</details>
+```
+php artisan make:middleware
 
-<a id="makeMigration"></a>
-<details>
-    <summary>make:migration</summary>
-
-    php artisan make:migration
-</details>
+php artisan make:middleware --container=<Container Name>
+```
 
 <a id="makeModel"></a>
-<details>
-    <summary>make:model</summary>
 
-    php artisan make:model
-</details>
+```
+php artisan make:model --container=<Container Name>
+```
 
 <a id="makeNotification"></a>
-<details>
-    <summary>make:notification</summary>
 
-    php artisan make:notification
-</details>
+```
+php artisan make:notification
+
+php artisan make:notification --container=<Container Name>
+```
 
 <a id="makeObserver"></a>
-<details>
-    <summary>make:observer</summary>
 
-    php artisan make:observer
-</details>
+```
+php artisan make:observer --container=<Container Name>
+```
 
 <a id="makePolicy"></a>
-<details>
-    <summary>make:policy</summary>
 
-    php artisan make:policy
-</details>
+```
+php artisan make:policy --container=<Container Name>
+```
 
 <a id="makeProvider"></a>
-<details>
-    <summary>make:provider</summary>
+```
+php artisan make:provider
 
-    php artisan make:provider
-</details>
+php artisan make:provider --container=<Container Name>
+```
 
 <a id="makeRequest"></a>
-<details>
-    <summary>make:request</summary>
+```
+php artisan make:request --uiType=api
 
-    php artisan make:request
-</details>
+php artisan make:request --uiType=web
+```
 
 <a id="makeResource"></a>
-<details>
-    <summary>make:resource</summary>
 
-    php artisan make:resource
-</details>
+```
+php artisan make:resource --container=<Container Name>
+```
 
 <a id="makeRule"></a>
-<details>
-    <summary>make:rule</summary>
 
-    php artisan make:rule
-</details>
+```
+php artisan make:rule --container=<Container Name>
+```
 
 <a id="makeScope"></a>
-<details>
-    <summary>make:scope</summary>
 
-    php artisan make:scope
-</details>
+```
+php artisan make:scope --container=<Container Name>
+```
 
 <a id="makeSeeder"></a>
-<details>
-    <summary>make:seeder</summary>
 
-    php artisan make:seeder
-</details>
+```
+php artisan make:seeder
+
+php artisan make:seeder --container=<Container Name>
+```
 
 <a id="makeTest"></a>
-<details>
-    <summary>make:test</summary>
 
-    php artisan make:test
-</details>
+```
+php artisan make:test --uiType=api
+
+php artisan make:test --uiType=cli
+
+php artisan make:test --uiType=web
+```
 
 <a id="model"></a>
 ## 2. Model
 
 <a id="modelShow"></a>
-<details>
-    <summary>model:show</summary>
 
-    php artisan make:show
-</details>
+```
+php artisan make:show --container=<Container Name>
+```
