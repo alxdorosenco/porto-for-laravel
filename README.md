@@ -24,9 +24,7 @@ This package will do the job for you in some clicks.
       - [make:controller](#makeController)
       - [make:event](#makeEvent)
       - [make:exception](#makeException)
-      - [make:export](#makeExport)
       - [make:factory](#makeFactory)
-      - [make:import](#makeImport)
       - [make:job](#makeJob)
       - [make:listener](#makeListener)
       - [make:mail](#makeMail)
@@ -199,6 +197,10 @@ Ship
 #### Standard Container's Structure
 
 ```
+php artisan make:container <Name>
+```
+
+```
 Container
 	├── Actions
 	├── Tasks
@@ -225,6 +227,10 @@ Container
 ## 2. Default
 
 #### Default Container's Structure
+
+```
+php artisan make:container <Name> --default
+```
 
 ```
 Container
@@ -261,6 +267,10 @@ Container
 #### API Container's Structure
 
 ```
+php artisan make:container <Name> --api
+```
+
+```
 Container
 	├── Actions
 	├── Tasks
@@ -280,6 +290,10 @@ Container
 ## 4. CLI
 
 #### CLI Container's Structure
+
+```
+php artisan make:container <Name> --cli
+```
 
 ```
 Container
@@ -302,6 +316,10 @@ Container
 #### WEB Container's Structure
 
 ```
+php artisan make:container <Name> --web
+```
+
+```
 Container
 	├── Actions
 	├── Tasks
@@ -321,6 +339,10 @@ Container
 ## 6. Full
 
 #### Full Container's Structure
+
+```
+php artisan make:container <Name> --full
+```
 
 ```
 Container
@@ -387,131 +409,170 @@ Container
 <a id="makeCast"></a>
 <details>
     <summary>make:cast</summary>
+
+    php artisan make:cast
+
 </details>
 
 <a id="makeChannel"></a>
 <details>
     <summary>make:channel</summary>
+
+    php artisan make:channel
 </details>
 
 <a id="makeCommand"></a>
 <details>
     <summary>make:command</summary>
+    
+    php artisan make:command
 </details>
 
 <a id="makeComponent"></a>
 <details>
     <summary>make:component</summary>
+
+    php artisan make:component
 </details>
 
 <a id="makeController"></a>
 <details>
     <summary>make:controller</summary>
+
+    php artisan make:controller
 </details>
 
 <a id="makeEvent"></a>
 <details>
     <summary>make:event</summary>
+
+    php artisan make:event
 </details>
 
 <a id="makeException"></a>
 <details>
     <summary>make:exception</summary>
-</details>
 
-<a id="makeExport"></a>
-<details>
-    <summary>make:export</summary>
+    php artisan make:exception
 </details>
 
 <a id="makeFactory"></a>
 <details>
     <summary>make:factory</summary>
-</details>
 
-<a id="makeImport"></a>
-<details>
-    <summary>make:import</summary>
+    php artisan make:factory
 </details>
 
 <a id="makeJob"></a>
 <details>
     <summary>make:job</summary>
+
+    php artisan make:job
 </details>
 
 <a id="makeListener"></a>
 <details>
     <summary>make:listener</summary>
+
+    php artisan make:listener
 </details>
 
 <a id="makeMail"></a>
 <details>
     <summary>make:mail</summary>
+
+    php artisan make:mail
 </details>
 
 <a id="makeMiddleware"></a>
 <details>
     <summary>make:middleware</summary>
+
+    php artisan make:middleware
 </details>
 
 <a id="makeMigration"></a>
 <details>
     <summary>make:migration</summary>
+
+    php artisan make:migration
 </details>
 
 <a id="makeModel"></a>
 <details>
     <summary>make:model</summary>
+
+    php artisan make:model
 </details>
 
 <a id="makeNotification"></a>
 <details>
     <summary>make:notification</summary>
+
+    php artisan make:notification
 </details>
 
 <a id="makeObserver"></a>
 <details>
     <summary>make:observer</summary>
+
+    php artisan make:observer
 </details>
 
 <a id="makePolicy"></a>
 <details>
     <summary>make:policy</summary>
+
+    php artisan make:policy
 </details>
 
 <a id="makeProvider"></a>
 <details>
     <summary>make:provider</summary>
+
+    php artisan make:provider
 </details>
 
 <a id="makeRequest"></a>
 <details>
     <summary>make:request</summary>
+
+    php artisan make:request
 </details>
 
 <a id="makeResource"></a>
 <details>
     <summary>make:resource</summary>
+
+    php artisan make:resource
 </details>
 
 <a id="makeRule"></a>
 <details>
     <summary>make:rule</summary>
+
+    php artisan make:rule
 </details>
 
 <a id="makeScope"></a>
 <details>
     <summary>make:scope</summary>
+
+    php artisan make:scope
 </details>
 
 <a id="makeSeeder"></a>
 <details>
     <summary>make:seeder</summary>
+
+    php artisan make:seeder
 </details>
 
 <a id="makeTest"></a>
 <details>
     <summary>make:test</summary>
+
+    php artisan make:test
 </details>
 
 <a id="model"></a>
@@ -520,4 +581,6 @@ Container
 <a id="modelShow"></a>
 <details>
     <summary>model:show</summary>
+
+    php artisan make:show
 </details>
