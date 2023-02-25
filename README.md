@@ -226,11 +226,11 @@ Container
 <a id="Default"></a>
 ## 2. Default
 
-#### Default Container's Structure
-
 ```
 php artisan make:container <Name> --default
 ```
+
+#### Default Container's Structure
 
 ```
 Container
@@ -264,11 +264,11 @@ Container
 <a id="API"></a>
 ## 3. API
 
-#### API Container's Structure
-
 ```
 php artisan make:container <Name> --api
 ```
+
+#### API Container's Structure
 
 ```
 Container
@@ -289,11 +289,11 @@ Container
 <a id="CLI"></a>
 ## 4. CLI
 
-#### CLI Container's Structure
-
 ```
 php artisan make:container <Name> --cli
 ```
+
+#### CLI Container's Structure
 
 ```
 Container
@@ -313,11 +313,11 @@ Container
 <a id="WEB"></a>
 ## 5. WEB
 
-#### WEB Container's Structure
-
 ```
 php artisan make:container <Name> --web
 ```
+
+#### WEB Container's Structure
 
 ```
 Container
@@ -338,11 +338,11 @@ Container
 <a id="Full"></a>
 ## 6. Full
 
-#### Full Container's Structure
-
 ```
 php artisan make:container <Name> --full
 ```
+
+#### Full Container's Structure
 
 ```
 Container
