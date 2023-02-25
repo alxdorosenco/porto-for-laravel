@@ -521,18 +521,21 @@ Without container name some commands will be create class in the Ship.
 Other commands require the container name
 
 <a id="makeCast"></a>
+### make:cast
 
 ```
 php artisan make:cast --container=<Container Name>
 ```
 
 <a id="makeChannel"></a>
+### make:channel
 
 ```
 php artisan make:channel --container=<Container Name>
 ```
 
 <a id="makeCommand"></a>
+### make:command
 
 ```
 php artisan make:command
@@ -541,18 +544,21 @@ php artisan make:command --container=<Container Name>
 ```
 
 <a id="makeComponent"></a>
+### make:component
 
 ```
 php artisan make:component --container=<Container Name>
 ```
 
 <a id="makeController"></a>
+### make:controller
 
 ```
 php artisan make:controller --container=<Container Name>
 ```
 
 <a id="makeEvent"></a>
+### make:event
 
 ```
 php artisan make:event
@@ -561,6 +567,7 @@ php artisan make:event --container=<Container Name>
 ```
 
 <a id="makeException"></a>
+### make:exception
 
 ```
 php artisan make:exception
@@ -569,12 +576,14 @@ php artisan make:exception --container=<Container Name>
 ```
 
 <a id="makeFactory"></a>
+### make:factory
 
 ```
 php artisan make:factory --container=<Container Name>
 ```
 
 <a id="makeJob"></a>
+### make:job
 
 ```
 php artisan make:job
@@ -583,12 +592,14 @@ php artisan make:job --container=<Container Name>
 ```
 
 <a id="makeListener"></a>
+### make:listener
 
 ```
 php artisan make:listener --container=<Container Name>
 ```
 
 <a id="makeMail"></a>
+### make:mail
 
 ```
 php artisan make:mail
@@ -597,6 +608,7 @@ php artisan make:mail --container=<Container Name>
 ```
 
 <a id="makeMiddleware"></a>
+### make:middleware
 
 ```
 php artisan make:middleware
@@ -605,12 +617,14 @@ php artisan make:middleware --container=<Container Name>
 ```
 
 <a id="makeModel"></a>
+### make:model
 
 ```
 php artisan make:model --container=<Container Name>
 ```
 
 <a id="makeNotification"></a>
+### make:notification
 
 ```
 php artisan make:notification
@@ -619,18 +633,22 @@ php artisan make:notification --container=<Container Name>
 ```
 
 <a id="makeObserver"></a>
+### make:observer
 
 ```
 php artisan make:observer --container=<Container Name>
 ```
 
 <a id="makePolicy"></a>
+### make:policy
 
 ```
 php artisan make:policy --container=<Container Name>
 ```
 
 <a id="makeProvider"></a>
+### make:provider
+
 ```
 php artisan make:provider
 
@@ -638,6 +656,8 @@ php artisan make:provider --container=<Container Name>
 ```
 
 <a id="makeRequest"></a>
+### make:request
+
 ```
 php artisan make:request --uiType=api
 
@@ -645,24 +665,28 @@ php artisan make:request --uiType=web
 ```
 
 <a id="makeResource"></a>
+### make:resource
 
 ```
 php artisan make:resource --container=<Container Name>
 ```
 
 <a id="makeRule"></a>
+### make:rule
 
 ```
 php artisan make:rule --container=<Container Name>
 ```
 
 <a id="makeScope"></a>
+### make:scope
 
 ```
 php artisan make:scope --container=<Container Name>
 ```
 
 <a id="makeSeeder"></a>
+### make:seeder
 
 ```
 php artisan make:seeder
@@ -671,6 +695,7 @@ php artisan make:seeder --container=<Container Name>
 ```
 
 <a id="makeTest"></a>
+### make:test
 
 ```
 php artisan make:test --uiType=api
@@ -684,6 +709,7 @@ php artisan make:test --uiType=web
 ## 2. Model
 
 <a id="modelShow"></a>
+### make:show
 
 ```
 php artisan make:show --container=<Container Name>
