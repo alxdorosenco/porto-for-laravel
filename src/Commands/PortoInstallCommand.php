@@ -50,7 +50,11 @@ class PortoInstallCommand extends LaravelCommand
     {
         return [
             ['container', null, InputOption::VALUE_REQUIRED, 'Create container in current porto structure'],
-            ['container-full', 'cf', InputOption::VALUE_NONE, 'Create full container in current porto structure'],
+            ['container-default', 'd', InputOption::VALUE_NONE, 'Create default container in current porto structure'],
+            ['container-full', 'f', InputOption::VALUE_NONE, 'Create full container in current porto structure'],
+            ['container-api', 'a', InputOption::VALUE_NONE, 'Create api container in current porto structure'],
+            ['container-web', 'w', InputOption::VALUE_NONE, 'Create web container in current porto structure'],
+            ['container-cli', 'c', InputOption::VALUE_NONE, 'Create web container in current porto structure']
         ];
     }
 
@@ -95,8 +99,12 @@ class PortoInstallCommand extends LaravelCommand
 
         if($this->option('container')){
             $containerCommandParams = [
-                'name'      => $this->option('container'),
-                '--full'    => $this->option('container-full')
+                'name'         => $this->option('container'),
+                '--default'    => $this->option('container-default'),
+                '--api'        => $this->option('container-api'),
+                '--cli'        => $this->option('container-cli'),
+                '--web'        => $this->option('container-web'),
+                '--full'       => $this->option('container-full')
             ];
 
             $this->call('make:container', $containerCommandParams);
