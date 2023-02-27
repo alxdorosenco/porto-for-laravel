@@ -63,15 +63,11 @@ You can find more information about Porto by this link: https://github.com/Mahmo
     ```
     composer require alxdorosenco/porto-for-laravel
     ```
-2. You need to enable installed package in your .env file: 
+2. Next, you need to enable installed package in your .env file: 
     ```
    PORTO_ENABLED=true
     ```
-   You also can enable package in the config file named porto.php
-   ```php
-   php artisan vendor:publish --provider="AlxDorosenco\PortoForLaravel\PortoServiceProvider" --tag="config"
-   ```
-3. You can install porto structure using this command: 
+3. Next, you can install porto structure using this command: 
    ```
    php artisan porto:install --container=<Container Name> --container-<Container Type>
    ```  
@@ -92,7 +88,7 @@ You can find more information about Porto by this link: https://github.com/Mahmo
    --container-web
    --container-full
    ```
-4. At last you need to put some changes in the bootstrap/app.php file.
+4. Next, you need to put some changes in the bootstrap/app.php file.
 
    From:
    ```php
@@ -128,7 +124,7 @@ You can find more information about Porto by this link: https://github.com/Mahmo
         <Porto path name>\Ship\Exceptions\Handler::class
     );
    ```
-5. You need to comment or clear Application Service Providers in the file config/app.php. 
+5. At last, you need to comment or clear Application Service Providers in the file config/app.php. 
    Because you don't need them. The package loads automatically all providers from Ship and Containers
    ```php
    /*
@@ -516,7 +512,7 @@ Container
 
 This is a list of adapted laravel console commands for the Porto.
 
-Without container name some commands will be create class in the Ship.
+Without container name some commands will be created class in the Ship.
 
 Other commands require the container name
 
@@ -524,185 +520,173 @@ Other commands require the container name
 ### make:cast
 
 ```
-php artisan make:cast --container=<Container Name>
+php artisan make:cast <Name> --container=<Container Name>
 ```
 
 <a id="makeChannel"></a>
 ### make:channel
 
 ```
-php artisan make:channel --container=<Container Name>
+php artisan make:channel <Name> --container=<Container Name>
 ```
 
 <a id="makeCommand"></a>
 ### make:command
 
 ```
-php artisan make:command
-
-php artisan make:command --container=<Container Name>
+php artisan make:command <Name>
+php artisan make:command <Name> --container=<Container Name>
 ```
 
 <a id="makeComponent"></a>
 ### make:component
 
 ```
-php artisan make:component --container=<Container Name>
+php artisan make:component <Name> --container=<Container Name>
 ```
 
 <a id="makeController"></a>
 ### make:controller
 
 ```
-php artisan make:controller --container=<Container Name>
+php artisan make:controller <Name> --container=<Container Name>
 ```
 
 <a id="makeEvent"></a>
 ### make:event
 
 ```
-php artisan make:event
-
-php artisan make:event --container=<Container Name>
+php artisan make:event <Name>
+php artisan make:event <Name> --container=<Container Name>
 ```
 
 <a id="makeException"></a>
 ### make:exception
 
 ```
-php artisan make:exception
-
-php artisan make:exception --container=<Container Name>
+php artisan make:exception <Name>
+php artisan make:exception <Name> --container=<Container Name>
 ```
 
 <a id="makeFactory"></a>
 ### make:factory
 
 ```
-php artisan make:factory --container=<Container Name>
+php artisan make:factory <Name> --container=<Container Name>
 ```
 
 <a id="makeJob"></a>
 ### make:job
 
 ```
-php artisan make:job
-
-php artisan make:job --container=<Container Name>
+php artisan make:job <Name>
+php artisan make:job <Name> --container=<Container Name>
 ```
 
 <a id="makeListener"></a>
 ### make:listener
 
 ```
-php artisan make:listener --container=<Container Name>
+php artisan make:listener <Name> --container=<Container Name>
 ```
 
 <a id="makeMail"></a>
 ### make:mail
 
 ```
-php artisan make:mail
-
-php artisan make:mail --container=<Container Name>
+php artisan make:mail <Name>
+php artisan make:mail <Name> --container=<Container Name>
 ```
 
 <a id="makeMiddleware"></a>
 ### make:middleware
 
 ```
-php artisan make:middleware
-
-php artisan make:middleware --container=<Container Name>
+php artisan make:middleware <Name>
+php artisan make:middleware <Name> --container=<Container Name>
 ```
 
 <a id="makeModel"></a>
 ### make:model
 
 ```
-php artisan make:model --container=<Container Name>
+php artisan make:model <Name> --container=<Container Name>
 ```
 
 <a id="makeNotification"></a>
 ### make:notification
 
 ```
-php artisan make:notification
-
-php artisan make:notification --container=<Container Name>
+php artisan make:notification <Name>
+php artisan make:notification <Name> --container=<Container Name>
 ```
 
 <a id="makeObserver"></a>
 ### make:observer
 
 ```
-php artisan make:observer --container=<Container Name>
+php artisan make:observer <Name> --container=<Container Name>
 ```
 
 <a id="makePolicy"></a>
 ### make:policy
 
 ```
-php artisan make:policy --container=<Container Name>
+php artisan make:policy <Name> --container=<Container Name>
 ```
 
 <a id="makeProvider"></a>
 ### make:provider
 
 ```
-php artisan make:provider
-
-php artisan make:provider --container=<Container Name>
+php artisan make:provider <Name>
+php artisan make:provider <Name> --container=<Container Name>
 ```
 
 <a id="makeRequest"></a>
 ### make:request
 
 ```
-php artisan make:request --uiType=api
-
-php artisan make:request --uiType=web
+php artisan make:request <Name> --container=<Container Name> --uiType=api
+php artisan make:request <Name> --container=<Container Name> --uiType=web
 ```
 
 <a id="makeResource"></a>
 ### make:resource
 
 ```
-php artisan make:resource --container=<Container Name>
+php artisan make:resource <Name> --container=<Container Name>
 ```
 
 <a id="makeRule"></a>
 ### make:rule
 
 ```
-php artisan make:rule --container=<Container Name>
+php artisan make:rule <Name> --container=<Container Name>
 ```
 
 <a id="makeScope"></a>
 ### make:scope
 
 ```
-php artisan make:scope --container=<Container Name>
+php artisan make:scope <Name> --container=<Container Name>
 ```
 
 <a id="makeSeeder"></a>
 ### make:seeder
 
 ```
-php artisan make:seeder
-
-php artisan make:seeder --container=<Container Name>
+php artisan make:seeder <Name>
+php artisan make:seeder <Name> --container=<Container Name>
 ```
 
 <a id="makeTest"></a>
 ### make:test
 
 ```
-php artisan make:test --uiType=api
-
-php artisan make:test --uiType=cli
-
-php artisan make:test --uiType=web
+php artisan make:test <Name> --container=<Container Name> --uiType=api
+php artisan make:test <Name> --container=<Container Name> --uiType=cli
+php artisan make:test <Name> --container=<Container Name> --uiType=web
 ```
 
 <a id="model"></a>
@@ -714,3 +698,6 @@ php artisan make:test --uiType=web
 ```
 php artisan make:show --container=<Container Name>
 ```
+
+## License
+Released under the MIT License, see [LICENSE](LICENSE).
