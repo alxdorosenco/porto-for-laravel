@@ -20,7 +20,7 @@ class ConfigsLoaderTraitTest extends TestCase
             use ConfigsLoader {
                 getConfigsFromContainers as public;
                 getConfigsFromShip as public;
-                getConfigsFromCore as public;
+                getConfigsFromPackage as public;
             }
         };
     }
@@ -35,8 +35,8 @@ class ConfigsLoaderTraitTest extends TestCase
         $this->assertIsArray($this->trait->getConfigsFromShip());
     }
 
-    public function testConfigsFromCoreMethod(): void
+    public function testConfigsFromPackageMethod(): void
     {
-        $this->assertIsArray($this->trait->getConfigsFromCore());
+        $this->assertIsArray($this->trait->getConfigsFromPackage());
     }
 }

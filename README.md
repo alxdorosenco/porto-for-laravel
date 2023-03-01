@@ -221,6 +221,7 @@ Ship
     │   ├── Channel.php
     │   ├── PresenceChannel.php
     │   └── PrivateChannel.php
+    ├── Commands
     ├── Configs
     ├── Controllers
     │   └── Controller.php
@@ -275,6 +276,7 @@ Ship
     ├── Resources
     │   ├── JsonResource.php
     │   └── ResourceCollection.php
+    ├── Seeders
     ├── Tests
     │   └── TestCase.php
     ├── Traits
