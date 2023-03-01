@@ -368,6 +368,9 @@
         "template": "extended.class.stub"
     },
     {
+        "directory": "{path}/Commands"
+    },
+    {
         "directory": "{path}/Configs"
     },
     {
@@ -653,6 +656,9 @@
         "parentClass": "{namespace}\\Abstracts\\Resources\\ResourceCollection",
         "parentAlias": "AbstractResourceCollection",
         "template": "extended.class.stub"
+    },
+    {
+        "directory": "{path}/Seeders"
     },
     {
         "directory": "{path}/Tests",
