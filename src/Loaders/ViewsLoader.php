@@ -25,7 +25,7 @@ trait ViewsLoader
 
             $containerName = end($containerNameArray);
             $containerName = str_replace(DIRECTORY_SEPARATOR,'@', $containerName);
-            $viewsList = [strtolower($containerName) => $directory];
+            $viewsList[strtolower($containerName)] = $directory;
         }
 
         return $viewsList;
