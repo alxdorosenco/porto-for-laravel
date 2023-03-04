@@ -1,0 +1,15 @@
+<?php
+
+namespace {{ namespace }};
+
+class {{ class }}
+{
+    /**
+     * Model in the constructor property promotion
+     *
+     * @return void
+     */
+    public function __construct(
+        private \{{ ModelNamespace }} $model
+    ){}
+}

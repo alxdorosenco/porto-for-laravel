@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ namespace }};
+
+class {{ class }}
+{
+    /**
+     * Get response from repository.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // task
+    }
+}
