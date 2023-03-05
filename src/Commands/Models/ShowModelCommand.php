@@ -17,7 +17,7 @@ class ShowModelCommand extends LaravelShowModelCommand
     protected $signature = 'model:show {model : The model to show}
                 {--database= : The database connection to use}
                 {--json : Output the model as JSON}
-                {--container : container directory}';
+                {--container= : container directory}';
 
     /**
      * Qualify the given model class base name.

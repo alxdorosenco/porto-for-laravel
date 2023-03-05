@@ -41,11 +41,11 @@ trait CommandsLoader
      */
     protected function loadCommandsForRegister(): void
     {
-        $commandFiles = config('porto.enabled') ? $this->findFilesInDirectories([
+        $commandFiles = $this->findFilesInDirectories([
             __DIR__.'/../Commands',
             __DIR__.'/../Commands/Generators',
             __DIR__.'/../Commands/Models'
-        ]) : [];
+        ]);
 
         $commandClasses = [];
         foreach ($commandFiles as $file){

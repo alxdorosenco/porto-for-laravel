@@ -44,6 +44,17 @@ This package will do the job for you in some clicks.
       - [make:test](#makeTest)
     - [Model](#model)
       - [model:show](#modelShow)
+- [Additional console commands](#AdditionalConsoleCommands)
+    - [Make](#AdditionalMake)
+      - [make:action](#makeAction)
+      - [make:config](#makeConfig)
+      - [make:contract](#makeContract)
+      - [make:helper](#makeHelper)
+      - [make:repository](#makeRepository)
+      - [make:task](#makeTask)
+      - [make:trait](#makeTrait)
+      - [make:translation](#makeTranslation)
+      - [make:value](#makeValue)
 
 <a id="Introduction"></a>
 # Introduction
@@ -74,7 +85,10 @@ You can find more information about Porto by this link: https://github.com/Mahmo
    php artisan porto:install --container=<Container Name> --container-<Container Type>
    ```  
    You need to put directory path when the Porto structure will be installed 
-   or you can confirm installation in the default app/ directory. 
+   or you can confirm installation in the default app/ directory.
+
+   Of course, if you put the custom directory path, you need to set it in the
+   autoload -> psr-4 in the composer.json file. 
 
    You also can add directory name of your first container.
    For example: 
@@ -701,6 +715,82 @@ php artisan make:test <Name> --container=<Container Name> --uiType=web
 
 ```
 php artisan make:show --container=<Container Name>
+```
+
+<a id="AdditionalConsoleCommands"></a>
+# Additional console commands
+
+<a id="AdditionalMake"></a>
+## 1. Make
+
+This is a list of console commands for the Porto who does not exists in Laravel.
+
+Without container name some commands will be created class in the Ship.
+
+Other commands require the container name
+
+<a id="makeAction"></a>
+### make:action
+
+```
+php artisan make:action <Name> --container=<Container Name>
+```
+<a id="makeConfig"></a>
+### make:config
+
+```
+php artisan make:config <Name>
+php artisan make:config <Name> --container=<Container Name>
+```
+
+<a id="makeContract"></a>
+### make:contract
+
+```
+php artisan make:contract <Name> --container=<Container Name>
+```
+
+<a id="makeHelper"></a>
+### make:helper
+
+```
+php artisan make:helper <Name>
+```
+
+<a id="makeRepository"></a>
+### make:repository
+
+```
+php artisan make:repository <Name>
+```
+
+<a id="makeTask"></a>
+### make:task
+
+```
+php artisan make:task <Name> --container=<Container Name>
+```
+
+<a id="makeTrait"></a>
+### make:trait
+
+```
+php artisan make:trait <Name> --container=<Container Name>
+php artisan make:trait <Name> --container=<Container Name> --test
+```
+
+<a id="makeTranslation"></a>
+### make:translation
+
+```
+php artisan make:translation <Name> --lang=<lang code>
+```
+
+<a id="makeValue"></a>
+### make:value
+
+```
+php artisan make:value <Name> --container=<Container Name>
 ```
 
 ## License
