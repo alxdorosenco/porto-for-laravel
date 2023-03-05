@@ -5,10 +5,14 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputOption;
 
 class RepositoryMakeCommand extends GeneratorCommand
 {
-    use ConsoleGenerator;
+    use ConsoleGenerator {
+        getOptions as protected getOptionsFromTrait;
+    }
 
     /**
      * The console command name.
@@ -32,6 +36,20 @@ class RepositoryMakeCommand extends GeneratorCommand
     protected $type = 'Repository';
 
     /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        $options = $this->getOptionsFromTrait();
+
+        $options[] = ['model', 'm', InputOption::VALUE_OPTIONAL, 'Generate model for the repository'];
+
+        return $options;
+    }
+
+    /**
      * Get the stub file for the generator.
      *
      * @return string
@@ -52,12 +70,12 @@ class RepositoryMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Action must be in the container');
+            $this->components->error('Repository must be in the container');
 
             return static::FAILURE;
         }
 
-        return $this->handle();
+        return parent::handle();
     }
 
     /**
@@ -127,6 +145,27 @@ class RepositoryMakeCommand extends GeneratorCommand
     }
 
     /**
+     * Qualify the given model class base name.
+     *
+     * @param  string  $model
+     * @return string
+     */
+    protected function qualifyModel(string $model): string
+    {
+        $model = ltrim($model, '\\/');
+
+        $model = str_replace('/', '\\', $model);
+
+        $rootNamespace = $this->getNecessaryNamespace();
+
+        if (Str::startsWith($model, $rootNamespace)) {
+            return $model;
+        }
+
+        return $rootNamespace.'\\Models\\'.$model;
+    }
+
+    /**
      * Get the default namespace for the class.
      *
      * @param  string  $rootNamespace
@@ -134,6 +173,6 @@ class RepositoryMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getContainersNamespace().'\Data\Repositories';
+        return $this->getNecessaryNamespace().'\Data\Repositories';
     }
 }

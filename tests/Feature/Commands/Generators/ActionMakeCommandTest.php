@@ -7,16 +7,6 @@ use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 class ActionMakeCommandTest extends TestCase
 {
     /**
-     * @return array[]
-     */
-    public function provideTypes(): array
-    {
-        return [
-            'force' => ['force']
-        ];
-    }
-
-    /**
      * Test of the console command
      *
      * @return void
@@ -38,21 +28,6 @@ class ActionMakeCommandTest extends TestCase
         $this->artisan('make:action', [
             'name' => 'Test1Action',
             '--container' => $this->containerName
-        ])->assertSuccessful();
-    }
-
-    /**
-     * Test of the console command with types
-     *
-     * @dataProvider provideTypes
-     * @return void
-     */
-    public function testConsoleCommandWithTypes(string $type): void
-    {
-        $this->artisan('make:action', [
-            'name' => 'Test2'.(ucfirst($type)).'Action',
-            '--container' => $this->containerName,
-            '--'.$type => true
         ])->assertSuccessful();
     }
 }

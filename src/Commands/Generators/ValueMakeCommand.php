@@ -6,7 +6,7 @@ use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class ActionMakeCommand extends GeneratorCommand
+class ValueMakeCommand extends GeneratorCommand
 {
     use ConsoleGenerator;
 
@@ -15,21 +15,21 @@ class ActionMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:action';
+    protected $name = 'make:value';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new action class';
+    protected $description = 'Create a new value class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Action';
+    protected $type = 'Value';
 
     /**
      * Get the stub file for the generator.
@@ -38,17 +38,17 @@ class ActionMakeCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return __DIR__.'/stubs/action.stub';
+        return __DIR__.'/stubs/value.stub';
     }
 
     /**
-     * @return bool|int|void|null
+     * @return bool|void|null
      * @throws FileNotFoundException
      */
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Action must be in the container');
+            $this->components->error('Value must be in the container');
 
             return static::FAILURE;
         }
@@ -64,6 +64,6 @@ class ActionMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getNecessaryNamespace().'\Actions';
+        return $this->getNecessaryNamespace().'\Values';
     }
 }

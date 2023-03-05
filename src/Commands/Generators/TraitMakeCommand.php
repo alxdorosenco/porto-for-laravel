@@ -5,18 +5,20 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Symfony\Component\Console\Input\InputOption;
 
 class TraitMakeCommand extends GeneratorCommand
 {
     use ConsoleGenerator {
         handle as protected handleFromTrait;
+        getOptions as protected getOptionsFromTrait;
     }
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:task';
+    protected $name = 'make:trait';
 
     /**
      * The console command description.
@@ -43,6 +45,20 @@ class TraitMakeCommand extends GeneratorCommand
     }
 
     /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        $options = $this->getOptionsFromTrait();
+
+        $options[] = ['test', 'm', InputOption::VALUE_NONE, 'Saving trait for the tests'];
+
+        return $options;
+    }
+
+    /**
      * @return bool|void|null
      * @throws FileNotFoundException
      */
@@ -65,6 +81,10 @@ class TraitMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getContainersNamespace().'\Traits';
+        if($this->option('test')){
+            $this->getNecessaryNamespace().'\Tests\Traits';
+        }
+
+        return $this->getNecessaryNamespace().'\Traits';
     }
 }

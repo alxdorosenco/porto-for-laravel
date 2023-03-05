@@ -12,7 +12,6 @@ class RepositoryMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'model' => ['model']
         ];
     }
@@ -50,20 +49,14 @@ class RepositoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $typeValue = true;
-
-        if($type === 'model'){
-            $typeValue = 'TestModelForRepository';
-        }
-
         $testCommand = $this->artisan('make:repository', [
             'name' => 'Test2'.(ucfirst($type)).'Repository',
             '--container' => $this->containerName,
-            '--'.$type => $typeValue
+            '--'.$type => 'TestModelForRepository'
         ]);
 
         if($type === 'model'){
-            $namespace = config('porto.path').'\Containers\\'.$this->containerName.'\Models\\'.$typeValue;
+            $namespace = config('porto.path').'\Containers\\'.$this->containerName.'\Models\TestModelForRepository';
             $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
         }
 

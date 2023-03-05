@@ -4,11 +4,17 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Traits\Console;
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\Console\Input\InputOption;
 
 class TranslationMakeCommand extends GeneratorCommand
 {
     use Console;
+
+    /**
+     * @var string|null
+     */
+    private ?string $lang;
 
     /**
      * Get the console command arguments.
@@ -22,6 +28,29 @@ class TranslationMakeCommand extends GeneratorCommand
         $options[] = ['lang', null, InputOption::VALUE_REQUIRED, 'Create the folder with a lang code'];
 
         return $options;
+    }
+
+    /**
+     * @return bool|void|null
+     * @throws FileNotFoundException
+     */
+    public function handle()
+    {
+        $this->lang = $this->option('lang');
+
+        if (!$this->lang) {
+            $lang = $this->components->ask('Please, write your language code (for example en, fr, de)');
+
+            if(!$lang){
+                $this->components->error('Translation file cannot be created without language');
+
+                return static::FAILURE;
+            }
+
+            $this->lang = $lang;
+        }
+
+        return parent::handle();
     }
 
     /**
@@ -56,6 +85,6 @@ class TranslationMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getShipNamespace().'\Translations\\'.$this->option('lang');
+        return $this->getShipNamespace().'\Translations\\'.$this->lang;
     }
 }

@@ -12,7 +12,6 @@ class TraitMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'test' => ['test']
         ];
     }

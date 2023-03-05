@@ -53,7 +53,7 @@ class ContractMakeCommand extends GeneratorCommand
             return static::FAILURE;
         }
 
-        return $this->handle();
+        return parent::handle();
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-trait {{ trait }}
+trait {{ class }}
 {
     //
 }

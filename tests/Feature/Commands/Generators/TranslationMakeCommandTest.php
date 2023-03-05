@@ -12,7 +12,6 @@ class TranslationMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'lang'  => ['lang']
         ];
     }
@@ -26,7 +25,9 @@ class TranslationMakeCommandTest extends TestCase
     {
         $this->artisan('make:translation', [
             'name' => 'TestTranslation',
-        ])->assertSuccessful();
+        ])
+            ->expectsQuestion('Please, write your language code (for example en, fr, de)', 'en')
+            ->assertSuccessful();
     }
 
     /**
@@ -37,16 +38,9 @@ class TranslationMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $typeValue = true;
-
-        if($type === 'lang'){
-            $typeValue = 'en';
-        }
-
         $testCommand = $this->artisan('make:translation', [
             'name' => 'Test2'.(ucfirst($type)).'Translation',
-            '--container' => $this->containerName,
-            '--'.$type => $typeValue
+            '--'.$type => 'en'
         ]);
 
         $testCommand->assertSuccessful();

@@ -53,7 +53,7 @@ class TaskMakeCommand extends GeneratorCommand
             return static::FAILURE;
         }
 
-        return $this->handle();
+        return parent::handle();
     }
 
     /**
@@ -64,6 +64,6 @@ class TaskMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getContainersNamespace().'\Tasks';
+        return $this->getNecessaryNamespace().'\Tasks';
     }
 }
