@@ -28,7 +28,7 @@ class HelperMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__.'/stubs/helper.stub';
     }

@@ -726,47 +726,18 @@ Without container name some commands will be created class in the Ship.
 
 Other commands require the container name
 
-<a id="makeConfig"></a>
-### make:config
-
-```
-php artisan make:config <Name>
-php artisan make:config <Name> --container=<Container Name>
-```
-
-<a id="makeHelper"></a>
-### make:helper
-
-```
-php artisan make:helper <Name>
-```
-
-<a id="makeTranslation"></a>
-### make:translation
-
-```
-php artisan make:translation <Name> --lang=<lang code>
-```
-
 <a id="makeAction"></a>
 ### make:action
 
 ```
 php artisan make:action <Name> --container=<Container Name>
 ```
-
-<a id="makeTask"></a>
-### make:task
-
-```
-php artisan make:task <Name> --container=<Container Name>
-```
-
-<a id="makeValue"></a>
-### make:value
+<a id="makeConfig"></a>
+### make:config
 
 ```
-php artisan make:task <Name> --container=<Container Name>
+php artisan make:config <Name>
+php artisan make:config <Name> --container=<Container Name>
 ```
 
 <a id="makeContract"></a>
@@ -776,12 +747,47 @@ php artisan make:task <Name> --container=<Container Name>
 php artisan make:contract <Name> --container=<Container Name>
 ```
 
+<a id="makeHelper"></a>
+### make:helper
+
+```
+php artisan make:helper <Name>
+```
+
+<a id="makeRepository"></a>
+### make:repository
+
+```
+php artisan make:repository <Name>
+```
+
+<a id="makeTask"></a>
+### make:task
+
+```
+php artisan make:task <Name> --container=<Container Name>
+```
+
 <a id="makeTrait"></a>
 ### make:trait
 
 ```
 php artisan make:trait <Name> --container=<Container Name>
 php artisan make:trait <Name> --container=<Container Name> --test
+```
+
+<a id="makeTranslation"></a>
+### make:translation
+
+```
+php artisan make:translation <Name> --lang=<lang code>
+```
+
+<a id="makeValue"></a>
+### make:value
+
+```
+php artisan make:value <Name> --container=<Container Name>
 ```
 
 ## License

@@ -6,7 +6,7 @@ use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class ActionMakeCommand extends GeneratorCommand
+class TaskMakeCommand extends GeneratorCommand
 {
     use ConsoleGenerator;
 
@@ -15,21 +15,21 @@ class ActionMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:action';
+    protected $name = 'make:task';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new action class';
+    protected $description = 'Create a new task class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Action';
+    protected $type = 'Task';
 
     /**
      * Get the stub file for the generator.
@@ -38,7 +38,7 @@ class ActionMakeCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return __DIR__.'/stubs/action.stub';
+        return __DIR__.'/stubs/task.stub';
     }
 
     /**
@@ -64,6 +64,6 @@ class ActionMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getContainersNamespace().'\Actions';
+        return $this->getContainersNamespace().'\Tasks';
     }
 }

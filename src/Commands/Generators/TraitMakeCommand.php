@@ -6,30 +6,31 @@ use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
-class ActionMakeCommand extends GeneratorCommand
+class TraitMakeCommand extends GeneratorCommand
 {
-    use ConsoleGenerator;
-
+    use ConsoleGenerator {
+        handle as protected handleFromTrait;
+    }
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:action';
+    protected $name = 'make:task';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new action class';
+    protected $description = 'Create a new trait';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Action';
+    protected $type = 'Trait';
 
     /**
      * Get the stub file for the generator.
@@ -38,7 +39,7 @@ class ActionMakeCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return __DIR__.'/stubs/action.stub';
+        return __DIR__.'/stubs/trait.stub';
     }
 
     /**
@@ -48,12 +49,12 @@ class ActionMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Action must be in the container');
+            $this->components->error('Trait must be in the container');
 
             return static::FAILURE;
         }
 
-        return $this->handle();
+        return $this->handleFromTrait();
     }
 
     /**
@@ -64,6 +65,6 @@ class ActionMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getContainersNamespace().'\Actions';
+        return $this->getContainersNamespace().'\Traits';
     }
 }

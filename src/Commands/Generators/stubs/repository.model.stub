@@ -2,6 +2,8 @@
 
 namespace {{ namespace }};
 
+use {{ namespacedModel }};
+
 class {{ class }}
 {
     /**
@@ -10,6 +12,6 @@ class {{ class }}
      * @return void
      */
     public function __construct(
-        private \{{ ModelNamespace }} $model
+        private \{{ namespacedModel }} $model
     ){}
 }
