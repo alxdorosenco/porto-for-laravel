@@ -85,7 +85,10 @@ You can find more information about Porto by this link: https://github.com/Mahmo
    php artisan porto:install --container=<Container Name> --container-<Container Type>
    ```  
    You need to put directory path when the Porto structure will be installed 
-   or you can confirm installation in the default app/ directory. 
+   or you can confirm installation in the default app/ directory.
+
+   Of course, if you put the custom directory path, you need to set it in the
+   autoload -> psr-4 in the composer.json file. 
 
    You also can add directory name of your first container.
    For example: 
