@@ -61,7 +61,6 @@ class ModelMakeCommandTest extends TestCase
     public function testConsoleCommandWithTypes(string $type): void
     {
         $modelName = 'Test2'.(ucfirst($type)).'Model';
-        $namespace = config('porto.path').'\Containers\\'.$this->containerName.'\Models\\'.$modelName;
 
         $testCommand = $this->artisan('make:model', [
             'name' => $type === 'factory' ? 'Test2FModel' : $modelName,
@@ -71,12 +70,7 @@ class ModelMakeCommandTest extends TestCase
 
         if($type === 'all'){
             $testCommand
-                ->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes')
                 ->expectsChoice('Please, select type of the user\'s interface', 'web', ['api' => 'api', 'web' => 'web']);
-        }
-
-        if($type === 'resource' || $type === 'api'){
-            $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
         }
 
         $testCommand->assertSuccessful();
