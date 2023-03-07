@@ -34,15 +34,11 @@ class RuleMakeCommand extends LaravelRuleMakeCommand
      */
     protected function getStub(): string
     {
-        if ($this->option('invokable')) {
-            return __DIR__.'/stubs/rule.invokable.stub';
-        }
+        $stub = $this->option('implicit')
+            ? '/stubs/rule.implicit.stub'
+            : '/stubs/rule.stub';
 
-        if ($this->option('implicit') && $this->option('invokable')) {
-            return __DIR__.'/stubs/rule.invokable.implicit.stub';
-        }
-
-        return parent::getStub();
+        return __DIR__.$stub;
     }
 
     /**

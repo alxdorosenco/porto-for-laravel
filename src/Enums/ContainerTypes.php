@@ -2,12 +2,12 @@
 
 namespace AlxDorosenco\PortoForLaravel\Enums;
 
-class ContainerTypes
+enum ContainerTypes: string
 {
-    public const PORTO_CONTAINER_TYPE_DEFAULT = 'default';
-    public const PORTO_CONTAINER_TYPE_FULL = 'full';
-    public const PORTO_CONTAINER_TYPE_STANDARD = 'standard';
-    public const PORTO_CONTAINER_TYPE_API = 'api';
-    public const PORTO_CONTAINER_TYPE_WEB = 'web';
-    public const PORTO_CONTAINER_TYPE_CLI = 'cli';
+    case PORTO_CONTAINER_TYPE_DEFAULT = 'default';
+    case PORTO_CONTAINER_TYPE_FULL = 'full';
+    case PORTO_CONTAINER_TYPE_STANDARD = 'standard';
+    case PORTO_CONTAINER_TYPE_API = 'api';
+    case PORTO_CONTAINER_TYPE_WEB = 'web';
+    case PORTO_CONTAINER_TYPE_CLI = 'cli';
 }

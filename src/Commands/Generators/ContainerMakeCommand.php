@@ -92,18 +92,18 @@ class ContainerMakeCommand extends LaravelCommand
         $rootPath = config('porto.root');
         $namespace = $this->getNamespaceFromPath($path);
 
-        $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD;
+        $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD->value;
 
         if($this->option('default')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT->value;
         } elseif($this->option('full')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_FULL;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_FULL->value;
         } elseif($this->option('api')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_API;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_API->value;
         } elseif($this->option('web')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_WEB;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_WEB->value;
         } elseif($this->option('cli')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_CLI;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_CLI->value;
         }
 
         $containersBuilder = new ContainersBuilder($rootPath, $namespace);

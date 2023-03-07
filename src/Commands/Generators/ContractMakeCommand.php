@@ -64,6 +64,6 @@ class ContractMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getContainersNamespace().'\Contracts';
+        return $this->getNecessaryNamespace().'\Contracts';
     }
 }

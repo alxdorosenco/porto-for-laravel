@@ -13,8 +13,7 @@ class RuleMakeCommandTest extends TestCase
     {
         return [
             'force' => ['force'],
-            'implicit' => ['implicit'],
-            'invokable' => ['invokable']
+            'implicit' => ['implicit']
         ];
     }
 

@@ -16,14 +16,19 @@ abstract class TestCase extends LaravelTestCase
     {
         parent::setUp();
 
-        config(['porto.path' => $this->portoPath]);
-        config(['porto.root' => base_path($this->portoPath)]);
+        config([
+            'porto.enabled' => true,
+            'porto.path' => $this->portoPath,
+            'porto.root' => base_path($this->portoPath)
+        ]);
     }
 
     public function tearDown(): void
     {
-        config(['porto.path' => null]);
-        config(['porto.root' => null]);
+        config([
+            'porto.path' => null,
+            'porto.root' => null
+        ]);
 
         parent::tearDown();
     }
