@@ -9,7 +9,7 @@ class ContainerMakeCommand extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideContainerName(): array
+    public function provideContainerName(): array
     {
         return [
             'default' => ['default'],

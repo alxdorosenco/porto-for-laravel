@@ -9,7 +9,7 @@ class TestMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideTestUi(): array
+    public function provideTestUi(): array
     {
         return [
             'api' => ['api'],

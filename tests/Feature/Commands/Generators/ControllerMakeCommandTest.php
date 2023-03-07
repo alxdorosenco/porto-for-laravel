@@ -9,7 +9,7 @@ class ControllerMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideTypes(): array
+    public function provideTypes(): array
     {
         return [
             'api' => ['api'],
