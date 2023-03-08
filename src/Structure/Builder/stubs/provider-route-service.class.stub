@@ -25,35 +25,6 @@ class {{ class }} extends {{ parentAlias }}
      */
     public function boot()
     {
-        $this->configureRateLimiting();
 
-        $apiRoutes = $this->getApiRoutesFromContainers();
-        $webRoutes = $this->getWebRoutesFromContainers();
-
-        $this->routes(function () use ($apiRoutes, $webRoutes) {
-
-            foreach ($apiRoutes as $route){
-                Route::middleware('api')
-                    ->prefix('api')
-                    ->group($route);
-            }
-
-            foreach ($webRoutes as $route){
-                Route::middleware('web')
-                    ->group($route);
-            }
-        });
-    }
-
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
-    protected function configureRateLimiting()
-    {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
     }
 }
