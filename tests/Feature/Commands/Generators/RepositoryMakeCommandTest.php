@@ -56,7 +56,7 @@ class RepositoryMakeCommandTest extends TestCase
         ]);
 
         if($type === 'model'){
-            $namespace = config('porto.path').'\Containers\\'.$this->containerName.'\Models\TestModelForRepository';
+            $namespace = ucfirst(config('porto.path')).'\Containers\\'.$this->containerName.'\Models\TestModelForRepository';
             $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
         }
 

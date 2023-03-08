@@ -28,7 +28,7 @@ class StubsTraitTest extends TestCase
     /**
      * @return array
      */
-    protected function provideStubsFilename(): array
+    public function provideStubsFilename(): array
     {
         return [
             'abstract-mail.class.stub' => ['abstract-mail.class.stub'],

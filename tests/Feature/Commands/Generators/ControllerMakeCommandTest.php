@@ -9,7 +9,7 @@ class ControllerMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideTypes(): array
+    public function provideTypes(): array
     {
         return [
             'api' => ['api'],
@@ -73,9 +73,9 @@ class ControllerMakeCommandTest extends TestCase
             '--'.$type => $typeValue
         ]);
 
-        if($type === 'parent' || $type === 'model'){
-            $namespace = config('porto.path').'\Containers\\'.$this->containerName.'\Models\\'.$typeValue;
-            $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
+        if($type === 'model' || $type === 'parent'){
+            $namespace = ucfirst(config('porto.path')).'\Containers\\'.$this->containerName.'\Models\\'.$typeValue;
+            $testCommand->expectsConfirmation("A {$namespace} model does not exist. Do you want to generate it?", 'yes');
         }
 
         $testCommand->assertSuccessful();

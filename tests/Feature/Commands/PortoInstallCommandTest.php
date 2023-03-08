@@ -17,8 +17,7 @@ class PortoInstallCommandTest extends TestCase
             '--container' => $this->containerName,
             '--container-full' => true
         ])
-            ->expectsConfirmation('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'No')
-            ->expectsQuestion('Please, write your custom directory path', $this->portoPath)
+            ->expectsConfirmation('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'Yes')
             ->assertSuccessful();
     }
 }

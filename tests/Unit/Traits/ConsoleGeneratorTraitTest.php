@@ -61,7 +61,7 @@ class ConsoleGeneratorTraitTest extends TestCase
     /**
      * @return array[]
      */
-    protected function provideConsoleGeneratorStubs(): array
+    public function provideConsoleGeneratorStubs(): array
     {
         return [
             'cast.inbound.stub' => ['cast.inbound.stub'],
