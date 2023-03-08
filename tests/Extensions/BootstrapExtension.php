@@ -8,12 +8,17 @@ class BootstrapExtension implements AfterLastTestHook
 {
     public function executeAfterLastTest(): void
     {
-        $path = base_path().DIRECTORY_SEPARATOR.'PortoTestStructure';
+        $shipPath = base_path().DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'Ship';
+        $containersPath = base_path().DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'Containers';
 
         if(PHP_OS_FAMILY === 'Windows'){
-            exec('rmdir /S /Q '. $path);
+            exec('rmdir /S /Q '. $shipPath);
+            exec('rmdir /S /Q '. $containersPath);
         } else {
-            exec('rm -rf '. $path);
+            exec('rm -rf '. $shipPath);
+            exec('rm -rf '. $containersPath);
         }
+
+        exec('composer dump-autoload');
     }
 }
