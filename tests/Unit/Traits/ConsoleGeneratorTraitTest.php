@@ -28,7 +28,7 @@ class ConsoleGeneratorTraitTest extends TestCase
             /**
              * @var string
              */
-            private string $stub;
+            private $stub;
 
             /**
              * @param string $stub
@@ -98,7 +98,6 @@ class ConsoleGeneratorTraitTest extends TestCase
             'resource-collection.stub' => ['resource-collection.stub'],
             'rule.invokable.implicit.stub' => ['rule.invokable.implicit.stub'],
             'rule.invokable.stub' => ['rule.invokable.stub'],
-            'scope.stub' => ['scope.stub'],
             'seeder.stub' => ['seeder.stub'],
             'test.stub' => ['test.stub'],
             'view-component.stub' => ['view-component.stub']

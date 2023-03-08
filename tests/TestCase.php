@@ -8,9 +8,9 @@ abstract class TestCase extends LaravelTestCase
 {
     use CreatesApplication;
 
-    protected string $portoPath = 'app';
+    protected $portoPath = 'app';
 
-    protected string $containerName = 'Standard';
+    protected $containerName = 'Standard';
 
     public function setUp(): void
     {

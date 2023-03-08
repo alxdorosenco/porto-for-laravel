@@ -17,7 +17,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
     /**
      * @var string
      */
-    private string $uiType;
+    private $uiType;
 
     /**
      * Get the console command arguments.

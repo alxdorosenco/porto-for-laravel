@@ -10,9 +10,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 class ContainersBuilderClassTest extends TestCase
 {
     /**
-     * @var ContainersBuilder|MockObject
+     * @var ContainersBuilder
      */
-    private ContainersBuilder|MockObject $builder;
+    private $builder;
 
     public function setUp(): void
     {

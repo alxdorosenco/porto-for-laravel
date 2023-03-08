@@ -13,9 +13,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 class AbstractStructureClassTest extends TestCase
 {
     /**
-     * @var Structure|MockObject
+     * @var Structure|(Structure&MockObject)|MockObject
      */
-    private Structure|MockObject $stub;
+    private $stub;
 
     public function setUp(): void
     {

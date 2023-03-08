@@ -29,7 +29,7 @@ trait FilesAndDirectories
             $directoryPathInfo = pathinfo($directoryPath);
 
             if($directoryPathInfo['basename'] !== $needleFirst){
-                $this->findDirectories(path: $directoryPath, needle: $needle, directoriesPaths: $directoriesPaths);
+                $this->findDirectories($directoryPath, $needle, $directoriesPaths);
             } else {
                 $fullPath = $directoryPath.DIRECTORY_SEPARATOR.$needleAdditions;
 
@@ -61,10 +61,10 @@ trait FilesAndDirectories
     }
 
     /**
-     * @param string|array $path
+     * @param $path
      * @return array
      */
-    protected function findFilesInDirectories(string|array $path): array
+    protected function findFilesInDirectories($path): array
     {
         $filesPaths = [];
 
@@ -173,7 +173,7 @@ trait FilesAndDirectories
      * @param bool $forceRewrite
      * @return bool|int
      */
-    protected function makeFile(string $path, string $content, bool $forceRewrite = false): bool|int
+    protected function makeFile(string $path, string $content, bool $forceRewrite = false)
     {
         if(!$this->findExistingFile($path)){
             return File::put($path, $content);
@@ -191,7 +191,7 @@ trait FilesAndDirectories
      * @return mixed
      * @throws \JsonException
      */
-    protected function convertFromJsonToArray(string $content): mixed
+    protected function convertFromJsonToArray(string $content)
     {
         return json_decode($content, true, 512, JSON_THROW_ON_ERROR);
     }

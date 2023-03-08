@@ -43,8 +43,7 @@ trait CommandsLoader
     {
         $commandFiles = $this->findFilesInDirectories([
             __DIR__.'/../Commands',
-            __DIR__.'/../Commands/Generators',
-            __DIR__.'/../Commands/Models'
+            __DIR__.'/../Commands/Generators'
         ]);
 
         $commandClasses = [];

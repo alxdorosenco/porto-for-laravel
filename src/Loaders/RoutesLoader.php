@@ -80,7 +80,7 @@ trait RoutesLoader
      * @param Closure $callback
      * @return mixed
      */
-    protected function routes(Closure $callback): mixed
+    protected function routes(Closure $callback)
     {
         return $this->app->call($callback);
     }
@@ -93,7 +93,7 @@ trait RoutesLoader
     protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+            return Limit::perMinute(60)->by($request->user()->id ?: $request->ip());
         });
     }
 }

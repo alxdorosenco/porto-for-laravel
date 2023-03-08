@@ -59,7 +59,7 @@ trait ConsoleGenerator
     public function handle()
     {
         if (!$this->findExistingDirectory(config('porto.root').'/Containers/'.$this->option('container'))) {
-            $this->components->error('Container "'.$this->option('container').'" does not exist.');
+            $this->error('Container "'.$this->option('container').'" does not exist.');
 
             return Command::FAILURE;
         }

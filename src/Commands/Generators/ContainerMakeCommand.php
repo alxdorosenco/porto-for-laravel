@@ -13,10 +13,9 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsCommand(name: 'make:container')]
 class ContainerMakeCommand extends LaravelCommand
 {
-    use FilesAndDirectories, ConsoleGenerator;
+    use ConsoleGenerator;
 
     /**
      * The console command name.
@@ -77,7 +76,7 @@ class ContainerMakeCommand extends LaravelCommand
     public function handle(): int
     {
         if (!$this->argument('name')) {
-            $this->components->error('You can\'t create container without name');
+            $this->error('You can\'t create container without name');
             return static::FAILURE;
         }
 
@@ -85,7 +84,7 @@ class ContainerMakeCommand extends LaravelCommand
             throw new \InvalidArgumentException('Container name contains invalid characters.');
         }
 
-        $this->components->info('Creating ' . $this->argument('name') . ' container');
+        $this->info('Creating ' . $this->argument('name') . ' container');
 
         $path = config('porto.path');
 
@@ -115,7 +114,7 @@ class ContainerMakeCommand extends LaravelCommand
 
         $this->output->newLine();
 
-        $this->components->info('Container ['.$this->argument('name').'] has been successfully created');
+        $this->info('Container ['.$this->argument('name').'] has been successfully created');
 
         return static::SUCCESS;
     }

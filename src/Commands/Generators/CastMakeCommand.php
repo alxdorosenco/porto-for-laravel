@@ -20,7 +20,7 @@ class CastMakeCommand extends LaravelCastMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Cast must be in the container');
+            $this->error('Cast must be in the container');
 
             return static::FAILURE;
         }

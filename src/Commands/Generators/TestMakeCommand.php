@@ -17,7 +17,7 @@ class TestMakeCommand extends LaravelTestMakeCommand
     /**
      * @var string
      */
-    private string $uiType;
+    private $uiType;
 
     /**
      * @return bool|void|null

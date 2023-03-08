@@ -9,9 +9,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 class ShipBuilderClassTest extends TestCase
 {
     /**
-     * @var ShipBuilder|MockObject
+     * @var ShipBuilder
      */
-    private ShipBuilder|MockObject $builder;
+    private $builder;
 
     public function setUp(): void
     {

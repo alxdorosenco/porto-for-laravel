@@ -6,6 +6,8 @@ use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Illuminate\Console\Command;
 
 use Illuminate\Console\View\Components\TwoColumnDetail;
+use Illuminate\Contracts\Support\Arrayable;
+use Symfony\Component\Console\Helper\Table;
 
 abstract class Structure
 {
@@ -64,16 +66,18 @@ abstract class Structure
         $structureData = [['directory' => $this->getRootDirectory()]];
         $structureData += $this->getStructure();
 
+        $rows = [];
         foreach ($structureData as $data){
             $directory = $data['directory'];
             $file = $data['file'] ?? $data['class'] ?? null;
             !$file ?: $file = DIRECTORY_SEPARATOR.$file.'.php';
 
-            with(new TwoColumnDetail($command->getOutput()))->render(
-                '<fg=default;>'.$directory.$file.'</>',
-                '<fg=green;>DONE</>'
-            );
+            $rows[] = ['path' => $directory.$file, 'status' => 'DONE'];
         }
+
+        $table = with(new Table($command->getOutput()));
+        $table->setHeaders(['Path', 'Status'])->setRows($rows)->setStyle('default');
+        $table->render();
     }
 
     /**

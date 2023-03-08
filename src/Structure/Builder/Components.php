@@ -7,7 +7,7 @@ trait Components
     /**
      * @var array
      */
-    protected array $componentVariables = [];
+    protected $componentVariables = [];
 
     /**
      * @param string $filename
@@ -40,7 +40,7 @@ trait Components
      * @param string $value
      * @return $this
      */
-    protected function setComponentVariable(string $key, string $value): static
+    protected function setComponentVariable(string $key, string $value)
     {
         $this->componentVariables[$key] = $value;
 
@@ -49,9 +49,9 @@ trait Components
 
     /**
      * @param string $param
-     * @return array|string
+     * @return mixed|string
      */
-    protected function componentVariablesReplacer(string $param): array|string
+    protected function componentVariablesReplacer(string $param)
     {
         foreach ($this->componentVariables as $search => $replace) {
             $param = str_replace('{'.$search.'}', $replace, $param);

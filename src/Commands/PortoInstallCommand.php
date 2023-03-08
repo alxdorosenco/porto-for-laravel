@@ -11,7 +11,6 @@ use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsCommand(name: 'porto:install')]
 class PortoInstallCommand extends LaravelCommand
 {
     use FilesAndDirectories;
@@ -62,16 +61,16 @@ class PortoInstallCommand extends LaravelCommand
     {
         $path = null;
 
-        if ($this->components->confirm('Do you wish to install porto structure in your '.config('porto.path').'/ directory?', true)) {
+        if ($this->confirm('Do you wish to install porto structure in your '.config('porto.path').'/ directory?', true)) {
             $path = config('porto.path');
         }
 
         if(!$path){
-            $path = $this->components->ask('Please, write your custom directory path');
+            $path = $this->ask('Please, write your custom directory path');
         }
 
         if(!$path){
-            $this->components->error('The porto structure can\'t be installed without directory path');
+            $this->error('The porto structure can\'t be installed without directory path');
 
             return static::FAILURE;
         }
@@ -80,7 +79,7 @@ class PortoInstallCommand extends LaravelCommand
             throw new \InvalidArgumentException('Porto path contains invalid characters.');
         }
 
-        $this->components->info('Installing Porto');
+        $this->info('Installing Porto');
 
         $rootPath = $this->laravel->basePath().DIRECTORY_SEPARATOR.$path;
         $namespace = $this->getNamespaceFromPath($path);
@@ -95,7 +94,7 @@ class PortoInstallCommand extends LaravelCommand
 
         $this->output->newLine();
 
-        $this->components->info('Porto structure in the ['.$rootPath.'] directory has been successfully installed');
+        $this->info('Porto structure in the ['.$rootPath.'] directory has been successfully installed');
 
         if($this->option('container')){
             $containerCommandParams = [

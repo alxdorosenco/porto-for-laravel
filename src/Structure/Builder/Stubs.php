@@ -5,9 +5,9 @@ namespace AlxDorosenco\PortoForLaravel\Structure\Builder;
 trait Stubs
 {
     /**
-     * @var array|string[]
+     * @var array
      */
-    protected array $stubVariables = [];
+    protected $stubVariables = [];
 
     /**
      * @param string $filename
@@ -23,7 +23,7 @@ trait Stubs
      * @param string $value
      * @return $this
      */
-    protected function setStubVariable(string $key, string $value): static
+    protected function setStubVariable(string $key, string $value)
     {
         $this->stubVariables[$key] = $value;
 
@@ -32,9 +32,9 @@ trait Stubs
 
     /**
      * @param string $stub
-     * @return array|bool|string
+     * @return bool|mixed|string
      */
-    public function getStubContents(string $stub): array|bool|string
+    public function getStubContents(string $stub)
     {
         $contents = file_get_contents($stub);
 

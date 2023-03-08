@@ -5,14 +5,14 @@ namespace AlxDorosenco\PortoForLaravel\Structure\Builder;
 class ContainersBuilder extends Structure
 {
     /**
-     * @var string|null
+     * @var null
      */
-    private ?string $containerName = null;
+    private $containerName = null;
 
     /**
-     * @var string|null
+     * @var null
      */
-    private ?string $containerType = null;
+    private $containerType = null;
 
     /**
      * @param string $path
@@ -29,7 +29,7 @@ class ContainersBuilder extends Structure
      * @param string $name
      * @return $this
      */
-    public function setContainerName(string $name): static
+    public function setContainerName(string $name)
     {
         $this->containerName = $name;
 
@@ -51,7 +51,7 @@ class ContainersBuilder extends Structure
      * @param string $name
      * @return $this
      */
-    public function setContainerType(string $name): static
+    public function setContainerType(string $name)
     {
         $this->containerType = $name;
 

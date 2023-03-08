@@ -12,9 +12,9 @@ class TranslationMakeCommand extends GeneratorCommand
     use Console;
 
     /**
-     * @var string|null
+     * @var string
      */
-    private ?string $lang;
+    private $lang;
 
     /**
      * Get the console command arguments.
