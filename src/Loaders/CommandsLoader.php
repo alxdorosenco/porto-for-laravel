@@ -2,6 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
+use AlxDorosenco\PortoForLaravel\Commands\Generators\CastMakeCommand;
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 
 trait CommandsLoader
@@ -50,6 +51,10 @@ trait CommandsLoader
         foreach ($commandFiles as $file){
             $commandClasses[] = $this->getClassFromFile($file);
         }
+
+        /*$this->app->extend('command.cast.make', function ($command, $app) {
+            return new CastMakeCommand($app['files']);
+        });*/
 
         $this->commands($commandClasses);
     }
