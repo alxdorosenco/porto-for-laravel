@@ -12,7 +12,6 @@ class ResourceMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'collection' => ['collection']
         ];
     }

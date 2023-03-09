@@ -40,7 +40,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Request must be in the container');
+            $this->error('Request must be in the container');
 
             return static::FAILURE;
         }
@@ -48,7 +48,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
         if(in_array($this->option('uiType'), ['api', 'web'])){
             $uiType = $this->option('uiType');
         } else {
-            $uiType = $this->components->choice('Please, select type of the user\'s interface', ['api', 'web'], 'web');
+            $uiType = $this->choice('Please, select type of the user\'s interface', ['api', 'web'], 'web');
         }
 
         $this->uiType = strtoupper($uiType);

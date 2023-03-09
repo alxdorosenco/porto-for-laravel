@@ -31,31 +31,10 @@ class SeederMakeCommand extends LaravelSeederMakeCommand
     {
         $name = str_replace('\\', '/', Str::replaceFirst($this->rootNamespace(), '', $name));
 
-        return config('porto.root').'/'.$name.'.php';
-    }
-
-    /**
-     * @return string
-     */
-    protected function getNecessaryNamespace(): string
-    {
-        if($container = $this->option('container')){
-            $containerNamespace = $this->getNamespaceFromPath($container);
-
-            return $this->getContainersNamespace().'\\'.$containerNamespace.'\Data';
+        if($this->option('container')){
+            return config('porto.root').'/Containers/'.$this->option('container').'/Data/Seeders/'.$name.'.php';
         }
 
-        return $this->getShipNamespace();
-    }
-
-    /**
-     * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     * @return string
-     */
-    protected function getDefaultNamespace($rootNamespace): string
-    {
-        return $this->getNecessaryNamespace().'\Seeders';
+        return config('porto.root').'/Ship/Seeders/'.$name.'.php';
     }
 }

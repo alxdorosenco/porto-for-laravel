@@ -65,7 +65,7 @@ class TraitMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Trait must be in the container');
+            $this->error('Trait must be in the container');
 
             return static::FAILURE;
         }

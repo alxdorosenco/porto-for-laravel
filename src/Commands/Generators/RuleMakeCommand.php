@@ -19,7 +19,7 @@ class RuleMakeCommand extends LaravelRuleMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Rule must be in the container');
+            $this->error('Rule must be in the container');
 
             return static::FAILURE;
         }
@@ -34,15 +34,7 @@ class RuleMakeCommand extends LaravelRuleMakeCommand
      */
     protected function getStub(): string
     {
-        if ($this->option('invokable')) {
-            return __DIR__.'/stubs/rule.invokable.stub';
-        }
-
-        if ($this->option('implicit') && $this->option('invokable')) {
-            return __DIR__.'/stubs/rule.invokable.implicit.stub';
-        }
-
-        return parent::getStub();
+        return __DIR__.'/stubs/rule.stub';
     }
 
     /**

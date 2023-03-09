@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 
-class ContainerMakeCommand extends TestCase
+class ContainerMakeCommandTest extends TestCase
 {
     /**
      * @return \string[][]
@@ -53,7 +53,7 @@ class ContainerMakeCommand extends TestCase
     public function testConsoleCommand(string $name): void
     {
         $this->artisan('make:container', [
-            'name'  => ucfirst($name),
+            'name'  => $name === 'default' ? 'Home' : ucfirst($name),
             '--'.$name => true,
         ])->assertSuccessful();
     }

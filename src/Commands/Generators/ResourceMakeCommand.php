@@ -19,7 +19,7 @@ class ResourceMakeCommand extends LaravelResourceMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Resource must be in the container');
+            $this->error('Resource must be in the container');
 
             return static::FAILURE;
         }

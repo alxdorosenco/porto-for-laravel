@@ -39,10 +39,10 @@ class TranslationMakeCommand extends GeneratorCommand
         $this->lang = $this->option('lang');
 
         if (!$this->lang) {
-            $lang = $this->components->ask('Please, write your language code (for example en, fr, de)');
+            $lang = $this->ask('Please, write your language code (for example en, fr, de)');
 
             if(!$lang){
-                $this->components->error('Translation file cannot be created without language');
+                $this->error('Translation file cannot be created without language');
 
                 return static::FAILURE;
             }

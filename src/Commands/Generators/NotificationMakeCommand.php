@@ -19,7 +19,7 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Notification must be in the container');
+            $this->error('Notification must be in the container');
 
             return static::FAILURE;
         }

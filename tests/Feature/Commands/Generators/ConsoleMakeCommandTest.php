@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 
-class ConsoleMakeCommand extends TestCase
+class ConsoleMakeCommandTest extends TestCase
 {
     /**
      * @return array[]
@@ -12,7 +12,6 @@ class ConsoleMakeCommand extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'command' => ['command']
         ];
     }

@@ -8,12 +8,11 @@ use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use AlxDorosenco\PortoForLaravel\Enums\ContainerTypes;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
 use AlxDorosenco\PortoForLaravel\Structure\StructureMaker;
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
-use Symfony\Component\Console\Attribute\AsCommand;
+use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class ContainerMakeCommand extends LaravelCommand
+class ContainerMakeCommand extends GeneratorCommand
 {
     use ConsoleGenerator;
 
@@ -69,6 +68,8 @@ class ContainerMakeCommand extends LaravelCommand
             ['cli', 'c', InputOption::VALUE_NONE, 'Create web container in current porto structure']
         ];
     }
+
+    public function getStub(){}
 
     /**
      * @return int

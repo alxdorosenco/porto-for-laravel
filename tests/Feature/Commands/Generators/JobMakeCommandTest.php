@@ -12,7 +12,6 @@ class JobMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'sync' => ['sync']
         ];
     }

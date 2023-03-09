@@ -18,9 +18,7 @@ class ControllerMakeCommandTest extends TestCase
             'model' => ['model'],
             'parent' => ['parent'],
             'resource'  => ['resource'],
-            'requests'  => ['requests'],
-            'singleton' => ['singleton'],
-            'creatable' => ['creatable']
+            'requests'  => ['requests']
         ];
     }
 

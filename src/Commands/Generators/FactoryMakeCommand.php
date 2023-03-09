@@ -20,7 +20,7 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Factory must be in the container');
+            $this->error('Factory must be in the container');
 
             return static::FAILURE;
         }

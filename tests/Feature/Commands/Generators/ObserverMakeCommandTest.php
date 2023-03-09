@@ -12,7 +12,6 @@ class ObserverMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'model' => ['model']
         ];
     }

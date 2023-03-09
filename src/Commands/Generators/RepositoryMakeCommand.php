@@ -70,7 +70,7 @@ class RepositoryMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Repository must be in the container');
+            $this->error('Repository must be in the container');
 
             return static::FAILURE;
         }
@@ -107,7 +107,7 @@ class RepositoryMakeCommand extends GeneratorCommand
     {
         $modelClass = $this->parseModel($this->option('model'));
 
-        if (! class_exists($modelClass) && $this->components->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
+        if (! class_exists($modelClass) && $this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
             $this->call('make:model', [
                 'name' => $modelClass,
                 '--container' => $this->option('container')

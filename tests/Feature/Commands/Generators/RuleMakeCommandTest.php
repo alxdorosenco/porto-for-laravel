@@ -12,9 +12,7 @@ class RuleMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'implicit' => ['implicit'],
-            'invokable' => ['invokable']
         ];
     }
 

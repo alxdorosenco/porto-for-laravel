@@ -48,7 +48,7 @@ class ValueMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Value must be in the container');
+            $this->error('Value must be in the container');
 
             return static::FAILURE;
         }

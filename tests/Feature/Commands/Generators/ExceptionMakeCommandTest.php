@@ -12,7 +12,6 @@ class ExceptionMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'render' => ['render'],
             'report' => ['report']
         ];

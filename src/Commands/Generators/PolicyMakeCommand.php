@@ -21,7 +21,7 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Policy must be in the container');
+            $this->error('Policy must be in the container');
 
             return static::FAILURE;
         }

@@ -61,7 +61,7 @@ trait ConsoleGenerator
         if (!$this->findExistingDirectory(config('porto.root').'/Containers/'.$this->option('container'))) {
             $this->error('Container "'.$this->option('container').'" does not exist.');
 
-            return Command::FAILURE;
+            return static::FAILURE;
         }
 
         return parent::handle();

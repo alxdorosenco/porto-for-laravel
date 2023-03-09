@@ -20,7 +20,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Model must be in the container');
+            $this->error('Model must be in the container');
 
             return static::FAILURE;
         }

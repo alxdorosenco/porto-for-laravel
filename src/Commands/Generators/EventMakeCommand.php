@@ -30,7 +30,7 @@ class EventMakeCommand extends LaravelEventMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Event must be in the container');
+            $this->error('Event must be in the container');
 
             return static::FAILURE;
         }

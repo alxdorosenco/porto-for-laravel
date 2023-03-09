@@ -17,7 +17,6 @@ class ModelMakeCommandTest extends TestCase
             'factory' => ['factory'],
             'force' => ['force'],
             'migration' => ['migration'],
-            'morph-pivot' => ['morph-pivot'],
             'policy' => ['policy'],
             'seed' => ['seed'],
             'pivot' => ['pivot'],

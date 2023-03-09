@@ -19,7 +19,7 @@ class ComponentMakeCommand extends LaravelComponentMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Component must be in the container');
+            $this->error('Component must be in the container');
 
             return static::FAILURE;
         }

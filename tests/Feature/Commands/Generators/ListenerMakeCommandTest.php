@@ -13,7 +13,6 @@ class ListenerMakeCommandTest extends TestCase
     {
         return [
             'event' => ['event'],
-            'force' => ['force'],
             'queued' => ['queued']
         ];
     }

@@ -12,7 +12,6 @@ class PolicyMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'model' => ['model'],
             'guard' => ['guard']
         ];

@@ -19,7 +19,7 @@ class ChannelMakeCommand extends LaravelChannelMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Channel must be in the container');
+            $this->error('Channel must be in the container');
 
             return static::FAILURE;
         }

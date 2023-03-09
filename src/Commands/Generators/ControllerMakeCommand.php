@@ -20,7 +20,7 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Controller must be in the container');
+            $this->error('Controller must be in the container');
 
             return static::FAILURE;
         }
@@ -49,7 +49,7 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
         $parentModelClass = $this->parseModel($this->option('parent'));
 
         if (! class_exists($parentModelClass) &&
-            $this->components->confirm("A {$parentModelClass} model does not exist. Do you want to generate it?", true)) {
+            $this->confirm("A {$parentModelClass} model does not exist. Do you want to generate it?", true)) {
             $this->call('make:model', [
                 'name' => $parentModelClass,
                 '--container' => $this->option('container')
@@ -79,7 +79,7 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
     {
         $modelClass = $this->parseModel($this->option('model'));
 
-        if (! class_exists($modelClass) && $this->components->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
+        if (! class_exists($modelClass) && $this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
             $this->call('make:model', [
                 'name' => $modelClass,
                 '--container' => $this->option('container')

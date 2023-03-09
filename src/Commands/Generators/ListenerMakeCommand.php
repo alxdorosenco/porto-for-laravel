@@ -19,7 +19,7 @@ class ListenerMakeCommand extends LaravelListenerMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Listener must be in the container');
+            $this->error('Listener must be in the container');
 
             return static::FAILURE;
         }

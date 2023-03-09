@@ -2,8 +2,8 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Commands\Generators\CastMakeCommand;
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
+use AlxDorosenco\PortoForLaravel\Commands\Generators\CastMakeCommand;
 
 trait CommandsLoader
 {
@@ -23,6 +23,24 @@ trait CommandsLoader
     private function getCommandsFromShip(): string
     {
         return config('porto.root').DIRECTORY_SEPARATOR.'Commands';
+    }
+
+    /**
+     * @param string $file
+     * @return void
+     */
+    private function extendGeneratorCommand(string $file): void
+    {
+        $filename = basename($file);
+        $class = $this->getClassFromFile($file);
+
+        $array = preg_split('/MakeCommand.php/i', $filename);
+
+        if(count($array) > 1){
+            $this->app->extend('command.'.strtolower($array[0]).'.make', function ($command, $app) use ($class) {
+                return new $class($app['files']);
+            });
+        }
     }
 
     /**
@@ -49,12 +67,10 @@ trait CommandsLoader
 
         $commandClasses = [];
         foreach ($commandFiles as $file){
+            $this->extendGeneratorCommand($file);
+
             $commandClasses[] = $this->getClassFromFile($file);
         }
-
-        /*$this->app->extend('command.cast.make', function ($command, $app) {
-            return new CastMakeCommand($app['files']);
-        });*/
 
         $this->commands($commandClasses);
     }

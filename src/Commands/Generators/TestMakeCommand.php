@@ -29,7 +29,7 @@ class TestMakeCommand extends LaravelTestMakeCommand
             if(in_array($this->option('uiType'), ['api', 'cli', 'web'])){
                 $uiType = $this->option('uiType');
             } else {
-                $uiType = $this->components->choice('Please, select type of the user\'s interface', ['api', 'web', 'cli'], 'web');
+                $uiType = $this->choice('Please, select type of the user\'s interface', ['api', 'web', 'cli'], 'web');
             }
 
             $this->uiType = strtoupper($uiType);

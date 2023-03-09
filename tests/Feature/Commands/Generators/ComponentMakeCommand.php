@@ -13,8 +13,7 @@ class ComponentMakeCommand extends TestCase
     {
         return [
             'force' => ['force'],
-            'inline' => ['inline'],
-            'view' => ['view']
+            'inline' => ['inline']
         ];
     }
 

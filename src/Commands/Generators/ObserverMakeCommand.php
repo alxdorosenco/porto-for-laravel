@@ -19,7 +19,7 @@ class ObserverMakeCommand extends LaravelObserverMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Observer must be in the container');
+            $this->error('Observer must be in the container');
 
             return static::FAILURE;
         }
