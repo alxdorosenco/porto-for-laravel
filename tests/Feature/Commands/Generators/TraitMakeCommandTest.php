@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class TraitMakeCommandTest extends TestCase
 {
@@ -25,7 +26,7 @@ class TraitMakeCommandTest extends TestCase
     {
         $this->artisan('make:trait', [
             'name' => 'TestTrait',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -38,7 +39,7 @@ class TraitMakeCommandTest extends TestCase
         $this->artisan('make:trait', [
             'name' => 'Test1Trait',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -53,6 +54,6 @@ class TraitMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Trait',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class MailMakeCommandTest extends TestCase
 {
@@ -26,7 +27,7 @@ class MailMakeCommandTest extends TestCase
     {
         $this->artisan('make:mail', [
             'name' => 'TestMail',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -39,7 +40,7 @@ class MailMakeCommandTest extends TestCase
         $this->artisan('make:mail', [
             'name' => 'Test1Mail',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -60,6 +61,6 @@ class MailMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Mail',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

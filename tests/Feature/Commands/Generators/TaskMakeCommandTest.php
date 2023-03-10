@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class TaskMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class TaskMakeCommandTest extends TestCase
     {
         $this->artisan('make:task', [
             'name' => 'TestTask',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -28,6 +29,6 @@ class TaskMakeCommandTest extends TestCase
         $this->artisan('make:task', [
             'name' => 'Test1Task',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

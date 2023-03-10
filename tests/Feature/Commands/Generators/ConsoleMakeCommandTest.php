@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ConsoleMakeCommandTest extends TestCase
 {
@@ -25,7 +26,7 @@ class ConsoleMakeCommandTest extends TestCase
     {
         $this->artisan('make:command', [
             'name' => 'TestCommand',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -38,7 +39,7 @@ class ConsoleMakeCommandTest extends TestCase
         $this->artisan('make:command', [
             'name' => 'Test1Command',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -53,6 +54,6 @@ class ConsoleMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Command',
             '--container' => $this->containerName,
             '--'.$type => $type === 'command' ? 'TestCommand' : true
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

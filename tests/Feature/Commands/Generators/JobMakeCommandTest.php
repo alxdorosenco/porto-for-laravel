@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class JobMakeCommandTest extends TestCase
 {
@@ -25,7 +26,7 @@ class JobMakeCommandTest extends TestCase
     {
         $this->artisan('make:job', [
             'name' => 'TestJob',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -38,7 +39,7 @@ class JobMakeCommandTest extends TestCase
         $this->artisan('make:job', [
             'name' => 'Test1Job',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -53,6 +54,6 @@ class JobMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Job',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

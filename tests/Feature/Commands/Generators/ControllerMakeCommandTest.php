@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ControllerMakeCommandTest extends TestCase
 {
@@ -17,8 +18,7 @@ class ControllerMakeCommandTest extends TestCase
             'invokable' => ['invokable'],
             'model' => ['model'],
             'parent' => ['parent'],
-            'resource'  => ['resource'],
-            'requests'  => ['requests']
+            'resource'  => ['resource']
         ];
     }
 
@@ -31,7 +31,7 @@ class ControllerMakeCommandTest extends TestCase
     {
         $this->artisan('make:controller', [
             'name' => 'TestController',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -44,7 +44,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->artisan('make:controller', [
             'name' => 'Test1Controller',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -76,6 +76,6 @@ class ControllerMakeCommandTest extends TestCase
             $testCommand->expectsConfirmation("A {$namespace} model does not exist. Do you want to generate it?", 'yes');
         }
 
-        $testCommand->assertSuccessful();
+        $testCommand->assertExitCode(Command::SUCCESS);
     }
 }

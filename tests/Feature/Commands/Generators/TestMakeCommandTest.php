@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class TestMakeCommandTest extends TestCase
 {
@@ -29,24 +30,7 @@ class TestMakeCommandTest extends TestCase
             'name' => 'TestUnit',
             '--unit' => true,
             '--container' => $this->containerName
-        ])->assertSuccessful();
-    }
-
-    /**
-     * Test of the console command with pest
-     *
-     * @dataProvider provideTestUi
-     * @return void
-     */
-    public function testConsoleCommandWithPest(string $ui): void
-    {
-        $this->artisan('make:test', [
-            'name' => 'TestPest',
-            '--pest' => true,
-            '--container' => $this->containerName
-        ])
-            ->expectsChoice('Please, select type of the user\'s interface', $ui, ['api' => 'api', 'web' => 'web', 'cli' => 'cli'])
-            ->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -62,6 +46,6 @@ class TestMakeCommandTest extends TestCase
             '--container' => $this->containerName
         ])
             ->expectsChoice('Please, select type of the user\'s interface', $ui, ['api' => 'api', 'web' => 'web', 'cli' => 'cli'])
-            ->assertSuccessful();
+            ->assertExitCode(Command::SUCCESS);
     }
 }

@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ChannelMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class ChannelMakeCommandTest extends TestCase
     {
         $this->artisan('make:channel', [
             'name' => 'TestChannel',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -28,6 +29,6 @@ class ChannelMakeCommandTest extends TestCase
         $this->artisan('make:channel', [
             'name' => 'Test1Channel',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

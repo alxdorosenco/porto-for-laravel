@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class PolicyMakeCommandTest extends TestCase
 {
@@ -26,7 +27,7 @@ class PolicyMakeCommandTest extends TestCase
     {
         $this->artisan('make:policy', [
             'name' => 'TestPolicy',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -39,7 +40,7 @@ class PolicyMakeCommandTest extends TestCase
         $this->artisan('make:policy', [
             'name' => 'Test1Policy',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -65,6 +66,6 @@ class PolicyMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Policy',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

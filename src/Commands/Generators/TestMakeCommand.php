@@ -15,6 +15,17 @@ class TestMakeCommand extends LaravelTestMakeCommand
     }
 
     /**
+     * The console command name.
+     *
+     * @var string
+     */
+    protected $signature = 'make:test
+        {name : The name of the class}
+        {--unit : Create a unit test}
+        {--container= : Name of the container}
+        {--uiType= : Type of the user\'s interface}';
+
+    /**
      * @var string
      */
     private $uiType;
@@ -45,7 +56,7 @@ class TestMakeCommand extends LaravelTestMakeCommand
      */
     protected function getStub(): string
     {
-        if(!$this->option('unit') && !$this->option('pest')){
+        if(!$this->option('unit')){
             return __DIR__.'/stubs/test.stub';
         }
 

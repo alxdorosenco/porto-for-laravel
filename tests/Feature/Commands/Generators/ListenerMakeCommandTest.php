@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ListenerMakeCommandTest extends TestCase
 {
@@ -26,7 +27,7 @@ class ListenerMakeCommandTest extends TestCase
     {
         $this->artisan('make:listener', [
             'name' => 'TestListener',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -39,7 +40,7 @@ class ListenerMakeCommandTest extends TestCase
         $this->artisan('make:listener', [
             'name' => 'Test1Listener',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -60,6 +61,6 @@ class ListenerMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Listener',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

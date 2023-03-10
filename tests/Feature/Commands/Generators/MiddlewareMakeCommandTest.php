@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class MiddlewareMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class MiddlewareMakeCommandTest extends TestCase
     {
         $this->artisan('make:middleware', [
             'name' => 'TestMiddleware',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -28,6 +29,6 @@ class MiddlewareMakeCommandTest extends TestCase
         $this->artisan('make:middleware', [
             'name' => 'Test1Middleware',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

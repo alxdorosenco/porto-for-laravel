@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ContractMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class ContractMakeCommandTest extends TestCase
     {
         $this->artisan('make:contract', [
             'name' => 'TestContract',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -28,6 +29,6 @@ class ContractMakeCommandTest extends TestCase
         $this->artisan('make:contract', [
             'name' => 'Test1Contract',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

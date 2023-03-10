@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class PortoInstallCommandTest extends TestCase
 {
@@ -18,6 +19,6 @@ class PortoInstallCommandTest extends TestCase
             '--container-full' => true
         ])
             ->expectsConfirmation('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'Yes')
-            ->assertSuccessful();
+            ->assertExitCode(Command::SUCCESS);
     }
 }

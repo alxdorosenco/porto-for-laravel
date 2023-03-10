@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ConfigMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class ConfigMakeCommandTest extends TestCase
     {
         $this->artisan('make:config', [
             'name' => 'TestConfig',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -28,6 +29,6 @@ class ConfigMakeCommandTest extends TestCase
         $this->artisan('make:config', [
             'name' => 'Test1Config',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

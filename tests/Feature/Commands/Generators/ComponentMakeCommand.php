@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ComponentMakeCommand extends TestCase
 {
@@ -26,7 +27,7 @@ class ComponentMakeCommand extends TestCase
     {
         $this->artisan('make:component', [
             'name' => 'TestComponent',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -39,7 +40,7 @@ class ComponentMakeCommand extends TestCase
         $this->artisan('make:component', [
             'name' => 'Test1Component',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -54,6 +55,6 @@ class ComponentMakeCommand extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Component',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ObserverMakeCommandTest extends TestCase
 {
@@ -25,7 +26,7 @@ class ObserverMakeCommandTest extends TestCase
     {
         $this->artisan('make:observer', [
             'name' => 'TestObserver',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -38,7 +39,7 @@ class ObserverMakeCommandTest extends TestCase
         $this->artisan('make:observer', [
             'name' => 'Test1Observer',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -59,6 +60,6 @@ class ObserverMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Observer',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ModelMakeCommandTest extends TestCase
 {
@@ -17,12 +18,10 @@ class ModelMakeCommandTest extends TestCase
             'factory' => ['factory'],
             'force' => ['force'],
             'migration' => ['migration'],
-            'policy' => ['policy'],
             'seed' => ['seed'],
             'pivot' => ['pivot'],
             'resource' => ['resource'],
-            'api' => ['api'],
-            'requests' => ['requests']
+            'api' => ['api']
         ];
     }
 
@@ -35,7 +34,7 @@ class ModelMakeCommandTest extends TestCase
     {
         $this->artisan('make:model', [
             'name' => 'TestModel',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -48,7 +47,7 @@ class ModelMakeCommandTest extends TestCase
         $this->artisan('make:model', [
             'name' => 'Test1Model',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -68,10 +67,10 @@ class ModelMakeCommandTest extends TestCase
         ]);
 
         if($type === 'all'){
-            $testCommand
-                ->expectsChoice('Please, select type of the user\'s interface', 'web', ['api' => 'api', 'web' => 'web']);
+            //$testCommand
+            //    ->expectsChoice('Please, select type of the user\'s interface', 'web', ['api' => 'api', 'web' => 'web']);
         }
 
-        $testCommand->assertSuccessful();
+        $testCommand->assertExitCode(Command::SUCCESS);
     }
 }

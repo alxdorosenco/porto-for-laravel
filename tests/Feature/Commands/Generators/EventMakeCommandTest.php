@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class EventMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class EventMakeCommandTest extends TestCase
     {
         $this->artisan('make:event', [
             'name' => 'TestEvent',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -28,6 +29,6 @@ class EventMakeCommandTest extends TestCase
         $this->artisan('make:event', [
             'name' => 'Test1Event',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

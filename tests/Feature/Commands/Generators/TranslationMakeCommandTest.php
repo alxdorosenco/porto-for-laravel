@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class TranslationMakeCommandTest extends TestCase
 {
@@ -27,7 +28,7 @@ class TranslationMakeCommandTest extends TestCase
             'name' => 'TestTranslation',
         ])
             ->expectsQuestion('Please, write your language code (for example en, fr, de)', 'en')
-            ->assertSuccessful();
+            ->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -43,6 +44,6 @@ class TranslationMakeCommandTest extends TestCase
             '--'.$type => 'en'
         ]);
 
-        $testCommand->assertSuccessful();
+        $testCommand->assertExitCode(Command::SUCCESS);
     }
 }

@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class NotificationMakeCommandTest extends TestCase
 {
@@ -26,7 +27,7 @@ class NotificationMakeCommandTest extends TestCase
     {
         $this->artisan('make:notification', [
             'name' => 'TestNotification',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -39,7 +40,7 @@ class NotificationMakeCommandTest extends TestCase
         $this->artisan('make:notification', [
             'name' => 'Test1Notification',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -60,6 +61,6 @@ class NotificationMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Notification',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

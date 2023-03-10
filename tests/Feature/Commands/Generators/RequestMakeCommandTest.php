@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class RequestMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class RequestMakeCommandTest extends TestCase
     {
         $this->artisan('make:request', [
             'name' => 'TestRequest',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -30,6 +31,6 @@ class RequestMakeCommandTest extends TestCase
             '--container' => $this->containerName
         ])
             ->expectsChoice('Please, select type of the user\'s interface', 'api', ['api' => 'api', 'web' => 'web'])
-            ->assertSuccessful();
+            ->assertExitCode(Command::SUCCESS);
     }
 }

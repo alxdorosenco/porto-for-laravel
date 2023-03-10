@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class RepositoryMakeCommandTest extends TestCase
 {
@@ -25,7 +26,7 @@ class RepositoryMakeCommandTest extends TestCase
     {
         $this->artisan('make:repository', [
             'name' => 'TestRepository',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -38,7 +39,7 @@ class RepositoryMakeCommandTest extends TestCase
         $this->artisan('make:repository', [
             'name' => 'Test1Repository',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -60,6 +61,6 @@ class RepositoryMakeCommandTest extends TestCase
             $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
         }
 
-        $testCommand->assertSuccessful();
+        $testCommand->assertExitCode(Command::SUCCESS);
     }
 }

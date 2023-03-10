@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class HelperMakeCommandTest extends TestCase
 {
@@ -15,6 +16,6 @@ class HelperMakeCommandTest extends TestCase
     {
         $this->artisan('make:helper', [
             'name' => 'TestHelper',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

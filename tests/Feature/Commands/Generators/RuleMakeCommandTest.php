@@ -3,19 +3,10 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class RuleMakeCommandTest extends TestCase
 {
-    /**
-     * @return array[]
-     */
-    public function provideTypes(): array
-    {
-        return [
-            'implicit' => ['implicit'],
-        ];
-    }
-
     /**
      * Test of the console command
      *
@@ -25,7 +16,7 @@ class RuleMakeCommandTest extends TestCase
     {
         $this->artisan('make:rule', [
             'name' => 'TestRule',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -38,21 +29,6 @@ class RuleMakeCommandTest extends TestCase
         $this->artisan('make:rule', [
             'name' => 'Test1Rule',
             '--container' => $this->containerName
-        ])->assertSuccessful();
-    }
-
-    /**
-     * Test of the console command with types
-     *
-     * @dataProvider provideTypes
-     * @return void
-     */
-    public function testConsoleCommandWithTypes(string $type): void
-    {
-        $this->artisan('make:rule', [
-            'name' => 'Test2'.(ucfirst($type)).'Rule',
-            '--container' => $this->containerName,
-            '--'.$type => true
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

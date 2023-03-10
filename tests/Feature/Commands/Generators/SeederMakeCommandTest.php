@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class SeederMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class SeederMakeCommandTest extends TestCase
     {
         $this->artisan('make:seeder', [
             'name' => 'TestSeeder',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -28,6 +29,6 @@ class SeederMakeCommandTest extends TestCase
         $this->artisan('make:seeder', [
             'name' => 'Test1Seeder',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

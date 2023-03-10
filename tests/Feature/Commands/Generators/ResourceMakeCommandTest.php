@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ResourceMakeCommandTest extends TestCase
 {
@@ -25,7 +26,7 @@ class ResourceMakeCommandTest extends TestCase
     {
         $this->artisan('make:resource', [
             'name' => 'TestResource',
-        ])->assertFailed();
+        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -38,7 +39,7 @@ class ResourceMakeCommandTest extends TestCase
         $this->artisan('make:resource', [
             'name' => 'Test1Resource',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -53,6 +54,6 @@ class ResourceMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Resource',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

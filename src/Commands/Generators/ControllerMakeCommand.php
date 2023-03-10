@@ -75,18 +75,15 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
      * @param  array  $replace
      * @return array
      */
-    protected function buildModelReplacements(array $replace): array
+    protected function buildModelReplacements(array $replace)
     {
         $modelClass = $this->parseModel($this->option('model'));
 
-        if (! class_exists($modelClass) && $this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
-            $this->call('make:model', [
-                'name' => $modelClass,
-                '--container' => $this->option('container')
-            ]);
+        if (! class_exists($modelClass)) {
+            if ($this->confirm("A {$modelClass} model does not exist. Do you want to generate it?", true)) {
+                $this->call('make:model', ['name' => $modelClass, '--container' => $this->option('container')]);
+            }
         }
-
-        $replace = $this->buildFormRequestReplacements($replace, $modelClass);
 
         return array_merge($replace, [
             'DummyFullModelClass' => $modelClass,
@@ -102,74 +99,6 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
     }
 
     /**
-     * Build the model replacement values.
-     *
-     * @param  array  $replace
-     * @param  string  $modelClass
-     * @return array
-     */
-    protected function buildFormRequestReplacements(array $replace, $modelClass): array
-    {
-        [$namespace, $storeRequestClass, $updateRequestClass] = [
-            $this->getShipNamespace().'\\Requests', 'Request', 'Request',
-        ];
-
-        if ($this->option('requests')) {
-            $namespace = $this->getNecessaryNamespace().($this->option('api') ? '\\UI\\API\\Requests' : '\\UI\\WEB\\Requests');
-
-            [$storeRequestClass, $updateRequestClass] = $this->generateFormRequests(
-                $modelClass, $storeRequestClass, $updateRequestClass
-            );
-        }
-
-        $namespacedRequests = $namespace.'\\'.$storeRequestClass.';';
-
-        if ($storeRequestClass !== $updateRequestClass) {
-            $namespacedRequests .= PHP_EOL.'use '.$namespace.'\\'.$updateRequestClass.';';
-        }
-
-        return array_merge($replace, [
-            '{{ storeRequest }}' => $storeRequestClass,
-            '{{storeRequest}}' => $storeRequestClass,
-            '{{ updateRequest }}' => $updateRequestClass,
-            '{{updateRequest}}' => $updateRequestClass,
-            '{{ namespacedStoreRequest }}' => $namespace.'\\'.$storeRequestClass,
-            '{{namespacedStoreRequest}}' => $namespace.'\\'.$storeRequestClass,
-            '{{ namespacedUpdateRequest }}' => $namespace.'\\'.$updateRequestClass,
-            '{{namespacedUpdateRequest}}' => $namespace.'\\'.$updateRequestClass,
-            '{{ namespacedRequests }}' => $namespacedRequests,
-            '{{namespacedRequests}}' => $namespacedRequests,
-        ]);
-    }
-
-    /**
-     * Generate the form requests for the given model and classes.
-     *
-     * @param  string  $modelClass
-     * @param  string  $storeRequestClass
-     * @param  string  $updateRequestClass
-     * @return array
-     */
-    protected function generateFormRequests($modelClass, $storeRequestClass, $updateRequestClass): array
-    {
-        $storeRequest = 'Store'.class_basename($modelClass).'Request';
-
-        $this->call('make:request', [
-            'name' => $storeRequest,
-            '--container' => $this->option('container')
-        ]);
-
-        $updateRequest = 'Update'.class_basename($modelClass).'Request';
-
-        $this->call('make:request', [
-            'name' => $updateRequest,
-            '--container' => $this->option('container')
-        ]);
-
-        return [$storeRequest, $updateRequest];
-    }
-
-    /**
      * Get the default namespace for the class.
      *
      * @param  string  $rootNamespace
@@ -179,6 +108,23 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
     {
         $namespace = $this->option('api') ? 'UI\API\Controllers' : 'UI\WEB\Controllers';
         return $this->getNecessaryNamespace().'\\'.$namespace;
+    }
+
+    /**
+     * Get the fully-qualified model class name.
+     *
+     * @param  string  $model
+     * @return string
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function parseModel($model): string
+    {
+        if (preg_match('([^A-Za-z0-9_/\\\\])', $model)) {
+            throw new \InvalidArgumentException('Model name contains invalid characters.');
+        }
+
+        return $this->qualifyModel($model);
     }
 
     /**

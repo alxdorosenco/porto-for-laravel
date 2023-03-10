@@ -105,25 +105,8 @@ class ModelMakeCommand extends LaravelModelMakeCommand
             'name' => "{$controller}Controller",
             '--model' => $this->option('resource') || $this->option('api') ? $modelName : null,
             '--api' => $this->option('api'),
-            '--requests' => $this->option('requests') || $this->option('all'),
             '--container' => $this->option('container')
         ]));
-    }
-
-    /**
-     * Create a policy file for the model.
-     *
-     * @return void
-     */
-    protected function createPolicy(): void
-    {
-        $policy = Str::studly(class_basename($this->argument('name')));
-
-        $this->call('make:policy', [
-            'name' => "{$policy}Policy",
-            '--model' => $this->qualifyClass($this->getNameInput()),
-            '--container' => $this->option('container')
-        ]);
     }
 
     /**

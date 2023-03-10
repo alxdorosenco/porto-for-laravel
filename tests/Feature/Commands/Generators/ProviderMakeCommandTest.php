@@ -3,6 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use Illuminate\Console\Command;
 
 class ProviderMakeCommandTest extends TestCase
 {
@@ -15,7 +16,7 @@ class ProviderMakeCommandTest extends TestCase
     {
         $this->artisan('make:provider', [
             'name' => 'TestProvider',
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**
@@ -28,6 +29,6 @@ class ProviderMakeCommandTest extends TestCase
         $this->artisan('make:provider', [
             'name' => 'Test1Provider',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 }

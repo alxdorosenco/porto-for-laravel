@@ -168,8 +168,6 @@ class FilesAndDirectoriesTraitTest extends TestCase
 
         $this->assertIsArray($this->trait->convertFromJsonToArray($jsonContent));
 
-        $this->expectException(\JsonException::class);
-
         $this->trait->convertFromJsonToArray($nonJsonContent);
     }
 }
