@@ -16,7 +16,7 @@ class MiddlewareMakeCommandTest extends TestCase
     {
         $this->artisan('make:middleware', [
             'name' => 'TestMiddleware',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -29,6 +29,6 @@ class MiddlewareMakeCommandTest extends TestCase
         $this->artisan('make:middleware', [
             'name' => 'Test1Middleware',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

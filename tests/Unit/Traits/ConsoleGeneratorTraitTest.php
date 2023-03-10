@@ -64,7 +64,6 @@ class ConsoleGeneratorTraitTest extends TestCase
     public function provideConsoleGeneratorStubs(): array
     {
         return [
-            'cast.stub' => ['cast.stub'],
             'console.stub' => ['console.stub'],
             'controller.api.stub' => ['controller.api.stub'],
             'controller.invokable.stub' => ['controller.invokable.stub'],
@@ -97,8 +96,7 @@ class ConsoleGeneratorTraitTest extends TestCase
             'resource-collection.stub' => ['resource-collection.stub'],
             'rule.stub' => ['rule.stub'],
             'seeder.stub' => ['seeder.stub'],
-            'test.stub' => ['test.stub'],
-            'view-component.stub' => ['view-component.stub']
+            'test.stub' => ['test.stub']
         ];
     }
 

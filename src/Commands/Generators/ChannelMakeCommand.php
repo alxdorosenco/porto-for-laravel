@@ -13,7 +13,7 @@ class ChannelMakeCommand extends LaravelChannelMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -21,7 +21,7 @@ class ChannelMakeCommand extends LaravelChannelMakeCommand
         if (!$this->option('container')) {
             $this->error('Channel must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

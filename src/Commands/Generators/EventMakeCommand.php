@@ -24,7 +24,7 @@ class EventMakeCommand extends LaravelEventMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -32,7 +32,7 @@ class EventMakeCommand extends LaravelEventMakeCommand
         if (!$this->option('container')) {
             $this->error('Event must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

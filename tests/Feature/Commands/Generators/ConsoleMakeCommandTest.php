@@ -26,7 +26,7 @@ class ConsoleMakeCommandTest extends TestCase
     {
         $this->artisan('make:command', [
             'name' => 'TestCommand',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -39,7 +39,7 @@ class ConsoleMakeCommandTest extends TestCase
         $this->artisan('make:command', [
             'name' => 'Test1Command',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -54,6 +54,6 @@ class ConsoleMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Command',
             '--container' => $this->containerName,
             '--'.$type => $type === 'command' ? 'TestCommand' : true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

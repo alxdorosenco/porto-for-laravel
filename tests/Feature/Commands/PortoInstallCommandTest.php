@@ -18,7 +18,7 @@ class PortoInstallCommandTest extends TestCase
             '--container' => $this->containerName,
             '--container-full' => true
         ])
-            ->expectsConfirmation('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'Yes')
-            ->assertExitCode(Command::SUCCESS);
+            ->expectsQuestion('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'Yes')
+            ->assertExitCode(0);
     }
 }

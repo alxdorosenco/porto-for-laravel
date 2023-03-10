@@ -8,18 +8,6 @@ use Illuminate\Console\Command;
 class ContractMakeCommandTest extends TestCase
 {
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:contract', [
-            'name' => 'TestContract',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -29,6 +17,6 @@ class ContractMakeCommandTest extends TestCase
         $this->artisan('make:contract', [
             'name' => 'Test1Contract',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

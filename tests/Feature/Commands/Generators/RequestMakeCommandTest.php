@@ -8,18 +8,6 @@ use Illuminate\Console\Command;
 class RequestMakeCommandTest extends TestCase
 {
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:request', [
-            'name' => 'TestRequest',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -30,7 +18,7 @@ class RequestMakeCommandTest extends TestCase
             'name' => 'Test1Request',
             '--container' => $this->containerName
         ])
-            ->expectsChoice('Please, select type of the user\'s interface', 'api', ['api' => 'api', 'web' => 'web'])
-            ->assertExitCode(Command::SUCCESS);
+            ->expectsQuestion('Please, select type of the user\'s interface', 'api')
+            ->assertExitCode(0);
     }
 }

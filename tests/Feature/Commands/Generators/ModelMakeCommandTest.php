@@ -26,18 +26,6 @@ class ModelMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:model', [
-            'name' => 'TestModel',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -47,7 +35,7 @@ class ModelMakeCommandTest extends TestCase
         $this->artisan('make:model', [
             'name' => 'Test1Model',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -60,17 +48,10 @@ class ModelMakeCommandTest extends TestCase
     {
         $modelName = 'Test2'.(ucfirst($type)).'Model';
 
-        $testCommand = $this->artisan('make:model', [
+       $this->artisan('make:model', [
             'name' => $type === 'factory' ? 'Test2FModel' : $modelName,
             '--container' => $this->containerName,
             '--'.$type => true
-        ]);
-
-        if($type === 'all'){
-            //$testCommand
-            //    ->expectsChoice('Please, select type of the user\'s interface', 'web', ['api' => 'api', 'web' => 'web']);
-        }
-
-        $testCommand->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

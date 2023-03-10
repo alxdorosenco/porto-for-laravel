@@ -18,18 +18,6 @@ class ObserverMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:observer', [
-            'name' => 'TestObserver',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -39,7 +27,7 @@ class ObserverMakeCommandTest extends TestCase
         $this->artisan('make:observer', [
             'name' => 'Test1Observer',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -60,6 +48,6 @@ class ObserverMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Observer',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

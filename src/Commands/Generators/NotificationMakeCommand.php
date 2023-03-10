@@ -21,7 +21,7 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
         if (!$this->option('container')) {
             $this->error('Notification must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Support\Str;
 use LogicException;
 use Illuminate\Foundation\Console\PolicyMakeCommand as LaravelPolicyMakeCommand;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
@@ -15,7 +14,7 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -23,7 +22,7 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
         if (!$this->option('container')) {
             $this->error('Policy must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();
@@ -62,27 +61,6 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
     }
 
     /**
-     * Qualify the given model class base name.
-     *
-     * @param  string  $model
-     * @return string
-     */
-    protected function qualifyModel(string $model): string
-    {
-        $model = ltrim($model, '\\/');
-
-        $model = str_replace('/', '\\', $model);
-
-        $rootNamespace = $this->getNecessaryNamespace().'\Models';
-
-        if (Str::startsWith($model, $rootNamespace)) {
-            return $model;
-        }
-
-        return $rootNamespace.'\\'.$model;
-    }
-
-    /**
      * Get the model for the guard's user provider.
      *
      * @return string|null
@@ -93,19 +71,11 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
     {
         $config = $this->laravel['config'];
 
-        $guard = $this->option('guard') ?: $config->get('auth.defaults.guard');
+        $provider = $config->get('auth.guards.'.$config->get('auth.defaults.guard').'.provider');
 
-        if (is_null($guardProvider = $config->get('auth.guards.'.$guard.'.provider'))) {
-            throw new LogicException('The ['.$guard.'] guard is not defined in your "auth" configuration file.');
-        }
+        $modelNamespace = $config->get('auth.providers.'.$provider.'.model');
 
-        if (! $config->get('auth.providers.'.$guardProvider.'.model')) {
-            return $this->getNecessaryNamespace().'\\Models\\User';
-        }
-
-        $modelNamespace = $config->get('auth.providers.'.$guardProvider.'.model');
-
-        if($guardProvider === 'users' && !class_exists($modelNamespace)){
+        if($provider === 'users' && !class_exists($modelNamespace)){
             $modelNamespace = $this->getShipNamespace().'\Models\UserModel';
         }
 

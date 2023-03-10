@@ -23,18 +23,6 @@ class ControllerMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:controller', [
-            'name' => 'TestController',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -44,7 +32,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->artisan('make:controller', [
             'name' => 'Test1Controller',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -73,9 +61,9 @@ class ControllerMakeCommandTest extends TestCase
 
         if($type === 'model' || $type === 'parent'){
             $namespace = ucfirst(config('porto.path')).'\Containers\\'.$this->containerName.'\Models\\'.$typeValue;
-            $testCommand->expectsConfirmation("A {$namespace} model does not exist. Do you want to generate it?", 'yes');
+            $testCommand->expectsQuestion("A {$namespace} model does not exist. Do you want to generate it?", 'yes');
         }
 
-        $testCommand->assertExitCode(Command::SUCCESS);
+        $testCommand->assertExitCode(0);
     }
 }

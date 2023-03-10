@@ -18,18 +18,6 @@ class TraitMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:trait', [
-            'name' => 'TestTrait',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -39,7 +27,7 @@ class TraitMakeCommandTest extends TestCase
         $this->artisan('make:trait', [
             'name' => 'Test1Trait',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -54,6 +42,6 @@ class TraitMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Trait',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

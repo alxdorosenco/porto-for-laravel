@@ -72,7 +72,7 @@ class PortoInstallCommand extends LaravelCommand
         if(!$path){
             $this->error('The porto structure can\'t be installed without directory path');
 
-            return static::FAILURE;
+            return false;
         }
 
         if (preg_match('([^A-Za-z0-9_/\\\\])', $path)) {
@@ -109,7 +109,7 @@ class PortoInstallCommand extends LaravelCommand
             $this->call('make:container', $containerCommandParams);
         }
 
-        return static::SUCCESS;
+        return 0;
     }
 
     /**

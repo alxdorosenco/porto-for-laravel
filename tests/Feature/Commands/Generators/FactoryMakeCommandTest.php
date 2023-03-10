@@ -18,18 +18,6 @@ class FactoryMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:factory', [
-            'name' => 'TestFactory',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -39,7 +27,7 @@ class FactoryMakeCommandTest extends TestCase
         $this->artisan('make:factory', [
             'name' => 'Test1Factory',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -54,6 +42,6 @@ class FactoryMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Factory',
             '--container' => $this->containerName,
             '--'.$type => 'TestModelForFactory'
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

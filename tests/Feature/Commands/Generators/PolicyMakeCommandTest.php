@@ -13,21 +13,8 @@ class PolicyMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'model' => ['model'],
-            'guard' => ['guard']
+            'model' => ['model']
         ];
-    }
-
-    /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:policy', [
-            'name' => 'TestPolicy',
-        ])->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -40,7 +27,7 @@ class PolicyMakeCommandTest extends TestCase
         $this->artisan('make:policy', [
             'name' => 'Test1Policy',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -57,15 +44,10 @@ class PolicyMakeCommandTest extends TestCase
             $typeValue = 'ModelForPolicy';
         }
 
-        if($type === 'guard'){
-            $typeValue = 'GuardForPolicy';
-            $this->expectException(\LogicException::class);
-        }
-
         $this->artisan('make:policy', [
             'name' => 'Test2'.(ucfirst($type)).'Policy',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

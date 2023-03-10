@@ -16,6 +16,6 @@ class HelperMakeCommandTest extends TestCase
     {
         $this->artisan('make:helper', [
             'name' => 'TestHelper',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

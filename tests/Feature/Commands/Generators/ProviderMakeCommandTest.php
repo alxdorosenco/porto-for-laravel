@@ -16,7 +16,7 @@ class ProviderMakeCommandTest extends TestCase
     {
         $this->artisan('make:provider', [
             'name' => 'TestProvider',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -29,6 +29,6 @@ class ProviderMakeCommandTest extends TestCase
         $this->artisan('make:provider', [
             'name' => 'Test1Provider',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

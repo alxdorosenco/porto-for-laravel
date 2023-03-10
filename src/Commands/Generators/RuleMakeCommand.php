@@ -13,7 +13,7 @@ class RuleMakeCommand extends LaravelRuleMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -21,7 +21,7 @@ class RuleMakeCommand extends LaravelRuleMakeCommand
         if (!$this->option('container')) {
             $this->error('Rule must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

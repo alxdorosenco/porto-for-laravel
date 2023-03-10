@@ -13,7 +13,7 @@ class ResourceMakeCommand extends LaravelResourceMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -21,7 +21,7 @@ class ResourceMakeCommand extends LaravelResourceMakeCommand
         if (!$this->option('container')) {
             $this->error('Resource must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

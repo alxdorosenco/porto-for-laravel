@@ -28,7 +28,7 @@ class TranslationMakeCommandTest extends TestCase
             'name' => 'TestTranslation',
         ])
             ->expectsQuestion('Please, write your language code (for example en, fr, de)', 'en')
-            ->assertExitCode(Command::SUCCESS);
+            ->assertExitCode(0);
     }
 
     /**
@@ -44,6 +44,6 @@ class TranslationMakeCommandTest extends TestCase
             '--'.$type => 'en'
         ]);
 
-        $testCommand->assertExitCode(Command::SUCCESS);
+        $testCommand->assertExitCode(0);
     }
 }

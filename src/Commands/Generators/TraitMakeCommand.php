@@ -59,7 +59,7 @@ class TraitMakeCommand extends GeneratorCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -67,7 +67,7 @@ class TraitMakeCommand extends GeneratorCommand
         if (!$this->option('container')) {
             $this->error('Trait must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

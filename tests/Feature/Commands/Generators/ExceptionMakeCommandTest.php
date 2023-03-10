@@ -27,7 +27,7 @@ class ExceptionMakeCommandTest extends TestCase
     {
         $this->artisan('make:exception', [
             'name' => 'TestException',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -40,7 +40,7 @@ class ExceptionMakeCommandTest extends TestCase
         $this->artisan('make:exception', [
             'name' => 'Test1Exception',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -55,6 +55,6 @@ class ExceptionMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Exception',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

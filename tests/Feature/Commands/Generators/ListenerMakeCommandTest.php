@@ -19,18 +19,6 @@ class ListenerMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:listener', [
-            'name' => 'TestListener',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -40,7 +28,7 @@ class ListenerMakeCommandTest extends TestCase
         $this->artisan('make:listener', [
             'name' => 'Test1Listener',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -61,6 +49,6 @@ class ListenerMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Listener',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

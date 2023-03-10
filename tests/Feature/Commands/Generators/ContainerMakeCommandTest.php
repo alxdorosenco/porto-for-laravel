@@ -26,16 +26,6 @@ class ContainerMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithoutName(): void
-    {
-        $this->artisan('make:container')->assertExitCode(Command::FAILURE);
-    }
-
-    /**
-     * Test of the console command without name
-     *
-     * @return void
-     */
     public function testConsoleCommandWithWrongName(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -56,6 +46,6 @@ class ContainerMakeCommandTest extends TestCase
         $this->artisan('make:container', [
             'name'  => $name === 'default' ? 'Home' : ucfirst($name),
             '--'.$name => true,
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

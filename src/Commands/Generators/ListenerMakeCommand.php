@@ -13,7 +13,7 @@ class ListenerMakeCommand extends LaravelListenerMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -21,7 +21,7 @@ class ListenerMakeCommand extends LaravelListenerMakeCommand
         if (!$this->option('container')) {
             $this->error('Listener must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

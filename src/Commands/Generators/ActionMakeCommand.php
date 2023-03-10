@@ -42,7 +42,7 @@ class ActionMakeCommand extends GeneratorCommand
     }
 
     /**
-     * @return bool|int|void|null
+     * @return bool|void|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -50,7 +50,7 @@ class ActionMakeCommand extends GeneratorCommand
         if (!$this->option('container')) {
             $this->error('Action must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return parent::handle();

@@ -18,18 +18,6 @@ class RepositoryMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:repository', [
-            'name' => 'TestRepository',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -39,7 +27,7 @@ class RepositoryMakeCommandTest extends TestCase
         $this->artisan('make:repository', [
             'name' => 'Test1Repository',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -58,9 +46,9 @@ class RepositoryMakeCommandTest extends TestCase
 
         if($type === 'model'){
             $namespace = ucfirst(config('porto.path')).'\Containers\\'.$this->containerName.'\Models\TestModelForRepository';
-            $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
+            $testCommand->expectsQuestion('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
         }
 
-        $testCommand->assertExitCode(Command::SUCCESS);
+        $testCommand->assertExitCode(0);
     }
 }

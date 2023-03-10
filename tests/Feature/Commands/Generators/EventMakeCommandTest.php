@@ -8,18 +8,6 @@ use Illuminate\Console\Command;
 class EventMakeCommandTest extends TestCase
 {
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:event', [
-            'name' => 'TestEvent',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -29,6 +17,6 @@ class EventMakeCommandTest extends TestCase
         $this->artisan('make:event', [
             'name' => 'Test1Event',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

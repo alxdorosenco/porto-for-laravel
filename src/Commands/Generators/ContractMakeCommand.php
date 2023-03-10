@@ -50,7 +50,7 @@ class ContractMakeCommand extends GeneratorCommand
         if (!$this->option('container')) {
             $this->error('Action must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return parent::handle();

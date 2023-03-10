@@ -27,6 +27,6 @@ class {{ class }} extends {{ parentClass }}
      */
     public function handle()
     {
-        return static::SUCCESS;
+        return 0;
     }
 }

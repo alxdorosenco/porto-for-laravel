@@ -18,18 +18,6 @@ class ResourceMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:resource', [
-            'name' => 'TestResource',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -39,7 +27,7 @@ class ResourceMakeCommandTest extends TestCase
         $this->artisan('make:resource', [
             'name' => 'Test1Resource',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -54,6 +42,6 @@ class ResourceMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Resource',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

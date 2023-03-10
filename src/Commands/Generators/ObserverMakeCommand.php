@@ -13,7 +13,7 @@ class ObserverMakeCommand extends LaravelObserverMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -21,7 +21,7 @@ class ObserverMakeCommand extends LaravelObserverMakeCommand
         if (!$this->option('container')) {
             $this->error('Observer must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         return $this->handleFromTrait();

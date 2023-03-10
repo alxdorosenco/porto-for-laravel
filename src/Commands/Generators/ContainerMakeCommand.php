@@ -78,7 +78,7 @@ class ContainerMakeCommand extends GeneratorCommand
     {
         if (!$this->argument('name')) {
             $this->error('You can\'t create container without name');
-            return static::FAILURE;
+            return false;
         }
 
         if (preg_match('([^A-Za-z0-9_/\\\\])', $this->argument('name'))) {
@@ -117,6 +117,6 @@ class ContainerMakeCommand extends GeneratorCommand
 
         $this->info('Container ['.$this->argument('name').'] has been successfully created');
 
-        return static::SUCCESS;
+        return 0;
     }
 }

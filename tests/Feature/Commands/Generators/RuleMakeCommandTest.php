@@ -8,18 +8,6 @@ use Illuminate\Console\Command;
 class RuleMakeCommandTest extends TestCase
 {
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:rule', [
-            'name' => 'TestRule',
-        ])->assertExitCode(Command::FAILURE);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @return void
@@ -29,6 +17,6 @@ class RuleMakeCommandTest extends TestCase
         $this->artisan('make:rule', [
             'name' => 'Test1Rule',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

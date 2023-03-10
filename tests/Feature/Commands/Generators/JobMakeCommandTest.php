@@ -26,7 +26,7 @@ class JobMakeCommandTest extends TestCase
     {
         $this->artisan('make:job', [
             'name' => 'TestJob',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -39,7 +39,7 @@ class JobMakeCommandTest extends TestCase
         $this->artisan('make:job', [
             'name' => 'Test1Job',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -54,6 +54,6 @@ class JobMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Job',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

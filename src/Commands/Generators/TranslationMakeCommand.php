@@ -44,7 +44,7 @@ class TranslationMakeCommand extends GeneratorCommand
             if(!$lang){
                 $this->error('Translation file cannot be created without language');
 
-                return static::FAILURE;
+                return false;
             }
 
             $this->lang = $lang;

@@ -30,7 +30,7 @@ class TestMakeCommandTest extends TestCase
             'name' => 'TestUnit',
             '--unit' => true,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -45,7 +45,7 @@ class TestMakeCommandTest extends TestCase
             'name' => 'Name',
             '--container' => $this->containerName
         ])
-            ->expectsChoice('Please, select type of the user\'s interface', $ui, ['api' => 'api', 'web' => 'web', 'cli' => 'cli'])
-            ->assertExitCode(Command::SUCCESS);
+            ->expectsQuestion('Please, select type of the user\'s interface', $ui)
+            ->assertExitCode(0);
     }
 }

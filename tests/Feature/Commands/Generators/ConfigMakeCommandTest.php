@@ -16,7 +16,7 @@ class ConfigMakeCommandTest extends TestCase
     {
         $this->artisan('make:config', [
             'name' => 'TestConfig',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -29,6 +29,6 @@ class ConfigMakeCommandTest extends TestCase
         $this->artisan('make:config', [
             'name' => 'Test1Config',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

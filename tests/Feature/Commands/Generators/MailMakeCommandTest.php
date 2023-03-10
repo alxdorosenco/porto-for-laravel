@@ -27,7 +27,7 @@ class MailMakeCommandTest extends TestCase
     {
         $this->artisan('make:mail', [
             'name' => 'TestMail',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -40,7 +40,7 @@ class MailMakeCommandTest extends TestCase
         $this->artisan('make:mail', [
             'name' => 'Test1Mail',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -61,6 +61,6 @@ class MailMakeCommandTest extends TestCase
             'name' => 'Test2'.(ucfirst($type)).'Mail',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

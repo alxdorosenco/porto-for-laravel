@@ -16,7 +16,7 @@ class SeederMakeCommandTest extends TestCase
     {
         $this->artisan('make:seeder', [
             'name' => 'TestSeeder',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -29,6 +29,6 @@ class SeederMakeCommandTest extends TestCase
         $this->artisan('make:seeder', [
             'name' => 'Test1Seeder',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 }

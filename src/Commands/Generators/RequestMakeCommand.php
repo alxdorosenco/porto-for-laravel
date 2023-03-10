@@ -34,7 +34,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -42,7 +42,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
         if (!$this->option('container')) {
             $this->error('Request must be in the container');
 
-            return static::FAILURE;
+            return false;
         }
 
         if(in_array($this->option('uiType'), ['api', 'web'])){
