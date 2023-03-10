@@ -14,7 +14,6 @@ class ControllerMakeCommandTest extends TestCase
     {
         return [
             'api' => ['api'],
-            'force' => ['force'],
             'invokable' => ['invokable'],
             'model' => ['model'],
             'parent' => ['parent'],

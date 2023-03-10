@@ -46,7 +46,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
      */
     protected function createFactory(): void
     {
-        $factory = Str::studly($this->argument('name'));
+        $factory = Str::studly(class_basename($this->argument('name')));
 
         $this->call('make:factory', [
             'name' => "{$factory}Factory",
@@ -76,21 +76,6 @@ class ModelMakeCommand extends LaravelModelMakeCommand
     }
 
     /**
-     * Create a seeder file for the model.
-     *
-     * @return void
-     */
-    protected function createSeeder(): void
-    {
-        $seeder = Str::studly(class_basename($this->argument('name')));
-
-        $this->call('make:seeder', [
-            'name' => "{$seeder}Seeder",
-            '--container' => $this->option('container')
-        ]);
-    }
-
-    /**
      * Create a controller for the model.
      *
      * @return void
@@ -103,8 +88,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
 
         $this->call('make:controller', array_filter([
             'name' => "{$controller}Controller",
-            '--model' => $this->option('resource') || $this->option('api') ? $modelName : null,
-            '--api' => $this->option('api'),
+            '--model' => $this->option('resource') ? $modelName : null,
             '--container' => $this->option('container')
         ]));
     }

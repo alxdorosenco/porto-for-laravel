@@ -3,9 +3,8 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
-class ModelMakeCommandTest extends TestCase
+class AuthMakeCommandTest extends TestCase
 {
     /**
      * @return array[]
@@ -13,13 +12,8 @@ class ModelMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'all' => ['all'],
-            'controller' => ['controller'],
-            'factory' => ['factory'],
-            'force' => ['force'],
-            'migration' => ['migration'],
-            'pivot' => ['pivot'],
-            'resource' => ['resource']
+            'views' => ['views'],
+            'force' => ['force']
         ];
     }
 
@@ -30,8 +24,7 @@ class ModelMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:model', [
-            'name' => 'Test1Model',
+        $this->artisan('make:auth', [
             '--container' => $this->containerName
         ])->assertExitCode(0);
     }
@@ -44,10 +37,7 @@ class ModelMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $modelName = 'Test2'.(ucfirst($type)).'Model';
-
-       $this->artisan('make:model', [
-            'name' => $type === 'factory' ? 'Test2FModel' : $modelName,
+        $this->artisan('make:auth', [
             '--container' => $this->containerName,
             '--'.$type => true
         ])->assertExitCode(0);
