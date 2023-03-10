@@ -2,13 +2,10 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Illuminate\Support\Facades\App;
 
 trait AliasesLoader
 {
-    use FilesAndDirectories;
-
     /**
      * @return array
      */

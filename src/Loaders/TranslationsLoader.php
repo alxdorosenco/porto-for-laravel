@@ -2,12 +2,8 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
-
 trait TranslationsLoader
 {
-    use FilesAndDirectories;
-
     /**
      * @return string|null
      */

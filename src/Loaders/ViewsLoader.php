@@ -2,12 +2,8 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
-
 trait ViewsLoader
 {
-    use FilesAndDirectories;
-
     /**
      * Building regex pattern to find container name
      * @return array

@@ -2,13 +2,10 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Illuminate\Foundation\Http\Kernel;
 
 trait MiddlewareLoader
 {
-    use FilesAndDirectories;
-
     /**
      * @return array
      */

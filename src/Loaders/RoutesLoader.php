@@ -2,17 +2,10 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use Closure;
 
 trait RoutesLoader
 {
-    use FilesAndDirectories;
-
     /**
      * @return array
      */
@@ -45,23 +38,19 @@ trait RoutesLoader
      */
     protected function loadRoutesForBoot(): void
     {
-        $this->configureRateLimiting();
         $apiRoutes = $this->getApiRoutesFromContainers();
         $webRoutes = $this->getWebRoutesFromContainers();
 
-        $this->routes(function () use ($apiRoutes, $webRoutes) {
-                foreach ($apiRoutes as $route){
-                    Route::middleware('api')
-                        ->prefix('api')
-                        ->group($route);
-                }
+        foreach ($apiRoutes as $route){
+            Route::middleware('api')
+                ->prefix('api')
+                ->group($route);
+        }
 
-                foreach ($webRoutes as $route){
-                    Route::middleware('web')
-                        ->group($route);
-                }
-            }
-        );
+        foreach ($webRoutes as $route){
+            Route::middleware('web')
+                ->group($route);
+        }
     }
 
     /**
@@ -74,26 +63,5 @@ trait RoutesLoader
         foreach ($consoleRoutes as $route){
             require $route;
         }
-    }
-
-    /**
-     * @param Closure $callback
-     * @return mixed
-     */
-    protected function routes(Closure $callback)
-    {
-        return $this->app->call($callback);
-    }
-
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
-    protected function configureRateLimiting(): void
-    {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()->id ?: $request->ip());
-        });
     }
 }

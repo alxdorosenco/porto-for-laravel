@@ -2,13 +2,8 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
-use AlxDorosenco\PortoForLaravel\Commands\Generators\CastMakeCommand;
-
 trait CommandsLoader
 {
-    use FilesAndDirectories;
-
     /**
      * @return array
      */
@@ -37,8 +32,9 @@ trait CommandsLoader
         $array = preg_split('/MakeCommand.php/i', $filename);
 
         if(count($array) > 1){
-            $this->app->extend('command.'.strtolower($array[0]).'.make', function ($command, $app) use ($class) {
-                return new $class($app['files']);
+            $commandName = strtolower($array[0]);
+            $this->app->extend('command.'.$commandName.'.make', function ($command, $app) use ($class, $commandName) {
+                return $commandName === 'seeder' ? new $class($app['files'], $app['composer']) :  new $class($app['files']);
             });
         }
     }

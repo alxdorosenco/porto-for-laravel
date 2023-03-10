@@ -2,13 +2,10 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Illuminate\Support\Facades\App;
 
 trait ProvidersLoader
 {
-    use FilesAndDirectories;
-
     private function getProvidersFromShip(): array
     {
         $files = $this->findFilesInDirectories(config('porto.root').DIRECTORY_SEPARATOR.'Ship'.DIRECTORY_SEPARATOR.'Providers');
