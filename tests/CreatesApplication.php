@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests;
 
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication

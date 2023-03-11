@@ -62,7 +62,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
      */
     protected function createMigration(): void
     {
-        $table = Str::snake(Str::pluralStudly(class_basename($this->argument('name'))));
+        $table = Str::plural(Str::snake(class_basename($this->argument('name'))));
 
         if ($this->option('pivot')) {
             $table = Str::singular($table);

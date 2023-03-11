@@ -42,13 +42,29 @@ trait RoutesLoader
         $webRoutes = $this->getWebRoutesFromContainers();
 
         foreach ($apiRoutes as $route){
+            $containerNameArray = $this->findAndChainBetween($route, 'Containers', '(UI)(\\\\|\/)(API)(\\\\|\/)(Routes)');
+            if(empty($containerNameArray[0])){
+                continue;
+            }
+
+            $namespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$containerNameArray[0].'/UI/API/Controllers');
+
             Route::middleware('api')
                 ->prefix('api')
+                ->namespace($namespace)
                 ->group($route);
         }
 
         foreach ($webRoutes as $route){
+            $containerNameArray = $this->findAndChainBetween($route, 'Containers', '(UI)(\\\\|\/)(WEB)(\\\\|\/)(Routes)');
+            if(empty($containerNameArray[0])){
+                continue;
+            }
+
+            $namespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$containerNameArray[0].'/UI/WEB/Controllers');
+
             Route::middleware('web')
+                ->namespace($namespace)
                 ->group($route);
         }
     }
