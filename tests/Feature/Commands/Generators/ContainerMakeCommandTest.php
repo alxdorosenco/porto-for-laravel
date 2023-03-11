@@ -43,9 +43,11 @@ class ContainerMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(string $name): void
     {
-        $this->artisan('make:container', [
+        $commandStatus = $this->artisan('make:container', [
             'name'  => $name === 'default' ? 'Home' : ucfirst($name),
             '--'.$name => true,
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

@@ -14,9 +14,11 @@ class ContractMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:contract', [
+        $commandStatus = $this->artisan('make:contract', [
             'name' => 'Test1Contract',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

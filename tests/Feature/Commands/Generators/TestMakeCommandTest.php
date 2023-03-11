@@ -26,11 +26,13 @@ class TestMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithUnit(): void
     {
-        $this->artisan('make:test', [
+        $commandStatus = $this->artisan('make:test', [
             'name' => 'TestUnit',
             '--unit' => true,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -41,11 +43,12 @@ class TestMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithFunctional(string $ui): void
     {
-        $this->artisan('make:test', [
+        $commandStatus = $this->artisan('make:test', [
             'name' => 'Name',
+            '--uiType' => $ui,
             '--container' => $this->containerName
-        ])
-            ->expectsQuestion('Please, select type of the user\'s interface', $ui)
-            ->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

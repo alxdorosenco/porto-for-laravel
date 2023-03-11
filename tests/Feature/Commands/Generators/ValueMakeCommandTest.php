@@ -14,9 +14,11 @@ class ValueMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:value', [
+        $commandStatus = $this->artisan('make:value', [
             'name' => 'Test1Value',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

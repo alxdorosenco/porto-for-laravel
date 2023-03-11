@@ -24,10 +24,12 @@ class PolicyMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:policy', [
+        $commandStatus = $this->artisan('make:policy', [
             'name' => 'Test1Policy',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -44,10 +46,12 @@ class PolicyMakeCommandTest extends TestCase
             $typeValue = 'ModelForPolicy';
         }
 
-        $this->artisan('make:policy', [
+        $commandStatus = $this->artisan('make:policy', [
             'name' => 'Test2'.(ucfirst($type)).'Policy',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

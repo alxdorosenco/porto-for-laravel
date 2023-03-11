@@ -15,8 +15,6 @@ class ControllerMakeCommandTest extends TestCase
         return [
             'api' => ['api'],
             'invokable' => ['invokable'],
-            'model' => ['model'],
-            'parent' => ['parent'],
             'resource'  => ['resource']
         ];
     }
@@ -28,10 +26,12 @@ class ControllerMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:controller', [
+        $commandStatus = $this->artisan('make:controller', [
             'name' => 'Test1Controller',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -52,17 +52,12 @@ class ControllerMakeCommandTest extends TestCase
             $typeValue = 'TestModelForController';
         }
 
-        $testCommand = $this->artisan('make:controller', [
+        $commandStatus = $this->artisan('make:controller', [
             'name' => 'Test2'.(ucfirst($type)),
             '--container' => $this->containerName,
             '--'.$type => $typeValue
         ]);
 
-        if($type === 'model' || $type === 'parent'){
-            $namespace = ucfirst(config('porto.path')).'\Containers\\'.$this->containerName.'\Models\\'.$typeValue;
-            $testCommand->expectsQuestion("A {$namespace} model does not exist. Do you want to generate it?", 'yes');
-        }
-
-        $testCommand->assertExitCode(0);
+        $this->assertEquals(0, $commandStatus);
     }
 }

@@ -24,9 +24,11 @@ class JobMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:job', [
+        $commandStatus = $this->artisan('make:job', [
             'name' => 'TestJob',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -36,10 +38,12 @@ class JobMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:job', [
+        $commandStatus = $this->artisan('make:job', [
             'name' => 'Test1Job',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -50,10 +54,12 @@ class JobMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $this->artisan('make:job', [
+        $commandStatus = $this->artisan('make:job', [
             'name' => 'Test2'.(ucfirst($type)).'Job',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

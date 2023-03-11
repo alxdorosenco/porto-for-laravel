@@ -25,9 +25,11 @@ class MailMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:mail', [
+        $commandStatus = $this->artisan('make:mail', [
             'name' => 'TestMail',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -37,10 +39,12 @@ class MailMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:mail', [
+        $commandStatus = $this->artisan('make:mail', [
             'name' => 'Test1Mail',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -57,10 +61,12 @@ class MailMakeCommandTest extends TestCase
             $typeValue = 'MarkdownMail';
         }
 
-        $this->artisan('make:mail', [
+        $commandStatus = $this->artisan('make:mail', [
             'name' => 'Test2'.(ucfirst($type)).'Mail',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

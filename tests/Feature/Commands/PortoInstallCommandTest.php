@@ -4,6 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class PortoInstallCommandTest extends TestCase
 {
@@ -14,11 +15,12 @@ class PortoInstallCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('porto:install', [
+        $commandStatus = $this->artisan('porto:install', [
+            '--path' => $this->portoPath,
             '--container' => $this->containerName,
             '--container-full' => true
-        ])
-            ->expectsQuestion('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'Yes')
-            ->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

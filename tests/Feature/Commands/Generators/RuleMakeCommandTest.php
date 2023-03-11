@@ -14,9 +14,11 @@ class RuleMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:rule', [
+        $commandStatus = $this->artisan('make:rule', [
             'name' => 'Test1Rule',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

@@ -48,6 +48,7 @@ class PortoInstallCommand extends LaravelCommand
     protected function getOptions(): array
     {
         return [
+            ['path', 'p', InputOption::VALUE_REQUIRED, 'Set custom porto directory'],
             ['container', null, InputOption::VALUE_REQUIRED, 'Create container in current porto structure'],
             ['container-default', 'd', InputOption::VALUE_NONE, 'Create default container in current porto structure'],
             ['container-full', 'f', InputOption::VALUE_NONE, 'Create full container in current porto structure'],
@@ -59,9 +60,9 @@ class PortoInstallCommand extends LaravelCommand
 
     public function handle(): int
     {
-        $path = null;
+        $path = $this->option('path');
 
-        if ($this->confirm('Do you wish to install porto structure in your '.config('porto.path').'/ directory?', true)) {
+        if (!$path && $this->confirm('Do you wish to install porto structure in your '.config('porto.path').'/ directory?', true)) {
             $path = config('porto.path');
         }
 

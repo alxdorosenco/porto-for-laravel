@@ -24,10 +24,12 @@ class ObserverMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:observer', [
+        $commandStatus = $this->artisan('make:observer', [
             'name' => 'Test1Observer',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -44,10 +46,12 @@ class ObserverMakeCommandTest extends TestCase
             $typeValue = 'ModelForObserver';
         }
 
-        $this->artisan('make:observer', [
+        $commandStatus = $this->artisan('make:observer', [
             'name' => 'Test2'.(ucfirst($type)).'Observer',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

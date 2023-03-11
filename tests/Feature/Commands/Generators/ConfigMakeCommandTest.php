@@ -14,9 +14,11 @@ class ConfigMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:config', [
+        $commandStatus = $this->artisan('make:config', [
             'name' => 'TestConfig',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -26,9 +28,11 @@ class ConfigMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:config', [
+        $commandStatus = $this->artisan('make:config', [
             'name' => 'Test1Config',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

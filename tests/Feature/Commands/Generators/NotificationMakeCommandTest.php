@@ -25,10 +25,12 @@ class NotificationMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:notification', [
+        $commandStatus = $this->artisan('make:notification', [
             'name' => 'Test1Notification',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -45,10 +47,12 @@ class NotificationMakeCommandTest extends TestCase
             $typeValue = 'MarkdownNotification';
         }
 
-        $this->artisan('make:notification', [
+        $commandStatus = $this->artisan('make:notification', [
             'name' => 'Test2'.(ucfirst($type)).'Notification',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

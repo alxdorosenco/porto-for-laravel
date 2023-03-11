@@ -14,9 +14,11 @@ class ProviderMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:provider', [
+        $commandStatus = $this->artisan('make:provider', [
             'name' => 'TestProvider',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -26,9 +28,11 @@ class ProviderMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:provider', [
+        $commandStatus = $this->artisan('make:provider', [
             'name' => 'Test1Provider',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

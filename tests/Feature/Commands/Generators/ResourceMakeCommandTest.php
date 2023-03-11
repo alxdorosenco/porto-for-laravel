@@ -24,10 +24,12 @@ class ResourceMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:resource', [
+        $commandStatus = $this->artisan('make:resource', [
             'name' => 'Test1Resource',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -38,10 +40,12 @@ class ResourceMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $this->artisan('make:resource', [
+        $commandStatus = $this->artisan('make:resource', [
             'name' => 'Test2'.(ucfirst($type)).'Resource',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

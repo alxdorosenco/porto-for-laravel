@@ -24,10 +24,12 @@ class TraitMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:trait', [
+        $commandStatus = $this->artisan('make:trait', [
             'name' => 'Test1Trait',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -38,10 +40,12 @@ class TraitMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $this->artisan('make:trait', [
+        $commandStatus= $this->artisan('make:trait', [
             'name' => 'Test2'.(ucfirst($type)).'Trait',
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

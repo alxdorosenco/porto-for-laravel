@@ -25,10 +25,12 @@ class ListenerMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:listener', [
+        $commandStatus = $this->artisan('make:listener', [
             'name' => 'Test1Listener',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -45,10 +47,12 @@ class ListenerMakeCommandTest extends TestCase
             $typeValue = 'EventListener';
         }
 
-        $this->artisan('make:listener', [
+        $commandStatus = $this->artisan('make:listener', [
             'name' => 'Test2'.(ucfirst($type)).'Listener',
             '--container' => $this->containerName,
             '--'.$type => $typeValue
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

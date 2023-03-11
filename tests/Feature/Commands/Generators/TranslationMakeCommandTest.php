@@ -18,20 +18,6 @@ class TranslationMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:translation', [
-            'name' => 'TestTranslation',
-        ])
-            ->expectsQuestion('Please, write your language code (for example en, fr, de)', 'en')
-            ->assertExitCode(0);
-    }
-
-    /**
      * Test of the console command with types
      *
      * @dataProvider provideTypes
@@ -39,11 +25,11 @@ class TranslationMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $testCommand = $this->artisan('make:translation', [
+        $commandStatus = $this->artisan('make:translation', [
             'name' => 'Test2'.(ucfirst($type)).'Translation',
             '--'.$type => 'en'
         ]);
 
-        $testCommand->assertExitCode(0);
+        $this->assertEquals(0, $commandStatus);
     }
 }

@@ -14,9 +14,11 @@ class ChannelMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:channel', [
+        $commandStatus = $this->artisan('make:channel', [
             'name' => 'Test1Channel',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

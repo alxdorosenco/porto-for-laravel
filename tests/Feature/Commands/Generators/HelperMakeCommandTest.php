@@ -14,8 +14,10 @@ class HelperMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:helper', [
+        $commandStatus = $this->artisan('make:helper', [
             'name' => 'TestHelper',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

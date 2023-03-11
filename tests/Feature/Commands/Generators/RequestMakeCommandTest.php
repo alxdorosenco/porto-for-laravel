@@ -8,17 +8,30 @@ use Illuminate\Console\Command;
 class RequestMakeCommandTest extends TestCase
 {
     /**
+     * @return \string[][]
+     */
+    public function provideTestUi(): array
+    {
+        return [
+            'api' => ['api'],
+            'web' => ['web']
+        ];
+    }
+
+    /**
      * Test of the console command with container
      *
+     * @dataProvider provideTestUi
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer(string $ui): void
     {
-        $this->artisan('make:request', [
+        $commandStatus = $this->artisan('make:request', [
             'name' => 'Test1Request',
+            '--uiType' => $ui,
             '--container' => $this->containerName
-        ])
-            ->expectsQuestion('Please, select type of the user\'s interface', 'api')
-            ->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

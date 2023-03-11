@@ -14,9 +14,11 @@ class SeederMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:seeder', [
+        $commandStatus = $this->artisan('make:seeder', [
             'name' => 'TestSeeder',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -26,9 +28,11 @@ class SeederMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:seeder', [
+        $commandStatus = $this->artisan('make:seeder', [
             'name' => 'Test1Seeder',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

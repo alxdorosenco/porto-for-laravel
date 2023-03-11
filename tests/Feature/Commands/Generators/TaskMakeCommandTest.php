@@ -14,9 +14,11 @@ class TaskMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:task', [
+        $commandStatus = $this->artisan('make:task', [
             'name' => 'Test1Task',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }

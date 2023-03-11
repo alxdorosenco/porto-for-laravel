@@ -14,9 +14,11 @@ class MiddlewareMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:middleware', [
+        $commandStatus = $this->artisan('make:middleware', [
             'name' => 'TestMiddleware',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -26,9 +28,11 @@ class MiddlewareMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $this->artisan('make:middleware', [
+        $commandStatus = $this->artisan('make:middleware', [
             'name' => 'Test1Middleware',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 }
