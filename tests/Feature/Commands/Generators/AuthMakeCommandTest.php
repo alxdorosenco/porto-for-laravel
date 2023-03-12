@@ -21,7 +21,7 @@ class AuthMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:auth', [
             '--container' => $this->containerName
@@ -36,7 +36,7 @@ class AuthMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $commandStatus = $this->artisan('make:auth', [
             '--container' => $this->containerName,

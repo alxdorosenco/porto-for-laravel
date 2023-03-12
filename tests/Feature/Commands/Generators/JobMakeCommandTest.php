@@ -22,7 +22,7 @@ class JobMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:job', [
             'name' => 'TestJob',
@@ -36,7 +36,7 @@ class JobMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:job', [
             'name' => 'Test1Job',
@@ -52,7 +52,7 @@ class JobMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $commandStatus = $this->artisan('make:job', [
             'name' => 'Test2'.(ucfirst($type)).'Job',

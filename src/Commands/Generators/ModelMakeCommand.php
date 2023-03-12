@@ -44,7 +44,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
      *
      * @return void
      */
-    protected function createFactory(): void
+    protected function createFactory()
     {
         $factory = Str::studly(class_basename($this->argument('name')));
 
@@ -60,7 +60,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
      *
      * @return void
      */
-    protected function createMigration(): void
+    protected function createMigration()
     {
         $table = Str::plural(Str::snake(class_basename($this->argument('name'))));
 
@@ -80,7 +80,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
      *
      * @return void
      */
-    protected function createController(): void
+    protected function createController()
     {
         $controller = Str::studly(class_basename($this->argument('name')));
 

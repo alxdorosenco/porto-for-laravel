@@ -22,7 +22,7 @@ class PolicyMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:policy', [
             'name' => 'Test1Policy',
@@ -38,7 +38,7 @@ class PolicyMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $typeValue = true;
 

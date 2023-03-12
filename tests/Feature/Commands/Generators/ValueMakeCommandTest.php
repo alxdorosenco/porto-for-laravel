@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class ValueMakeCommandTest extends TestCase
 {
@@ -12,7 +11,7 @@ class ValueMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:value', [
             'name' => 'Test1Value',

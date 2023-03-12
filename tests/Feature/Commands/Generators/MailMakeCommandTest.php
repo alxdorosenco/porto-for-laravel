@@ -23,7 +23,7 @@ class MailMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:mail', [
             'name' => 'TestMail',
@@ -37,7 +37,7 @@ class MailMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:mail', [
             'name' => 'Test1Mail',
@@ -53,7 +53,7 @@ class MailMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $typeValue = true;
 

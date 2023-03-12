@@ -27,7 +27,7 @@ trait AliasesLoader
     /**
      * Load registered application, custom and containers aliases
      */
-    protected function loadAliasesForRegister(): void
+    protected function loadAliasesForRegister()
     {
         $aliases = $this->getAliasesFromContainersLoaders();
 

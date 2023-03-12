@@ -24,7 +24,7 @@ class RequestMakeCommandTest extends TestCase
      * @dataProvider provideTestUi
      * @return void
      */
-    public function testConsoleCommandWithContainer(string $ui): void
+    public function testConsoleCommandWithContainer(string $ui)
     {
         $commandStatus = $this->artisan('make:request', [
             'name' => 'Test1Request',

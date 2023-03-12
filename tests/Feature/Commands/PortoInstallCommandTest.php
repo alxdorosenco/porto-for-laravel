@@ -13,7 +13,7 @@ class PortoInstallCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('porto:install', [
             '--path' => $this->portoPath,

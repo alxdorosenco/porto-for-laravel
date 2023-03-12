@@ -55,7 +55,7 @@ trait ProvidersLoader
     /**
      * Load registered application, custom and containers providers
      */
-    protected function loadProvidersForRegister(): void
+    protected function loadProvidersForRegister()
     {
         /**
          * Load and register providers from the ship

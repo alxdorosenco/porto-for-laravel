@@ -28,7 +28,7 @@ class ModelMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:model', [
             'name' => 'Test1Model',
@@ -44,7 +44,7 @@ class ModelMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $modelName = 'Test2'.(ucfirst($type)).'Model';
 

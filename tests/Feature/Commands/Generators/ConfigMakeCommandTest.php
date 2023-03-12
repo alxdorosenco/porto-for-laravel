@@ -12,7 +12,7 @@ class ConfigMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:config', [
             'name' => 'TestConfig',
@@ -26,7 +26,7 @@ class ConfigMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:config', [
             'name' => 'Test1Config',

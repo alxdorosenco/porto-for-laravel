@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ContainerTypesClassTest extends TestCase
 {
-    public function testConstantValues(): void
+    public function testConstantValues()
     {
         $this->assertEquals('default', ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT);
         $this->assertEquals('full', ContainerTypes::PORTO_CONTAINER_TYPE_FULL);

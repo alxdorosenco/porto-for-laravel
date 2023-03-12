@@ -5,7 +5,6 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Unit\Structure\Builder;
 use AlxDorosenco\PortoForLaravel\Enums\ContainerTypes;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 
 class ContainersBuilderClassTest extends TestCase
 {
@@ -14,7 +13,7 @@ class ContainersBuilderClassTest extends TestCase
      */
     private $builder;
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
 
@@ -27,7 +26,7 @@ class ContainersBuilderClassTest extends TestCase
     /**
      * @return void
      */
-    public function testGetContainerNameMethod(): void
+    public function testGetContainerNameMethod()
     {
         $this->assertEquals('ContainerName', $this->builder->getContainerName());
     }
@@ -35,7 +34,7 @@ class ContainersBuilderClassTest extends TestCase
     /**
      * @return void
      */
-    public function testGetContainerTypeMethod(): void
+    public function testGetContainerTypeMethod()
     {
         $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD, $this->builder->getContainerType());
     }
@@ -43,8 +42,9 @@ class ContainersBuilderClassTest extends TestCase
     /**
      * @return void
      */
-    public function testGetStructureMethod(): void
+    public function testGetStructureMethod()
     {
-        $this->assertIsArray($this->builder->getStructure());
+        $isArray = is_array($this->builder->getStructure());
+        $this->assertTrue($isArray);
     }
 }

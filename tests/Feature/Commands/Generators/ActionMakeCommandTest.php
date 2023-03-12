@@ -11,7 +11,7 @@ class ActionMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:action', [
             'name' => 'Test1Action',

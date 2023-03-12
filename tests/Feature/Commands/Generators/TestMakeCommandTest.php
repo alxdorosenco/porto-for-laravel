@@ -24,7 +24,7 @@ class TestMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithUnit(): void
+    public function testConsoleCommandWithUnit()
     {
         $commandStatus = $this->artisan('make:test', [
             'name' => 'TestUnit',
@@ -41,7 +41,7 @@ class TestMakeCommandTest extends TestCase
      * @dataProvider provideTestUi
      * @return void
      */
-    public function testConsoleCommandWithFunctional(string $ui): void
+    public function testConsoleCommandWithFunctional(string $ui)
     {
         $commandStatus = $this->artisan('make:test', [
             'name' => 'Name',

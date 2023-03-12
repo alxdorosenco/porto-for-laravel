@@ -22,7 +22,7 @@ class ResourceMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:resource', [
             'name' => 'Test1Resource',
@@ -38,7 +38,7 @@ class ResourceMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $commandStatus = $this->artisan('make:resource', [
             'name' => 'Test2'.(ucfirst($type)).'Resource',

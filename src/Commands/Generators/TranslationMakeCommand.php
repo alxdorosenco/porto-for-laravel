@@ -31,8 +31,7 @@ class TranslationMakeCommand extends GeneratorCommand
     }
 
     /**
-     * @return bool|void|null
-     * @throws FileNotFoundException
+     * @return bool|null
      */
     public function handle()
     {
@@ -72,7 +71,7 @@ class TranslationMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__.'/stubs/translation.stub';
     }

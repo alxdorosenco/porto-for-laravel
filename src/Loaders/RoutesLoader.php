@@ -36,7 +36,7 @@ trait RoutesLoader
     /**
      * Load web and api routes for the ServiceProvider
      */
-    protected function loadRoutesForBoot(): void
+    protected function loadRoutesForBoot()
     {
         $apiRoutes = $this->getApiRoutesFromContainers();
         $webRoutes = $this->getWebRoutesFromContainers();
@@ -72,7 +72,7 @@ trait RoutesLoader
     /**
      * Load cli routes for the ConsoleKernel
      */
-    protected function loadRoutesForConsoleKernel(): void
+    protected function loadRoutesForConsoleKernel()
     {
         $consoleRoutes = $this->getCliRoutesFromContainers();
 

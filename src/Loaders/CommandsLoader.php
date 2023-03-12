@@ -24,7 +24,7 @@ trait CommandsLoader
      * @param string $file
      * @return void
      */
-    private function extendGeneratorCommand(string $file): void
+    private function extendGeneratorCommand(string $file)
     {
         $filename = basename($file);
         $class = $this->getClassFromFile($file);
@@ -54,7 +54,7 @@ trait CommandsLoader
     /**
      * Load commands from the package
      */
-    protected function loadCommandsForRegister(): void
+    protected function loadCommandsForRegister()
     {
         $commandFiles = $this->findFilesInDirectories([
             __DIR__.'/../Commands',

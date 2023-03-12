@@ -12,7 +12,7 @@ class RuleMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:rule', [
             'name' => 'Test1Rule',

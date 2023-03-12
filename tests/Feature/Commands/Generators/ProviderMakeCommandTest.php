@@ -12,7 +12,7 @@ class ProviderMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:provider', [
             'name' => 'TestProvider',
@@ -26,7 +26,7 @@ class ProviderMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:provider', [
             'name' => 'Test1Provider',

@@ -23,7 +23,7 @@ class ExceptionMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:exception', [
             'name' => 'TestException',
@@ -37,7 +37,7 @@ class ExceptionMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:exception', [
             'name' => 'Test1Exception',
@@ -53,7 +53,7 @@ class ExceptionMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $commandStatus = $this->artisan('make:exception', [
             'name' => 'Test2'.(ucfirst($type)).'Exception',

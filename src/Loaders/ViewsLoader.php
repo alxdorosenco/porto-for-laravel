@@ -27,7 +27,7 @@ trait ViewsLoader
         return $viewsList;
     }
 
-    protected function loadViewsForBoot(): void
+    protected function loadViewsForBoot()
     {
         $views = $this->getViewsFromContainers();
 

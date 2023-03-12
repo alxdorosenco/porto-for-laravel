@@ -6,11 +6,27 @@ use Illuminate\Routing\Console\ControllerMakeCommand as LaravelControllerMakeCom
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputOption;
 
 class ControllerMakeCommand extends LaravelControllerMakeCommand
 {
     use ConsoleGenerator {
         handle as protected handleFromTrait;
+        getOptions as protected getOptionsFromTrait;
+    }
+
+    /**
+     * Get the console command arguments.
+     *
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        $options = $this->getOptionsFromTrait();
+
+        $options[] = ['api', null, InputOption::VALUE_NONE, 'Create the class in the container\'s UI/API directory'];
+
+        return $options;
     }
 
     /**
@@ -58,14 +74,8 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
 
         return [
             'ParentDummyFullModelClass' => $parentModelClass,
-            '{{ namespacedParentModel }}' => $parentModelClass,
-            '{{namespacedParentModel}}' => $parentModelClass,
             'ParentDummyModelClass' => class_basename($parentModelClass),
-            '{{ parentModel }}' => class_basename($parentModelClass),
-            '{{parentModel}}' => class_basename($parentModelClass),
             'ParentDummyModelVariable' => lcfirst(class_basename($parentModelClass)),
-            '{{ parentModelVariable }}' => lcfirst(class_basename($parentModelClass)),
-            '{{parentModelVariable}}' => lcfirst(class_basename($parentModelClass)),
         ];
     }
 
@@ -87,14 +97,8 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
 
         return array_merge($replace, [
             'DummyFullModelClass' => $modelClass,
-            '{{ namespacedModel }}' => $modelClass,
-            '{{namespacedModel}}' => $modelClass,
             'DummyModelClass' => class_basename($modelClass),
-            '{{ model }}' => class_basename($modelClass),
-            '{{model}}' => class_basename($modelClass),
             'DummyModelVariable' => lcfirst(class_basename($modelClass)),
-            '{{ modelVariable }}' => lcfirst(class_basename($modelClass)),
-            '{{modelVariable}}' => lcfirst(class_basename($modelClass)),
         ]);
     }
 

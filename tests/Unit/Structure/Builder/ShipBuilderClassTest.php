@@ -4,7 +4,6 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Unit\Structure\Builder;
 
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ShipBuilder;
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 
 class ShipBuilderClassTest extends TestCase
 {
@@ -13,7 +12,7 @@ class ShipBuilderClassTest extends TestCase
      */
     private $builder;
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
 
@@ -23,9 +22,11 @@ class ShipBuilderClassTest extends TestCase
     /**
      * @return void
      */
-    public function testGetStructureMethod(): void
+    public function testGetStructureMethod()
     {
         $this->assertFileExists($this->builder->getComponent('ship'));
-        $this->assertIsArray($this->builder->getStructure());
+
+        $isArray = is_array($this->builder->getStructure());
+        $this->assertTrue($isArray);
     }
 }

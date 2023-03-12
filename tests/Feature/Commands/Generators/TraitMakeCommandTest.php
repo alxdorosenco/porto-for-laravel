@@ -22,7 +22,7 @@ class TraitMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:trait', [
             'name' => 'Test1Trait',
@@ -38,7 +38,7 @@ class TraitMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $commandStatus= $this->artisan('make:trait', [
             'name' => 'Test2'.(ucfirst($type)).'Trait',

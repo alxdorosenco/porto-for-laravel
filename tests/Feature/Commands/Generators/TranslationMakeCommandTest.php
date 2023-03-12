@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class TranslationMakeCommandTest extends TestCase
 {
@@ -23,7 +22,7 @@ class TranslationMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $commandStatus = $this->artisan('make:translation', [
             'name' => 'Test2'.(ucfirst($type)).'Translation',

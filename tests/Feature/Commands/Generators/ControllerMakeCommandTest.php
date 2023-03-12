@@ -14,7 +14,6 @@ class ControllerMakeCommandTest extends TestCase
     {
         return [
             'api' => ['api'],
-            'invokable' => ['invokable'],
             'resource'  => ['resource']
         ];
     }
@@ -24,7 +23,7 @@ class ControllerMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:controller', [
             'name' => 'Test1Controller',
@@ -40,22 +39,12 @@ class ControllerMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
-        $typeValue = true;
-
-        if($type === 'parent'){
-            $typeValue = 'ParentController';
-        }
-
-        if($type === 'model'){
-            $typeValue = 'TestModelForController';
-        }
-
         $commandStatus = $this->artisan('make:controller', [
             'name' => 'Test2'.(ucfirst($type)),
             '--container' => $this->containerName,
-            '--'.$type => $typeValue
+            '--'.$type => true
         ]);
 
         $this->assertEquals(0, $commandStatus);

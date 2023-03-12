@@ -7,7 +7,7 @@ trait TranslationsLoader
     /**
      * @return string|null
      */
-    private function getTranslationsFromShip(): ?string
+    private function getTranslationsFromShip()
     {
         return $this->findExistingDirectory(config('porto.root').DIRECTORY_SEPARATOR.'Ship'.DIRECTORY_SEPARATOR.'Translations');
     }
@@ -23,7 +23,7 @@ trait TranslationsLoader
     /**
      * Load migration for boot in the provider
      */
-    protected function loadTranslationsForBoot(): void
+    protected function loadTranslationsForBoot()
     {
         $shipDirectory = $this->getTranslationsFromShip();
         $containersDirectories = $this->getTranslationsFromContainers();

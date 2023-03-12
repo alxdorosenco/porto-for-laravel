@@ -46,7 +46,7 @@ trait FilesAndDirectories
      * @param string $path
      * @return string|null
      */
-    protected function findExistingDirectory(string $path): ?string
+    protected function findExistingDirectory(string $path)
     {
         return File::isDirectory($path) ? $path : null;
     }
@@ -55,7 +55,7 @@ trait FilesAndDirectories
      * @param string $path
      * @return string|null
      */
-    protected function findExistingFile(string $path): ?string
+    protected function findExistingFile(string $path)
     {
         return File::isFile($path) ? $path : null;
     }
@@ -92,7 +92,7 @@ trait FilesAndDirectories
      * @param string $path
      * @return string|null
      */
-    protected function findNamespaceInFile(string $path): ?string
+    protected function findNamespaceInFile(string $path)
     {
         $fileStr = File::get($path);
         $fileArray = explode("\n", $fileStr);
@@ -160,7 +160,7 @@ trait FilesAndDirectories
     /**
      * @param string $path
      */
-    protected function deleteDirectory(string $path): void
+    protected function deleteDirectory(string $path)
     {
         if (!$this->findExistingDirectory($path)) {
             File::deleteDirectory($path);

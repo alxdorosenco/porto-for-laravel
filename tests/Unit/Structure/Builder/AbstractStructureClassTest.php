@@ -17,7 +17,7 @@ class AbstractStructureClassTest extends TestCase
      */
     private $stub;
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
 
@@ -46,7 +46,7 @@ class AbstractStructureClassTest extends TestCase
         ];
     }
 
-    public function testCreateRootDirectoryMethod(): void
+    public function testCreateRootDirectoryMethod()
     {
         $this->stub->method('createRootDirectory')
             ->willReturn('root path of the created directory');
@@ -57,7 +57,7 @@ class AbstractStructureClassTest extends TestCase
     /**
      * @return void
      */
-    public function testGetRootDirectoryMethod(): void
+    public function testGetRootDirectoryMethod()
     {
         $this->stub->method('getRootDirectory')
             ->willReturn('root path of the created directory');
@@ -65,25 +65,11 @@ class AbstractStructureClassTest extends TestCase
         $this->assertEquals('root path of the created directory', $this->stub->getRootDirectory());
     }
 
-    public function testBuildMethod(): void
-    {
-        $this->stub->method('build');
-        $this->expectNotToPerformAssertions();
-    }
-
-    public function testShowInCliMethod(): void
-    {
-        $commandClass = new Command();
-        $this->stub->method('showInCli')->with($commandClass);
-
-        $this->expectNotToPerformAssertions();
-    }
-
     /**
      * @dataProvider provideBuilderStructure
      * @return void
      */
-    public function testGetStructureAbstractMethod(Structure $structure): void
+    public function testGetStructureAbstractMethod(Structure $structure)
     {
         $this->stub->method('getStructure')
             ->willReturn($structure->getStructure());

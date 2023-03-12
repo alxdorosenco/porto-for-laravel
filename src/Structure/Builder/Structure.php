@@ -31,7 +31,7 @@ abstract class Structure
         return $this->componentVariables['path'];
     }
 
-    public function build(): void
+    public function build()
     {
         foreach ($this->getStructure() as $data){
             $builder = clone $this;
@@ -61,7 +61,7 @@ abstract class Structure
     /**
      * @param Command $command
      */
-    public function showInCli(Command $command): void
+    public function showInCli(Command $command)
     {
         $structureData = [['directory' => $this->getRootDirectory()]];
         $structureData += $this->getStructure();

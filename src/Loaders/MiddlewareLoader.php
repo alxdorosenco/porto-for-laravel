@@ -45,7 +45,7 @@ trait MiddlewareLoader
     /**
      * Load registered middlewares from containers
      */
-    protected function loadMiddlewareForRegister(): void
+    protected function loadMiddlewareForRegister()
     {
         $middlewares = $this->getMiddlewareFromClassesLoaders();
 

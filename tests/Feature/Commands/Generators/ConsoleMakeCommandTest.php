@@ -22,7 +22,7 @@ class ConsoleMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:command', [
             'name' => 'TestCommand',
@@ -36,7 +36,7 @@ class ConsoleMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:command', [
             'name' => 'Test1Command',
@@ -52,7 +52,7 @@ class ConsoleMakeCommandTest extends TestCase
      * @dataProvider provideTypes
      * @return void
      */
-    public function testConsoleCommandWithTypes(string $type): void
+    public function testConsoleCommandWithTypes(string $type)
     {
         $commandStatus = $this->artisan('make:command', [
             'name' => 'Test2'.(ucfirst($type)).'Command',

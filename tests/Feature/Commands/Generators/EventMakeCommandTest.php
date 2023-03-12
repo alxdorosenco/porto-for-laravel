@@ -12,7 +12,7 @@ class EventMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:event', [
             'name' => 'Test1Event',

@@ -12,7 +12,7 @@ class MiddlewareMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:middleware', [
             'name' => 'TestMiddleware',
@@ -26,7 +26,7 @@ class MiddlewareMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:middleware', [
             'name' => 'Test1Middleware',

@@ -12,7 +12,7 @@ class ContractMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithContainer(): void
+    public function testConsoleCommandWithContainer()
     {
         $commandStatus = $this->artisan('make:contract', [
             'name' => 'Test1Contract',

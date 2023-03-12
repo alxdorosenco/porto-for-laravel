@@ -23,7 +23,7 @@ trait MigrationsLoader
     /**
      * Load migration for boot in the provider
      */
-    protected function loadMigrationsForBoot(): void
+    protected function loadMigrationsForBoot()
     {
         $shipMigrations = $this->getMigrationsFromShip();
         $containersMigrations = $this->getMigrationsFromContainers();

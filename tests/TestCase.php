@@ -12,7 +12,7 @@ abstract class TestCase extends LaravelTestCase
 
     protected $containerName = 'Standard';
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
 
@@ -20,7 +20,7 @@ abstract class TestCase extends LaravelTestCase
         config(['porto.root' => base_path($this->portoPath)]);
     }
 
-    public function tearDown(): void
+    public function tearDown()
     {
         config(['porto.path' => null]);
         config(['porto.root' => null]);

@@ -32,7 +32,7 @@ trait ConfigsLoader
     /**
      * Load configs from current package
      */
-    protected function loadConfigsFromPackage(): void
+    protected function loadConfigsFromPackage()
     {
         $packageConfigs = $this->getConfigsFromPackage();
         foreach ($packageConfigs as $file){
@@ -44,7 +44,7 @@ trait ConfigsLoader
     /**
      * Load and register configs
      */
-    protected function loadConfigsForRegister(): void
+    protected function loadConfigsForRegister()
     {
         $shipConfigs = $this->getConfigsFromShip();
         $containersConfigs = $this->getConfigsFromContainers();

@@ -26,7 +26,7 @@ class ContainerMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithWrongName(): void
+    public function testConsoleCommandWithWrongName()
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -41,7 +41,7 @@ class ContainerMakeCommandTest extends TestCase
      * @dataProvider provideContainerName
      * @return void
      */
-    public function testConsoleCommand(string $name): void
+    public function testConsoleCommand(string $name)
     {
         $commandStatus = $this->artisan('make:container', [
             'name'  => $name === 'default' ? 'Home' : ucfirst($name),

@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 
 class StructureMakerClassTest extends TestCase
 {
-    public function testExecuteMethod(): void
+    public function testExecuteMethod()
     {
         $command = new Command();
 

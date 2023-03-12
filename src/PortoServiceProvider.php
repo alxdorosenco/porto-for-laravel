@@ -35,7 +35,7 @@ class PortoServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register(): void
+    public function register()
     {
         $this->loadConfigsFromPackage();
 
@@ -53,7 +53,7 @@ class PortoServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(): void
+    public function boot()
     {
         if(config('porto.enabled')){
             $this->loadRoutesForBoot();

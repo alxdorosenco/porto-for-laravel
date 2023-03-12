@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use LogicException;
 use Illuminate\Foundation\Console\PolicyMakeCommand as LaravelPolicyMakeCommand;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 
@@ -67,7 +66,7 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
      *
      * @throws \LogicException
      */
-    protected function userProviderModel(): ?string
+    protected function userProviderModel()
     {
         $config = $this->laravel['config'];
 

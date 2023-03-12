@@ -27,7 +27,7 @@ class StructureMaker
         $this->structure = $structure;
     }
 
-    public function execute(): void
+    public function execute()
     {
         $this->structure->createRootDirectory();
         $this->structure->build();

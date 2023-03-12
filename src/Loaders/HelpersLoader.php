@@ -25,7 +25,7 @@ trait HelpersLoader
     /**
      * Load helpers from ship and containers
      */
-    protected function loadHelpersForBoot(): void
+    protected function loadHelpersForBoot()
     {
         $shipFiles = $this->getHelpersFromShip();
         $containersFiles = $this->getHelpersFromContainers();
