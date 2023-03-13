@@ -2,7 +2,6 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Foundation\Console\PolicyMakeCommand as LaravelPolicyMakeCommand;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 
@@ -14,7 +13,6 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
 
     /**
      * @return bool|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

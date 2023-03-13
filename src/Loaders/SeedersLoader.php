@@ -29,7 +29,7 @@ trait SeedersLoader
     /**
      * Load and call all seeders from ship and containers
      */
-    private function loadSeedersAndCall(): void
+    private function loadSeedersAndCall()
     {
         $shipFiles = $this->getSeedersFromShip();
         $containersFiles = $this->getSeedersFromContainers();

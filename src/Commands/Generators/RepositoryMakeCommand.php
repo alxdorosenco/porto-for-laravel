@@ -4,7 +4,6 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -65,7 +64,6 @@ class RepositoryMakeCommand extends GeneratorCommand
 
     /**
      * @return bool|void|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

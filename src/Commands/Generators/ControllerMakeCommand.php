@@ -31,7 +31,6 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
 
     /**
      * @return bool|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

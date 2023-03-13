@@ -9,7 +9,7 @@ class {{ class }} extends {{ parentAlias }}
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \{{ rootNamespace }}Ship\Requests\Request  $request
      * @return string|null
      */
     protected function redirectTo($request)

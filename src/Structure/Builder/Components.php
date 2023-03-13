@@ -21,7 +21,6 @@ trait Components
     /**
      * @param string $component
      * @return array
-     * @throws \JsonException
      */
     protected function getComponentContents(string $component): array
     {
@@ -49,7 +48,7 @@ trait Components
 
     /**
      * @param string $param
-     * @return mixed|string
+     * @return array|string|string[]
      */
     protected function componentVariablesReplacer(string $param)
     {

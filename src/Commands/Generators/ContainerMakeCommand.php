@@ -2,8 +2,6 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use Illuminate\Console\Command as LaravelCommand;
-
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use AlxDorosenco\PortoForLaravel\Enums\ContainerTypes;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;

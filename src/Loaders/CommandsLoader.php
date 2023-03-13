@@ -64,7 +64,6 @@ trait CommandsLoader
         $commandClasses = [];
         foreach ($commandFiles as $file){
             $this->extendGeneratorCommand($file);
-
             $commandClasses[] = $this->getClassFromFile($file);
         }
 

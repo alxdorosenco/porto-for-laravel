@@ -67,7 +67,7 @@ class ContainersBuilder extends Structure
     }
 
     /**
-     * @throws \JsonException
+     * @return array
      */
     public function getStructure(): array
     {

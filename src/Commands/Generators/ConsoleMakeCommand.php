@@ -29,19 +29,11 @@ class ConsoleMakeCommand extends LaravelConsoleMakeCommand
      */
     protected function replaceNamespace(&$stub, $name)
     {
-        $searches = [
-            ['DummyParentNamespace'],
-            ['{{ parentNamespace }}'],
-            ['{{parentNamespace}}']
-        ];
-
-        foreach ($searches as $search) {
-            $stub = str_replace(
-                $search,
-                [$this->getParentNamespace()],
-                $stub
-            );
-        }
+        $stub = str_replace(
+            ['DummyParentNamespace', '{{ parentNamespace }}','{{parentNamespace}}'],
+            [$this->getParentNamespace()],
+            $stub
+        );
 
         return parent::replaceNamespace($stub, $name);
     }

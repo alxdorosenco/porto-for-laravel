@@ -3,7 +3,7 @@
 namespace {{ namespace }};
 
 use {{ parentClass }} as {{ parentAlias }};
-use Illuminate\Http\Request;
+use {{ rootNamespace }}Ship\Requests\Request;
 
 class {{ class }} extends {{ parentAlias }}
 {
@@ -15,14 +15,15 @@ class {{ class }} extends {{ parentAlias }}
     protected $proxies;
 
     /**
-     * The headers that should be used to detect proxies.
+     * The current proxy header mappings.
      *
      * @var int
      */
-    protected $headers =
-        Request::HEADER_X_FORWARDED_FOR |
-        Request::HEADER_X_FORWARDED_HOST |
-        Request::HEADER_X_FORWARDED_PORT |
-        Request::HEADER_X_FORWARDED_PROTO |
-        Request::HEADER_X_FORWARDED_AWS_ELB;
+    protected $headers = [
+        Request::HEADER_FORWARDED => 'FORWARDED',
+        Request::HEADER_X_FORWARDED_FOR => 'X_FORWARDED_FOR',
+        Request::HEADER_X_FORWARDED_HOST => 'X_FORWARDED_HOST',
+        Request::HEADER_X_FORWARDED_PORT => 'X_FORWARDED_PORT',
+        Request::HEADER_X_FORWARDED_PROTO => 'X_FORWARDED_PROTO',
+    ];
 }

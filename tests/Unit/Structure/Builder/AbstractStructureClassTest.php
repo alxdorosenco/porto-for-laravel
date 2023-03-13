@@ -7,7 +7,6 @@ use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ShipBuilder;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\Structure;
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class AbstractStructureClassTest extends TestCase

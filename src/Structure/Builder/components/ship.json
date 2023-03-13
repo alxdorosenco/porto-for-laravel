@@ -32,14 +32,6 @@
         "template": "abstract-extended.class.stub"
     },
     {
-        "directory": "{path}/Abstracts/Components",
-        "namespace": "{namespace}\\Abstracts\\Components",
-        "class": "ConsoleCommand",
-        "parentClass": "Illuminate\\View\\Component",
-        "parentAlias": "LaravelComponent",
-        "template": "abstract-extended.class.stub"
-    },
-    {
         "directory": "{path}/Abstracts/Controllers",
         "namespace": "{namespace}\\Abstracts\\Controllers",
         "class": "Controller",
@@ -59,14 +51,6 @@
         "class": "Handler",
         "parentClass": "Illuminate\\Foundation\\Exceptions\\Handler",
         "parentAlias": "LaravelExceptionHandler",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Factories",
-        "namespace": "{namespace}\\Abstracts\\Factories",
-        "class": "Factory",
-        "parentClass": "Illuminate\\Database\\Eloquent\\Factories\\Factory",
-        "parentAlias": "LaravelFactory",
         "template": "abstract-extended.class.stub"
     },
     {
@@ -90,22 +74,6 @@
         "template": "abstract-mail.class.stub"
     },
     {
-        "directory": "{path}/Abstracts/Mails/Mailables",
-        "namespace": "{namespace}\\Abstracts\\Mails\\Mailables",
-        "class": "Content",
-        "parentClass": "Illuminate\\Mail\\Mailables\\Content",
-        "parentAlias": "LaravelContent",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Mails/Mailables",
-        "namespace": "{namespace}\\Abstracts\\Mails\\Mailables",
-        "class": "Envelope",
-        "parentClass": "Illuminate\\Mail\\Mailables\\Envelope",
-        "parentAlias": "LaravelEnvelope",
-        "template": "abstract-extended.class.stub"
-    },
-    {
         "directory": "{path}/Abstracts/Middleware",
         "namespace": "{namespace}\\Abstracts\\Middleware",
         "class": "Authenticate",
@@ -124,14 +92,6 @@
     {
         "directory": "{path}/Abstracts/Middleware",
         "namespace": "{namespace}\\Abstracts\\Middleware",
-        "class": "PreventRequestsDuringMaintenance",
-        "parentClass": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-        "parentAlias": "LaravelMiddleware",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Middleware",
-        "namespace": "{namespace}\\Abstracts\\Middleware",
         "class": "TrimStrings",
         "parentClass": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
         "parentAlias": "LaravelMiddleware",
@@ -140,24 +100,8 @@
     {
         "directory": "{path}/Abstracts/Middleware",
         "namespace": "{namespace}\\Abstracts\\Middleware",
-        "class": "TrustHosts",
-        "parentClass": "Illuminate\\Http\\Middleware\\TrustHosts",
-        "parentAlias": "LaravelMiddleware",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Middleware",
-        "namespace": "{namespace}\\Abstracts\\Middleware",
         "class": "TrustProxies",
-        "parentClass": "Illuminate\\Http\\Middleware\\TrustProxies",
-        "parentAlias": "LaravelMiddleware",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Middleware",
-        "namespace": "{namespace}\\Abstracts\\Middleware",
-        "class": "ValidateSignature",
-        "parentClass": "Illuminate\\Routing\\Middleware\\ValidateSignature",
+        "parentClass": "Fideloper\\Proxy\\TrustProxies",
         "parentAlias": "LaravelMiddleware",
         "template": "abstract-extended.class.stub"
     },
@@ -298,14 +242,6 @@
     {
         "directory": "{path}/Abstracts/Resources",
         "namespace": "{namespace}\\Abstracts\\Resources",
-        "class": "JsonResource",
-        "parentClass": "Illuminate\\Http\\Resources\\Json\\JsonResource",
-        "parentAlias": "LaravelJsonResource",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Resources",
-        "namespace": "{namespace}\\Abstracts\\Resources",
         "class": "ResourceCollection",
         "parentClass": "Illuminate\\Http\\Resources\\Json\\ResourceCollection",
         "parentAlias": "LaravelResourceCollection",
@@ -325,22 +261,6 @@
         "class": "TestCase",
         "parentClass": "Illuminate\\Foundation\\Testing\\TestCase",
         "parentAlias": "LaravelTestCase",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Translations",
-        "namespace": "{namespace}\\Abstracts\\Translations",
-        "class": "PotentiallyTranslatedString",
-        "parentClass": "Illuminate\\Translation\\PotentiallyTranslatedString",
-        "parentAlias": "LaravelPotentiallyTranslatedString",
-        "template": "abstract-extended.class.stub"
-    },
-    {
-        "directory": "{path}/Abstracts/Views",
-        "namespace": "{namespace}\\Abstracts\\Views",
-        "class": "Component",
-        "parentClass": "Illuminate\\View\\Component",
-        "parentAlias": "LaravelComponent",
         "template": "abstract-extended.class.stub"
     },
     {
@@ -419,22 +339,6 @@
         "template": "kernel-http.class.stub"
     },
     {
-        "directory": "{path}/Mails/Mailables",
-        "namespace": "{namespace}\\Mails\\Mailables",
-        "class": "Content",
-        "parentClass": "{namespace}\\Abstracts\\Mails\\Mailables\\Content",
-        "parentAlias": "AbstractContent",
-        "template": "extended.class.stub"
-    },
-    {
-        "directory": "{path}/Mails/Mailables",
-        "namespace": "{namespace}\\Mails\\Mailables",
-        "class": "Envelope",
-        "parentClass": "{namespace}\\Abstracts\\Mails\\Mailables\\Envelope",
-        "parentAlias": "AbstractEnvelope",
-        "template": "extended.class.stub"
-    },
-    {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
         "class": "Authenticate",
@@ -453,14 +357,6 @@
     {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
-        "class": "PreventRequestsDuringMaintenance",
-        "parentClass": "{namespace}\\Abstracts\\Middleware\\PreventRequestsDuringMaintenance",
-        "parentAlias": "AbstractMiddleware",
-        "template": "middleware-prevent-requests-during-maintenance.class.stub"
-    },
-    {
-        "directory": "{path}/Middleware",
-        "namespace": "{namespace}\\Middleware",
         "class": "RedirectIfAuthenticated",
         "template": "middleware-redirect-If-authenticated.class.stub"
     },
@@ -475,26 +371,10 @@
     {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
-        "class": "TrustHosts",
-        "parentClass": "{namespace}\\Abstracts\\Middleware\\TrustHosts",
-        "parentAlias": "AbstractMiddleware",
-        "template": "middleware-trust-hosts.class.stub"
-    },
-    {
-        "directory": "{path}/Middleware",
-        "namespace": "{namespace}\\Middleware",
         "class": "TrustProxies",
         "parentClass": "{namespace}\\Abstracts\\Middleware\\TrustProxies",
         "parentAlias": "AbstractMiddleware",
         "template": "middleware-trust-proxies.class.stub"
-    },
-    {
-        "directory": "{path}/Middleware",
-        "namespace": "{namespace}\\Middleware",
-        "class": "ValidateSignature",
-        "parentClass": "{namespace}\\Abstracts\\Middleware\\ValidateSignature",
-        "parentAlias": "AbstractMiddleware",
-        "template": "middleware-validate-signature.class.stub"
     },
     {
         "directory": "{path}/Middleware",
@@ -546,12 +426,6 @@
         "parentClass": "{namespace}\\Abstracts\\Models\\Builder",
         "parentAlias": "AbstractBuilder",
         "template": "extended.class.stub"
-    },
-    {
-        "directory": "{path}/Models",
-        "namespace": "{namespace}\\Models",
-        "interface": "Scope",
-        "template": "scope.interface.stub"
     },
     {
         "directory": "{path}/Notifications",

@@ -64,11 +64,15 @@ class AuthMakeCommand extends LaravelAuthMakeCommand
     protected function createDirectories()
     {
         if (! is_dir($directory = $this->getViewPath('layouts'))) {
-            mkdir($directory, 0755, true);
+            if (!mkdir($directory, 0755, true) && !is_dir($directory)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
+            }
         }
 
         if (! is_dir($directory = $this->getViewPath('auth/passwords'))) {
-            mkdir($directory, 0755, true);
+            if (!mkdir($directory, 0755, true) && !is_dir($directory)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
+            }
         }
     }
 
@@ -80,7 +84,7 @@ class AuthMakeCommand extends LaravelAuthMakeCommand
     protected function exportViews()
     {
         foreach ($this->views as $key => $value) {
-            if (file_exists($view = $this->getViewPath($value)) && ! $this->option('force')) {
+            if (file_exists($view = $this->getViewPath($value)) && !$this->option('force')) {
                 if (! $this->confirm("The [{$value}] view already exists. Do you want to replace it?")) {
                     continue;
                 }

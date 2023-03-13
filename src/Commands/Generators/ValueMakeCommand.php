@@ -4,7 +4,6 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ValueMakeCommand extends GeneratorCommand
 {
@@ -43,7 +42,6 @@ class ValueMakeCommand extends GeneratorCommand
 
     /**
      * @return bool|void|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\EventMakeCommand as LaravelEventMakeCommand;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 
 class EventMakeCommand extends LaravelEventMakeCommand
@@ -25,7 +24,6 @@ class EventMakeCommand extends LaravelEventMakeCommand
 
     /**
      * @return bool|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

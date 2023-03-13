@@ -2,9 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Traits;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\Console\Input\InputOption;
-use Illuminate\Console\Command;
 
 trait ConsoleGenerator
 {
@@ -54,7 +52,6 @@ trait ConsoleGenerator
 
     /**
      * @return bool|void|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

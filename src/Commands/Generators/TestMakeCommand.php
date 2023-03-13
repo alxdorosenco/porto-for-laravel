@@ -31,8 +31,7 @@ class TestMakeCommand extends LaravelTestMakeCommand
     private $uiType;
 
     /**
-     * @return bool|void|null
-     * @throws FileNotFoundException
+     * @return bool|null
      */
     public function handle()
     {

@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ResourceMakeCommand as LaravelResourceMakeCommand;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 
 class ResourceMakeCommand extends LaravelResourceMakeCommand
@@ -14,7 +13,6 @@ class ResourceMakeCommand extends LaravelResourceMakeCommand
 
     /**
      * @return bool|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

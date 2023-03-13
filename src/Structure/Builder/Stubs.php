@@ -32,7 +32,7 @@ trait Stubs
 
     /**
      * @param string $stub
-     * @return bool|mixed|string
+     * @return array|false|string|string[]
      */
     public function getStubContents(string $stub)
     {

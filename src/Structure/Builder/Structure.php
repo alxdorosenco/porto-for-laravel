@@ -4,9 +4,6 @@ namespace AlxDorosenco\PortoForLaravel\Structure\Builder;
 
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Illuminate\Console\Command;
-
-use Illuminate\Console\View\Components\TwoColumnDetail;
-use Illuminate\Contracts\Support\Arrayable;
 use Symfony\Component\Console\Helper\Table;
 
 abstract class Structure
@@ -72,7 +69,7 @@ abstract class Structure
             $file = $data['file'] ?? $data['class'] ?? null;
             !$file ?: $file = DIRECTORY_SEPARATOR.$file.'.php';
 
-            $rows[] = ['path' => $directory.$file, 'status' => 'DONE'];
+            $rows[] = ['path' => $directory.$file, 'status' => '<fg=green;>DONE</>'];
         }
 
         $table = with(new Table($command->getOutput()));

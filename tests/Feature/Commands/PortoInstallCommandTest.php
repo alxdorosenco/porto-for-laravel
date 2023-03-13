@@ -3,8 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class PortoInstallCommandTest extends TestCase
 {

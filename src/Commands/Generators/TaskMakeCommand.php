@@ -43,7 +43,6 @@ class TaskMakeCommand extends GeneratorCommand
 
     /**
      * @return bool|void|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {

@@ -4,7 +4,6 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as LaravelFactoryMakeCommand;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class FactoryMakeCommand extends LaravelFactoryMakeCommand
 {
@@ -14,7 +13,6 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
 
     /**
      * @return bool|null
-     * @throws FileNotFoundException
      */
     public function handle()
     {
@@ -43,7 +41,6 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
      *
      * @param string $name
      * @return string
-     * @throws FileNotFoundException
      */
     protected function buildClass($name): string
     {

@@ -4,7 +4,6 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\NotificationMakeCommand as LaravelNotificationMakeCommand;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
 
 class NotificationMakeCommand extends LaravelNotificationMakeCommand
@@ -14,8 +13,7 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
     }
 
     /**
-     * @return bool|void|null
-     * @throws FileNotFoundException
+     * @return bool|null
      */
     public function handle()
     {
@@ -42,10 +40,10 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
     /**
      * Get the first view directory path from the application configuration.
      *
-     * @param  string  $path
+     * @param string $path
      * @return string
      */
-    protected function viewPath($path = ''): string
+    protected function viewPath(string $path = ''): string
     {
         $views = config('porto.root').'/Containers/'.$this->option('container').'/UI/WEB/Views';
 
