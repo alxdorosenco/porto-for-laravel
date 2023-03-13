@@ -142,7 +142,7 @@ class PortoInstallCommand extends LaravelCommand
         }
 
         if (!getenv('PORTO_PATH') && ($replaced === $input || $replaced === null)) {
-            file_put_contents($this->laravel->environmentFilePath(),"PORTO_PATH=$path", FILE_APPEND | LOCK_EX);
+            file_put_contents($this->laravel->environmentFilePath(),PHP_EOL . "PORTO_PATH=$path", FILE_APPEND | LOCK_EX);
 
             return true;
         }

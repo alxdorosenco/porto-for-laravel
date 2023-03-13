@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-use Illuminate\Support\Facades\Event
+use Illuminate\Support\Facades\Event;
 use {{ parentClass }} as {{ parentAlias }};
 
 class {{ class }} extends {{ parentAlias }}
