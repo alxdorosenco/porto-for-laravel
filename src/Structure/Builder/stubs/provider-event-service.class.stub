@@ -13,8 +13,8 @@ class {{ class }} extends {{ parentAlias }}
      * @var array
      */
     protected $listen = [
-        '{{ rootNamespace }}Ship\Events\Event' => [
-            '{{ rootNamespace }}Ship\Listeners\EventListener',
+        'App\Events\Event' => [
+            'App\Listeners\EventListener',
         ],
     ];
 

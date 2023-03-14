@@ -3,7 +3,7 @@
 namespace {{ namespace }};
 
 use {{ parentClass }} as {{ parentAlias }};
-use {{ rootNamespace }}Ship\Requests\Request;
+use Illuminate\Http\Request;
 
 class {{ class }} extends {{ parentAlias }}
 {

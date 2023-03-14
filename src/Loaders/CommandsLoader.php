@@ -42,7 +42,7 @@ trait CommandsLoader
     /**
      * Load commands for the ConsoleKernel
      */
-    protected function loadCommandsForConsoleKernel(): void
+    protected function loadCommandsForConsoleKernel()
     {
         $this->load($this->getCommandsFromShip());
 

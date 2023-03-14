@@ -10,7 +10,7 @@ class {{ class }}
     /**
      * Handle an incoming request.
      *
-     * @param  \{{ rootNamespace }}Ship\Requests\Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @param  string|null  $guard
      * @return mixed
