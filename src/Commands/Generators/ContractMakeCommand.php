@@ -46,7 +46,7 @@ class ContractMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->error('Action must be in the container');
+            $this->error('Contract must be in the container');
 
             return false;
         }
