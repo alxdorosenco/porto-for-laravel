@@ -3,9 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 
 class RepositoryMakeCommandTest extends TestCase
 {
+    use FilesAndDirectories;
+
     /**
      * @return array[]
      */
@@ -56,8 +59,8 @@ class RepositoryMakeCommandTest extends TestCase
         ]);
 
         if($type === 'model'){
-            $namespace = config('porto.path').'\Containers\\'.$this->containerName.'\Models\TestModelForRepository';
-            $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
+            $namespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/TestModelForRepository');
+            $testCommand->expectsQuestion('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
         }
 
         $testCommand->assertSuccessful();
