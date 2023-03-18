@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ScopeMakeCommand as LaravelScopeMakeCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class ScopeMakeCommand extends LaravelScopeMakeCommand
 {
@@ -13,10 +13,10 @@ class ScopeMakeCommand extends LaravelScopeMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->components->error('Scope must be in the container');

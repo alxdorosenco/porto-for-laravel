@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as LaravelFactoryMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 
@@ -14,10 +14,10 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->components->error('Factory must be in the container');

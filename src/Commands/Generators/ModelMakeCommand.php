@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ModelMakeCommand as LaravelModelMakeCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Support\Str;
 
 class ModelMakeCommand extends LaravelModelMakeCommand

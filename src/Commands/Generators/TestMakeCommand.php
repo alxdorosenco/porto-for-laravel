@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Foundation\Console\TestMakeCommand as LaravelTestMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Symfony\Component\Console\Input\InputOption;
 
 class TestMakeCommand extends LaravelTestMakeCommand

@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\Console;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\Console;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\Console\Input\InputOption;

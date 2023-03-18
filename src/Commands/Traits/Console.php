@@ -1,7 +1,8 @@
 <?php
 
-namespace AlxDorosenco\PortoForLaravel\Traits;
+namespace AlxDorosenco\PortoForLaravel\Commands\Traits;
 
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Illuminate\Support\Str;
 
 trait Console

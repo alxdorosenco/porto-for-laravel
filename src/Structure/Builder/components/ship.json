@@ -398,8 +398,7 @@
         "template": "exception-handler.class.stub"
     },
     {
-        "directory": "{path}/Helpers",
-        "file": "helper"
+        "directory": "{path}/Helpers"
     },
     {
         "directory": "{path}/Kernels",

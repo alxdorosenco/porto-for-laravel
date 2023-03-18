@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Unit\Traits;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;

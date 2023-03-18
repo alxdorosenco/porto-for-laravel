@@ -39,6 +39,10 @@ abstract class Structure
 
             $stubVariables = $builder->stubVariables;
 
+            echo '<pre>';
+            print_r($stubVariables);
+            echo '</pre>';
+
             if(!empty($stubVariables['directory'])){
                 $builder->createDirectory($stubVariables['directory']);
                 if(!empty($stubVariables['template'])){

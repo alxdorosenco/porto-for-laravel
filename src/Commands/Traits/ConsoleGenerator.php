@@ -1,6 +1,6 @@
 <?php
 
-namespace AlxDorosenco\PortoForLaravel\Traits;
+namespace AlxDorosenco\PortoForLaravel\Commands\Traits;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\Console\Input\InputOption;
