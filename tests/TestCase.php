@@ -32,4 +32,12 @@ abstract class TestCase extends LaravelTestCase
 
         parent::tearDown();
     }
+
+    /**
+     * @return string
+     */
+    protected function portoPathUcFirst(): string
+    {
+        return ucfirst($this->portoPath);
+    }
 }

@@ -34,7 +34,7 @@
     {
         "directory": "{path}/Abstracts/Components",
         "namespace": "{namespace}\\Abstracts\\Components",
-        "class": "ConsoleCommand",
+        "class": "Component",
         "parentClass": "Illuminate\\View\\Component",
         "parentAlias": "LaravelComponent",
         "template": "abstract-extended.class.stub"
