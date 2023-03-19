@@ -460,6 +460,7 @@
     {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
+        "providersNamespace": "{namespace}\\Providers",
         "class": "RedirectIfAuthenticated",
         "template": "middleware-redirect-If-authenticated.class.stub"
     },

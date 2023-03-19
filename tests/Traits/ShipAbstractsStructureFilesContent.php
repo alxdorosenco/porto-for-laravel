@@ -1,8 +1,8 @@
 <?php
 
-namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
+namespace AlxDorosenco\PortoForLaravel\Tests\Traits;
 
-trait StructureFilesContent
+trait ShipAbstractsStructureFilesContent
 {
     /**
      * @return string

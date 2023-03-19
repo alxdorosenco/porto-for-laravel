@@ -4,10 +4,13 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 
+use AlxDorosenco\PortoForLaravel\Tests\Traits\ShipAbstractsStructureFilesContent;
+use AlxDorosenco\PortoForLaravel\Tests\Traits\ShipStructureFilesContent;
+
 class PortoInstallCommandTest extends TestCase
 {
-    use StructureFilesContent;
-
+    use ShipAbstractsStructureFilesContent;
+    use ShipStructureFilesContent;
     /**
      * @return array[]
      */
