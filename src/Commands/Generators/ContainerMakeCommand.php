@@ -63,6 +63,7 @@ class ContainerMakeCommand extends LaravelCommand
     protected function getOptions(): array
     {
         return [
+            ['standard', 's', InputOption::VALUE_NONE, 'Create standard container in current porto structure'],
             ['default', 'd', InputOption::VALUE_NONE, 'Create default container in current porto structure'],
             ['full', 'f', InputOption::VALUE_NONE, 'Create full container in current porto structure'],
             ['api', 'a', InputOption::VALUE_NONE, 'Create api container in current porto structure'],

@@ -136,17 +136,17 @@ class PortoInstallCommandTest extends TestCase
      */
     public function testExistenceOfTheCreatedShipFilesAndDirectories(string $param): void
     {
+        $path = base_path($this->portoPath).'/'.$param;
+
         if(str_ends_with($param, '.php')){
-            $file = base_path($this->portoPath).'/'.$param;
+            $this->assertFileExists($path);
 
-            $this->assertFileExists($file);
-
-            $content = file_get_contents($file);
+            $content = file_get_contents($path);
 
             $methodName = 'content'.str_replace(['/', '.php'], ['', ''], $param);
             $this->assertEquals($this->$methodName(), $content);
         } else {
-            $this->assertDirectoryExists(base_path($this->portoPath).'/'.$param);
+            $this->assertDirectoryExists($path);
         }
     }
 }

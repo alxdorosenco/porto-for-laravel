@@ -11,7 +11,7 @@ trait ContainersStructureFilesContent
     {
         return "<?php
 
-namespace {$this->portoPathUcFirst()}\Containers\{$name}\Loaders;
+namespace {$this->portoPathUcFirst()}\Containers\\$name\Loaders;
 
 class AliasesLoader
 {
@@ -30,7 +30,7 @@ class AliasesLoader
     {
         return "<?php
 
-namespace {$this->portoPathUcFirst()}\Containers\{$name}\Loaders;
+namespace {$this->portoPathUcFirst()}\Containers\\$name\Loaders;
 
 class ProvidersLoader
 {
@@ -49,7 +49,7 @@ class ProvidersLoader
     {
         return "<?php
 
-namespace {$this->portoPathUcFirst()}\Containers\{$name}\Loaders;
+namespace {$this->portoPathUcFirst()}\Containers\\$name\Loaders;
 
 class MiddlewareLoader
 {
@@ -86,7 +86,7 @@ class MiddlewareLoader
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [{$this->portoPathUcFirst()}\Containers\{$name}\Controllers\HomeController::class, 'home'])->name('home');
+Route::get('/', [\\{$this->portoPathUcFirst()}\Containers\\$name\UI\WEB\Controllers\HomeController::class, 'home'])->name('home');
 
 CLASS;
     }
@@ -96,26 +96,26 @@ CLASS;
      */
     protected function contentContainersUIWEBControllersHomeController(string $name): string
     {
-        $name = strtolower(str_replace('/', '@', $name));
+        $viewContainerName = strtolower(str_replace('/', '@', $name));
 
         return <<<CLASS
 <?php
 
-namespace {$this->portoPathUcFirst()}\Containers\{$name}\Controllers;
+namespace {$this->portoPathUcFirst()}\Containers\\$name\UI\WEB\Controllers;
 
-use {{ parentClass }};
+use {$this->portoPathUcFirst()}\Ship\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
-class HomeController extends {{ extends }}
+class HomeController extends Controller
 {
     /**
      * @return Application|Factory|View
      */
     public function home(): View|Factory|Application
     {
-        return view('{$name}::home');
+        return view('{$viewContainerName}::home');
     }
 }
 
@@ -127,11 +127,9 @@ CLASS;
      */
     protected function contentContainersUIWEBViewsHome(string $name): string
     {
-        $locale = str_replace('_', '-', app()->getLocale());
-
         return <<<CLASS
 <!DOCTYPE html>
-<html lang="{{ $locale }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -153,7 +151,7 @@ CLASS;
     {
         return "<?php
 
-namespace {$this->portoPathUcFirst()}\Containers\{$name}\UI\WEB\Tests\Functional;
+namespace {$this->portoPathUcFirst()}\Containers\\$name\UI\WEB\Tests\Functional;
 
 use {$this->portoPathUcFirst()}\Ship\Tests\TestCase;
 

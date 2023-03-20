@@ -39,6 +39,28 @@ class ComponentMakeCommand extends LaravelComponentMakeCommand
     }
 
     /**
+     * Build the class with the given name.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function buildClass($name): string
+    {
+        if (!$this->option('inline')) {
+            $stub = $this->files->get($this->getStub());
+            $container = strtolower(str_replace('/', '@',  $this->option('container')));
+
+            return str_replace(
+                ['DummyView', '{{ view }}'],
+                'view(\''.$container.'::components.'.$this->getView().'\')',
+                $this->replaceNamespace($stub, $name)->replaceClass($stub, $name)
+            );
+        }
+
+        return parent::buildClass($name);
+    }
+
+    /**
      * Get the first view directory path from the application configuration.
      *
      * @param  string  $path

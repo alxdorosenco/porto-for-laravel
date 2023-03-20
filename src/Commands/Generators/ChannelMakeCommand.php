@@ -13,10 +13,10 @@ class ChannelMakeCommand extends LaravelChannelMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->components->error('Channel must be in the container');

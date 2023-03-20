@@ -38,6 +38,7 @@
         "class": "HomeController",
         "parentClass": "{rootNamespace}\\Ship\\Controllers\\Controller",
         "extends": "Controller",
+        "container": "{container}",
         "template": "home-controller.class.stub"
     },
     {

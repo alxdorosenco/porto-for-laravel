@@ -1,6 +1,6 @@
 <?php
 
-namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
+namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\ContainersStructureFilesContent;
@@ -83,9 +83,8 @@ class ContainerMakeCommand extends TestCase
             'cli.Loaders.AliasesLoader.php' => ['cli', 'Loaders/AliasesLoader.php'],
             'cli.Loaders.ProvidersLoader.php' => ['cli', 'Loaders/ProvidersLoader.php'],
             'cli.Loaders.MiddlewareLoader.php' => ['cli', 'Loaders/MiddlewareLoader.php'],
-            'cli.UI.CLI.Routes' => ['web', 'UI/CLI/Routes'],
-            'cli.UI.CLI.Controllers' => ['web', 'UI/CLI/Commands'],
-
+            'cli.UI.CLI.Routes' => ['cli', 'UI/CLI/Routes'],
+            'cli.UI.CLI.Controllers' => ['cli', 'UI/CLI/Commands'],
             'full.Actions' => ['full', 'Actions'],
             'full.Tasks' => ['full', 'Tasks'],
             'full.Models' => ['full', 'Models'],
@@ -103,14 +102,29 @@ class ContainerMakeCommand extends TestCase
             'full.Loaders.AliasesLoader.php' => ['full', 'Loaders/AliasesLoader.php'],
             'full.Loaders.ProvidersLoader.php' => ['full', 'Loaders/ProvidersLoader.php'],
             'full.Loaders.MiddlewareLoader.php' => ['full', 'Loaders/MiddlewareLoader.php'],
+            'full.Mails.Templates' => ['full', 'Mails/Templates'],
+            'full.Data.Migrations' => ['full', 'Data/Migrations'],
+            'full.Data.Seeders' => ['full', 'Data/Seeders'],
+            'full.Data.Factories' => ['full', 'Data/Factories'],
+            'full.Data.Criteria' => ['full', 'Data/Criteria'],
+            'full.Data.Repositories' => ['full', 'Data/Repositories'],
+            'full.Data.Validators' => ['full', 'Data/Validators'],
+            'full.Data.Transporters' => ['full', 'Data/Transporters'],
+            'full.Data.Rules' => ['full', 'Data/Rules'],
+            'full.Tests.Unit' => ['full', 'Tests/Unit'],
+            'full.Tests.Traits' => ['full', 'Tests/Traits'],
             'full.UI.WEB.Routes' => ['full', 'UI/WEB/Routes'],
             'full.UI.WEB.Controllers' => ['full', 'UI/WEB/Controllers'],
+            'full.UI.WEB.Requests' => ['full', 'UI/WEB/Requests'],
+            'full.UI.WEB.Tests.Functional' => ['full', 'UI/WEB/Tests/Functional'],
             'full.UI.WEB.Views' => ['full', 'UI/WEB/Views'],
             'full.UI.API.Routes' => ['full', 'UI/API/Routes'],
             'full.UI.API.Controllers' => ['full', 'UI/API/Controllers'],
+            'full.UI.API.Requests' => ['full', 'UI/API/Requests'],
             'full.UI.API.Transformers' => ['full', 'UI/API/Transformers'],
+            'full.UI.API.Tests.Functional' => ['full', 'UI/API/Tests/Functional'],
             'full.UI.CLI.Routes' => ['full', 'UI/API/Routes'],
-            'full.UI.CLI.Commands' => ['full', 'UI/CLI/Commands'],
+            'full.UI.CLI.Commands' => ['full', 'UI/CLI/Commands']
         ];
     }
 
@@ -167,17 +181,17 @@ class ContainerMakeCommand extends TestCase
      */
     public function testExistenceOfTheCreatedContainerFilesAndDirectories(string $type, string $param): void
     {
+        $path = base_path($this->portoPath).'/Containers/'.ucfirst($type).'/'.$param;
+
         if(str_ends_with($param, '.php')){
-            $file = base_path($this->portoPath).'/'.$param;
+            $this->assertFileExists($path);
 
-            $this->assertFileExists($file);
+            $content = file_get_contents($path);
 
-            $content = file_get_contents($file);
-
-            $methodName = 'content'.str_replace(['/', '.php'], ['', ''], $param);
-            $this->assertEquals($this->$methodName(), $content);
+            $methodName = 'contentContainers'.str_replace(['/', '.blade.php', '.php'], ['', '', ''], $param);
+            $this->assertEquals($this->$methodName(ucfirst($type)), $content);
         } else {
-            $this->assertDirectoryExists(base_path($this->portoPath).'/'.$param);
+            $this->assertDirectoryExists($path);
         }
     }
 }

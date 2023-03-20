@@ -33,6 +33,7 @@ class ContainersBuilder extends Structure
     {
         $this->containerName = $name;
 
+        $this->setComponentVariable('container', strtolower(str_replace('/', '@', $name)));
         $this->setComponentVariable('path', $this->componentVariables['path'].'/'.$name);
         $this->setComponentVariable('namespace', $this->componentVariables['namespace'].'\\'.$this->getNamespaceFromPath($name));
 

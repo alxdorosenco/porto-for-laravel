@@ -15,7 +15,9 @@ class ActionMakeCommandTest extends TestCase
     {
         $this->artisan('make:action', [
             'name' => 'TestAction',
-        ])->assertFailed();
+        ])
+            ->expectsOutputToContain('Action must be in the container')
+            ->assertFailed();
     }
 
     /**
@@ -26,8 +28,40 @@ class ActionMakeCommandTest extends TestCase
     public function testConsoleCommandWithContainer(): void
     {
         $this->artisan('make:action', [
-            'name' => 'Test1Action',
+            'name' => 'TestAction',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Action ['.$this->portoPath.'/Containers/'.$this->containerName.'/Actions/TestAction.php] created successfully.')
+            ->assertSuccessful();
+    }
+
+    public function testExistenceOfAction(): void
+    {
+        $this->assertFileExists(base_path($this->portoPath).'/Containers/'.$this->containerName.'/Actions/TestAction.php');
+    }
+
+    public function testEqualsOfActionContent(): void
+    {
+        $fileContent = file_get_contents(base_path($this->portoPath).'/Containers/'.$this->containerName.'/Actions/TestAction.php');
+        $content = <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Actions;
+
+class TestAction
+{
+    /**
+     * Get response from tasks.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // action
+    }
+}
+
+Class;
+        $this->assertEquals($content, $fileContent);
     }
 }

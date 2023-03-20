@@ -46,7 +46,7 @@ class CastMakeCommand extends LaravelCastMakeCommand
      * @param  string  $name
      * @return $this
      */
-    protected function replaceNamespace(&$stub, $name)
+    protected function replaceNamespace(&$stub, $name): static
     {
         $searches = [
             ['DummyBaseModelNamespace'],
