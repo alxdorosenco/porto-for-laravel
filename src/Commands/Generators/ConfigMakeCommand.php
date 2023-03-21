@@ -24,6 +24,13 @@ class ConfigMakeCommand extends GeneratorCommand
     protected $description = 'Create a new configuration file';
 
     /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Config';
+
+    /**
      * Get the stub file for the generator.
      *
      * @return string

@@ -15,7 +15,9 @@ class ContractMakeCommandTest extends TestCase
     {
         $this->artisan('make:contract', [
             'name' => 'TestContract',
-        ])->assertFailed();
+        ])
+            ->expectsOutputToContain('Contract must be in the container.')
+            ->assertFailed();
     }
 
     /**
@@ -25,9 +27,36 @@ class ContractMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestContract';
+
         $this->artisan('make:contract', [
-            'name' => 'Test1Contract',
+            'name' => 'TestContract',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Contract ['.$this->portoPath.'/Containers/'.$this->containerName.'/Contracts/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Contracts/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getContractContent(), file_get_contents($file));
+    }
+
+    /**
+     * @return string
+     */
+    private function getContractContent(): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Contracts;
+
+class TestContract
+{
+    // contract class
+}
+
+Class;
     }
 }

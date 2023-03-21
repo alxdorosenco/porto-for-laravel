@@ -27,23 +27,27 @@ class ActionMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestAction';
+
         $this->artisan('make:action', [
-            'name' => 'TestAction',
+            'name' => $name,
             '--container' => $this->containerName
         ])
-            ->expectsOutputToContain('Action ['.$this->portoPath.'/Containers/'.$this->containerName.'/Actions/TestAction.php] created successfully.')
+            ->expectsOutputToContain('Action ['.$this->portoPath.'/Containers/'.$this->containerName.'/Actions/'.$name.'.php] created successfully.')
             ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Actions/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getActionContent(), file_get_contents($file));
     }
 
-    public function testExistenceOfAction(): void
+    /**
+     * @return string
+     */
+    public function getActionContent(): string
     {
-        $this->assertFileExists(base_path($this->portoPath).'/Containers/'.$this->containerName.'/Actions/TestAction.php');
-    }
-
-    public function testEqualsOfActionContent(): void
-    {
-        $fileContent = file_get_contents(base_path($this->portoPath).'/Containers/'.$this->containerName.'/Actions/TestAction.php');
-        $content = <<<Class
+        return <<<Class
 <?php
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Actions;
@@ -62,6 +66,5 @@ class TestAction
 }
 
 Class;
-        $this->assertEquals($content, $fileContent);
     }
 }

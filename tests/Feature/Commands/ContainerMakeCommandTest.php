@@ -5,7 +5,7 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\ContainersStructureFilesContent;
 
-class ContainerMakeCommand extends TestCase
+class ContainerMakeCommandTest extends TestCase
 {
     use ContainersStructureFilesContent;
 
