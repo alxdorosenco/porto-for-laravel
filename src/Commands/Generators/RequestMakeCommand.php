@@ -34,7 +34,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
     public function handle()

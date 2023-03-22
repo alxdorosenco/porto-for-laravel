@@ -14,10 +14,10 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->components->error('Controller must be in the container');

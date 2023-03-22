@@ -20,10 +20,10 @@ class ApplicationFinishedSubscriber implements FinishedSubscriberInterface
             exec('rmdir /S /Q '. $shipPath);
             exec('rmdir /S /Q '. $containersPath);
         } else {
-            exec('rm -rf '. $shipPath);
-            exec('rm -rf '. $containersPath);
+            //exec('rm -rf '. $shipPath);
+            //exec('rm -rf '. $containersPath);
         }
 
-        print __METHOD__ . PHP_EOL . $shipPath. ' and '.$containersPath.' has been removed' . PHP_EOL;
+        //print __METHOD__ . PHP_EOL . $shipPath. ' and '.$containersPath.' has been removed' . PHP_EOL;
     }
 }
