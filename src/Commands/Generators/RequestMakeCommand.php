@@ -37,7 +37,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
      * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->components->error('Request must be in the container');

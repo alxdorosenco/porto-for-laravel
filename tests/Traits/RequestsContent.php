@@ -13,7 +13,7 @@ trait RequestsContent
         return <<<Class
 <?php
 
-namespace {$this->portoPathUcFirst()}\\$namespace
+namespace {$this->portoPathUcFirst()}\\$namespace;
 
 use {$this->portoPathUcFirst()}\Ship\Requests\FormRequest;
 
@@ -41,6 +41,7 @@ class $name extends FormRequest
         ];
     }
 }
+
 Class;
     }
 }

@@ -68,11 +68,6 @@ class ModelMakeCommandTest extends TestCase
             '--'.$type => true
         ]);
 
-        if($type === 'all'){
-            $testCommand
-                ->expectsChoice('Please, select type of the user\'s interface', 'web', ['api' => 'api', 'web' => 'web']);
-        }
-
         $testCommand->assertSuccessful();
     }
 }

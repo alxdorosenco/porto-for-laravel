@@ -26,12 +26,13 @@ class ControllerMakeCommandTest extends TestCase
             'invokable' => ['invokable'],
             'model' => ['model'],
             'model-api' => ['modelApi'],
+            'model-requests' => ['modelRequests'],
+            'model-api-requests' => ['modelApiRequests'],
             'parent' => ['parent'],
             'parent-singleton' => ['parentSingleton'],
             'parent-api' => ['parentApi'],
             'parent-singleton-api' => ['parentSingletonApi'],
             'resource'  => ['resource'],
-            'requests'  => ['requests'],
             'singleton' => ['singleton'],
             'singleton-api' => ['singletonApi'],
             'creatable' => ['creatable']
@@ -154,6 +155,69 @@ class ControllerMakeCommandTest extends TestCase
 
             $this->assertFileExists(base_path($outputModelPath));
             $this->assertEquals($this->getModelContent($modelName), file_get_contents(base_path($outputModelPath)));
+        } elseif($type === 'modelRequests'){
+            $modelName = 'TestModelRequestsForController';
+            $outputModelPath = $this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
+            $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
+            $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Controllers/'.$name.'.php';
+
+            $fileStore = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Requests/Store'.$modelName.'Request.php';
+            $fileUpdate = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Requests/Update'.$modelName.'Request.php';
+
+            $this->artisan('make:controller', [
+                'name' => $name,
+                '--container' => $this->containerName,
+                '--model' => $modelName,
+                '--requests' => true
+            ])
+                ->expectsConfirmation('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->expectsOutputToContain('Model ['.$outputModelPath.'] created successfully.')
+                ->expectsOutputToContain('Controller ['.$outputPath.'] created successfully.')
+                ->assertSuccessful();
+
+            $this->assertFileExists($file);
+            $this->assertEquals($this->getControllerModelRequestContent($name, $namespace, $modelName), file_get_contents($file));
+
+            $this->assertFileExists(base_path($outputModelPath));
+            $this->assertEquals($this->getModelContent($modelName), file_get_contents(base_path($outputModelPath)));
+
+            $this->assertFileExists($fileStore);
+            $this->assertEquals($this->getRequestContent('Store'.$modelName.'Request', 'Containers\\'.$this->containerName.'\UI\WEB\Requests'), file_get_contents($fileStore));
+
+            $this->assertFileExists($fileUpdate);
+            $this->assertEquals($this->getRequestContent('Update'.$modelName.'Request', 'Containers\\'.$this->containerName.'\UI\WEB\Requests'), file_get_contents($fileUpdate));
+        } elseif($type === 'modelApiRequests'){
+            $modelName = 'TestModelApiRequestsForController';
+            $outputModelPath = $this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
+            $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
+            $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Controllers/'.$name.'.php';
+
+            $fileStore = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Requests/Store'.$modelName.'Request.php';
+            $fileUpdate = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Requests/Update'.$modelName.'Request.php';
+
+            $this->artisan('make:controller', [
+                'name' => $name,
+                '--container' => $this->containerName,
+                '--model' => $modelName,
+                '--api' => true,
+                '--requests' => true
+            ])
+                ->expectsConfirmation('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->expectsOutputToContain('Model ['.$outputModelPath.'] created successfully.')
+                ->expectsOutputToContain('Controller ['.$outputPath.'] created successfully.')
+                ->assertSuccessful();
+
+            $this->assertFileExists($file);
+            $this->assertEquals($this->getControllerModelApiRequestContent($name, $namespace, $modelName), file_get_contents($file));
+
+            $this->assertFileExists(base_path($outputModelPath));
+            $this->assertEquals($this->getModelContent($modelName), file_get_contents(base_path($outputModelPath)));
+
+            $this->assertFileExists($fileStore);
+            $this->assertEquals($this->getRequestContent('Store'.$modelName.'Request', 'Containers\\'.$this->containerName.'\UI\API\Requests'), file_get_contents($fileStore));
+
+            $this->assertFileExists($fileUpdate);
+            $this->assertEquals($this->getRequestContent('Update'.$modelName.'Request', 'Containers\\'.$this->containerName.'\UI\API\Requests'), file_get_contents($fileUpdate));
         } elseif($type === 'parent'){
             $modelName = 'TestSingletonModel';
             $parentModelName = 'TestParentSingletonModel';

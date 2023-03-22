@@ -156,14 +156,16 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
 
         $this->call('make:request', [
             'name' => $storeRequest,
-            '--container' => $this->option('container')
+            '--container' => $this->option('container'),
+            '--uiType' => $this->option('api') ? 'api' : 'web'
         ]);
 
         $updateRequest = 'Update'.class_basename($modelClass).'Request';
 
         $this->call('make:request', [
             'name' => $updateRequest,
-            '--container' => $this->option('container')
+            '--container' => $this->option('container'),
+            '--uiType' => $this->option('api') ? 'api' : 'web'
         ]);
 
         return [$storeRequest, $updateRequest];

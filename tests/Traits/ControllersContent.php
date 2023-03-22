@@ -211,6 +211,105 @@ class $name extends Controller
      * @param string $namespace
      * @return string
      */
+    private function getControllerModelRequestContent(string $name, string $namespace, string $model): string
+    {
+        $modelVariable = lcfirst($model);
+
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Store{$model}Request;
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Update{$model}Request;
+use {$this->portoPathUcFirst()}\Ship\Controllers\Controller;
+
+class $name extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Store{$model}Request  ".'$request'."
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function store(Store{$model}Request ".'$request'.")
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function show($model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function edit($model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Update{$model}Request  ".'$request'."
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function update(Update{$model}Request ".'$request'.", $model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function destroy($model ".'$'."$modelVariable)
+    {
+        //
+    }
+}
+";
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
     private function getControllerModelApiContent(string $name, string $namespace, string $model): string
     {
         $modelVariable = lcfirst($model);
@@ -265,6 +364,84 @@ class $name extends Controller
      * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
      */
     public function update(Request ".'$request'.", $model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function destroy($model ".'$'."$modelVariable)
+    {
+        //
+    }
+}
+";
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
+    private function getControllerModelApiRequestContent(string $name, string $namespace, string $model): string
+    {
+        $modelVariable = lcfirst($model);
+
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\API\Requests\Store{$model}Request;
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\API\Requests\Update{$model}Request;
+use {$this->portoPathUcFirst()}\Ship\Controllers\Controller;
+
+class $name extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\API\Requests\Store{$model}Request  ".'$request'."
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function store(Store{$model}Request ".'$request'.")
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function show($model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\API\Requests\Update{$model}Request  ".'$request'."
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
+     */
+    public function update(Update{$model}Request ".'$request'.", $model ".'$'."$modelVariable)
     {
         //
     }
