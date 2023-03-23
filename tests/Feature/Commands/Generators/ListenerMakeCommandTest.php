@@ -52,7 +52,7 @@ class ListenerMakeCommandTest extends TestCase
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getListenerDuck($name), file_get_contents($file));
+        $this->assertEquals($this->getListenerDuckContent($name), file_get_contents($file));
     }
 
     /**
@@ -65,6 +65,7 @@ class ListenerMakeCommandTest extends TestCase
     {
         $name = 'Test'.(ucfirst($type)).'Listener';
         $eventName = 'EventListener';
+        $eventNamespace = 'Containers\\'.$this->containerName.'\Events\\'.$eventName;
 
         $params = [
             'name' => $name,
@@ -87,27 +88,29 @@ class ListenerMakeCommandTest extends TestCase
         $this->assertFileExists($file);
 
         if($type === 'event'){
-            $this->assertEquals($this->getListener($name), file_get_contents($file));
+            $this->assertEquals($this->getListenerContent($name, $eventNamespace, $eventName), file_get_contents($file));
         } elseif($type === 'queued'){
-            $this->assertEquals($this->getListenerQueuedDuck($name), file_get_contents($file));
+            $this->assertEquals($this->getListenerQueuedDuckContent($name), file_get_contents($file));
         } elseif($type === 'queuedEvent'){
-            $this->assertEquals($this->getListenerQueued($name), file_get_contents($file));
+            $this->assertEquals($this->getListenerQueuedContent($name, $eventNamespace, $eventName), file_get_contents($file));
         } else {
-            $this->assertEquals($this->getListenerDuck($name), file_get_contents($file));
+            $this->assertEquals($this->getListenerDuckContent($name), file_get_contents($file));
         }
     }
 
     /**
      * @param string $name
+     * @param string $eventNamespace
+     * @param string $eventName
      * @return string
      */
-    private function getListener(string $name): string
+    private function getListenerContent(string $name, string $eventNamespace, string $eventName): string
     {
         return "<?php
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
 
-use {{ eventNamespace }};
+use {$this->portoPathUcFirst()}\\$eventNamespace;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -124,7 +127,7 @@ class $name
     /**
      * Handle the event.
      */
-    public function handle({{ event }} ".'$event'."): void
+    public function handle($eventName ".'$event'."): void
     {
         //
     }
@@ -136,7 +139,7 @@ class $name
      * @param string $name
      * @return string
      */
-    private function getListenerDuck(string $name): string
+    private function getListenerDuckContent(string $name): string
     {
         return "<?php
 
@@ -168,15 +171,17 @@ class $name
 
     /**
      * @param string $name
+     * @param string $eventNamespace
+     * @param string $eventName
      * @return string
      */
-    private function getListenerQueued(string $name): string
+    private function getListenerQueuedContent(string $name, string $eventNamespace, string $eventName): string
     {
         return "<?php
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
 
-use {{ eventNamespace }};
+use {$this->portoPathUcFirst()}\\$eventNamespace;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -195,7 +200,7 @@ class $name implements ShouldQueue
     /**
      * Handle the event.
      */
-    public function handle({{ event }} ".'$event'."): void
+    public function handle($eventName ".'$event'."): void
     {
         //
     }
@@ -207,7 +212,7 @@ class $name implements ShouldQueue
      * @param string $name
      * @return string
      */
-    private function getListenerQueuedDuck(string $name): string
+    private function getListenerQueuedDuckContent(string $name): string
     {
         return "<?php
 

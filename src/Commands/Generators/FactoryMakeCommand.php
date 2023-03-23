@@ -91,21 +91,6 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
-     * Build the class with the given name.
-     *
-     * @param  string  $name
-     * @return string
-     *
-     * @throws FileNotFoundException
-     */
-    protected function buildClassCurrent($name): string
-    {
-        $stub = $this->files->get($this->getStub());
-
-        return $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
-    }
-
-    /**
      * Qualify the given model class base name.
      *
      * @param  string  $model

@@ -3,9 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use AlxDorosenco\PortoForLaravel\Tests\Traits\ModelsContent;
 
 class ModelMakeCommandTest extends TestCase
 {
+    use ModelsContent;
+
     /**
      * @return array[]
      */
@@ -36,7 +39,9 @@ class ModelMakeCommandTest extends TestCase
     {
         $this->artisan('make:model', [
             'name' => 'TestModel',
-        ])->assertFailed();
+        ])
+            ->expectsOutputToContain('Model must be in the container.')
+            ->assertFailed();
     }
 
     /**
@@ -46,10 +51,19 @@ class ModelMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestModel';
+
         $this->artisan('make:model', [
-            'name' => 'Test1Model',
+            'name' => $name,
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Factory ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getModelContent($name), file_get_contents($file));
     }
 
     /**
@@ -60,10 +74,10 @@ class ModelMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $modelName = 'Test2'.(ucfirst($type)).'Model';
+        $modelName = 'Test'.(ucfirst($type)).'Model';
 
         $testCommand = $this->artisan('make:model', [
-            'name' => $type === 'factory' ? 'Test2FModel' : $modelName,
+            'name' => $modelName,
             '--container' => $this->containerName,
             '--'.$type => true
         ]);
