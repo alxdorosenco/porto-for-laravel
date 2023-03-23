@@ -24,6 +24,13 @@ class HelperMakeCommand extends GeneratorCommand
     protected $description = 'Create a new helper file';
 
     /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Helper';
+
+    /**
      * Get the stub file for the generator.
      *
      * @return string

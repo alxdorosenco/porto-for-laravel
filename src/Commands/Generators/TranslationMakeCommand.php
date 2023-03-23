@@ -31,10 +31,10 @@ class TranslationMakeCommand extends GeneratorCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         $this->lang = $this->option('lang');
 

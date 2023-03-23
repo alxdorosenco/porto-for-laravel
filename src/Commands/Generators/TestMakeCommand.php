@@ -20,10 +20,10 @@ class TestMakeCommand extends LaravelTestMakeCommand
     private string $uiType;
 
     /**
-     * @return bool|void|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): ?bool
     {
         if ($this->option('container') && !$this->option('unit')) {
             if(in_array($this->option('uiType'), ['api', 'cli', 'web'])){

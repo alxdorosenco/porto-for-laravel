@@ -25,7 +25,9 @@ class FactoryMakeCommandTest extends TestCase
     {
         $this->artisan('make:factory', [
             'name' => 'TestFactory',
-        ])->assertFailed();
+        ])
+            ->expectsOutputToContain('Factory must be in the container.')
+            ->assertFailed();
     }
 
     /**
@@ -35,10 +37,19 @@ class FactoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestFactory';
+
         $this->artisan('make:factory', [
-            'name' => 'Test1Factory',
+            'name' => 'TestFactory',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Factory ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getFactoryContent($name, 'Ship\Models\Model'), file_get_contents($file));
     }
 
     /**
@@ -49,10 +60,55 @@ class FactoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
+        $name = 'Test'.(ucfirst($type)).'Factory';
+        $modelName = 'TestModelForFactory';
+
         $this->artisan('make:factory', [
-            'name' => 'Test2'.(ucfirst($type)).'Factory',
+            'name' => $name,
             '--container' => $this->containerName,
-            '--'.$type => 'TestModelForFactory'
-        ])->assertSuccessful();
+            '--'.$type => $modelName
+        ])
+            ->expectsOutputToContain('Factory ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getFactoryContent($name, 'Containers\\'.$this->containerName.'\Models\\'.$modelName), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
+    private function getFactoryContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Data\Factories;
+
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory;
+
+/**
+ * @extends \\{$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory<\\{$this->portoPathUcFirst()}\\$namespace>
+ */
+class $name extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition()
+    {
+        return [
+            //
+        ];
+    }
+}
+
+Class;
     }
 }
