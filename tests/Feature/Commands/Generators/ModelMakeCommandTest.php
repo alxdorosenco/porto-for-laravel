@@ -57,7 +57,7 @@ class ModelMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName
         ])
-            ->expectsOutputToContain('Factory ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$name.'.php] created successfully.')
+            ->expectsOutputToContain('Model ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$name.'.php';
@@ -74,14 +74,14 @@ class ModelMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $modelName = 'Test'.(ucfirst($type)).'Model';
+        $name = 'Test'.(ucfirst($type)).'Model';
 
-        $testCommand = $this->artisan('make:model', [
-            'name' => $modelName,
+        $this->artisan('make:model', [
+            'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ]);
-
-        $testCommand->assertSuccessful();
+        ])
+            //->expectsOutputToContain('Model ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
     }
 }

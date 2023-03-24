@@ -3,9 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use AlxDorosenco\PortoForLaravel\Tests\Traits\MarkdownContent;
 
 class MailMakeCommandTest extends TestCase
 {
+    use MarkdownContent;
+
     /**
      * @return array[]
      */
@@ -161,94 +164,6 @@ class $name extends Mailable
         return [];
     }
 }
-
-Class;
-
-    }
-
-    /**
-     * @param string $name
-     * @param string $namespace
-     * @param string $markdown
-     * @return string
-     */
-    private function getMarkdownMailContent(string $name, string $namespace, string $subject, string $markdown): string
-    {
-        return <<<Class
-<?php
-
-namespace {$this->portoPathUcFirst()}\\$namespace;
-
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Mails\Mailable;
-use {$this->portoPathUcFirst()}\Ship\Mails\Mailable\Content;
-use {$this->portoPathUcFirst()}\Ship\Mails\Mailable\Envelope;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
-class $name extends Mailable
-{
-    use Queueable, SerializesModels;
-
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: '$subject',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            markdown: '$markdown',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
-    }
-}
-
-Class;
-
-    }
-
-    /**
-     * @return string
-     */
-    private function getMarkdownContent(): string
-    {
-        return <<<Class
-<x-mail::message>
-# Introduction
-
-The body of your message.
-
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
 
 Class;
 

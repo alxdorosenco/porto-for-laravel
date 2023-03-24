@@ -60,10 +60,10 @@ class ChannelMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $name = 'Test2'.(ucfirst($type)).'Channel';
+        $name = 'Test'.(ucfirst($type)).'Channel';
 
         $this->artisan('make:channel', [
-            'name' => 'Test2'.(ucfirst($type)).'Channel',
+            'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
         ])
@@ -86,7 +86,7 @@ class ChannelMakeCommandTest extends TestCase
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Broadcasting;
 
-use App\Models\User;
+use {$this->portoPathUcFirst()}\Ship\Models\UserModel;
 
 class $name
 {
@@ -101,7 +101,7 @@ class $name
     /**
      * Authenticate the user's access to the channel.
      */
-    public function join(User ".'$user'."): array|bool
+    public function join(UserModel ".'$user'."): array|bool
     {
         //
     }
