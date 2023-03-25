@@ -11,7 +11,7 @@ trait ProvidersLoader
 
     private function getProvidersFromShip(): array
     {
-        $files = $this->findFilesInDirectories(config('porto.root').DIRECTORY_SEPARATOR.'Ship');
+        $files = $this->findFilesInDirectories(config('porto.root').DIRECTORY_SEPARATOR.'Ship'.DIRECTORY_SEPARATOR.'Providers');
 
         $classesProviders = [];
         foreach ($files as $file){

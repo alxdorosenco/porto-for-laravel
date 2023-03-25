@@ -13,9 +13,16 @@ class ShowModelCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('model:show', [
+        $command = $this->artisan('model:show', [
             'model' => 'ModelName',
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ]);
+
+        if(!interface_exists('Doctrine\DBAL\Driver')){
+            $command->expectsConfirmation('Inspecting database information requires the Doctrine DBAL (doctrine/dbal) package. Would you like to install it?');
+            $command->assertFailed();
+        } else {
+            $command->assertSuccessful();
+        }
     }
 }

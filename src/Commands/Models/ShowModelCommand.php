@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Models;
 
-use AlxDorosenco\PortoForLaravel\Traits\Console;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\Console;
 use Illuminate\Foundation\Console\ShowModelCommand as LaravelShowModelCommand;
 
 class ShowModelCommand extends LaravelShowModelCommand

@@ -25,7 +25,9 @@ class ScopeMakeCommandTest extends TestCase
     {
         $this->artisan('make:scope', [
             'name' => 'TestScope',
-        ])->assertFailed();
+        ])
+            ->expectsOutputToContain('Scope must be in the container.')
+            ->assertFailed();
     }
 
     /**
@@ -35,10 +37,19 @@ class ScopeMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestScope';
+
         $this->artisan('make:scope', [
-            'name' => 'Test1Scope',
+            'name' => $name,
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Scope ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/Scopes/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/Scopes/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getRuleContent($name), file_get_contents($file));
     }
 
     /**
@@ -49,10 +60,50 @@ class ScopeMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
+        $name = 'Test'.(ucfirst($type)).'Scope';
+
         $this->artisan('make:scope', [
-            'name' => 'Test2'.(ucfirst($type)).'Scope',
+            'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Scope ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/Scopes/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/Scopes/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getRuleContent($name), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getRuleContent(string $name): string
+    {
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\Scopes;
+
+use {$this->portoPathUcFirst()}\Ship\Models\Builder;
+use {$this->portoPathUcFirst()}\Ship\Models\Model;
+use {$this->portoPathUcFirst()}\Ship\Models\Scope;
+
+class $name implements Scope
+{
+    /**
+     * Apply the scope to a given Eloquent query builder.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Ship\Models\Builder  ".'$builder'."
+     * @param  \\{$this->portoPathUcFirst()}\Ship\Models\Model  ".'$model'."
+     * @return void
+     */
+    public function apply(Builder ".'$builder'.", Model ".'$model'.")
+    {
+        //
+    }
+}
+";
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\Console;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\Console;
 use Illuminate\Console\GeneratorCommand;
 
 class HelperMakeCommand extends GeneratorCommand
@@ -22,6 +22,13 @@ class HelperMakeCommand extends GeneratorCommand
      * @var string
      */
     protected $description = 'Create a new helper file';
+
+    /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Helper';
 
     /**
      * Get the stub file for the generator.

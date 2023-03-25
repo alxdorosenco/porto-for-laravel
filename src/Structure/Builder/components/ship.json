@@ -34,7 +34,7 @@
     {
         "directory": "{path}/Abstracts/Components",
         "namespace": "{namespace}\\Abstracts\\Components",
-        "class": "ConsoleCommand",
+        "class": "Component",
         "parentClass": "Illuminate\\View\\Component",
         "parentAlias": "LaravelComponent",
         "template": "abstract-extended.class.stub"
@@ -398,8 +398,7 @@
         "template": "exception-handler.class.stub"
     },
     {
-        "directory": "{path}/Helpers",
-        "file": "helper"
+        "directory": "{path}/Helpers"
     },
     {
         "directory": "{path}/Kernels",
@@ -461,6 +460,7 @@
     {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
+        "providersNamespace": "{namespace}\\Providers",
         "class": "RedirectIfAuthenticated",
         "template": "middleware-redirect-If-authenticated.class.stub"
     },

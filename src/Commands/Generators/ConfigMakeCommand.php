@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 
 class ConfigMakeCommand extends GeneratorCommand
@@ -22,6 +22,13 @@ class ConfigMakeCommand extends GeneratorCommand
      * @var string
      */
     protected $description = 'Create a new configuration file';
+
+    /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Config';
 
     /**
      * Get the stub file for the generator.

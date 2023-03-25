@@ -12,8 +12,8 @@ class StructureMaker
      * @param Structure $structure
      */
     public function __construct(
-        private Command $command,
-        private Structure $structure
+        private readonly Command $command,
+        private readonly Structure $structure
     ) {}
 
     public function execute(): void
