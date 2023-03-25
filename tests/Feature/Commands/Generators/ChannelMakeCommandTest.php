@@ -92,6 +92,8 @@ class $name
 {
     /**
      * Create a new channel instance.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -100,8 +102,11 @@ class $name
 
     /**
      * Authenticate the user's access to the channel.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Ship\Models\UserModel  ".'$user'."
+     * @return array|bool
      */
-    public function join(UserModel ".'$user'."): array|bool
+    public function join(UserModel ".'$user'.")
     {
         //
     }

@@ -118,6 +118,8 @@ class $name
 {
     /**
      * Create the event listener.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -126,8 +128,11 @@ class $name
 
     /**
      * Handle the event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\\$eventNamespace  ".'$event'."
+     * @return void
      */
-    public function handle($eventName ".'$event'."): void
+    public function handle($eventName ".'$event'.")
     {
         //
     }
@@ -152,6 +157,8 @@ class $name
 {
     /**
      * Create the event listener.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -160,8 +167,11 @@ class $name
 
     /**
      * Handle the event.
+     *
+     * @param  object  ".'$event'."
+     * @return void
      */
-    public function handle(object ".'$event'."): void
+    public function handle(".'$event'.")
     {
         //
     }
@@ -191,6 +201,8 @@ class $name implements ShouldQueue
 
     /**
      * Create the event listener.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -199,8 +211,11 @@ class $name implements ShouldQueue
 
     /**
      * Handle the event.
+     *
+     * @param  {$this->portoPathUcFirst()}\\$eventNamespace  ".'$event'."
+     * @return void
      */
-    public function handle($eventName ".'$event'."): void
+    public function handle($eventName ".'$event'.")
     {
         //
     }
@@ -227,6 +242,8 @@ class $name implements ShouldQueue
 
     /**
      * Create the event listener.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -235,8 +252,11 @@ class $name implements ShouldQueue
 
     /**
      * Handle the event.
+     *
+     * @param  object  ".'$event'."
+     * @return void
      */
-    public function handle(object ".'$event'."): void
+    public function handle(".'$event'.")
     {
         //
     }

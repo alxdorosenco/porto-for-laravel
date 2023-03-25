@@ -122,40 +122,55 @@ class $name
 {
     /**
      * Handle the $model \"created\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
      */
-    public function created($model ".'$'."$modelVariable): void
+    public function created($model ".'$'."$modelVariable)
     {
         //
     }
 
     /**
      * Handle the $model \"updated\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
      */
-    public function updated($model ".'$'."$modelVariable): void
+    public function updated($model ".'$'."$modelVariable)
     {
         //
     }
 
     /**
      * Handle the $model \"deleted\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
      */
-    public function deleted($model ".'$'."$modelVariable): void
+    public function deleted($model ".'$'."$modelVariable)
     {
         //
     }
 
     /**
      * Handle the $model \"restored\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
      */
-    public function restored($model ".'$'."$modelVariable): void
+    public function restored($model ".'$'."$modelVariable)
     {
         //
     }
 
     /**
      * Handle the $model \"force deleted\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
      */
-    public function forceDeleted($model ".'$'."$modelVariable): void
+    public function forceDeleted($model ".'$'."$modelVariable)
     {
         //
     }

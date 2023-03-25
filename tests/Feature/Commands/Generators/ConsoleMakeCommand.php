@@ -35,7 +35,7 @@ class ConsoleMakeCommand extends TestCase
         $file = base_path($this->portoPath).'/Ship/Commands/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getConsoleCommandContent($name, 'Ship\Commands', 'app:test-command'), file_get_contents($file));
+        $this->assertEquals($this->getConsoleCommandContent($name, 'Ship\Commands', 'command:name'), file_get_contents($file));
     }
 
     /**
@@ -57,7 +57,7 @@ class ConsoleMakeCommand extends TestCase
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getConsoleCommandContent($name, 'Containers\\'.$this->containerName.'\UI\CLI\Commands', 'app:test-command'), file_get_contents($file));
+        $this->assertEquals($this->getConsoleCommandContent($name, 'Containers\\'.$this->containerName.'\UI\CLI\Commands', 'command:name'), file_get_contents($file));
     }
 
     /**
@@ -81,12 +81,18 @@ class ConsoleMakeCommand extends TestCase
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getConsoleCommandContent($name, 'Containers\\'.$this->containerName.'\UI\CLI\Commands', $type === 'command' ? 'TestCommand' : 'app:test2-'.$type.'-command'), file_get_contents($file));
+
+        if($type === 'command'){
+            $this->assertEquals($this->getConsoleCommandContent($name, 'Containers\\'.$this->containerName.'\UI\CLI\Commands', 'TestCommand'), file_get_contents($file));
+        } else {
+            $this->assertEquals($this->getConsoleCommandContent($name, 'Containers\\'.$this->containerName.'\UI\CLI\Commands', 'command:name'), file_get_contents($file));
+        }
     }
 
     /**
      * @param string $name
      * @param string $namespace
+     * @param string $command
      * @return string
      */
     private function getConsoleCommandContent(string $name, string $namespace, string $command): string

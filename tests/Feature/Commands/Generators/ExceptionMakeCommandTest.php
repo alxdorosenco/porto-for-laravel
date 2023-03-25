@@ -143,8 +143,10 @@ class $name extends Exception
 {
     /**
      * Report the exception.
+     *
+     * @return bool|null
      */
-    public function report(): void
+    public function report()
     {
         //
     }
