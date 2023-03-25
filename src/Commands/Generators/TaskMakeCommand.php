@@ -48,7 +48,7 @@ class TaskMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->components->error('Action must be in the container');
+            $this->components->error('Task must be in the container');
 
             return static::FAILURE;
         }
