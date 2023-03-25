@@ -17,6 +17,13 @@ class TranslationMakeCommand extends GeneratorCommand
     private ?string $lang;
 
     /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Translation';
+
+    /**
      * Get the console command arguments.
      *
      * @return array

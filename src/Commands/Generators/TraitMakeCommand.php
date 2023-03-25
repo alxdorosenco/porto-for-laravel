@@ -82,7 +82,7 @@ class TraitMakeCommand extends GeneratorCommand
     protected function getDefaultNamespace($rootNamespace): string
     {
         if($this->option('test')){
-            $this->getNecessaryNamespace().'\Tests\Traits';
+            return $this->getNecessaryNamespace().'\Tests\Traits';
         }
 
         return $this->getNecessaryNamespace().'\Traits';
