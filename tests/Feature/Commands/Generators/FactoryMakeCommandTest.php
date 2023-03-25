@@ -3,9 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use AlxDorosenco\PortoForLaravel\Tests\Traits\FactoryContent;
 
 class FactoryMakeCommandTest extends TestCase
 {
+    use FactoryContent;
+
     /**
      * @return array[]
      */
@@ -75,40 +78,5 @@ class FactoryMakeCommandTest extends TestCase
 
         $this->assertFileExists($file);
         $this->assertEquals($this->getFactoryContent($name, 'Containers\\'.$this->containerName.'\Models\\'.$modelName), file_get_contents($file));
-    }
-
-    /**
-     * @param string $name
-     * @param string $namespace
-     * @return string
-     */
-    private function getFactoryContent(string $name, string $namespace): string
-    {
-        return <<<Class
-<?php
-
-namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Data\Factories;
-
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory;
-
-/**
- * @extends \\{$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory<\\{$this->portoPathUcFirst()}\\$namespace>
- */
-class $name extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            //
-        ];
-    }
-}
-
-Class;
     }
 }

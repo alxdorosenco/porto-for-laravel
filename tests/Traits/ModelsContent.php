@@ -40,7 +40,7 @@ use {$this->portoPathUcFirst()}\Ship\Models\Pivot;
 
 class $name extends Pivot
 {
-
+    //
 }
 
 Class;
@@ -61,7 +61,7 @@ use {$this->portoPathUcFirst()}\Ship\Models\MorphPivot;
 
 class $name extends MorphPivot
 {
-
+    //
 }
 
 Class;
