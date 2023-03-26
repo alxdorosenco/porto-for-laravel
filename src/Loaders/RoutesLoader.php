@@ -50,18 +50,17 @@ trait RoutesLoader
         $webRoutes = $this->getWebRoutesFromContainers();
 
         $this->routes(function () use ($apiRoutes, $webRoutes) {
-                foreach ($apiRoutes as $route){
-                    Route::middleware('api')
-                        ->prefix('api')
-                        ->group($route);
-                }
-
-                foreach ($webRoutes as $route){
-                    Route::middleware('web')
-                        ->group($route);
-                }
+            foreach ($apiRoutes as $route){
+                Route::middleware('api')
+                    ->prefix('api')
+                    ->group($route);
             }
-        );
+
+            foreach ($webRoutes as $route){
+                Route::middleware('web')
+                    ->group($route);
+            }
+        });
     }
 
     /**

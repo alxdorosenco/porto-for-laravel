@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Console\Command as LaravelCommand;
 
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use AlxDorosenco\PortoForLaravel\Enums\ContainerTypes;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
 use AlxDorosenco\PortoForLaravel\Structure\StructureMaker;
@@ -61,6 +61,7 @@ class ContainerMakeCommand extends GeneratorCommand
     protected function getOptions(): array
     {
         return [
+            ['standard', 's', InputOption::VALUE_NONE, 'Create standard container in current porto structure'],
             ['default', 'd', InputOption::VALUE_NONE, 'Create default container in current porto structure'],
             ['full', 'f', InputOption::VALUE_NONE, 'Create full container in current porto structure'],
             ['api', 'a', InputOption::VALUE_NONE, 'Create api container in current porto structure'],
@@ -92,18 +93,18 @@ class ContainerMakeCommand extends GeneratorCommand
         $rootPath = config('porto.root');
         $namespace = $this->getNamespaceFromPath($path);
 
-        $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD;
+        $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD->value;
 
         if($this->option('default')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT->value;
         } elseif($this->option('full')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_FULL;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_FULL->value;
         } elseif($this->option('api')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_API;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_API->value;
         } elseif($this->option('web')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_WEB;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_WEB->value;
         } elseif($this->option('cli')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_CLI;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_CLI->value;
         }
 
         $containersBuilder = new ContainersBuilder($rootPath, $namespace);

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 use LogicException;
 use Illuminate\Foundation\Console\PolicyMakeCommand as LaravelPolicyMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class PolicyMakeCommand extends LaravelPolicyMakeCommand
 {
@@ -15,10 +15,10 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->error('Policy must be in the container');

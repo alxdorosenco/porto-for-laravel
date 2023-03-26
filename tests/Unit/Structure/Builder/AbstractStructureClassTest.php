@@ -38,7 +38,7 @@ class AbstractStructureClassTest extends TestCase
         $containerBuilder = new ContainersBuilder('path', 'Namespace');
         $containerBuilder
             ->setContainerName('ContainerName')
-            ->setContainerType(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD);
+            ->setContainerType(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD->value);
 
         return [
             'ShipBuilder' => [$shipBuilder],

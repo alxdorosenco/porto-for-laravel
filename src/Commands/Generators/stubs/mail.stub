@@ -2,13 +2,17 @@
 
 namespace {{ namespace }};
 
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use {{ rootNamespace }}Ship\Abstracts\Mails\Mailable;
 use {{ rootNamespace }}Ship\Mails\Mailable\Content;
 use {{ rootNamespace }}Ship\Mails\Mailable\Envelope;
+use Illuminate\Queue\SerializesModels;
 
 class {{ class }} extends Mailable
 {
+    use Queueable, SerializesModels;
+
     /**
      * Create a new message instance.
      *
@@ -46,9 +50,9 @@ class {{ class }} extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments()
+    public function attachments(): array
     {
         return [];
     }

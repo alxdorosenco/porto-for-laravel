@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Routing\Console\ControllerMakeCommand as LaravelControllerMakeCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Support\Str;
 
 class ControllerMakeCommand extends LaravelControllerMakeCommand
@@ -14,10 +14,10 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->error('Controller must be in the container');
@@ -156,14 +156,16 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
 
         $this->call('make:request', [
             'name' => $storeRequest,
-            '--container' => $this->option('container')
+            '--container' => $this->option('container'),
+            '--uiType' => $this->option('api') ? 'api' : 'web'
         ]);
 
         $updateRequest = 'Update'.class_basename($modelClass).'Request';
 
         $this->call('make:request', [
             'name' => $updateRequest,
-            '--container' => $this->option('container')
+            '--container' => $this->option('container'),
+            '--uiType' => $this->option('api') ? 'api' : 'web'
         ]);
 
         return [$storeRequest, $updateRequest];

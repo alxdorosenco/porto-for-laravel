@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Foundation\Console\CastMakeCommand as LaravelCastMakeCommand;
 use Illuminate\Database\Eloquent\Model;
@@ -14,10 +14,10 @@ class CastMakeCommand extends LaravelCastMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         if (!$this->option('container')) {
             $this->error('Cast must be in the container');
@@ -46,7 +46,7 @@ class CastMakeCommand extends LaravelCastMakeCommand
      * @param  string  $name
      * @return $this
      */
-    protected function replaceNamespace(&$stub, $name)
+    protected function replaceNamespace(&$stub, $name): static
     {
         $searches = [
             ['DummyBaseModelNamespace'],

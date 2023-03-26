@@ -21,7 +21,7 @@ class ContainersBuilderClassTest extends TestCase
         $this->builder = new ContainersBuilder('path', 'Namespace');
         $this->builder
             ->setContainerName('ContainerName')
-            ->setContainerType(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD);
+            ->setContainerType(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD->value);
     }
 
     /**
@@ -37,7 +37,7 @@ class ContainersBuilderClassTest extends TestCase
      */
     public function testGetContainerTypeMethod(): void
     {
-        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD, $this->builder->getContainerType());
+        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD->value, $this->builder->getContainerType());
     }
 
     /**

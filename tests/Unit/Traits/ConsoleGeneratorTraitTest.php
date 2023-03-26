@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Unit\Traits;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
@@ -95,7 +95,9 @@ class ConsoleGeneratorTraitTest extends TestCase
             'request.stub' => ['request.stub'],
             'resource.stub' => ['resource.stub'],
             'resource-collection.stub' => ['resource-collection.stub'],
+            'rule.implicit.stub' => ['rule.implicit.stub'],
             'rule.stub' => ['rule.stub'],
+            'scope.stub' => ['scope.stub'],
             'seeder.stub' => ['seeder.stub'],
             'test.stub' => ['test.stub'],
             'view-component.stub' => ['view-component.stub']
