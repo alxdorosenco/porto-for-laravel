@@ -17,9 +17,7 @@ class ConfigMakeCommandTest extends TestCase
 
         $this->artisan('make:config', [
             'name' => $name
-        ])
-            ->expectsOutputToContain('Config ['.$this->portoPath.'/Ship/Configs/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Configs/'.$name.'.php';
 
@@ -39,9 +37,7 @@ class ConfigMakeCommandTest extends TestCase
         $this->artisan('make:config', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Config ['.$this->portoPath.'/Containers/'.$this->containerName.'/Configs/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Configs/'.$name.'.php';
 

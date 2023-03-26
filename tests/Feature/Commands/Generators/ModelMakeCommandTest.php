@@ -47,9 +47,7 @@ class ModelMakeCommandTest extends TestCase
     {
         $this->artisan('make:model', [
             'name' => 'TestModel',
-        ])
-            ->expectsOutputToContain('Model must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -64,9 +62,7 @@ class ModelMakeCommandTest extends TestCase
         $this->artisan('make:model', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Model ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$name.'.php';
 
@@ -97,7 +93,6 @@ class ModelMakeCommandTest extends TestCase
         }
 
         $this->artisan('make:model', $params)
-            ->expectsOutputToContain('Model ['.$this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$name.'.php';

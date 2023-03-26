@@ -17,21 +17,18 @@ class HelperMakeCommandTest extends TestCase
 
         $this->artisan('make:helper', [
             'name' => $name
-        ])
-            ->expectsOutputToContain('Helper ['.$this->portoPath.'/Ship/Helpers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Helpers/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getHelperContent($name), file_get_contents($file));
+        $this->assertEquals($this->getHelperContent(), file_get_contents($file));
     }
 
     /**
-     * @param string $name
      * @return string
      */
-    public function getHelperContent(string $name): string
+    public function getHelperContent(): string
     {
         return <<<File
 <?php

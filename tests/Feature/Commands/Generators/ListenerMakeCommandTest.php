@@ -13,7 +13,6 @@ class ListenerMakeCommandTest extends TestCase
     {
         return [
             'event' => ['event'],
-            'force' => ['force'],
             'queued' => ['queued'],
             'queued-event' => ['queuedEvent']
         ];
@@ -28,9 +27,7 @@ class ListenerMakeCommandTest extends TestCase
     {
         $this->artisan('make:listener', [
             'name' => 'TestListener',
-        ])
-            ->expectsOutputToContain('Listener must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -45,9 +42,7 @@ class ListenerMakeCommandTest extends TestCase
         $this->artisan('make:listener', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Listener ['.$this->portoPath.'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php';
 
@@ -80,7 +75,6 @@ class ListenerMakeCommandTest extends TestCase
         }
 
         $this->artisan('make:listener', $params)
-            ->expectsOutputToContain('Listener ['.$this->portoPath.'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php';

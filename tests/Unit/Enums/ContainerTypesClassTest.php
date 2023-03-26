@@ -9,11 +9,11 @@ class ContainerTypesClassTest extends TestCase
 {
     public function testConstantValues(): void
     {
-        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT, ContainerTypes::from('default'));
-        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_FULL, ContainerTypes::from('full'));
-        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD, ContainerTypes::from('standard'));
-        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_API, ContainerTypes::from('api'));
-        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_WEB, ContainerTypes::from('web'));
-        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_CLI, ContainerTypes::from('cli'));
+        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT, 'default');
+        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_FULL, 'full');
+        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD, 'standard');
+        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_API, 'api');
+        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_WEB, 'web');
+        $this->assertEquals(ContainerTypes::PORTO_CONTAINER_TYPE_CLI, 'cli');
     }
 }

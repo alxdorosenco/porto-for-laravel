@@ -16,7 +16,7 @@ class ObserverMakeCommand extends LaravelObserverMakeCommand
      * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle(): bool|int|null
+    public function handle()
     {
         if (!$this->option('container')) {
             $this->error('Observer must be in the container');

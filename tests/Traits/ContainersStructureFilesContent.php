@@ -18,7 +18,7 @@ class AliasesLoader
     /**
      * @var array
      */
-    public array ".'$aliases'." = [];
+    public ".'$aliases'." = [];
 }
 ";
     }
@@ -37,7 +37,7 @@ class ProvidersLoader
     /**
      * @var array
      */
-    public array ".'$providers'." = [];
+    public ".'$providers'." = [];
 }
 ";
     }
@@ -56,22 +56,22 @@ class MiddlewareLoader
     /**
      * @var array
      */
-    public array ".'$middleware'." = [];
+    public ".'$middleware'." = [];
 
     /**
      * @var array
      */
-    public array ".'$middlewareGroups'." = [];
+    public ".'$middlewareGroups'." = [];
 
     /**
      * @var array
      */
-    public array ".'$routeMiddleware'." = [];
+    public ".'$routeMiddleware'." = [];
 
     /**
      * @var array
      */
-    public array ".'$middlewarePriority'." = [];
+    public ".'$middlewarePriority'." = [];
 }
 ";
     }

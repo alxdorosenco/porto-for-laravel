@@ -25,9 +25,7 @@ class TraitMakeCommandTest extends TestCase
     {
         $this->artisan('make:trait', [
             'name' => 'TestTrait',
-        ])
-            ->expectsOutputToContain('Trait must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -42,9 +40,7 @@ class TraitMakeCommandTest extends TestCase
         $this->artisan('make:trait', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Trait ['.$this->portoPath.'/Containers/'.$this->containerName.'/Traits/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Traits/'.$name.'.php';
 
@@ -66,9 +62,7 @@ class TraitMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])
-            ->expectsOutputToContain('Trait ['.$this->portoPath.'/Containers/'.$this->containerName.'/Tests/Traits/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Traits/'.$name.'.php';
 

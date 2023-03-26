@@ -16,7 +16,7 @@ class ResourceMakeCommand extends LaravelResourceMakeCommand
      * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle(): bool|int|null
+    public function handle()
     {
         if (!$this->option('container')) {
             $this->error('Resource must be in the container');

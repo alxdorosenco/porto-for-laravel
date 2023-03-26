@@ -31,9 +31,7 @@ class TestMakeCommandTest extends TestCase
             'name' => $name,
             '--unit' => true,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Test ['.$this->portoPath.'/Containers/'.$this->containerName.'/Tests/Unit/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Unit/'.$name.'.php';
 
@@ -55,9 +53,7 @@ class TestMakeCommandTest extends TestCase
             '--unit' => true,
             '--pest' => true,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Test ['.$this->portoPath.'/Containers/'.$this->containerName.'/Tests/Unit/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Unit/'.$name.'.php';
 
@@ -81,7 +77,6 @@ class TestMakeCommandTest extends TestCase
             '--container' => $this->containerName
         ])
             ->expectsChoice('Please, select type of the user\'s interface', $ui, ['api' => 'api', 'web' => 'web', 'cli' => 'cli'])
-            ->expectsOutputToContain('Test ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/'.strtoupper($ui).'/Tests/Functional/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/'.strtoupper($ui).'/Tests/Functional/'.$name.'.php';
@@ -105,7 +100,6 @@ class TestMakeCommandTest extends TestCase
             '--container' => $this->containerName
         ])
             ->expectsChoice('Please, select type of the user\'s interface', $ui, ['api' => 'api', 'web' => 'web', 'cli' => 'cli'])
-            ->expectsOutputToContain('Test ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/'.strtoupper($ui).'/Tests/Functional/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/'.strtoupper($ui).'/Tests/Functional/'.$name.'.php';

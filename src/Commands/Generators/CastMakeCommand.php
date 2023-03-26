@@ -17,7 +17,7 @@ class CastMakeCommand extends LaravelCastMakeCommand
      * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle(): bool|int|null
+    public function handle()
     {
         if (!$this->option('container')) {
             $this->error('Cast must be in the container');
@@ -46,7 +46,7 @@ class CastMakeCommand extends LaravelCastMakeCommand
      * @param  string  $name
      * @return $this
      */
-    protected function replaceNamespace(&$stub, $name): static
+    protected function replaceNamespace(&$stub, $name)
     {
         $searches = [
             ['DummyBaseModelNamespace'],

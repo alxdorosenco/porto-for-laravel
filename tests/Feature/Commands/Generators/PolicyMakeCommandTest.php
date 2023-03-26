@@ -29,9 +29,7 @@ class PolicyMakeCommandTest extends TestCase
     {
         $this->artisan('make:policy', [
             'name' => 'TestPolicy',
-        ])
-            ->expectsOutputToContain('Policy must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -46,9 +44,7 @@ class PolicyMakeCommandTest extends TestCase
         $this->artisan('make:policy', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Policy ['.$this->portoPath.'/Containers/'.$this->containerName.'/Policies/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';
 
@@ -83,7 +79,6 @@ class PolicyMakeCommandTest extends TestCase
         }
 
         $this->artisan('make:policy', $params)
-            ->expectsOutputToContain('Policy ['.$this->portoPath.'/Containers/'.$this->containerName.'/Policies/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';

@@ -10,18 +10,18 @@ trait MarkdownContent
     private function getMarkdownContent(): string
     {
         return <<<Class
-<x-mail::message>
+@component('mail::message')
 # Introduction
 
 The body of your message.
 
-<x-mail::button :url="''">
+@component('mail::button', ['url' => ''])
 Button Text
-</x-mail::button>
+@endcomponent
 
 Thanks,<br>
 {{ config('app.name') }}
-</x-mail::message>
+@endcomponent
 
 Class;
 
@@ -33,17 +33,16 @@ Class;
      * @param string $markdown
      * @return string
      */
-    private function getMarkdownMailContent(string $name, string $namespace, string $subject, string $markdown): string
+    private function getMarkdownMailContent(string $name, string $namespace, string $markdown): string
     {
-        return <<<Class
-<?php
+        return "<?php
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
 use {$this->portoPathUcFirst()}\Ship\Abstracts\Mails\Mailable;
-use {$this->portoPathUcFirst()}\Ship\Mails\Mailable\Content;
-use {$this->portoPathUcFirst()}\Ship\Mails\Mailable\Envelope;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 
 class $name extends Mailable
 {
@@ -51,6 +50,8 @@ class $name extends Mailable
 
     /**
      * Create a new message instance.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -58,38 +59,16 @@ class $name extends Mailable
     }
 
     /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: '$subject',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            markdown: '$markdown',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
+     * Build the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return ".'$this'."
      */
-    public function attachments(): array
+    public function build()
     {
-        return [];
+        return ".'$this'."->markdown('$markdown');
     }
 }
-
-Class;
-
+";
     }
 
     /**

@@ -27,9 +27,7 @@ class ConsoleMakeCommandTest extends TestCase
 
         $this->artisan('make:command', [
             'name' => 'TestCommand',
-        ])
-            ->expectsOutputToContain('Console command ['.$this->portoPath.'/Ship/Commands/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Commands/'.$name.'.php';
 
@@ -49,9 +47,7 @@ class ConsoleMakeCommandTest extends TestCase
         $this->artisan('make:command', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Console command ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 
@@ -73,9 +69,7 @@ class ConsoleMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'command' ? 'TestCommand' : true
-        ])
-            ->expectsOutputToContain('Console command ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 

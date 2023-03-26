@@ -15,9 +15,7 @@ class TaskMakeCommandTest extends TestCase
     {
         $this->artisan('make:task', [
             'name' => 'TestTask',
-        ])
-            ->expectsOutputToContain('Task must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -32,9 +30,7 @@ class TaskMakeCommandTest extends TestCase
         $this->artisan('make:task', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Task ['.$this->portoPath.'/Containers/'.$this->containerName.'/Tasks/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tasks/'.$name.'.php';
 

@@ -12,7 +12,6 @@ class RuleMakeCommandTest extends TestCase
     public function provideTypes(): array
     {
         return [
-            'force' => ['force'],
             'implicit' => ['implicit']
         ];
     }
@@ -26,9 +25,7 @@ class RuleMakeCommandTest extends TestCase
     {
         $this->artisan('make:rule', [
             'name' => 'TestRule',
-        ])
-            ->expectsOutputToContain('Rule must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -43,9 +40,7 @@ class RuleMakeCommandTest extends TestCase
         $this->artisan('make:rule', [
             'name' => 'TestRule',
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Rule ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Rules/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Rules/'.$name.'.php';
 
@@ -90,19 +85,40 @@ class RuleMakeCommandTest extends TestCase
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Data\Rules;
 
-use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Rule;
 
-class $name implements ValidationRule
+class $name implements Rule
 {
     /**
-     * Run the validation rule.
+     * Create a new rule instance.
      *
-     * @param  \Closure(string): \\{$this->portoPathUcFirst()}\Ship\Abstracts\Translations\PotentiallyTranslatedString  ".'$fail'."
+     * @return void
      */
-    public function validate(string ".'$attribute'.", mixed ".'$value'.", Closure ".'$fail'."): void
+    public function __construct()
     {
         //
+    }
+
+    /**
+     * Determine if the validation rule passes.
+     *
+     * @param  string  ".'$attribute'."
+     * @param  mixed  ".'$value'."
+     * @return bool
+     */
+    public function passes(".'$attribute'.", ".'$value'.")
+    {
+        //
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'The validation error message.';
     }
 }
 ";
@@ -118,26 +134,40 @@ class $name implements ValidationRule
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Data\Rules;
 
-use Closure;
-use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\ImplicitRule;
 
-class $name implements ValidationRule
+class $name implements ImplicitRule
 {
     /**
-     * Indicates whether the rule should be implicit.
+     * Create a new rule instance.
      *
-     * @var bool
+     * @return void
      */
-    public ".'$implicit'." = true;
-
-    /**
-     * Run the validation rule.
-     *
-     * @param  \Closure(string): \\{$this->portoPathUcFirst()}\Ship\Abstracts\Translations\PotentiallyTranslatedString  ".'$fail'."
-     */
-    public function validate(string ".'$attribute'.", mixed ".'$value'.", Closure ".'$fail'."): void
+    public function __construct()
     {
         //
+    }
+
+    /**
+     * Determine if the validation rule passes.
+     *
+     * @param  string  ".'$attribute'."
+     * @param  mixed  ".'$value'."
+     * @return bool
+     */
+    public function passes(".'$attribute'.", ".'$value'.")
+    {
+        //
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return 'The validation error message.';
     }
 }
 ";

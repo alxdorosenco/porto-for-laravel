@@ -29,7 +29,6 @@ class TranslationMakeCommandTest extends TestCase
             'name' => $name
         ])
             ->expectsQuestion('Please, write your language code (for example en, fr, de)', 'en')
-            ->expectsOutputToContain('Translation ['.$this->portoPath.'/Ship/Translations/en/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
@@ -51,9 +50,7 @@ class TranslationMakeCommandTest extends TestCase
         $this->artisan('make:translation', [
             'name' => $name,
             '--'.$type => 'en'
-        ])
-            ->expectsOutputToContain('Translation ['.$this->portoPath.'/Ship/Translations/en/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
 

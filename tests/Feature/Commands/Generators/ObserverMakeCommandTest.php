@@ -25,9 +25,7 @@ class ObserverMakeCommandTest extends TestCase
     {
         $this->artisan('make:observer', [
             'name' => 'TestObserver',
-        ])
-            ->expectsOutputToContain('Observer must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -42,9 +40,7 @@ class ObserverMakeCommandTest extends TestCase
         $this->artisan('make:observer', [
             'name' => 'TestObserver',
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Observer ['.$this->portoPath.'/Containers/'.$this->containerName.'/Observers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
 
@@ -67,9 +63,7 @@ class ObserverMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'model' ? $modelName : true
-        ])
-            ->expectsOutputToContain('Observer ['.$this->portoPath.'/Containers/'.$this->containerName.'/Observers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
 

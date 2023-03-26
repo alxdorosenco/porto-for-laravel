@@ -25,9 +25,7 @@ class ResourceMakeCommandTest extends TestCase
     {
         $this->artisan('make:resource', [
             'name' => 'TestResource',
-        ])
-            ->expectsOutputToContain('Resource must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -42,9 +40,7 @@ class ResourceMakeCommandTest extends TestCase
         $this->artisan('make:resource', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Resource ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php';
 
@@ -68,9 +64,7 @@ class ResourceMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])
-            ->expectsOutputToContain($typeName.' ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php';
 

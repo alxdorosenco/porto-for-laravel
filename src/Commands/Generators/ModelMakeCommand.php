@@ -17,7 +17,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
      * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle(): bool|int|null
+    public function handle()
     {
         if (!$this->option('container')) {
             $this->error('Model must be in the container');

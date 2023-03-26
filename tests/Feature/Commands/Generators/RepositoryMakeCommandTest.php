@@ -28,9 +28,7 @@ class RepositoryMakeCommandTest extends TestCase
     {
         $this->artisan('make:repository', [
             'name' => 'TestRepository',
-        ])
-            ->expectsOutputToContain('Repository must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -45,9 +43,7 @@ class RepositoryMakeCommandTest extends TestCase
         $this->artisan('make:repository', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Repository ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';
 
@@ -73,7 +69,6 @@ class RepositoryMakeCommandTest extends TestCase
             '--'.$type => $modelName
         ])
             ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-            ->expectsOutputToContain('Repository ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';

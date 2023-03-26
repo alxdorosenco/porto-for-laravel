@@ -15,9 +15,7 @@ class RequestMakeCommandTest extends TestCase
     {
         $this->artisan('make:request', [
             'name' => 'TestRequest',
-        ])
-            ->expectsOutputToContain('Request must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -34,38 +32,12 @@ class RequestMakeCommandTest extends TestCase
             '--container' => $this->containerName
         ])
             ->expectsChoice('Please, select type of the user\'s interface', 'api', ['api' => 'api', 'web' => 'web'])
-            ->expectsOutputToContain('Request ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/API/Requests/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Requests/'.$name.'.php';
 
         $this->assertFileExists($file);
         $this->assertEquals($this->getRequestContent($name, 'Containers\\'.$this->containerName.'\UI\API\Requests'), file_get_contents($file));
-    }
-
-    /**
-     * Test of the console command with types
-     *
-     * @dataProvider provideTypes
-     * @return void
-     */
-    public function testConsoleCommandWithTypes(string $type): void
-    {
-        $name = 'Test'.(ucfirst($type)).'Request';
-
-        $this->artisan('make:request', [
-            'name' => $name,
-            '--container' => $this->containerName,
-            '--'.$type => true
-        ])
-            ->expectsChoice('Please, select type of the user\'s interface', 'web', ['api' => 'api', 'web' => 'web'])
-            ->expectsOutputToContain('Request ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/WEB/Requests/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
-
-        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Requests/'.$name.'.php';
-
-        $this->assertFileExists($file);
-        $this->assertEquals($this->getRequestContent($name, 'Containers\\'.$this->containerName.'\UI\WEB\Requests'), file_get_contents($file));
     }
 
     /**

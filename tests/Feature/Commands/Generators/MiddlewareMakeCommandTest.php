@@ -17,9 +17,7 @@ class MiddlewareMakeCommandTest extends TestCase
 
         $this->artisan('make:middleware', [
             'name' => $name
-        ])
-            ->expectsOutputToContain('Middleware ['.$this->portoPath.'/Ship/Middleware/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Middleware/'.$name.'.php';
 
@@ -39,9 +37,7 @@ class MiddlewareMakeCommandTest extends TestCase
         $this->artisan('make:middleware', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Middleware ['.$this->portoPath.'/Containers/'.$this->containerName.'/Middleware/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Middleware/'.$name.'.php';
 

@@ -16,7 +16,7 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
      * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle(): bool|int|null
+    public function handle()
     {
         if (!$this->option('container')) {
             $this->error('Notification must be in the container');

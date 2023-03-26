@@ -2,7 +2,6 @@
 
 namespace {{ namespace }};
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use {{ rootNamespace }}Ship\Abstracts\Seeders\Seeder;
 
 class {{ class }} extends Seeder

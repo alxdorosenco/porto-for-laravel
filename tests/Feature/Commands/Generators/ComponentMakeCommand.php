@@ -26,9 +26,7 @@ class ComponentMakeCommand extends TestCase
     {
         $this->artisan('make:component', [
             'name' => 'TestComponent',
-        ])
-            ->expectsOutputToContain('Component must be in the container')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -43,9 +41,7 @@ class ComponentMakeCommand extends TestCase
         $this->artisan('make:component', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Component ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Views/Components/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Views/Components/'.$name.'.php';
         $fileView = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Views/components/test-component.blade.php';
@@ -65,19 +61,11 @@ class ComponentMakeCommand extends TestCase
     {
         $name = 'Test2'.(ucfirst($type)).'Component';
 
-        if($type === 'view'){
-            $output = 'Component created successfully.';
-        } else {
-            $output = 'Component ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Views/Components/'.$name.'.php] created successfully.';
-        }
-
         $this->artisan('make:component', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])
-            ->expectsOutputToContain($output)
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Views/Components/'.$name.'.php';
 

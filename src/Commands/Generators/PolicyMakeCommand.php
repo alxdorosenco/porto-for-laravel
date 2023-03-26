@@ -18,7 +18,7 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
      * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle(): bool|int|null
+    public function handle()
     {
         if (!$this->option('container')) {
             $this->error('Policy must be in the container');

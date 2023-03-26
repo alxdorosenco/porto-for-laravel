@@ -28,9 +28,7 @@ class JobMakeCommandTest extends TestCase
 
         $this->artisan('make:job', [
             'name' => $name
-        ])
-            ->expectsOutputToContain('Job ['.$this->portoPath.'/Ship/Jobs/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Jobs/'.$name.'.php';
 
@@ -51,9 +49,7 @@ class JobMakeCommandTest extends TestCase
         $this->artisan('make:job', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Job ['.$this->portoPath.'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
 
@@ -76,9 +72,7 @@ class JobMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])
-            ->expectsOutputToContain('Job ['.$this->portoPath.'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
 

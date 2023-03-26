@@ -31,9 +31,7 @@ class MailMakeCommandTest extends TestCase
 
         $this->artisan('make:mail', [
             'name' => $name
-        ])
-            ->expectsOutputToContain('Mailable ['.$this->portoPath.'/Ship/Mails/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Mails/'.$name.'.php';
 
@@ -53,9 +51,7 @@ class MailMakeCommandTest extends TestCase
         $this->artisan('make:mail', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Mailable ['.$this->portoPath.'/Containers/'.$this->containerName.'/Mails/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/'.$name.'.php';
 
@@ -78,9 +74,7 @@ class MailMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'markdown' ? $markdown : true
-        ])
-            ->expectsOutputToContain('Mailable ['.$this->portoPath.'/Containers/'.$this->containerName.'/Mails/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/'.$name.'.php';
         $markdownFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/Templates/'.$markdown.'.blade.php';
@@ -88,12 +82,12 @@ class MailMakeCommandTest extends TestCase
         $this->assertFileExists($file);
 
         if($type === 'markdown'){
-            $this->assertEquals($this->getMarkdownMailContent($name, 'Containers\\'.$this->containerName.'\Mails', 'Test '.ucfirst($type).' Mail', $markdown), file_get_contents($file));
+            $this->assertEquals($this->getMarkdownMailContent($name, 'Containers\\'.$this->containerName.'\Mails',  $markdown), file_get_contents($file));
 
             $this->assertFileExists($markdownFile);
             $this->assertEquals($this->getMarkdownContent(), file_get_contents($markdownFile));
         } else {
-            $this->assertEquals($this->getMailContent($name, 'Containers\\'.$this->containerName.'\Mails', 'Test '.ucfirst($type).' Mail'), file_get_contents($file));
+            $this->assertEquals($this->getMailContent($name, 'Containers\\'.$this->containerName.'\Mails'), file_get_contents($file));
         }
     }
 
@@ -102,16 +96,13 @@ class MailMakeCommandTest extends TestCase
      * @param string $namespace
      * @return string
      */
-    private function getMailContent(string $name, string $namespace, string $subject): string
+    private function getMailContent(string $name, string $namespace): string
     {
-        return <<<Class
-<?php
+        return "<?php
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
 use {$this->portoPathUcFirst()}\Ship\Abstracts\Mails\Mailable;
-use {$this->portoPathUcFirst()}\Ship\Mails\Mailable\Content;
-use {$this->portoPathUcFirst()}\Ship\Mails\Mailable\Envelope;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
@@ -131,41 +122,15 @@ class $name extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * Build the message.
      *
-     * @return \\{$this->portoPathUcFirst()}\Ship\Mails\Mailable\Envelope
+     * @return ".'$this'."
      */
-    public function envelope()
+    public function build()
     {
-        return new Envelope(
-            subject: '$subject',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     *
-     * @return \\{$this->portoPathUcFirst()}\Ship\Mails\Mailable\Content
-     */
-    public function content()
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
+        return ".'$this'."->view('view.name');
     }
 }
-
-Class;
-
+";
     }
 }

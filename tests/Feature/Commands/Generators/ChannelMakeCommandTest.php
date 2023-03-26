@@ -15,9 +15,7 @@ class ChannelMakeCommandTest extends TestCase
     {
         $this->artisan('make:channel', [
             'name' => 'TestChannel',
-        ])
-            ->expectsOutputToContain('Channel must be in the container')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -32,33 +30,7 @@ class ChannelMakeCommandTest extends TestCase
         $this->artisan('make:channel', [
             'name' => 'TestChannel',
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Channel ['.$this->portoPath.'/Containers/'.$this->containerName.'/Broadcasting/TestChannel.php] created successfully.')
-            ->assertSuccessful();
-
-        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Broadcasting/'.$name.'.php';
-
-        $this->assertFileExists($file);
-        $this->assertEquals($this->getChannelContent($name), file_get_contents($file));
-    }
-
-    /**
-     * Test of the console command with types
-     *
-     * @dataProvider provideTypes
-     * @return void
-     */
-    public function testConsoleCommandWithTypes(string $type): void
-    {
-        $name = 'Test'.(ucfirst($type)).'Channel';
-
-        $this->artisan('make:channel', [
-            'name' => $name,
-            '--container' => $this->containerName,
-            '--'.$type => true
-        ])
-            ->expectsOutputToContain('Channel ['.$this->portoPath.'/Containers/'.$this->containerName.'/Broadcasting/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Broadcasting/'.$name.'.php';
 

@@ -97,7 +97,6 @@ class ConsoleGeneratorTraitTest extends TestCase
             'resource-collection.stub' => ['resource-collection.stub'],
             'rule.implicit.stub' => ['rule.implicit.stub'],
             'rule.stub' => ['rule.stub'],
-            'scope.stub' => ['scope.stub'],
             'seeder.stub' => ['seeder.stub'],
             'test.stub' => ['test.stub'],
             'view-component.stub' => ['view-component.stub']

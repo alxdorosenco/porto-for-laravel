@@ -16,7 +16,6 @@ trait SeedContent
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
 use {$this->portoPathUcFirst()}\Ship\Abstracts\Seeders\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class $name extends Seeder
 {

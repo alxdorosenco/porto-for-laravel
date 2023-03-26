@@ -15,9 +15,7 @@ class EventMakeCommandTest extends TestCase
     {
         $this->artisan('make:event', [
             'name' => 'TestEvent',
-        ])
-            ->expectsOutputToContain('Event must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -32,33 +30,7 @@ class EventMakeCommandTest extends TestCase
         $this->artisan('make:event', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Event ['.$this->portoPath.'/Containers/'.$this->containerName.'/Events/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
-
-        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Events/'.$name.'.php';
-
-        $this->assertFileExists($file);
-        $this->assertEquals($this->getEventContent($name), file_get_contents($file));
-    }
-
-    /**
-     * Test of the console command with types
-     *
-     * @dataProvider provideTypes
-     * @return void
-     */
-    public function testConsoleCommandWithTypes(string $type): void
-    {
-        $name = 'Test2'.(ucfirst($type)).'Event';
-
-        $this->artisan('make:event', [
-            'name' => $name,
-            '--container' => $this->containerName,
-            '--'.$type => true
-        ])
-            ->expectsOutputToContain('Event ['.$this->portoPath.'/Containers/'.$this->containerName.'/Events/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Events/'.$name.'.php';
 

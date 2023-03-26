@@ -15,9 +15,7 @@ class ContractMakeCommandTest extends TestCase
     {
         $this->artisan('make:contract', [
             'name' => 'TestContract',
-        ])
-            ->expectsOutputToContain('Contract must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -32,9 +30,7 @@ class ContractMakeCommandTest extends TestCase
         $this->artisan('make:contract', [
             'name' => 'TestContract',
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Contract ['.$this->portoPath.'/Containers/'.$this->containerName.'/Contracts/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Contracts/'.$name.'.php';
 

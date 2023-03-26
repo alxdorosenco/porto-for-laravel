@@ -2,8 +2,6 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use Illuminate\Console\Command as LaravelCommand;
-
 use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use AlxDorosenco\PortoForLaravel\Enums\ContainerTypes;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
@@ -93,18 +91,18 @@ class ContainerMakeCommand extends GeneratorCommand
         $rootPath = config('porto.root');
         $namespace = $this->getNamespaceFromPath($path);
 
-        $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD->value;
+        $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD;
 
         if($this->option('default')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT->value;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT;
         } elseif($this->option('full')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_FULL->value;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_FULL;
         } elseif($this->option('api')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_API->value;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_API;
         } elseif($this->option('web')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_WEB->value;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_WEB;
         } elseif($this->option('cli')){
-            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_CLI->value;
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_CLI;
         }
 
         $containersBuilder = new ContainersBuilder($rootPath, $namespace);

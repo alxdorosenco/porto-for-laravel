@@ -20,9 +20,7 @@ class SeederMakeCommandTest extends TestCase
 
         $this->artisan('make:seeder', [
             'name' => $name
-        ])
-            ->expectsOutputToContain('Seeder ['.$this->portoPath.'/Ship/Seeders/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Seeders/'.$name.'.php';
 
@@ -42,9 +40,7 @@ class SeederMakeCommandTest extends TestCase
         $this->artisan('make:seeder', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Seeder ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Seeders/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Seeders/'.$name.'.php';
 

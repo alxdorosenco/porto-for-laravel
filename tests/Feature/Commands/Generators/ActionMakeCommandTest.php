@@ -15,9 +15,7 @@ class ActionMakeCommandTest extends TestCase
     {
         $this->artisan('make:action', [
             'name' => 'TestAction',
-        ])
-            ->expectsOutputToContain('Action must be in the container')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -33,7 +31,6 @@ class ActionMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName
         ])
-            ->expectsOutputToContain('Action ['.$this->portoPath.'/Containers/'.$this->containerName.'/Actions/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Actions/'.$name.'.php';

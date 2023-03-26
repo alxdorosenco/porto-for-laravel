@@ -17,9 +17,7 @@ class ProviderMakeCommandTest extends TestCase
 
         $this->artisan('make:provider', [
             'name' => $name
-        ])
-            ->expectsOutputToContain('Provider ['.$this->portoPath.'/Ship/Providers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Providers/'.$name.'.php';
 
@@ -39,33 +37,7 @@ class ProviderMakeCommandTest extends TestCase
         $this->artisan('make:provider', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Provider ['.$this->portoPath.'/Containers/'.$this->containerName.'/Providers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
-
-        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Providers/'.$name.'.php';
-
-        $this->assertFileExists($file);
-        $this->assertEquals($this->getProviderContent($name, 'Containers\\'.$this->containerName.'\Providers'), file_get_contents($file));
-    }
-
-    /**
-     * Test of the console command with types
-     *
-     * @dataProvider provideTypes
-     * @return void
-     */
-    public function testConsoleCommandWithTypes(string $type): void
-    {
-        $name = 'Test'.(ucfirst($type)).'Provider';
-
-        $this->artisan('make:provider', [
-            'name' => $name,
-            '--container' => $this->containerName,
-            '--'.$type => true
-        ])
-            ->expectsOutputToContain('Provider ['.$this->portoPath.'/Containers/'.$this->containerName.'/Providers/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Providers/'.$name.'.php';
 

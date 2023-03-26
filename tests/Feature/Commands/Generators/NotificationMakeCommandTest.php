@@ -29,9 +29,7 @@ class NotificationMakeCommandTest extends TestCase
     {
         $this->artisan('make:notification', [
             'name' => 'TestNotification',
-        ])
-            ->expectsOutputToContain('Notification must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -46,9 +44,7 @@ class NotificationMakeCommandTest extends TestCase
         $this->artisan('make:notification', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Notification ['.$this->portoPath.'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php';
 
@@ -71,9 +67,7 @@ class NotificationMakeCommandTest extends TestCase
             'name' => 'Test'.(ucfirst($type)).'Notification',
             '--container' => $this->containerName,
             '--'.$type => $type === 'markdown' ? $markdown : true
-        ])
-            ->expectsOutputToContain('Notification ['.$this->portoPath.'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php';
         $markdownFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Views/'.$markdown.'.blade.php';

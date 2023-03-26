@@ -12,7 +12,7 @@ class ContainerMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideContainerType(): array
+    public function provideContainerType(): array
     {
         return [
             'standard' => ['standard'],
@@ -27,7 +27,7 @@ class ContainerMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideContainerTypeAndStructure(): array
+    public function provideContainerTypeAndStructure(): array
     {
         return [
             'standard.Actions' => ['standard', 'Actions'],
@@ -136,7 +136,7 @@ class ContainerMakeCommandTest extends TestCase
     public function testConsoleCommandWithoutName(): void
     {
         $this->artisan('make:container')
-            ->expectsOutputToContain('You can\'t create container without name')
+            ->expectsOutput('You can\'t create container without name')
             ->assertFailed();
     }
 
@@ -164,12 +164,9 @@ class ContainerMakeCommandTest extends TestCase
     public function testConsoleCommand(string $type): void
     {
         $this->artisan('make:container', [
-            'name'  => ucfirst($type),
+            'name'  => $type === 'default' ? ucfirst($type).'Container' : ucfirst($type),
             '--'.$type => true,
-        ])  ->expectsOutputToContain('Creating ' .ucfirst($type). ' container')
-            ->expectsOutput("\n")
-            ->expectsOutputToContain('Container ['.ucfirst($type).'] has been successfully created')
-            ->assertSuccessful();
+        ])->assertSuccessful();
     }
 
     /**
@@ -181,6 +178,8 @@ class ContainerMakeCommandTest extends TestCase
      */
     public function testExistenceOfTheCreatedContainerFilesAndDirectories(string $type, string $param): void
     {
+        $type = $type === 'default' ? 'defaultContainer' : $type;
+
         $path = base_path($this->portoPath).'/Containers/'.ucfirst($type).'/'.$param;
 
         if(str_ends_with($param, '.php')){

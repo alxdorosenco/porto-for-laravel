@@ -28,9 +28,7 @@ class FactoryMakeCommandTest extends TestCase
     {
         $this->artisan('make:factory', [
             'name' => 'TestFactory',
-        ])
-            ->expectsOutputToContain('Factory must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -45,9 +43,7 @@ class FactoryMakeCommandTest extends TestCase
         $this->artisan('make:factory', [
             'name' => 'TestFactory',
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Factory ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 
@@ -70,9 +66,7 @@ class FactoryMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $modelName
-        ])
-            ->expectsOutputToContain('Factory ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 

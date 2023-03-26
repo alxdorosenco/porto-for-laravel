@@ -15,9 +15,7 @@ class ValueMakeCommandTest extends TestCase
     {
         $this->artisan('make:value', [
             'name' => 'TestValue',
-        ])
-            ->expectsOutputToContain('Value must be in the container.')
-            ->assertFailed();
+        ])->assertFailed();
     }
 
     /**
@@ -32,9 +30,7 @@ class ValueMakeCommandTest extends TestCase
         $this->artisan('make:value', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Value ['.$this->portoPath.'/Containers/'.$this->containerName.'/Values/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Values/'.$name.'.php';
 

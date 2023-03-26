@@ -29,9 +29,7 @@ class ExceptionMakeCommandTest extends TestCase
 
         $this->artisan('make:exception', [
             'name' => 'TestException',
-        ])
-            ->expectsOutputToContain('Exception ['.$this->portoPath.'/Ship/Exceptions/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Ship/Exceptions/'.$name.'.php';
 
@@ -51,9 +49,7 @@ class ExceptionMakeCommandTest extends TestCase
         $this->artisan('make:exception', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsOutputToContain('Exception ['.$this->portoPath.'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php] created successfully.')
-            ->assertSuccessful();
+        ])->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php';
 
@@ -84,7 +80,6 @@ class ExceptionMakeCommandTest extends TestCase
         }
 
         $this->artisan('make:exception', $params)
-            ->expectsOutputToContain('Exception ['.$this->portoPath.'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php] created successfully.')
             ->assertSuccessful();
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php';
