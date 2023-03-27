@@ -14,7 +14,8 @@ class ListenerMakeCommandTest extends TestCase
     {
         return [
             'event' => ['event'],
-            'queued' => ['queued']
+            'queued' => ['queued'],
+            'queued-event' => ['queuedEvent']
         ];
     }
 
@@ -37,10 +38,17 @@ class ListenerMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestListener';
+
         $this->artisan('make:listener', [
-            'name' => 'Test1Listener',
+            'name' => $name,
             '--container' => $this->containerName
         ])->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getListenerDuckContent($name), file_get_contents($file));
     }
 
     /**
@@ -51,16 +59,203 @@ class ListenerMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $typeValue = true;
+        $name = 'Test'.(ucfirst($type)).'Listener';
+        $eventName = 'EventListener';
+        $eventNamespace = 'Containers\\'.$this->containerName.'\Events\\'.$eventName;
 
-        if($type === 'event'){
-            $typeValue = 'EventListener';
+        $params = [
+            'name' => $name,
+            '--container' => $this->containerName
+        ];
+
+        if($type === 'queuedEvent'){
+            $params['--queued'] = true;
+            $params['--event'] = $eventName;
+        } else {
+            $params['--'.$type] = $type === 'event' ? 'EventListener' : true;
         }
 
-        $this->artisan('make:listener', [
-            'name' => 'Test2'.(ucfirst($type)).'Listener',
-            '--container' => $this->containerName,
-            '--'.$type => $typeValue
-        ])->assertExitCode(Command::SUCCESS);
+        $this->artisan('make:listener', $params)
+            ->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php';
+
+        $this->assertFileExists($file);
+
+        if($type === 'event'){
+            $this->assertEquals($this->getListenerContent($name, $eventNamespace, $eventName), file_get_contents($file));
+        } elseif($type === 'queued'){
+            $this->assertEquals($this->getListenerQueuedDuckContent($name), file_get_contents($file));
+        } elseif($type === 'queuedEvent'){
+            $this->assertEquals($this->getListenerQueuedContent($name, $eventNamespace, $eventName), file_get_contents($file));
+        } else {
+            $this->assertEquals($this->getListenerDuckContent($name), file_get_contents($file));
+        }
+    }
+
+    /**
+     * @param string $name
+     * @param string $eventNamespace
+     * @param string $eventName
+     * @return string
+     */
+    private function getListenerContent(string $name, string $eventNamespace, string $eventName): string
+    {
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
+
+use {$this->portoPathUcFirst()}\\$eventNamespace;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class $name
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\\$eventNamespace  ".'$event'."
+     * @return void
+     */
+    public function handle($eventName ".'$event'.")
+    {
+        //
+    }
+}
+";
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getListenerDuckContent(string $name): string
+    {
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
+
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class $name
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  object  ".'$event'."
+     * @return void
+     */
+    public function handle(".'$event'.")
+    {
+        //
+    }
+}
+";
+    }
+
+    /**
+     * @param string $name
+     * @param string $eventNamespace
+     * @param string $eventName
+     * @return string
+     */
+    private function getListenerQueuedContent(string $name, string $eventNamespace, string $eventName): string
+    {
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
+
+use {$this->portoPathUcFirst()}\\$eventNamespace;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class $name implements ShouldQueue
+{
+    use InteractsWithQueue;
+
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  {$this->portoPathUcFirst()}\\$eventNamespace  ".'$event'."
+     * @return void
+     */
+    public function handle($eventName ".'$event'.")
+    {
+        //
+    }
+}
+";
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getListenerQueuedDuckContent(string $name): string
+    {
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
+
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class $name implements ShouldQueue
+{
+    use InteractsWithQueue;
+
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  object  ".'$event'."
+     * @return void
+     */
+    public function handle(".'$event'.")
+    {
+        //
+    }
+}
+";
     }
 }

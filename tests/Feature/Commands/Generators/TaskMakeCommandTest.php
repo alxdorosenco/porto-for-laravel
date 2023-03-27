@@ -26,9 +26,44 @@ class TaskMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestTask';
+
         $this->artisan('make:task', [
-            'name' => 'Test1Task',
+            'name' => $name,
             '--container' => $this->containerName
         ])->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tasks/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getTaskContent($name), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getTaskContent(string $name): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Tasks;
+
+class $name
+{
+    /**
+     * Get response from repository.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // task
+    }
+}
+
+Class;
+
     }
 }

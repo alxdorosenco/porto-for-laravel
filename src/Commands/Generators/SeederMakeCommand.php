@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Database\Console\Seeds\SeederMakeCommand as LaravelSeederMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Support\Str;
 
 class SeederMakeCommand extends LaravelSeederMakeCommand
@@ -36,5 +36,39 @@ class SeederMakeCommand extends LaravelSeederMakeCommand
         }
 
         return config('porto.root').'/Ship/Seeders/'.$name.'.php';
+    }
+
+    /**
+     * Replace the namespace for the given stub.
+     *
+     * @param  string  $stub
+     * @param  string  $name
+     * @return $this
+     */
+    protected function replaceNamespace(&$stub, $name)
+    {
+        $searches = [
+            ['DummyNamespace', 'DummyRootNamespace', 'NamespacedDummyUserModel'],
+            ['{{ namespace }}', '{{ rootNamespace }}', '{{ namespacedUserModel }}'],
+            ['{{namespace}}', '{{rootNamespace}}', '{{namespacedUserModel}}'],
+        ];
+
+        foreach ($searches as $search) {
+            $stub = str_replace(
+                $search,
+                [$this->getCurrentNamespace(), $this->rootNamespace(), $this->userProviderModel()],
+                $stub
+            );
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    private function getCurrentNamespace(): string
+    {
+        return $this->getNecessaryNamespace().'\\'.($this->option('container') ? 'Data\Seeders' : 'Seeders');
     }
 }

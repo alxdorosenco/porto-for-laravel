@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as LaravelFactoryMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 
@@ -14,7 +14,7 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -88,21 +88,6 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
         $name = (string) Str::of($name)->replaceFirst($this->rootNamespace(), '')->finish('Factory');
 
         return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.str_replace('\\', '/', $name).'.php';
-    }
-
-    /**
-     * Build the class with the given name.
-     *
-     * @param  string  $name
-     * @return string
-     *
-     * @throws FileNotFoundException
-     */
-    protected function buildClassCurrent($name): string
-    {
-        $stub = $this->files->get($this->getStub());
-
-        return $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ExceptionMakeCommand as LaravelExceptionMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class ExceptionMakeCommand extends LaravelExceptionMakeCommand
 {

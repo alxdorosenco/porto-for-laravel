@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ChannelMakeCommand as LaravelChannelMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ChannelMakeCommand extends LaravelChannelMakeCommand
@@ -13,7 +13,7 @@ class ChannelMakeCommand extends LaravelChannelMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
     public function handle()

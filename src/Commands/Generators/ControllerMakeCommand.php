@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Routing\Console\ControllerMakeCommand as LaravelControllerMakeCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Support\Str;
 
 class ControllerMakeCommand extends LaravelControllerMakeCommand
@@ -14,7 +14,7 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
     public function handle()

@@ -141,7 +141,7 @@ trait FilesAndDirectories
      */
     protected function getNamespaceFromPath(string $path): string
     {
-        return implode('\\', array_map('ucfirst', explode(DIRECTORY_SEPARATOR, $path)));
+        return implode('\\', array_map('ucfirst', explode('/', $path)));
     }
 
     /**

@@ -26,9 +26,36 @@ class ValueMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestValue';
+
         $this->artisan('make:value', [
-            'name' => 'Test1Value',
+            'name' => $name,
             '--container' => $this->containerName
         ])->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Values/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getValueContent($name), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getValueContent(string $name): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Values;
+
+class $name
+{
+    // value class
+}
+
+Class;
+
     }
 }

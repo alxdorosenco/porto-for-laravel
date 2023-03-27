@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
@@ -48,7 +48,7 @@ class ContractMakeCommand extends GeneratorCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->error('Action must be in the container');
+            $this->error('Contract must be in the container');
 
             return static::FAILURE;
         }
@@ -64,6 +64,6 @@ class ContractMakeCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $this->getContainersNamespace().'\Contracts';
+        return $this->getNecessaryNamespace().'\Contracts';
     }
 }

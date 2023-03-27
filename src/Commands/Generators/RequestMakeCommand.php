@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\RequestMakeCommand as LaravelRequestMakeCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Symfony\Component\Console\Input\InputOption;
 
 class RequestMakeCommand extends LaravelRequestMakeCommand
@@ -34,7 +34,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
     public function handle()

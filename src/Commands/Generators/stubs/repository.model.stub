@@ -12,6 +12,6 @@ class {{ class }}
      * @return void
      */
     public function __construct(
-        private \{{ namespacedModel }} $model
+        private {{ model }} $model
     ){}
 }
