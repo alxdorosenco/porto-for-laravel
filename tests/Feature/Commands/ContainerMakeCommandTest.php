@@ -4,6 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\ContainersStructureFilesContent;
+use Illuminate\Console\Command;
 
 class ContainerMakeCommandTest extends TestCase
 {
@@ -137,7 +138,7 @@ class ContainerMakeCommandTest extends TestCase
     {
         $this->artisan('make:container')
             ->expectsOutput('You can\'t create container without name')
-            ->assertFailed();
+            ->assertExitCode(Command::FAILURE);
     }
 
     /**
@@ -166,7 +167,7 @@ class ContainerMakeCommandTest extends TestCase
         $this->artisan('make:container', [
             'name'  => $type === 'default' ? ucfirst($type).'Container' : ucfirst($type),
             '--'.$type => true,
-        ])->assertSuccessful();
+        ])->assertExitCode(Command::SUCCESS);
     }
 
     /**

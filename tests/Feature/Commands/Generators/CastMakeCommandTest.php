@@ -62,7 +62,7 @@ class $name implements CastsAttributes
      * @param  array  ".'$attributes'."
      * @return mixed
      */
-    public function get(".'$model'.", string ".'$key'.", ".'$value'.", array ".'$attributes'.")
+    public function get(".'$model'.", ".'$key'.", ".'$value'.", ".'$attributes'.")
     {
         return ".'$value'.";
     }
@@ -72,11 +72,11 @@ class $name implements CastsAttributes
      *
      * @param  \\{$this->portoPathUcFirst()}\Ship\Models\Model  ".'$model'."
      * @param  string  ".'$key'."
-     * @param  mixed  ".'$value'."
+     * @param  array  ".'$value'."
      * @param  array  ".'$attributes'."
      * @return mixed
      */
-    public function set(".'$model'.", string ".'$key'.", ".'$value'.", array ".'$attributes'.")
+    public function set(".'$model'.", ".'$key'.", ".'$value'.", ".'$attributes'.")
     {
         return ".'$value'.";
     }
