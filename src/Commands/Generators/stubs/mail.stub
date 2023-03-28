@@ -4,8 +4,8 @@ namespace {{ namespace }};
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\SerializesModels;
 use {{ rootNamespace }}Ship\Abstracts\Mails\Mailable;
+use Illuminate\Queue\SerializesModels;
 
 class {{ class }} extends Mailable
 {

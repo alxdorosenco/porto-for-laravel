@@ -28,14 +28,13 @@ class ComponentMakeCommand extends LaravelComponentMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return  __DIR__.$stub;
+        return __DIR__.'/stubs/view-component.stub';
     }
 
     /**

@@ -52,11 +52,15 @@ namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Events;
 use {$this->portoPathUcFirst()}\Ship\Broadcasting\Channel;
 use {$this->portoPathUcFirst()}\Ship\Broadcasting\PresenceChannel;
 use {$this->portoPathUcFirst()}\Ship\Broadcasting\PrivateChannel;
-use {$this->portoPathUcFirst()}\Ship\Events\Event;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
-class $name extends Event
+class $name
 {
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
     /**
      * Create a new event instance.
      *
@@ -70,7 +74,7 @@ class $name extends Event
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return PrivateChannel
+     * @return Channel|array
      */
     public function broadcastOn()
     {

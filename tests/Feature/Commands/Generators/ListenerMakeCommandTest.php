@@ -124,7 +124,7 @@ class $name
     /**
      * Handle the event.
      *
-     * @param  \\{$this->portoPathUcFirst()}\\$eventNamespace  ".'$event'."
+     * @param  $eventName  ".'$event'."
      * @return void
      */
     public function handle($eventName ".'$event'.")
@@ -207,7 +207,7 @@ class $name implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  {$this->portoPathUcFirst()}\\$eventNamespace  ".'$event'."
+     * @param  $eventName  ".'$event'."
      * @return void
      */
     public function handle($eventName ".'$event'.")
