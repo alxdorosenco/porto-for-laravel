@@ -41,52 +41,6 @@ class TestMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command with unit
-     *
-     * @return void
-     */
-    public function testConsoleCommandWithPestUnit(): void
-    {
-        $name = 'TestPestUnit';
-
-        $this->artisan('make:test', [
-            'name' => $name,
-            '--unit' => true,
-            '--pest' => true,
-            '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
-
-        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Unit/'.$name.'.php';
-
-        $this->assertFileExists($file);
-        $this->assertEquals($this->getPestUnitTestContent(), file_get_contents($file));
-    }
-
-    /**
-     * Test of the console command with pest
-     *
-     * @dataProvider provideTestUi
-     * @return void
-     */
-    public function testConsoleCommandWithPest(string $ui): void
-    {
-        $name = 'TestPest';
-
-        $this->artisan('make:test', [
-            'name' => $name,
-            '--pest' => true,
-            '--container' => $this->containerName
-        ])
-            ->expectsChoice('Please, select type of the user\'s interface', $ui, ['api' => 'api', 'web' => 'web', 'cli' => 'cli'])
-            ->assertSuccessful();
-
-        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/'.strtoupper($ui).'/Tests/Functional/'.$name.'.php';
-
-        $this->assertFileExists($file);
-        $this->assertEquals($this->getPestTestContent(), file_get_contents($file));
-    }
-
-    /**
      * Test of the console command
      *
      * @dataProvider provideTestUi
@@ -128,7 +82,7 @@ class $name extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function testExample()
     {
         ".'$this'."->assertTrue(true);
     }
@@ -164,34 +118,6 @@ class $name extends TestCase
         ".'$response'."->assertStatus(200);
     }
 }
-";
-    }
-
-    /**
-     * @return string
-     */
-    private function getPestTestContent(): string
-    {
-        return "<?php
-
-test('example', function () {
-    ".'$response'." = ".'$this'."->get('/');
-
-    ".'$response'."->assertStatus(200);
-});
-";
-    }
-
-    /**
-     * @return string
-     */
-    private function getPestUnitTestContent(): string
-    {
-        return "<?php
-
-test('example', function () {
-    expect(true)->toBeTrue();
-});
 ";
     }
 }

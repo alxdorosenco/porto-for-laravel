@@ -115,7 +115,7 @@ use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
 class $name
 {
     /**
-     * Handle the $model \"created\" event.
+     * Handle the model for observer \"created\" event.
      *
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
      * @return void
@@ -126,7 +126,7 @@ class $name
     }
 
     /**
-     * Handle the $model \"updated\" event.
+     * Handle the model for observer \"updated\" event.
      *
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
      * @return void
@@ -137,7 +137,7 @@ class $name
     }
 
     /**
-     * Handle the $model \"deleted\" event.
+     * Handle the model for observer \"deleted\" event.
      *
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
      * @return void
@@ -148,7 +148,7 @@ class $name
     }
 
     /**
-     * Handle the $model \"restored\" event.
+     * Handle the model for observer \"restored\" event.
      *
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
      * @return void
@@ -159,7 +159,7 @@ class $name
     }
 
     /**
-     * Handle the $model \"force deleted\" event.
+     * Handle the model for observer \"force deleted\" event.
      *
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
      * @return void

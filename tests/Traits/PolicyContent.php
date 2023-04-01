@@ -16,10 +16,12 @@ trait PolicyContent
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Policies;
 
 use {$this->portoPathUcFirst()}\Ship\Models\UserModel;
-use {$this->portoPathUcFirst()}\Ship\Policies\Policy;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
-class $name extends Policy
+class $name
 {
+    use HandlesAuthorization;
+
     /**
      * Create a new policy instance.
      *
@@ -50,14 +52,17 @@ namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Policies;
 
 use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
 use {$this->portoPathUcFirst()}\Ship\Models\UserModel;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
-class $name extends Policy
+class $name
 {
+    use HandlesAuthorization;
+
     /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return mixed
      */
     public function viewAny(UserModel ".'$userModel'.")
     {
@@ -69,7 +74,7 @@ class $name extends Policy
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return mixed
      */
     public function view(UserModel ".'$userModel'.", $model ".'$'."$modelVariable)
     {
@@ -80,7 +85,7 @@ class $name extends Policy
      * Determine whether the user can create models.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return mixed
      */
     public function create(UserModel ".'$userModel'.")
     {
@@ -92,7 +97,7 @@ class $name extends Policy
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return mixed
      */
     public function update(UserModel ".'$userModel'.", $model ".'$'."$modelVariable)
     {
@@ -104,7 +109,7 @@ class $name extends Policy
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return mixed
      */
     public function delete(UserModel ".'$userModel'.", $model ".'$'."$modelVariable)
     {
@@ -116,7 +121,7 @@ class $name extends Policy
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return mixed
      */
     public function restore(UserModel ".'$userModel'.", $model ".'$'."$modelVariable)
     {
@@ -128,7 +133,7 @@ class $name extends Policy
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return mixed
      */
     public function forceDelete(UserModel ".'$userModel'.", $model ".'$'."$modelVariable)
     {
