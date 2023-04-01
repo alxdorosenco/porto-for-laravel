@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\MailMakeCommand as LaravelMailMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class MailMakeCommand extends LaravelMailMakeCommand
 {
@@ -12,14 +12,15 @@ class MailMakeCommand extends LaravelMailMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return __DIR__.$stub;
+        return $this->option('markdown')
+            ? __DIR__.'/stubs/markdown-mail.stub'
+            : __DIR__.'/stubs/mail.stub';
     }
 
     /**

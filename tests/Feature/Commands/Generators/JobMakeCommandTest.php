@@ -24,9 +24,17 @@ class JobMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
+        $name = 'TestJob';
+        $namespace = 'Ship\Jobs';
+
         $this->artisan('make:job', [
-            'name' => 'TestJob',
-        ])->assertExitCode(0);
+            'name' => $name
+        ])->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Ship/Jobs/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getJobQueuedContent($name, $namespace), file_get_contents($file));
     }
 
     /**
@@ -36,10 +44,18 @@ class JobMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'Test2Job';
+        $namespace = 'Containers\\'.$this->containerName.'\Jobs';
+
         $this->artisan('make:job', [
-            'name' => 'Test1Job',
+            'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ])->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getJobQueuedContent($name, $namespace), file_get_contents($file));
     }
 
     /**
@@ -50,10 +66,105 @@ class JobMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
+        $name = 'Test2'.(ucfirst($type)).'Job';
+        $namespace = 'Containers\\'.$this->containerName.'\Jobs';
+
         $this->artisan('make:job', [
-            'name' => 'Test2'.(ucfirst($type)).'Job',
+            'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(0);
+        ])->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
+
+        $this->assertFileExists($file);
+
+        if($type === 'sync'){
+            $this->assertEquals($this->getJobContent($name, $namespace), file_get_contents($file));
+        } else {
+            $this->assertEquals($this->getJobQueuedContent($name, $namespace), file_get_contents($file));
+        }
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
+    private function getJobContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Jobs\Job;
+
+class $name extends Job
+{
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        //
+    }
+}
+
+Class;
+
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
+    private function getJobQueuedContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Jobs\JobQueued;
+
+class $name extends JobQueued
+{
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        //
+    }
+}
+
+Class;
+
     }
 }

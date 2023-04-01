@@ -2,9 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use Illuminate\Console\Command as LaravelCommand;
-
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use AlxDorosenco\PortoForLaravel\Enums\ContainerTypes;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
 use AlxDorosenco\PortoForLaravel\Structure\StructureMaker;
@@ -61,6 +59,7 @@ class ContainerMakeCommand extends GeneratorCommand
     protected function getOptions(): array
     {
         return [
+            ['standard', 's', InputOption::VALUE_NONE, 'Create standard container in current porto structure'],
             ['default', 'd', InputOption::VALUE_NONE, 'Create default container in current porto structure'],
             ['full', 'f', InputOption::VALUE_NONE, 'Create full container in current porto structure'],
             ['api', 'a', InputOption::VALUE_NONE, 'Create api container in current porto structure'],

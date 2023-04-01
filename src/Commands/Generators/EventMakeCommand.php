@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\EventMakeCommand as LaravelEventMakeCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class EventMakeCommand extends LaravelEventMakeCommand
 {
@@ -13,18 +13,17 @@ class EventMakeCommand extends LaravelEventMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return  __DIR__.$stub;
+        return __DIR__.'/stubs/event.stub';
     }
 
     /**
-     * @return bool|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
     public function handle()

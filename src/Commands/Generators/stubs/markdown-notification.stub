@@ -2,12 +2,15 @@
 
 namespace {{ namespace }};
 
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use {{ rootNamespace }}Ship\Notifications\Messages\MailMessage;
 use {{ rootNamespace }}Ship\Notifications\Notification;
 
 class {{ class }} extends Notification
 {
+    use Queueable;
+
     /**
      * Create a new notification instance.
      *
@@ -37,7 +40,7 @@ class {{ class }} extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('{{ view }}');
+        return (new MailMessage)->markdown('DummyView');
     }
 
     /**

@@ -24,11 +24,18 @@ class TranslationMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
+        $name = 'TestTranslation';
+
         $this->artisan('make:translation', [
-            'name' => 'TestTranslation',
+            'name' => $name
         ])
             ->expectsQuestion('Please, write your language code (for example en, fr, de)', 'en')
-            ->assertExitCode(0);
+            ->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getTranslationContent(), file_get_contents($file));
     }
 
     /**
@@ -39,11 +46,32 @@ class TranslationMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $testCommand = $this->artisan('make:translation', [
-            'name' => 'Test2'.(ucfirst($type)).'Translation',
-            '--'.$type => 'en'
-        ]);
+        $name = 'Test'.(ucfirst($type)).'Translation';
 
-        $testCommand->assertExitCode(0);
+        $this->artisan('make:translation', [
+            'name' => $name,
+            '--'.$type => 'en'
+        ])->assertExitCode(Command::SUCCESS);
+
+        $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getTranslationContent(), file_get_contents($file));
+    }
+
+    /**
+     * @return string
+     */
+    private function getTranslationContent(): string
+    {
+        return <<<File
+<?php
+
+return [
+   // translation arrays
+];
+
+File;
+
     }
 }

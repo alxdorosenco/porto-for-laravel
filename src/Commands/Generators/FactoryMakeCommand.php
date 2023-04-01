@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as LaravelFactoryMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class FactoryMakeCommand extends LaravelFactoryMakeCommand
@@ -13,7 +13,7 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
-     * @return bool|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -74,9 +74,20 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
      */
     protected function getPath($name): string
     {
-        $nameFactory = str_replace(
-            ['\\', '/'], '', $this->argument('name')
-        );
+        $name = (string) Str::of($name)->replaceFirst($this->rootNamespace(), '')->finish('Factory');
+
+        return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.str_replace('\\', '/', $name).'.php';
+    }
+
+    /**
+     * Qualify the given model class base name.
+     *
+     * @param  string  $model
+     * @return string
+     */
+    protected function qualifyModel(string $model): string
+    {
+        $model = ltrim($model, '\\/');
 
         return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.$nameFactory.'.php';
     }
