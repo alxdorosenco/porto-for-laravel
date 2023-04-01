@@ -220,9 +220,8 @@ class $name extends Controller
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
 use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
-use {$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Store{$model}Request;
-use {$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Update{$model}Request;
 use {$this->portoPathUcFirst()}\Ship\Controllers\Controller;
+use {$this->portoPathUcFirst()}\Ship\Requests\Request;
 
 class $name extends Controller
 {
@@ -249,10 +248,10 @@ class $name extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Store{$model}Request  ".'$request'."
+     * @param  \\{$this->portoPathUcFirst()}\Ship\Requests\Request  ".'$request'."
      * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
      */
-    public function store(Store{$model}Request ".'$request'.")
+    public function store(Request ".'$request'.")
     {
         //
     }
@@ -282,11 +281,11 @@ class $name extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\UI\WEB\Requests\Update{$model}Request  ".'$request'."
+     * @param  \\{$this->portoPathUcFirst()}\Ship\Requests\Request  ".'$request'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
      * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response
      */
-    public function update(Update{$model}Request ".'$request'.", $model ".'$'."$modelVariable)
+    public function update(Request ".'$request'.", $model ".'$'."$modelVariable)
     {
         //
     }

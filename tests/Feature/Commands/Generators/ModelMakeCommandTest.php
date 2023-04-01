@@ -35,8 +35,7 @@ class ModelMakeCommandTest extends TestCase
             'migration' => ['migration'],
             'seed' => ['seed'],
             'pivot' => ['pivot'],
-            'resource' => ['resource'],
-            'requests' => ['requests']
+            'resource' => ['resource']
         ];
     }
 
