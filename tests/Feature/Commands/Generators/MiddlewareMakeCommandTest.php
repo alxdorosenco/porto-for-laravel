@@ -57,7 +57,6 @@ class MiddlewareMakeCommandTest extends TestCase
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
-use {$this->portoPathUcFirst()}\Ship\Requests\Request;
 use Closure;
 
 class $name
@@ -66,10 +65,10 @@ class $name
      * Handle an incoming request.
      *
      * @param  \\{$this->portoPathUcFirst()}\Ship\Requests\Request  ".'$request'."
-     * @param  \Closure(\\{$this->portoPathUcFirst()}\Ship\Requests\Request): (\\{$this->portoPathUcFirst()}\Ship\Responses\Response|\\{$this->portoPathUcFirst()}\Ship\Responses\RedirectResponse)  ".'$next'."
-     * @return \\{$this->portoPathUcFirst()}\Ship\Responses\Response|\\{$this->portoPathUcFirst()}\Ship\Responses\RedirectResponse
+     * @param  \Closure  ".'$next'."
+     * @return mixed
      */
-    public function handle(Request ".'$request'.", Closure ".'$next'.")
+    public function handle(".'$request'.", Closure ".'$next'.")
     {
         return ".'$next'."(".'$request'.");
     }

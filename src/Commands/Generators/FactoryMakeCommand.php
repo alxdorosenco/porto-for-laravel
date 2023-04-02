@@ -5,6 +5,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as LaravelFactoryMakeCommand;
 use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Str;
 
 class FactoryMakeCommand extends LaravelFactoryMakeCommand
 {
@@ -28,16 +29,50 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
+     * Get the stub file for the generator.
+     *
+     * @return string
+     */
+    protected function getStub()
+    {
+        return __DIR__.'/stubs/factory.stub';
+    }
+
+    /**
+     * Parse the class name and format according to the root namespace.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function qualifyClass($name)
+    {
+        $name = ltrim($name, '\\/');
+
+        $rootNamespace = $this->getNecessaryNamespace().'\Models';
+
+        if (Str::startsWith($name, $rootNamespace)) {
+            return $name;
+        }
+
+        $name = str_replace('/', '\\', $name);
+
+        return $this->qualifyClass(
+            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
+        );
+    }
+
+    /**
      * Build the class with the given name.
      *
      * @param string $name
      * @return string
+     * @throws FileNotFoundException
      */
     protected function buildClass($name): string
     {
         $namespaceModel = $this->option('model')
             ? $this->qualifyClass($this->option('model'))
-            : trim($this->rootNamespace(), '\\').'\\Model';
+            : trim($this->getShipNamespace(), '\\').'\Models\Model';
 
         $model = class_basename($namespaceModel);
 
@@ -50,7 +85,8 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
                 $namespaceModel,
                 $model,
             ],
-            parent::buildClass($name)
+
+            $this->buildClassCurrent($name)
         );
     }
 
@@ -67,18 +103,5 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
         );
 
         return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.str_replace('\\', '/', $name).'.php';
-    }
-
-    /**
-     * Qualify the given model class base name.
-     *
-     * @param  string  $model
-     * @return string
-     */
-    protected function qualifyModel(string $model): string
-    {
-        $model = ltrim($model, '\\/');
-
-        return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.$nameFactory.'.php';
     }
 }

@@ -37,7 +37,7 @@ class MailMakeCommandTest extends TestCase
         $file = base_path($this->portoPath).'/Ship/Mails/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getMailContent($name, 'Ship\Mails', 'Test Mail'), file_get_contents($file));
+        $this->assertEquals($this->getMailContent($name, 'Ship\Mails'), file_get_contents($file));
     }
 
     /**
@@ -57,7 +57,7 @@ class MailMakeCommandTest extends TestCase
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getMailContent($name, 'Containers\\'.$this->containerName.'\Mails', 'Test Mail'), file_get_contents($file));
+        $this->assertEquals($this->getMailContent($name, 'Containers\\'.$this->containerName.'\Mails'), file_get_contents($file));
     }
 
     /**

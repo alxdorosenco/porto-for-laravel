@@ -45,25 +45,4 @@ class $name extends Pivot
 
 Class;
     }
-
-    /**
-     * @param string $name
-     * @return string
-     */
-    public function getModelMorphPivotContent(string $name): string
-    {
-        return <<<Class
-<?php
-
-namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models;
-
-use {$this->portoPathUcFirst()}\Ship\Models\MorphPivot;
-
-class $name extends MorphPivot
-{
-    //
-}
-
-Class;
-    }
 }

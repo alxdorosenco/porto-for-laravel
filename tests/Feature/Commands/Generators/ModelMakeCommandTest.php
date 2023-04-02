@@ -117,7 +117,7 @@ class ModelMakeCommandTest extends TestCase
 
             $this->assertEquals($this->getModelContent($name), file_get_contents($file));
 
-            $this->assertEquals($this->getFactoryContent($factoryName, 'Containers\\'.$this->containerName.'\Models\\'.$name), file_get_contents($factoryFile));
+            $this->assertEquals($this->getFactoryContent('Containers\\'.$this->containerName.'\Models\\'.$name, $name), file_get_contents($factoryFile));
             $this->assertEquals($this->getSeederContent($seedName, 'Containers\\'.$this->containerName.'\Data\Seeders'), file_get_contents($seedFile));
             $this->assertEquals($this->getControllerModelRequestContent($controllerName, 'Containers\\'.$this->containerName.'\UI\WEB\Controllers', $name), file_get_contents($controllerFile));
         } elseif($type === 'controller'){
@@ -132,8 +132,6 @@ class ModelMakeCommandTest extends TestCase
             $this->assertEquals($this->getControllerModelApiContent($controllerName, 'Containers\\'.$this->containerName.'\UI\API\Controllers', $name), file_get_contents($controllerFile));
         } elseif($type === 'pivot'){
             $this->assertEquals($this->getModelPivotContent($name), file_get_contents($file));
-        } elseif ($type === 'morph-pivot'){
-            $this->assertEquals($this->getModelMorphPivotContent($name), file_get_contents($file));
         } else {
             $this->assertEquals($this->getModelContent($name), file_get_contents($file));
         }

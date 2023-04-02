@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use DummyRootNamespaceShip\Models\Pivot;
 
 class DummyClass extends Pivot
 {

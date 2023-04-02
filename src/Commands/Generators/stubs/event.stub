@@ -1,16 +1,16 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Broadcasting\Channel;
-use {{ rootNamespace }}Ship\Broadcasting\PresenceChannel;
-use {{ rootNamespace }}Ship\Broadcasting\PrivateChannel;
+use DummyRootNamespaceShip\Broadcasting\Channel;
+use DummyRootNamespaceShip\Broadcasting\PresenceChannel;
+use DummyRootNamespaceShip\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class {{ class }}
+class DummyClass
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

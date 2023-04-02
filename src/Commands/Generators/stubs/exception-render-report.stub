@@ -1,12 +1,12 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
 use Exception;
-use {{ rootNamespace }}Ship\Requests\Request;
-use {{ rootNamespace }}Ship\Responses\Response;
+use DummyRootNamespaceShip\Requests\Request;
+use DummyRootNamespaceShip\Responses\Response;
 
-class {{ class }} extends Exception
+class DummyClass extends Exception
 {
     /**
      * Report the exception.

@@ -99,9 +99,12 @@ class JobMakeCommandTest extends TestCase
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
 use {$this->portoPathUcFirst()}\Ship\Abstracts\Jobs\Job;
+use Illuminate\Foundation\Bus\Dispatchable;
 
 class $name extends Job
 {
+    use Dispatchable;
+
     /**
      * Create a new job instance.
      *
@@ -139,10 +142,16 @@ Class;
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Jobs\JobQueued;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
-class $name extends JobQueued
+class $name implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     /**
      * Create a new job instance.
      *

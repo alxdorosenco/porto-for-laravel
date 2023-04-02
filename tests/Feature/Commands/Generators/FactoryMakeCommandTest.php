@@ -48,7 +48,7 @@ class FactoryMakeCommandTest extends TestCase
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getFactoryContent($name, 'Ship\Models\Model'), file_get_contents($file));
+        $this->assertEquals($this->getFactoryContent('Ship\Models\Model', 'Model'), file_get_contents($file));
     }
 
     /**
@@ -71,6 +71,6 @@ class FactoryMakeCommandTest extends TestCase
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 
         $this->assertFileExists($file);
-        $this->assertEquals($this->getFactoryContent($name, 'Containers\\'.$this->containerName.'\Models\\'.$modelName), file_get_contents($file));
+        $this->assertEquals($this->getFactoryContent('Containers\\'.$this->containerName.'\Models\\'.$modelName, $modelName), file_get_contents($file));
     }
 }

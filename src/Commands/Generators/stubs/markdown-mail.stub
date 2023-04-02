@@ -1,13 +1,13 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use {{ rootNamespace }}Ship\Abstracts\Mails\Mailable;
+use DummyRootNamespaceShip\Abstracts\Mails\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class {{ class }} extends Mailable
+class DummyClass extends Mailable
 {
     use Queueable, SerializesModels;
 

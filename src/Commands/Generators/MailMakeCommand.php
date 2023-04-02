@@ -41,6 +41,22 @@ class MailMakeCommand extends LaravelMailMakeCommand
     }
 
     /**
+     * Write the Markdown template for the mailable.
+     *
+     * @return void
+     */
+    protected function writeMarkdownTemplate()
+    {
+        $path = $this->viewPath(str_replace('.', '/', $this->option('markdown'))).'.blade.php';
+
+        if (! $this->files->isDirectory(dirname($path))) {
+            $this->files->makeDirectory(dirname($path), 0755, true);
+        }
+
+        $this->files->put($path, file_get_contents(__DIR__.'/stubs/markdown.stub'));
+    }
+
+    /**
      * Get the default namespace for the class.
      *
      * @param  string  $rootNamespace

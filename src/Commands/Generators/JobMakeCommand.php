@@ -10,14 +10,15 @@ class JobMakeCommand extends LaravelJobMakeCommand
     use ConsoleGenerator;
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return __DIR__.$stub;
+        return $this->option('sync')
+            ? __DIR__.'/stubs/job.stub'
+            : __DIR__.'/stubs/job.queued.stub';
     }
 
     /**

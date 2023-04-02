@@ -5,37 +5,24 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Traits;
 trait FactoryContent
 {
     /**
-     * @param string $name
      * @param string $modelNamespace
+     * @param string $modelName
      * @return string
      */
-    private function getFactoryContent(string $name, string $modelNamespace): string
+    private function getFactoryContent(string $modelNamespace, string $modelName): string
     {
-        return <<<Class
-<?php
+        return "<?php
 
-namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Data\Factories;
+/** @var \\{$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory ".'$factory'." */
 
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory;
+use {$this->portoPathUcFirst()}\\$modelNamespace;
+use Faker\Generator as Faker;
 
-/**
- * @extends \\{$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory<\\{$this->portoPathUcFirst()}\\$modelNamespace>
- */
-class $name extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            //
-        ];
-    }
-}
-
-Class;
+".'$factory'."->define($modelName::class, function (Faker ".'$faker'.") {
+    return [
+        //
+    ];
+});
+";
     }
 }

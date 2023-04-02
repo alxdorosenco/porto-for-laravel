@@ -1,11 +1,14 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Abstracts\Jobs\Job;
+use DummyRootNamespaceShip\Abstracts\Jobs\Job;
+use Illuminate\Foundation\Bus\Dispatchable;
 
-class {{ class }} extends Job
+class DummyClass extends Job
 {
+    use Dispatchable;
+
     /**
      * Create a new job instance.
      *
