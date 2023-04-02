@@ -96,7 +96,7 @@ class $name extends JsonResource
      * Transform the resource into an array.
      *
      * @param  \\{$this->portoPathUcFirst()}\Ship\Requests\Request  ".'$request'."
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array
      */
     public function toArray(".'$request'.")
     {
@@ -125,7 +125,7 @@ class $name extends ResourceCollection
      * Transform the resource collection into an array.
      *
      * @param  \\{$this->portoPathUcFirst()}\Ship\Requests\Request  ".'$request'."
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array
      */
     public function toArray(".'$request'.")
     {

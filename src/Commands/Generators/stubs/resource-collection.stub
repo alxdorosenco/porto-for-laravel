@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Resources\ResourceCollection;
+use DummyRootNamespaceShip\Resources\ResourceCollection;
 
 class DummyClass extends ResourceCollection
 {
@@ -10,7 +10,7 @@ class DummyClass extends ResourceCollection
      * Transform the resource collection into an array.
      *
      * @param  \{{ namespaceRequest }}  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array
      */
     public function toArray($request)
     {

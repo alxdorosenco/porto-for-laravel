@@ -13,7 +13,7 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
     }
 
     /**
-     * @return bool|int|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()

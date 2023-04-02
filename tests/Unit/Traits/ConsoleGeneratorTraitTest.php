@@ -81,7 +81,6 @@ class ConsoleGeneratorTraitTest extends TestCase
             'markdown-mail.stub' => ['markdown-mail.stub'],
             'markdown-notification.stub' => ['markdown-notification.stub'],
             'middleware.stub' => ['middleware.stub'],
-            'model.morph-pivot.stub' => ['model.morph-pivot.stub'],
             'model.pivot.stub' => ['model.pivot.stub'],
             'model.stub' => ['model.stub'],
             'notification.stub' => ['notification.stub'],

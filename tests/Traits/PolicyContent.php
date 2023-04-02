@@ -16,9 +16,10 @@ trait PolicyContent
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Policies;
 
 use {$this->portoPathUcFirst()}\Ship\Models\UserModel;
+use {$this->portoPathUcFirst()}\Ship\Policies\Policy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class $name
+class $name extends Policy
 {
     use HandlesAuthorization;
 
@@ -59,7 +60,7 @@ class $name
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any DocDummyPluralModel.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @return mixed
@@ -70,7 +71,7 @@ class $name
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the Doc$model.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
@@ -82,7 +83,7 @@ class $name
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create DocDummyPluralModel.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @return mixed
@@ -93,7 +94,7 @@ class $name
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the Doc$model.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
@@ -105,7 +106,7 @@ class $name
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the Doc$model.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
@@ -117,7 +118,7 @@ class $name
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can restore the Doc$model.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
@@ -129,7 +130,7 @@ class $name
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete the Doc$model.
      *
      * @param  \App\Ship\Models\UserModel  ".'$userModel'."
      * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable

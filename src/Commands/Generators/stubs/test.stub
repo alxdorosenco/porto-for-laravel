@@ -4,7 +4,7 @@ namespace DummyNamespace;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use {{ rootNamespace }}Ship\Tests\TestCase;
+use DummyRootNamespaceShip\Tests\TestCase;
 
 class DummyClass extends TestCase
 {

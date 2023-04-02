@@ -97,10 +97,13 @@ namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Notificat
 
 use {$this->portoPathUcFirst()}\Ship\Notifications\Messages\MailMessage;
 use {$this->portoPathUcFirst()}\Ship\Notifications\Notification;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class $name extends Notification
 {
+    use Queueable;
+
     /**
      * Create a new notification instance.
      *

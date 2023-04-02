@@ -13,10 +13,10 @@ class ResourceMakeCommand extends LaravelResourceMakeCommand
     }
 
     /**
-     * @return bool|int|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): ?bool
     {
         if (!$this->option('container')) {
             $this->error('Resource must be in the container');
@@ -28,14 +28,15 @@ class ResourceMakeCommand extends LaravelResourceMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return  __DIR__.$stub;
+        return $this->collection()
+            ? __DIR__.'/stubs/resource-collection.stub'
+            : __DIR__.'/stubs/resource.stub';
     }
 
     /**

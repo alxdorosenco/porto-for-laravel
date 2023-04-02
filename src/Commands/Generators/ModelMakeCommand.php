@@ -14,7 +14,7 @@ class ModelMakeCommand extends LaravelModelMakeCommand
     }
 
     /**
-     * @return bool|int|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
     public function handle()
@@ -29,14 +29,17 @@ class ModelMakeCommand extends LaravelModelMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return __DIR__.$stub;
+        if ($this->option('pivot')) {
+            return __DIR__.'/stubs/pivot.model.stub';
+        }
+
+        return __DIR__.'/stubs/model.stub';
     }
 
     /**

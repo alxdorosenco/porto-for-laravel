@@ -4,7 +4,6 @@ namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
-use Illuminate\Console\Command;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\ControllersContent;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\FactoryContent;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\ModelsContent;

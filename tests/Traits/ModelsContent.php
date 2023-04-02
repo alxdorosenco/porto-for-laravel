@@ -19,7 +19,7 @@ use {$this->portoPathUcFirst()}\Ship\Models\Model;
 
 class $name extends Model
 {
-
+    //
 }
 
 Class;

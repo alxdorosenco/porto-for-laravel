@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Abstracts\Seeders\Seeder;
+use DummyRootNamespaceShip\Abstracts\Seeders\Seeder;
 
 class DummyClass extends Seeder
 {
