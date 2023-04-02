@@ -8,7 +8,6 @@ use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ShipBuilder;
 use AlxDorosenco\PortoForLaravel\Structure\StructureMaker;
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
-use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputOption;
 
 class PortoInstallCommand extends LaravelCommand

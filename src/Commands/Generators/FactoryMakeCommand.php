@@ -13,10 +13,10 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
-     * @return bool|int|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): ?bool
     {
         if (!$this->option('container')) {
             $this->error('Factory must be in the container');
@@ -28,22 +28,10 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
-     *
-     * @param  string  $stub
-     * @return string
-     */
-    protected function resolveStubPath($stub): string
-    {
-        return  __DIR__.$stub;
-    }
-
-    /**
      * Build the class with the given name.
      *
      * @param string $name
      * @return string
-     * @throws FileNotFoundException
      */
     protected function buildClass($name): string
     {
@@ -74,7 +62,9 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
      */
     protected function getPath($name): string
     {
-        $name = (string) Str::of($name)->replaceFirst($this->rootNamespace(), '')->finish('Factory');
+        $name = str_replace(
+            ['\\', '/'], '', $this->argument('name')
+        );
 
         return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.str_replace('\\', '/', $name).'.php';
     }

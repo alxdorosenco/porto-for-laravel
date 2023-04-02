@@ -18,7 +18,7 @@ class ProviderMakeCommandTest extends TestCase
 
         $this->artisan('make:provider', [
             'name' => $name
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Ship/Providers/'.$name.'.php';
 
@@ -38,7 +38,7 @@ class ProviderMakeCommandTest extends TestCase
         $this->artisan('make:provider', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Providers/'.$name.'.php';
 

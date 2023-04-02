@@ -1,10 +1,10 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
 use {{ rootNamespace }}Ship\Abstracts\Seeders\Seeder;
 
-class {{ class }} extends Seeder
+class DummyClass extends Seeder
 {
     /**
      * Run the database seeds.

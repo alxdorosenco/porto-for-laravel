@@ -1,17 +1,17 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
 use {{ parentNamespace }};
 
-class {{ class }} extends {{ parentClass }}
+class DummyClass extends {{ parentClass }}
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = '{{ command }}';
+    protected $signature = 'dummy:command';
 
     /**
      * The console command description.

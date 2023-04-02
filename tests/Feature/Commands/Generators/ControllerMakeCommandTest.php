@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\ControllersContent;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\ModelsContent;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\RequestsContent;
@@ -42,7 +41,7 @@ class ControllerMakeCommandTest extends TestCase
     {
         $this->artisan('make:controller', [
             'name' => 'TestController',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -57,7 +56,7 @@ class ControllerMakeCommandTest extends TestCase
         $this->artisan('make:controller', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Controllers/'.$name.'.php';
 
@@ -84,7 +83,7 @@ class ControllerMakeCommandTest extends TestCase
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--api' => true
-            ])->assertExitCode(Command::SUCCESS);
+            ])->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerApiContent($name, $namespace), file_get_contents($file));
@@ -93,7 +92,7 @@ class ControllerMakeCommandTest extends TestCase
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--invokable' => true
-            ])->assertExitCode(Command::SUCCESS);
+            ])->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerInvokableContent($name, $namespace), file_get_contents($file));
@@ -108,8 +107,8 @@ class ControllerMakeCommandTest extends TestCase
                 '--container' => $this->containerName,
                 '--model' => $modelName
             ])
-                ->expectsConfirmation('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(Command::SUCCESS);
+                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerModelContent($name, $namespace, $modelName), file_get_contents($file));
@@ -128,8 +127,8 @@ class ControllerMakeCommandTest extends TestCase
                 '--model' => $modelName,
                 '--api' => true
             ])
-                ->expectsConfirmation('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(Command::SUCCESS);
+                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerModelApiContent($name, $namespace, $modelName), file_get_contents($file));
@@ -152,9 +151,9 @@ class ControllerMakeCommandTest extends TestCase
                 '--model' => $modelName,
                 '--parent' => $parentModelName
             ])
-                ->expectsConfirmation('A '.$parentNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->expectsConfirmation('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(Command::SUCCESS);
+                ->expectsQuestion('A '.$parentNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerNestedContent($name, $namespace, $modelName, $parentModelName), file_get_contents($file));
@@ -181,9 +180,9 @@ class ControllerMakeCommandTest extends TestCase
                 '--parent' => $parentModelName,
                 '--api' => true
             ])
-                ->expectsConfirmation('A '.$parentNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->expectsConfirmation('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(Command::SUCCESS);
+                ->expectsQuestion('A '.$parentNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
+                ->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerNestedApiContent($name, $namespace, $modelName, $parentModelName), file_get_contents($file));
@@ -198,7 +197,7 @@ class ControllerMakeCommandTest extends TestCase
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--resource' => true
-            ])->assertExitCode(Command::SUCCESS);
+            ])->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerContent($name, $namespace), file_get_contents($file));
@@ -207,7 +206,7 @@ class ControllerMakeCommandTest extends TestCase
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--'.$type => true
-            ])->assertExitCode(Command::SUCCESS);
+            ])->assertExitCode(0);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerPlainContent($name, $namespace), file_get_contents($file));

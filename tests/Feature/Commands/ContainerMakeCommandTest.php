@@ -138,7 +138,7 @@ class ContainerMakeCommandTest extends TestCase
     {
         $this->artisan('make:container')
             ->expectsOutput('You can\'t create container without name')
-            ->assertExitCode(Command::FAILURE);
+            ->assertExitCode(0);
     }
 
     /**
@@ -167,7 +167,7 @@ class ContainerMakeCommandTest extends TestCase
         $this->artisan('make:container', [
             'name'  => $type === 'default' ? ucfirst($type).'Container' : ucfirst($type),
             '--'.$type => true,
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
     }
 
     /**

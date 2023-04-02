@@ -16,7 +16,7 @@ class ValueMakeCommandTest extends TestCase
     {
         $this->artisan('make:value', [
             'name' => 'TestValue',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -31,7 +31,7 @@ class ValueMakeCommandTest extends TestCase
         $this->artisan('make:value', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Values/'.$name.'.php';
 

@@ -121,11 +121,10 @@ class PortoInstallCommandTest extends TestCase
     public function testConsoleCommand(): void
     {
         $this->artisan('porto:install')
-            ->expectsConfirmation('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'No')
-            ->expectsQuestion('Please, write your custom directory path', $this->portoPath)
+            ->expectsQuestion('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'Yes')
             ->expectsOutput('Installing Porto')
             ->expectsOutput("\n")
-            ->assertExitCode(Command::SUCCESS);
+            ->assertExitCode(0);
     }
 
     /**

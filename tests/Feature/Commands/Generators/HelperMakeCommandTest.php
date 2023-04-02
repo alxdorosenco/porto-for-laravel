@@ -18,7 +18,7 @@ class HelperMakeCommandTest extends TestCase
 
         $this->artisan('make:helper', [
             'name' => $name
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Ship/Helpers/'.$name.'.php';
 

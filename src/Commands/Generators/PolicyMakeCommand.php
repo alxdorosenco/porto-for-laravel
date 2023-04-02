@@ -3,8 +3,8 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use LogicException;
 use Illuminate\Foundation\Console\PolicyMakeCommand as LaravelPolicyMakeCommand;
+use Illuminate\Support\Str;
 use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class PolicyMakeCommand extends LaravelPolicyMakeCommand
@@ -14,10 +14,10 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
     }
 
     /**
-     * @return bool|int|null
+     * @return bool|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): ?bool
     {
         if (!$this->option('container')) {
             $this->error('Policy must be in the container');
@@ -36,8 +36,8 @@ class PolicyMakeCommand extends LaravelPolicyMakeCommand
     protected function getStub()
     {
         return $this->option('model')
-            ? $this->resolveStubPath('/stubs/policy.stub')
-            : $this->resolveStubPath('/stubs/policy.plain.stub');
+            ? __DIR__.'/stubs/policy.stub'
+            : __DIR__.'/stubs/policy.plain.stub';
     }
 
     /**

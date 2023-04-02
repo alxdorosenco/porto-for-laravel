@@ -29,7 +29,7 @@ class JobMakeCommandTest extends TestCase
 
         $this->artisan('make:job', [
             'name' => $name
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Ship/Jobs/'.$name.'.php';
 
@@ -50,7 +50,7 @@ class JobMakeCommandTest extends TestCase
         $this->artisan('make:job', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
 
@@ -73,7 +73,7 @@ class JobMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
 

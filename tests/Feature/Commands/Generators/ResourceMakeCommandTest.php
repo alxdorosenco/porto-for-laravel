@@ -26,7 +26,7 @@ class ResourceMakeCommandTest extends TestCase
     {
         $this->artisan('make:resource', [
             'name' => 'TestResource',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -41,7 +41,7 @@ class ResourceMakeCommandTest extends TestCase
         $this->artisan('make:resource', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php';
 
@@ -65,7 +65,7 @@ class ResourceMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php';
 

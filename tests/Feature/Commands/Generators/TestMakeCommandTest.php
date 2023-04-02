@@ -32,7 +32,7 @@ class TestMakeCommandTest extends TestCase
             'name' => $name,
             '--unit' => true,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Unit/'.$name.'.php';
 
@@ -54,8 +54,8 @@ class TestMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName
         ])
-            ->expectsChoice('Please, select type of the user\'s interface', $ui, ['api' => 'api', 'web' => 'web', 'cli' => 'cli'])
-            ->assertExitCode(Command::SUCCESS);
+            ->expectsQuestion('Please, select type of the user\'s interface', $ui)
+            ->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/'.strtoupper($ui).'/Tests/Functional/'.$name.'.php';
 

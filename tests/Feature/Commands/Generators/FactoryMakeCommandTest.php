@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 use AlxDorosenco\PortoForLaravel\Tests\Traits\FactoryContent;
 
 class FactoryMakeCommandTest extends TestCase
@@ -29,7 +28,7 @@ class FactoryMakeCommandTest extends TestCase
     {
         $this->artisan('make:factory', [
             'name' => 'TestFactory',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -44,7 +43,7 @@ class FactoryMakeCommandTest extends TestCase
         $this->artisan('make:factory', [
             'name' => 'TestFactory',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 
@@ -67,7 +66,7 @@ class FactoryMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $modelName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 

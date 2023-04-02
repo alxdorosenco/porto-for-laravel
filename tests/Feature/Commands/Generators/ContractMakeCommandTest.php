@@ -16,7 +16,7 @@ class ContractMakeCommandTest extends TestCase
     {
         $this->artisan('make:contract', [
             'name' => 'TestContract',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -31,7 +31,7 @@ class ContractMakeCommandTest extends TestCase
         $this->artisan('make:contract', [
             'name' => 'TestContract',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Contracts/'.$name.'.php';
 

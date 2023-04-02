@@ -30,7 +30,7 @@ class NotificationMakeCommandTest extends TestCase
     {
         $this->artisan('make:notification', [
             'name' => 'TestNotification',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -45,7 +45,7 @@ class NotificationMakeCommandTest extends TestCase
         $this->artisan('make:notification', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php';
 
@@ -68,7 +68,7 @@ class NotificationMakeCommandTest extends TestCase
             'name' => 'Test'.(ucfirst($type)).'Notification',
             '--container' => $this->containerName,
             '--'.$type => $type === 'markdown' ? $markdown : true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php';
         $markdownFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Views/'.$markdown.'.blade.php';

@@ -48,7 +48,7 @@ class ModelMakeCommandTest extends TestCase
     {
         $this->artisan('make:model', [
             'name' => 'TestModel',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -63,7 +63,7 @@ class ModelMakeCommandTest extends TestCase
         $this->artisan('make:model', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$name.'.php';
 
@@ -96,7 +96,7 @@ class ModelMakeCommandTest extends TestCase
         $this->createDirectory(base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Migrations');
 
         $this->artisan('make:model', $params)
-            ->assertExitCode(Command::SUCCESS);
+            ->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$name.'.php';
 

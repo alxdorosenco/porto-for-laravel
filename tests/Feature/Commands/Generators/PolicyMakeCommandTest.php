@@ -32,7 +32,7 @@ class PolicyMakeCommandTest extends TestCase
         $this->artisan('make:policy', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';
 
@@ -67,7 +67,7 @@ class PolicyMakeCommandTest extends TestCase
         }
 
         $this->artisan('make:policy', $params)
-            ->assertExitCode(Command::SUCCESS);
+            ->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';
 

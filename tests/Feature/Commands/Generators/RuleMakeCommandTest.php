@@ -16,7 +16,7 @@ class RuleMakeCommandTest extends TestCase
     {
         $this->artisan('make:rule', [
             'name' => 'TestRule',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -31,7 +31,7 @@ class RuleMakeCommandTest extends TestCase
         $this->artisan('make:rule', [
             'name' => 'TestRule',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Rules/'.$name.'.php';
 

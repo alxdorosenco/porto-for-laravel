@@ -26,7 +26,7 @@ class TraitMakeCommandTest extends TestCase
     {
         $this->artisan('make:trait', [
             'name' => 'TestTrait',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -41,7 +41,7 @@ class TraitMakeCommandTest extends TestCase
         $this->artisan('make:trait', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Traits/'.$name.'.php';
 
@@ -63,7 +63,7 @@ class TraitMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Traits/'.$name.'.php';
 

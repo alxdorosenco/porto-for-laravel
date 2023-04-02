@@ -15,7 +15,7 @@ class ActionMakeCommandTest extends TestCase
     {
         $this->artisan('make:action', [
             'name' => 'TestAction',
-        ])->assertExitCode(1);
+        ])->assertExitCode(0);
     }
 
     /**

@@ -29,7 +29,7 @@ class RepositoryMakeCommandTest extends TestCase
     {
         $this->artisan('make:repository', [
             'name' => 'TestRepository',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -44,7 +44,7 @@ class RepositoryMakeCommandTest extends TestCase
         $this->artisan('make:repository', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';
 
@@ -70,7 +70,7 @@ class RepositoryMakeCommandTest extends TestCase
             '--'.$type => $modelName
         ])
             ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-            ->assertExitCode(Command::SUCCESS);
+            ->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';
         $modelFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';

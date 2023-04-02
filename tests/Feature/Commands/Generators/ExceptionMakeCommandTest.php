@@ -30,7 +30,7 @@ class ExceptionMakeCommandTest extends TestCase
 
         $this->artisan('make:exception', [
             'name' => 'TestException',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Ship/Exceptions/'.$name.'.php';
 
@@ -50,7 +50,7 @@ class ExceptionMakeCommandTest extends TestCase
         $this->artisan('make:exception', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php';
 
@@ -81,7 +81,7 @@ class ExceptionMakeCommandTest extends TestCase
         }
 
         $this->artisan('make:exception', $params)
-            ->assertExitCode(Command::SUCCESS);
+            ->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php';
 

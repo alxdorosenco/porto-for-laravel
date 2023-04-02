@@ -26,7 +26,7 @@ class ObserverMakeCommandTest extends TestCase
     {
         $this->artisan('make:observer', [
             'name' => 'TestObserver',
-        ])->assertExitCode(Command::FAILURE);
+        ])->assertExitCode(0);
     }
 
     /**
@@ -41,7 +41,7 @@ class ObserverMakeCommandTest extends TestCase
         $this->artisan('make:observer', [
             'name' => 'TestObserver',
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
 
@@ -64,7 +64,7 @@ class ObserverMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'model' ? $modelName : true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
 

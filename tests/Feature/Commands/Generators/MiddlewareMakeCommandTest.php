@@ -18,7 +18,7 @@ class MiddlewareMakeCommandTest extends TestCase
 
         $this->artisan('make:middleware', [
             'name' => $name
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Ship/Middleware/'.$name.'.php';
 
@@ -38,7 +38,7 @@ class MiddlewareMakeCommandTest extends TestCase
         $this->artisan('make:middleware', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Middleware/'.$name.'.php';
 

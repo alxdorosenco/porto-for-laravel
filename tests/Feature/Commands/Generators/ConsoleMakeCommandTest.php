@@ -28,7 +28,7 @@ class ConsoleMakeCommandTest extends TestCase
 
         $this->artisan('make:command', [
             'name' => 'TestCommand',
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Ship/Commands/'.$name.'.php';
 
@@ -48,7 +48,7 @@ class ConsoleMakeCommandTest extends TestCase
         $this->artisan('make:command', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 
@@ -70,7 +70,7 @@ class ConsoleMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'command' ? 'TestCommand' : true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 
@@ -120,7 +120,7 @@ class $name extends AbstractConsoleCommand
      */
     public function handle()
     {
-        return static::SUCCESS;
+        return 0;
     }
 }
 ";

@@ -32,7 +32,7 @@ class MailMakeCommandTest extends TestCase
 
         $this->artisan('make:mail', [
             'name' => $name
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Ship/Mails/'.$name.'.php';
 
@@ -52,7 +52,7 @@ class MailMakeCommandTest extends TestCase
         $this->artisan('make:mail', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/'.$name.'.php';
 
@@ -75,7 +75,7 @@ class MailMakeCommandTest extends TestCase
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'markdown' ? $markdown : true
-        ])->assertExitCode(Command::SUCCESS);
+        ])->assertExitCode(0);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/'.$name.'.php';
         $markdownFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/Templates/'.$markdown.'.blade.php';
