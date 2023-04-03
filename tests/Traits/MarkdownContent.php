@@ -39,9 +39,9 @@ Class;
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Mails\Mailable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Mails\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class $name extends Mailable
@@ -82,10 +82,10 @@ class $name extends Mailable
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Notifications;
 
-use {$this->portoPathUcFirst()}\Ship\Notifications\Messages\MailMessage;
-use {$this->portoPathUcFirst()}\Ship\Notifications\Notification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use {$this->portoPathUcFirst()}\Ship\Notifications\Messages\MailMessage;
+use {$this->portoPathUcFirst()}\Ship\Notifications\Notification;
 
 class $name extends Notification
 {

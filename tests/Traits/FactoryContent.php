@@ -15,8 +15,8 @@ trait FactoryContent
 
 /** @var \\{$this->portoPathUcFirst()}\Ship\Abstracts\Factories\Factory ".'$factory'." */
 
-use {$this->portoPathUcFirst()}\\$modelNamespace;
 use Faker\Generator as Faker;
+use {$this->portoPathUcFirst()}\\$modelNamespace;
 
 ".'$factory'."->define($modelName::class, function (Faker ".'$faker'.") {
     return [

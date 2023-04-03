@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class TestMakeCommandTest extends TestCase
 {
@@ -73,7 +72,9 @@ class TestMakeCommandTest extends TestCase
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use {$this->portoPathUcFirst()}\Ship\Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class $name extends TestCase
 {
@@ -100,9 +101,9 @@ class $name extends TestCase
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
-use {$this->portoPathUcFirst()}\Ship\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use {$this->portoPathUcFirst()}\Ship\Tests\TestCase;
 
 class $name extends TestCase
 {

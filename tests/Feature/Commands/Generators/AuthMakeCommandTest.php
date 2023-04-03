@@ -25,7 +25,7 @@ class AuthMakeCommandTest extends TestCase
     public function testConsoleCommandWithContainer(): void
     {
         $this->artisan('make:auth', [
-            '--container' => $this->containerName
+            '--container' => 'DefaultContainer'
         ])->assertExitCode(0);
     }
 
@@ -38,7 +38,7 @@ class AuthMakeCommandTest extends TestCase
     public function testConsoleCommandWithTypes(string $type): void
     {
         $this->artisan('make:auth', [
-            '--container' => $this->containerName,
+            '--container' => 'DefaultContainer',
             '--'.$type => true
         ])->assertExitCode(0);
     }

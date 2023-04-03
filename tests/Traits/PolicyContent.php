@@ -15,8 +15,8 @@ trait PolicyContent
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Policies;
 
-use {$this->portoPathUcFirst()}\Ship\Models\UserModel;
 use {$this->portoPathUcFirst()}\Ship\Policies\Policy;
+use {$this->portoPathUcFirst()}\Ship\Models\UserModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class $name extends Policy
@@ -51,9 +51,9 @@ Class;
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Policies;
 
+use Illuminate\Auth\Access\HandlesAuthorization;
 use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
 use {$this->portoPathUcFirst()}\Ship\Models\UserModel;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class $name
 {

@@ -106,8 +106,8 @@ class ListenerMakeCommandTest extends TestCase
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
 
 use {$this->portoPathUcFirst()}\\$eventNamespace;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class $name
 {
@@ -145,8 +145,8 @@ class $name
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class $name
 {
@@ -187,8 +187,8 @@ class $name
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
 
 use {$this->portoPathUcFirst()}\\$eventNamespace;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class $name implements ShouldQueue
 {
@@ -228,8 +228,8 @@ class $name implements ShouldQueue
 
 namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class $name implements ShouldQueue
 {

@@ -24,7 +24,7 @@ class AuthMakeCommand extends LaravelAuthMakeCommand
     public function handle()
     {
         if (!$this->option('container')) {
-            $this->error('Action must be in the container');
+            $this->error('Auth must be in the container');
 
             return false;
         }

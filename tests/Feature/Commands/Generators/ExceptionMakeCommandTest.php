@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class ExceptionMakeCommandTest extends TestCase
 {
@@ -139,7 +138,7 @@ class $name extends Exception
     /**
      * Report the exception.
      *
-     * @return bool|null
+     * @return void
      */
     public function report()
     {
@@ -161,9 +160,9 @@ Class;
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
+use Exception;
 use {$this->portoPathUcFirst()}\Ship\Requests\Request;
 use {$this->portoPathUcFirst()}\Ship\Responses\Response;
-use Exception;
 
 class $name extends Exception
 {
@@ -189,9 +188,9 @@ class $name extends Exception
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
+use Exception;
 use {$this->portoPathUcFirst()}\Ship\Requests\Request;
 use {$this->portoPathUcFirst()}\Ship\Responses\Response;
-use Exception;
 
 class $name extends Exception
 {

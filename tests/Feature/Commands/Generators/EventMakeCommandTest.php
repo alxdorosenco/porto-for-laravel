@@ -52,8 +52,8 @@ namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Events;
 use {$this->portoPathUcFirst()}\Ship\Broadcasting\Channel;
 use {$this->portoPathUcFirst()}\Ship\Broadcasting\PresenceChannel;
 use {$this->portoPathUcFirst()}\Ship\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 

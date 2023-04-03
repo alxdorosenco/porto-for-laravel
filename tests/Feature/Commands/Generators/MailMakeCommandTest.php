@@ -103,9 +103,9 @@ class MailMakeCommandTest extends TestCase
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Mails\Mailable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Mails\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 class $name extends Mailable

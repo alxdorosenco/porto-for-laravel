@@ -473,10 +473,10 @@ class $name extends Controller
 
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
-use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$parentModel;
 use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
 use {$this->portoPathUcFirst()}\Ship\Controllers\Controller;
 use {$this->portoPathUcFirst()}\Ship\Requests\Request;
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$parentModel;
 
 class $name extends Controller
 {
@@ -672,9 +672,9 @@ class $name extends Controller
 namespace {$this->portoPathUcFirst()}\\$namespace;
 
 use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
-use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$parentModel;
 use {$this->portoPathUcFirst()}\Ship\Controllers\Controller;
 use {$this->portoPathUcFirst()}\Ship\Requests\Request;
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$parentModel;
 
 class $name extends Controller
 {
