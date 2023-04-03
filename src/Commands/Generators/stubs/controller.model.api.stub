@@ -1,12 +1,12 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
 use {{ namespacedModel }};
-use {{ rootNamespace }}Ship\Controllers\Controller;
-use {{ namespacedRequests }}
+use DummyRootNamespaceShip\Controllers\Controller;
+use {{ namespaceRequest }};
 
-class {{ class }} extends Controller
+class DummyClass extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,10 +21,10 @@ class {{ class }} extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \{{ namespacedStoreRequest }}  $request
+     * @param  \{{ namespaceRequest }}  $request
      * @return \{{ namespaceResponse }}
      */
-    public function store({{ storeRequest }} $request)
+    public function store(Request $request)
     {
         //
     }
@@ -43,11 +43,11 @@ class {{ class }} extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \{{ namespacedUpdateRequest }}  $request
+     * @param  \{{ namespaceRequest }}  $request
      * @param  \{{ namespacedModel }}  ${{ modelVariable }}
      * @return \{{ namespaceResponse }}
      */
-    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    public function update(Request $request, {{ model }} ${{ modelVariable }})
     {
         //
     }

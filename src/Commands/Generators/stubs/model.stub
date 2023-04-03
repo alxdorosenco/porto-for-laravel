@@ -1,10 +1,10 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Models\Model;
+use DummyRootNamespaceShip\Models\Model;
 
-class {{ class }} extends Model
+class DummyClass extends Model
 {
-
+    //
 }

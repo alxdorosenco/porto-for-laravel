@@ -1,10 +1,10 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Abstracts\Providers\ServiceProvider;
+use DummyRootNamespaceShip\Abstracts\Providers\ServiceProvider;
 
-class {{ class }} extends ServiceProvider
+class DummyClass extends ServiceProvider
 {
     /**
      * Register services.

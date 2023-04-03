@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\RequestMakeCommand as LaravelRequestMakeCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Symfony\Component\Console\Input\InputOption;
 
 class RequestMakeCommand extends LaravelRequestMakeCommand
@@ -37,7 +37,7 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
      * @return bool|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): ?bool
     {
         if (!$this->option('container')) {
             $this->error('Request must be in the container');
@@ -57,14 +57,13 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return  __DIR__.$stub;
+        return __DIR__.'/stubs/request.stub';
     }
 
     /**

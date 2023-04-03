@@ -14,8 +14,29 @@ class HelperMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
+        $name = 'TestHelper';
+
         $this->artisan('make:helper', [
-            'name' => 'TestHelper',
+            'name' => $name
         ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Ship/Helpers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getHelperContent(), file_get_contents($file));
+    }
+
+    /**
+     * @return string
+     */
+    public function getHelperContent(): string
+    {
+        return <<<File
+<?php
+
+//
+
+File;
+
     }
 }
