@@ -25,7 +25,7 @@ class AuthMakeCommandTest extends TestCase
     public function testConsoleCommandWithContainer(): void
     {
         $this->artisan('make:auth', [
-            '--container' => 'DefaultContainer'
+            '--container' => $this->containerName
         ])->assertExitCode(0);
     }
 
@@ -37,9 +37,22 @@ class AuthMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $this->artisan('make:auth', [
-            '--container' => 'DefaultContainer',
+        $command = $this->artisan('make:auth', [
+            '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(0);
+        ]);
+
+        if($type === 'views'){
+            $command
+                ->expectsQuestion("The [auth/login.blade.php] view already exists. Do you want to replace it?", true)
+                ->expectsQuestion("The [auth/register.blade.php] view already exists. Do you want to replace it?", true)
+                ->expectsQuestion("The [auth/verify.blade.php] view already exists. Do you want to replace it?", true)
+                ->expectsQuestion("The [auth/passwords/email.blade.php] view already exists. Do you want to replace it?", true)
+                ->expectsQuestion("The [auth/passwords/reset.blade.php] view already exists. Do you want to replace it?", true)
+                ->expectsQuestion("The [layouts/app.blade.php] view already exists. Do you want to replace it?", true)
+                ->expectsQuestion("The [home.blade.php] view already exists. Do you want to replace it?", true);
+        }
+
+        $command->assertExitCode(0);
     }
 }
