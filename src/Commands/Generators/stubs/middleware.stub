@@ -1,20 +1,19 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
 use Closure;
-use {{ namespaceRequest }};
 
-class {{ class }}
+class DummyClass
 {
     /**
      * Handle an incoming request.
      *
      * @param  \{{ namespaceRequest }}  $request
-     * @param  \Closure(\{{ namespaceRequest }}): (\{{ namespaceResponse }}|\{{ namespaceRedirectResponse }})  $next
-     * @return \{{ namespaceResponse }}|\{{ namespaceRedirectResponse }}
+     * @param  \Closure  $next
+     * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
         return $next($request);
     }

@@ -1,16 +1,16 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Resources\JsonResource;
+use DummyRootNamespaceShip\Resources\JsonResource;
 
-class {{ class }} extends JsonResource
+class DummyClass extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
      * @param  \{{ namespaceRequest }}  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array
      */
     public function toArray($request)
     {

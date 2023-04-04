@@ -1,12 +1,15 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Policies\Policy;
-use {{ namespacedUserModel }};
+use DummyRootNamespaceShip\Policies\Policy;
+use NamespacedDummyUserModel;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
-class {{ class }} extends Policy
+class DummyClass extends Policy
 {
+    use HandlesAuthorization;
+
     /**
      * Create a new policy instance.
      *

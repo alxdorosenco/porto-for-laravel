@@ -1,11 +1,11 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Controllers\Controller;
+use DummyRootNamespaceShip\Controllers\Controller;
 use {{ namespaceRequest }};
 
-class {{ class }} extends Controller
+class DummyClass extends Controller
 {
     /**
      * Display a listing of the resource.

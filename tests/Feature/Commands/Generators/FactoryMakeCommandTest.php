@@ -3,10 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
+use AlxDorosenco\PortoForLaravel\Tests\Traits\FactoryContent;
 
 class FactoryMakeCommandTest extends TestCase
 {
+    use FactoryContent;
+
     /**
      * @return array[]
      */
@@ -18,16 +20,35 @@ class FactoryMakeCommandTest extends TestCase
     }
 
     /**
+     * Test of the console command
+     *
+     * @return void
+     */
+    public function testConsoleCommand(): void
+    {
+        $this->artisan('make:factory', [
+            'name' => 'TestFactory',
+        ])->assertExitCode(0);
+    }
+
+    /**
      * Test of the console command with container
      *
      * @return void
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestFactory';
+
         $this->artisan('make:factory', [
-            'name' => 'Test1Factory',
+            'name' => 'TestFactory',
             '--container' => $this->containerName
         ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getFactoryContent('Ship\Models\Model', 'Model'), file_get_contents($file));
     }
 
     /**
@@ -38,10 +59,18 @@ class FactoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
+        $name = 'Test'.(ucfirst($type)).'Factory';
+        $modelName = 'TestModelForFactory';
+
         $this->artisan('make:factory', [
-            'name' => 'Test2'.(ucfirst($type)).'Factory',
+            'name' => $name,
             '--container' => $this->containerName,
-            '--'.$type => 'TestModelForFactory'
+            '--'.$type => $modelName
         ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getFactoryContent('Containers\\'.$this->containerName.'\Models\\'.$modelName, $modelName), file_get_contents($file));
     }
 }

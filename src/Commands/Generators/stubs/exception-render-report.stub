@@ -1,28 +1,25 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
 use Exception;
+use DummyRootNamespaceShip\Requests\Request;
+use DummyRootNamespaceShip\Responses\Response;
 
-class {{ class }} extends Exception
+class DummyClass extends Exception
 {
     /**
      * Report the exception.
-     *
-     * @return bool|null
      */
-    public function report()
+    public function report(): void
     {
         //
     }
 
     /**
      * Render the exception as an HTTP response.
-     *
-     * @param  \{{ namespaceRequest }}  $request
-     * @return \{{ namespaceResponse }}
      */
-    public function render($request)
+    public function render(Request $request): Response
     {
         //
     }

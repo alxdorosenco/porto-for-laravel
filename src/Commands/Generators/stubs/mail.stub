@@ -1,14 +1,16 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use {{ rootNamespace }}Ship\Abstracts\Mails\Mailable;
-use {{ rootNamespace }}Ship\Mails\Mailable\Content;
-use {{ rootNamespace }}Ship\Mails\Mailable\Envelope;
+use DummyRootNamespaceShip\Abstracts\Mails\Mailable;
+use Illuminate\Queue\SerializesModels;
 
-class {{ class }} extends Mailable
+class DummyClass extends Mailable
 {
+    use Queueable, SerializesModels;
+
     /**
      * Create a new message instance.
      *
@@ -20,36 +22,12 @@ class {{ class }} extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * Build the message.
      *
-     * @return \{{ rootNamespace }}Ship\Mails\Mailable\Envelope
+     * @return $this
      */
-    public function envelope()
+    public function build()
     {
-        return new Envelope(
-            subject: '{{ subject }}',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     *
-     * @return \{{ rootNamespace }}Ship\Mails\Mailable\Content
-     */
-    public function content()
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-    public function attachments()
-    {
-        return [];
+        return $this->view('view.name');
     }
 }

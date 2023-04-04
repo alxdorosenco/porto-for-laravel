@@ -3,21 +3,20 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ProviderMakeCommand as LaravelProviderMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class ProviderMakeCommand extends LaravelProviderMakeCommand
 {
     use ConsoleGenerator;
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return __DIR__.$stub;
+        return __DIR__.'/stubs/provider.stub';
     }
 
     /**
