@@ -1,3 +1,5 @@
 <?php
 
-Route::get('/', [{{ class }}::class, 'home'])->name('home');
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', '{{ class }}@home')->name('home');

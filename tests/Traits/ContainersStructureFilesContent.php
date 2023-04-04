@@ -86,7 +86,7 @@ class MiddlewareLoader
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [\\{$this->portoPathUcFirst()}\Containers\\$name\UI\WEB\Controllers\HomeController::class, 'home'])->name('home');
+Route::get('/', '\\{$this->portoPathUcFirst()}\Containers\\$name\UI\WEB\Controllers\HomeController@home')->name('home');
 
 CLASS;
     }
