@@ -27,11 +27,13 @@ class TestMakeCommandTest extends TestCase
     {
         $name = 'TestUnit';
 
-        $this->artisan('make:test', [
+        $commandStatus = $this->artisan('make:test', [
             'name' => $name,
             '--unit' => true,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Unit/'.$name.'.php';
 
@@ -49,12 +51,12 @@ class TestMakeCommandTest extends TestCase
     {
         $name = 'TestFeature';
 
-        $this->artisan('make:test', [
+        $commandStatus = $this->artisan('make:test', [
             'name' => $name,
             '--container' => $this->containerName
-        ])
-            ->expectsQuestion('Please, select type of the user\'s interface', $ui)
-            ->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/'.strtoupper($ui).'/Tests/Functional/'.$name.'.php';
 

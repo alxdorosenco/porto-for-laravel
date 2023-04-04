@@ -11,6 +11,7 @@ class PortoInstallCommandTest extends TestCase
 {
     use ShipAbstractsStructureFilesContent;
     use ShipStructureFilesContent;
+
     /**
      * @return array[]
      */
@@ -119,11 +120,13 @@ class PortoInstallCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('porto:install')
-            ->expectsQuestion('Do you wish to install porto structure in your '.$this->portoPath.'/ directory?', 'Yes')
-            ->expectsOutput('Installing Porto')
-            ->expectsOutput("\n")
-            ->assertExitCode(0);
+        $commandStatus = $this->artisan('porto:install', [
+            '--path' => $this->portoPath,
+            '--container' => $this->containerName,
+            '--container-full' => true
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**

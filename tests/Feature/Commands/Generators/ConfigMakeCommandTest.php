@@ -16,9 +16,11 @@ class ConfigMakeCommandTest extends TestCase
     {
         $name = 'TestConfig';
 
-        $this->artisan('make:config', [
+        $commandStatus = $this->artisan('make:config', [
             'name' => $name
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Configs/'.$name.'.php';
 
@@ -35,10 +37,12 @@ class ConfigMakeCommandTest extends TestCase
     {
         $name = 'Test2Config';
 
-        $this->artisan('make:config', [
+        $commandStatus = $this->artisan('make:config', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Configs/'.$name.'.php';
 

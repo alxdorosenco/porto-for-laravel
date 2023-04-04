@@ -26,9 +26,11 @@ class ListenerMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:listener', [
+        $commandStatus = $this->artisan('make:listener', [
             'name' => 'TestListener',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -40,10 +42,12 @@ class ListenerMakeCommandTest extends TestCase
     {
         $name = 'TestListener';
 
-        $this->artisan('make:listener', [
+        $commandStatus = $this->artisan('make:listener', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php';
 
@@ -75,8 +79,9 @@ class ListenerMakeCommandTest extends TestCase
             $params['--'.$type] = $type === 'event' ? 'EventListener' : true;
         }
 
-        $this->artisan('make:listener', $params)
-            ->assertExitCode(0);
+        $commandStatus = $this->artisan('make:listener', $params);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Listeners/'.$name.'.php';
 

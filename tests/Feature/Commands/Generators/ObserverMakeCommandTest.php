@@ -24,9 +24,11 @@ class ObserverMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:observer', [
+        $commandStatus = $this->artisan('make:observer', [
             'name' => 'TestObserver',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -38,10 +40,12 @@ class ObserverMakeCommandTest extends TestCase
     {
         $name = 'TestObserver';
 
-        $this->artisan('make:observer', [
+        $commandStatus = $this->artisan('make:observer', [
             'name' => 'TestObserver',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
 
@@ -60,11 +64,13 @@ class ObserverMakeCommandTest extends TestCase
         $name = 'Test'.(ucfirst($type)).'Observer';
         $modelName = 'ModelForObserver';
 
-        $this->artisan('make:observer', [
+        $commandStatus = $this->artisan('make:observer', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'model' ? $modelName : true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
 

@@ -23,9 +23,11 @@ class ResourceMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:resource', [
+        $commandStatus = $this->artisan('make:resource', [
             'name' => 'TestResource',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -37,10 +39,12 @@ class ResourceMakeCommandTest extends TestCase
     {
         $name = 'TestResource';
 
-        $this->artisan('make:resource', [
+        $commandStatus = $this->artisan('make:resource', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php';
 
@@ -60,11 +64,13 @@ class ResourceMakeCommandTest extends TestCase
 
         $typeName = $type === 'collection' ? 'Resource collection' : 'Resource';
 
-        $this->artisan('make:resource', [
+        $commandStatus = $this->artisan('make:resource', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Transformers/'.$name.'.php';
 

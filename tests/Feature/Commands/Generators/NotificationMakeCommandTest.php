@@ -27,9 +27,11 @@ class NotificationMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:notification', [
+        $commandStatus = $this->artisan('make:notification', [
             'name' => 'TestNotification',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -41,10 +43,12 @@ class NotificationMakeCommandTest extends TestCase
     {
         $name = 'TestNotification';
 
-        $this->artisan('make:notification', [
+        $commandStatus = $this->artisan('make:notification', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php';
 
@@ -63,11 +67,13 @@ class NotificationMakeCommandTest extends TestCase
         $name = 'Test'.(ucfirst($type)).'Notification';
         $markdown = 'MarkdownNotification';
 
-        $this->artisan('make:notification', [
+        $commandStatus = $this->artisan('make:notification', [
             'name' => 'Test'.(ucfirst($type)).'Notification',
             '--container' => $this->containerName,
             '--'.$type => $type === 'markdown' ? $markdown : true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Notifications/'.$name.'.php';
         $markdownFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Views/'.$markdown.'.blade.php';

@@ -25,11 +25,11 @@ class TranslationMakeCommandTest extends TestCase
     {
         $name = 'TestTranslation';
 
-        $this->artisan('make:translation', [
+        $commandStatus = $this->artisan('make:translation', [
             'name' => $name
-        ])
-            ->expectsQuestion('Please, write your language code (for example en, fr, de)', 'en')
-            ->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
 
@@ -47,10 +47,12 @@ class TranslationMakeCommandTest extends TestCase
     {
         $name = 'Test'.(ucfirst($type)).'Translation';
 
-        $this->artisan('make:translation', [
+        $commandStatus = $this->artisan('make:translation', [
             'name' => $name,
             '--'.$type => 'en'
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
 

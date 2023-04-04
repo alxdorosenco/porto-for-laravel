@@ -15,9 +15,11 @@ class HelperMakeCommandTest extends TestCase
     {
         $name = 'TestHelper';
 
-        $this->artisan('make:helper', [
+        $commandStatus = $this->artisan('make:helper', [
             'name' => $name
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Helpers/'.$name.'.php';
 

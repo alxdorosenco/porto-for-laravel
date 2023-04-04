@@ -18,9 +18,11 @@ class SeederMakeCommandTest extends TestCase
     {
         $name = 'TestSeeder';
 
-        $this->artisan('make:seeder', [
+        $commandStatus = $this->artisan('make:seeder', [
             'name' => $name
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Seeders/'.$name.'.php';
 
@@ -37,10 +39,12 @@ class SeederMakeCommandTest extends TestCase
     {
         $name = 'TestSeeder';
 
-        $this->artisan('make:seeder', [
+        $commandStatus = $this->artisan('make:seeder', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Seeders/'.$name.'.php';
 

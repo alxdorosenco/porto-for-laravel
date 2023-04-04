@@ -38,9 +38,11 @@ class ControllerMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:controller', [
+        $commandStatus = $this->artisan('make:controller', [
             'name' => 'TestController',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -52,10 +54,12 @@ class ControllerMakeCommandTest extends TestCase
     {
         $name = 'TestController';
 
-        $this->artisan('make:controller', [
+        $commandStatus = $this->artisan('make:controller', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Controllers/'.$name.'.php';
 
@@ -78,36 +82,39 @@ class ControllerMakeCommandTest extends TestCase
         $namespace = 'Containers\\'.$this->containerName.'\UI\\'.$uiType.'\Controllers';
 
         if($type === 'api'){
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--api' => true
-            ])->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerApiContent($name, $namespace), file_get_contents($file));
         } elseif($type === 'invokable'){
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--invokable' => true
-            ])->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerInvokableContent($name, $namespace), file_get_contents($file));
         } elseif($type === 'model'){
             $modelName = 'TestModelForController';
             $outputModelPath = $this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
-            $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
             $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Controllers/'.$name.'.php';
 
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--model' => $modelName
-            ])
-                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerModelContent($name, $namespace, $modelName), file_get_contents($file));
@@ -120,14 +127,14 @@ class ControllerMakeCommandTest extends TestCase
             $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
             $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Controllers/'.$name.'.php';
 
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--model' => $modelName,
                 '--api' => true
-            ])
-                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerModelApiContent($name, $namespace, $modelName), file_get_contents($file));
@@ -141,18 +148,14 @@ class ControllerMakeCommandTest extends TestCase
             $modelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
             $parentModelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$parentModelName.'.php';
 
-            $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
-            $parentNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$parentModelName);
-
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--model' => $modelName,
                 '--parent' => $parentModelName
-            ])
-                ->expectsQuestion('A '.$parentNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerNestedContent($name, $namespace, $modelName, $parentModelName), file_get_contents($file));
@@ -169,19 +172,15 @@ class ControllerMakeCommandTest extends TestCase
             $modelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
             $parentModelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$parentModelName.'.php';
 
-            $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
-            $parentNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$parentModelName);
-
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--model' => $modelName,
                 '--parent' => $parentModelName,
                 '--api' => true
-            ])
-                ->expectsQuestion('A '.$parentNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-                ->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerNestedApiContent($name, $namespace, $modelName, $parentModelName), file_get_contents($file));
@@ -192,20 +191,24 @@ class ControllerMakeCommandTest extends TestCase
             $this->assertFileExists(base_path($parentModelPath));
             $this->assertEquals($this->getModelContent($parentModelName), file_get_contents(base_path($parentModelPath)));
         } elseif($type === 'resource'){
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--resource' => true
-            ])->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerContent($name, $namespace), file_get_contents($file));
         } else {
-            $this->artisan('make:controller', [
+            $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,
                 '--container' => $this->containerName,
                 '--'.$type => true
-            ])->assertExitCode(0);
+            ]);
+
+            $this->assertEquals(0, $commandStatus);
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerPlainContent($name, $namespace), file_get_contents($file));

@@ -13,9 +13,11 @@ class EventMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:event', [
+        $commandStatus = $this->artisan('make:event', [
             'name' => 'TestEvent',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**

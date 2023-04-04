@@ -26,9 +26,11 @@ class FactoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:factory', [
+        $commandStatus = $this->artisan('make:factory', [
             'name' => 'TestFactory',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -40,10 +42,12 @@ class FactoryMakeCommandTest extends TestCase
     {
         $name = 'TestFactory';
 
-        $this->artisan('make:factory', [
+        $commandStatus = $this->artisan('make:factory', [
             'name' => 'TestFactory',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 
@@ -62,11 +66,13 @@ class FactoryMakeCommandTest extends TestCase
         $name = 'Test'.(ucfirst($type)).'Factory';
         $modelName = 'TestModelForFactory';
 
-        $this->artisan('make:factory', [
+        $commandStatus = $this->artisan('make:factory', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $modelName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Factories/'.$name.'.php';
 

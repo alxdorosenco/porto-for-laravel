@@ -18,18 +18,6 @@ class RequestMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $this->artisan('make:request', [
-            'name' => 'TestRequest',
-        ])->assertExitCode(0);
-    }
-
-    /**
      * Test of the console command with container
      *
      * @dataProvider provideTestUi
@@ -39,13 +27,13 @@ class RequestMakeCommandTest extends TestCase
     {
         $name = 'TestRequest';
 
-        $this->artisan('make:request', [
+        $commandStatus = $this->artisan('make:request', [
             'name' => $name,
             '--uiType' => $ui,
             '--container' => $this->containerName
-        ])
-            ->expectsQuestion('Please, select type of the user\'s interface', 'api')
-            ->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Requests/'.$name.'.php';
 

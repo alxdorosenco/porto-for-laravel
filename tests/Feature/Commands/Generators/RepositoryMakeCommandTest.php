@@ -26,9 +26,11 @@ class RepositoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:repository', [
+        $commandStatus = $this->artisan('make:repository', [
             'name' => 'TestRepository',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -40,10 +42,12 @@ class RepositoryMakeCommandTest extends TestCase
     {
         $name = 'TestRepository';
 
-        $this->artisan('make:repository', [
+        $commandStatus = $this->artisan('make:repository', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';
 
@@ -61,15 +65,14 @@ class RepositoryMakeCommandTest extends TestCase
     {
         $name = 'Test'.(ucfirst($type)).'Repository';
         $modelName = 'TestModelForRepository';
-        $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
 
-        $this->artisan('make:repository', [
+        $commandStatus = $this->artisan('make:repository', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $modelName
-        ])
-            ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
-            ->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';
         $modelFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';

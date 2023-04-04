@@ -13,9 +13,11 @@ class RuleMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:rule', [
+        $commandStatus = $this->artisan('make:rule', [
             'name' => 'TestRule',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -27,10 +29,12 @@ class RuleMakeCommandTest extends TestCase
     {
         $name = 'TestRule';
 
-        $this->artisan('make:rule', [
+        $commandStatus = $this->artisan('make:rule', [
             'name' => 'TestRule',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Rules/'.$name.'.php';
 

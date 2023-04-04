@@ -13,9 +13,11 @@ class TaskMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:task', [
+        $commandStatus = $this->artisan('make:task', [
             'name' => 'TestTask',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -27,10 +29,12 @@ class TaskMakeCommandTest extends TestCase
     {
         $name = 'TestTask';
 
-        $this->artisan('make:task', [
+        $commandStatus = $this->artisan('make:task', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tasks/'.$name.'.php';
 

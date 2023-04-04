@@ -13,9 +13,11 @@ class ChannelMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:channel', [
+        $commandStatus = $this->artisan('make:channel', [
             'name' => 'TestChannel',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -27,10 +29,12 @@ class ChannelMakeCommandTest extends TestCase
     {
         $name = 'TestChannel';
 
-        $this->artisan('make:channel', [
+        $commandStatus = $this->artisan('make:channel', [
             'name' => 'TestChannel',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Broadcasting/'.$name.'.php';
 

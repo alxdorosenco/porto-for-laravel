@@ -29,9 +29,11 @@ class MailMakeCommandTest extends TestCase
     {
         $name = 'TestMail';
 
-        $this->artisan('make:mail', [
+        $commandStatus = $this->artisan('make:mail', [
             'name' => $name
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Mails/'.$name.'.php';
 
@@ -48,10 +50,12 @@ class MailMakeCommandTest extends TestCase
     {
         $name = 'TestMail';
 
-        $this->artisan('make:mail', [
+        $commandStatus = $this->artisan('make:mail', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/'.$name.'.php';
 
@@ -70,11 +74,13 @@ class MailMakeCommandTest extends TestCase
         $name = 'Test'.(ucfirst($type)).'Mail';
         $markdown = 'MarkdownMail';
 
-        $this->artisan('make:mail', [
+        $commandStatus = $this->artisan('make:mail', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'markdown' ? $markdown : true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/'.$name.'.php';
         $markdownFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Mails/Templates/'.$markdown.'.blade.php';

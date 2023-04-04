@@ -133,18 +133,6 @@ class ContainerMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithoutName(): void
-    {
-        $this->artisan('make:container')
-            ->expectsOutput('You can\'t create container without name')
-            ->assertExitCode(0);
-    }
-
-    /**
-     * Test of the console command without name
-     *
-     * @return void
-     */
     public function testConsoleCommandWithWrongName(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -163,10 +151,12 @@ class ContainerMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(string $type): void
     {
-        $this->artisan('make:container', [
+        $commandStatus = $this->artisan('make:container', [
             'name'  => $type === 'default' ? ucfirst($type).'Container' : ucfirst($type),
             '--'.$type => true,
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**

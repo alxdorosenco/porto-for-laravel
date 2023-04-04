@@ -15,9 +15,11 @@ class ProviderMakeCommandTest extends TestCase
     {
         $name = 'TestProvider';
 
-        $this->artisan('make:provider', [
+        $commandStatus = $this->artisan('make:provider', [
             'name' => $name
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Providers/'.$name.'.php';
 
@@ -34,10 +36,12 @@ class ProviderMakeCommandTest extends TestCase
     {
         $name = 'TestProvider';
 
-        $this->artisan('make:provider', [
+        $commandStatus = $this->artisan('make:provider', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Providers/'.$name.'.php';
 

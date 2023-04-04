@@ -28,10 +28,12 @@ class PolicyMakeCommandTest extends TestCase
     {
         $name = 'TestPolicy';
 
-        $this->artisan('make:policy', [
+        $commandStatus = $this->artisan('make:policy', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';
 
@@ -65,8 +67,9 @@ class PolicyMakeCommandTest extends TestCase
             $this->expectException(\LogicException::class);
         }
 
-        $this->artisan('make:policy', $params)
-            ->assertExitCode(0);
+        $commandStatus = $this->artisan('make:policy', $params);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';
 

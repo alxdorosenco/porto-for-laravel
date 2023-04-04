@@ -16,9 +16,11 @@ class MiddlewareMakeCommandTest extends TestCase
     {
         $name = 'TestMiddleware';
 
-        $this->artisan('make:middleware', [
+        $commandStatus = $this->artisan('make:middleware', [
             'name' => $name
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Middleware/'.$name.'.php';
 
@@ -35,10 +37,12 @@ class MiddlewareMakeCommandTest extends TestCase
     {
         $name = 'TestMiddleware';
 
-        $this->artisan('make:middleware', [
+        $commandStatus = $this->artisan('make:middleware', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Middleware/'.$name.'.php';
 

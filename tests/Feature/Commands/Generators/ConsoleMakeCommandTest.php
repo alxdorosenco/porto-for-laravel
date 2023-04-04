@@ -25,9 +25,11 @@ class ConsoleMakeCommandTest extends TestCase
     {
         $name = 'TestCommand';
 
-        $this->artisan('make:command', [
+        $commandStatus = $this->artisan('make:command', [
             'name' => 'TestCommand',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Commands/'.$name.'.php';
 
@@ -44,10 +46,12 @@ class ConsoleMakeCommandTest extends TestCase
     {
         $name = 'TestCommand';
 
-        $this->artisan('make:command', [
+        $commandStatus = $this->artisan('make:command', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 
@@ -65,11 +69,13 @@ class ConsoleMakeCommandTest extends TestCase
     {
         $name = 'Test2'.(ucfirst($type)).'Command';
 
-        $this->artisan('make:command', [
+        $commandStatus = $this->artisan('make:command', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => $type === 'command' ? 'TestCommand' : true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/CLI/Commands/'.$name.'.php';
 

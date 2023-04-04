@@ -27,9 +27,11 @@ class ExceptionMakeCommandTest extends TestCase
     {
         $name = 'TestException';
 
-        $this->artisan('make:exception', [
+        $commandStatus = $this->artisan('make:exception', [
             'name' => 'TestException',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Exceptions/'.$name.'.php';
 
@@ -46,10 +48,12 @@ class ExceptionMakeCommandTest extends TestCase
     {
         $name = 'Test2Exception';
 
-        $this->artisan('make:exception', [
+        $commandStatus = $this->artisan('make:exception', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php';
 
@@ -79,8 +83,9 @@ class ExceptionMakeCommandTest extends TestCase
             $params['--'.$type] = true;
         }
 
-        $this->artisan('make:exception', $params)
-            ->assertExitCode(0);
+        $commandStatus = $this->artisan('make:exception', $params);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Exceptions/'.$name.'.php';
 

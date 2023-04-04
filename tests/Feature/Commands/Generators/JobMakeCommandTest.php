@@ -26,9 +26,11 @@ class JobMakeCommandTest extends TestCase
         $name = 'TestJob';
         $namespace = 'Ship\Jobs';
 
-        $this->artisan('make:job', [
+        $commandStatus = $this->artisan('make:job', [
             'name' => $name
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Ship/Jobs/'.$name.'.php';
 

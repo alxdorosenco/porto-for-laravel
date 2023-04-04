@@ -13,9 +13,11 @@ class ContractMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $this->artisan('make:contract', [
+        $commandStatus = $this->artisan('make:contract', [
             'name' => 'TestContract',
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
     }
 
     /**
@@ -27,10 +29,12 @@ class ContractMakeCommandTest extends TestCase
     {
         $name = 'TestContract';
 
-        $this->artisan('make:contract', [
+        $commandStatus = $this->artisan('make:contract', [
             'name' => 'TestContract',
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Contracts/'.$name.'.php';
 
