@@ -14,11 +14,16 @@ class MiddlewareMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $commandStatus = $this->artisan('make:middleware', [
-            'name' => 'TestMiddleware',
-        ]);
+        $name = 'TestMiddleware';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:middleware', [
+            'name' => $name
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Ship/Middleware/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getMiddlewareContent($name, 'Ship\Middleware'), file_get_contents($file));
     }
 
     /**
@@ -28,11 +33,46 @@ class MiddlewareMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $commandStatus = $this->artisan('make:middleware', [
-            'name' => 'Test1Middleware',
-            '--container' => $this->containerName
-        ]);
+        $name = 'TestMiddleware';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:middleware', [
+            'name' => $name,
+            '--container' => $this->containerName
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Middleware/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getMiddlewareContent($name, 'Containers\\'.$this->containerName.'\Middleware'), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
+    private function getMiddlewareContent(string $name, string $namespace): string
+    {
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use Closure;
+
+class $name
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Ship\Requests\Request  ".'$request'."
+     * @param  \Closure  ".'$next'."
+     * @return mixed
+     */
+    public function handle(".'$request'.", Closure ".'$next'.")
+    {
+        return ".'$next'."(".'$request'.");
+    }
+}
+";
     }
 }

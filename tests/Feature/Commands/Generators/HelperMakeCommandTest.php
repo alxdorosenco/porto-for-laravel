@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class HelperMakeCommandTest extends TestCase
 {
@@ -14,10 +13,29 @@ class HelperMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $commandStatus = $this->artisan('make:helper', [
-            'name' => 'TestHelper',
-        ]);
+        $name = 'TestHelper';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:helper', [
+            'name' => $name
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Ship/Helpers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getHelperContent(), file_get_contents($file));
+    }
+
+    /**
+     * @return string
+     */
+    public function getHelperContent(): string
+    {
+        return <<<File
+<?php
+
+//
+
+File;
+
     }
 }

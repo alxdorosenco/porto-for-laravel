@@ -3,10 +3,21 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class ContractMakeCommandTest extends TestCase
 {
+    /**
+     * Test of the console command
+     *
+     * @return void
+     */
+    public function testConsoleCommand(): void
+    {
+        $this->artisan('make:contract', [
+            'name' => 'TestContract',
+        ])->assertExitCode(0);
+    }
+
     /**
      * Test of the console command with container
      *
@@ -14,11 +25,34 @@ class ContractMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $commandStatus = $this->artisan('make:contract', [
-            'name' => 'Test1Contract',
-            '--container' => $this->containerName
-        ]);
+        $name = 'TestContract';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:contract', [
+            'name' => 'TestContract',
+            '--container' => $this->containerName
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Contracts/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getContractContent(), file_get_contents($file));
+    }
+
+    /**
+     * @return string
+     */
+    private function getContractContent(): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Contracts;
+
+class TestContract
+{
+    // contract class
+}
+
+Class;
     }
 }

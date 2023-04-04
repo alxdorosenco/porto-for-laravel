@@ -14,11 +14,16 @@ class ConfigMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $commandStatus = $this->artisan('make:config', [
-            'name' => 'TestConfig',
-        ]);
+        $name = 'TestConfig';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:config', [
+            'name' => $name
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Ship/Configs/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getConfigContent(), file_get_contents($file));
     }
 
     /**
@@ -28,11 +33,32 @@ class ConfigMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $commandStatus = $this->artisan('make:config', [
-            'name' => 'Test1Config',
-            '--container' => $this->containerName
-        ]);
+        $name = 'Test2Config';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:config', [
+            'name' => $name,
+            '--container' => $this->containerName
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Configs/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getConfigContent(), file_get_contents($file));
+    }
+
+    /**
+     * @return string
+     */
+    private function getConfigContent(): string
+    {
+        return <<<FILE
+<?php
+
+return [
+   // config arrays
+];
+
+FILE;
+
     }
 }

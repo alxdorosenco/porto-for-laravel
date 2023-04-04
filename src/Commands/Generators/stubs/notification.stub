@@ -1,13 +1,16 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use {{ rootNamespace }}Ship\Notifications\Messages\MailMessage;
-use {{ rootNamespace }}Ship\Notifications\Notification;
+use DummyRootNamespaceShip\Notifications\Messages\MailMessage;
+use DummyRootNamespaceShip\Notifications\Notification;
 
-class {{ class }} extends Notification
+class DummyClass extends Notification
 {
+    use Queueable;
+
     /**
      * Create a new notification instance.
      *
@@ -33,7 +36,7 @@ class {{ class }} extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \{{ rootNamespace }}Ship\Notifications\Messages\MailMessage
+     * @return \DummyRootNamespaceShip\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {

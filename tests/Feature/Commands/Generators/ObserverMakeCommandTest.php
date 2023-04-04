@@ -18,18 +18,35 @@ class ObserverMakeCommandTest extends TestCase
     }
 
     /**
+     * Test of the console command
+     *
+     * @return void
+     */
+    public function testConsoleCommand(): void
+    {
+        $this->artisan('make:observer', [
+            'name' => 'TestObserver',
+        ])->assertExitCode(0);
+    }
+
+    /**
      * Test of the console command with container
      *
      * @return void
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $commandStatus = $this->artisan('make:observer', [
-            'name' => 'Test1Observer',
-            '--container' => $this->containerName
-        ]);
+        $name = 'TestObserver';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:observer', [
+            'name' => 'TestObserver',
+            '--container' => $this->containerName
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getObserverContent($name), file_get_contents($file));
     }
 
     /**
@@ -40,18 +57,118 @@ class ObserverMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $typeValue = true;
+        $name = 'Test'.(ucfirst($type)).'Observer';
+        $modelName = 'ModelForObserver';
+
+        $this->artisan('make:observer', [
+            'name' => $name,
+            '--container' => $this->containerName,
+            '--'.$type => $type === 'model' ? $modelName : true
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Observers/'.$name.'.php';
+
+        $this->assertFileExists($file);
 
         if($type === 'model'){
-            $typeValue = 'ModelForObserver';
+            $this->assertEquals($this->getObserverModelContent($name, $modelName), file_get_contents($file));
+        } else {
+            $this->assertEquals($this->getObserverContent($name), file_get_contents($file));
         }
+    }
 
-        $commandStatus = $this->artisan('make:observer', [
-            'name' => 'Test2'.(ucfirst($type)).'Observer',
-            '--container' => $this->containerName,
-            '--'.$type => $typeValue
-        ]);
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getObserverContent(string $name): string
+    {
+        return <<<Class
+<?php
 
-        $this->assertEquals(0, $commandStatus);
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Observers;
+
+class $name
+{
+    //
+}
+
+Class;
+
+    }
+
+    /**
+     * @param string $name
+     * @param string $model
+     * @return string
+     */
+    private function getObserverModelContent(string $name, string $model): string
+    {
+        $modelVariable = lcfirst($model);
+
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Observers;
+
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
+
+class $name
+{
+    /**
+     * Handle the model for observer \"created\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
+     */
+    public function created($model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Handle the model for observer \"updated\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
+     */
+    public function updated($model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Handle the model for observer \"deleted\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
+     */
+    public function deleted($model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Handle the model for observer \"restored\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
+     */
+    public function restored($model ".'$'."$modelVariable)
+    {
+        //
+    }
+
+    /**
+     * Handle the model for observer \"force deleted\" event.
+     *
+     * @param  \\{$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model  ".'$'."$modelVariable
+     * @return void
+     */
+    public function forceDeleted($model ".'$'."$modelVariable)
+    {
+        //
+    }
+}
+";
     }
 }

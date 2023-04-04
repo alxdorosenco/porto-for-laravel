@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class ProviderMakeCommandTest extends TestCase
 {
@@ -14,11 +13,16 @@ class ProviderMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
-        $commandStatus = $this->artisan('make:provider', [
-            'name' => 'TestProvider',
-        ]);
+        $name = 'TestProvider';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:provider', [
+            'name' => $name
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Ship/Providers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getProviderContent($name, 'Ship\Providers'), file_get_contents($file));
     }
 
     /**
@@ -28,11 +32,56 @@ class ProviderMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $commandStatus = $this->artisan('make:provider', [
-            'name' => 'Test1Provider',
-            '--container' => $this->containerName
-        ]);
+        $name = 'TestProvider';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:provider', [
+            'name' => $name,
+            '--container' => $this->containerName
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Providers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getProviderContent($name, 'Containers\\'.$this->containerName.'\Providers'), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getProviderContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Providers\ServiceProvider;
+
+class $name extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}
+
+Class;
+
     }
 }

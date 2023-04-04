@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use Illuminate\Console\Command;
 
 class TraitMakeCommandTest extends TestCase
 {
@@ -18,18 +17,35 @@ class TraitMakeCommandTest extends TestCase
     }
 
     /**
+     * Test of the console command
+     *
+     * @return void
+     */
+    public function testConsoleCommand(): void
+    {
+        $this->artisan('make:trait', [
+            'name' => 'TestTrait',
+        ])->assertExitCode(0);
+    }
+
+    /**
      * Test of the console command with container
      *
      * @return void
      */
     public function testConsoleCommandWithContainer(): void
     {
-        $commandStatus = $this->artisan('make:trait', [
-            'name' => 'Test1Trait',
-            '--container' => $this->containerName
-        ]);
+        $name = 'TestTrait';
 
-        $this->assertEquals(0, $commandStatus);
+        $this->artisan('make:trait', [
+            'name' => $name,
+            '--container' => $this->containerName
+        ])->assertExitCode(0);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Traits/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getTraitContent($name, 'Containers\\'.$this->containerName.'\Traits'), file_get_contents($file));
     }
 
     /**
@@ -40,12 +56,36 @@ class TraitMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $commandStatus= $this->artisan('make:trait', [
-            'name' => 'Test2'.(ucfirst($type)).'Trait',
+        $name = 'Test'.(ucfirst($type)).'Trait';
+
+        $this->artisan('make:trait', [
+            'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ]);
+        ])->assertExitCode(0);
 
-        $this->assertEquals(0, $commandStatus);
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Tests/Traits/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getTraitContent($name, 'Containers\\'.$this->containerName.'\Tests\Traits'), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getTraitContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+trait $name
+{
+    //
+}
+
+Class;
     }
 }
