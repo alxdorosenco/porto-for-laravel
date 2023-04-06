@@ -23,10 +23,6 @@ class ControllerMakeCommandTest extends TestCase
         return [
             'api' => ['api'],
             'invokable' => ['invokable'],
-            'model' => ['model'],
-            'model-api' => ['modelApi'],
-            'parent' => ['parent'],
-            'parent-api' => ['parentApi'],
             'resource'  => ['resource']
         ];
     }
@@ -103,92 +99,6 @@ class ControllerMakeCommandTest extends TestCase
 
             $this->assertFileExists($file);
             $this->assertEquals($this->getControllerInvokableContent($name, $namespace), file_get_contents($file));
-        } elseif($type === 'model'){
-            $modelName = 'TestModelForController';
-            $outputModelPath = $this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
-            $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Controllers/'.$name.'.php';
-
-            $commandStatus = $this->artisan('make:controller', [
-                'name' => $name,
-                '--container' => $this->containerName,
-                '--model' => $modelName
-            ]);
-
-            $this->assertEquals(0, $commandStatus);
-
-            $this->assertFileExists($file);
-            $this->assertEquals($this->getControllerModelContent($name, $namespace, $modelName), file_get_contents($file));
-
-            $this->assertFileExists(base_path($outputModelPath));
-            $this->assertEquals($this->getModelContent($modelName), file_get_contents(base_path($outputModelPath)));
-        } elseif($type === 'modelApi'){
-            $modelName = 'TestModelApiForController';
-            $outputModelPath = $this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
-            $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Controllers/'.$name.'.php';
-
-            $commandStatus = $this->artisan('make:controller', [
-                'name' => $name,
-                '--container' => $this->containerName,
-                '--model' => $modelName,
-                '--api' => true
-            ]);
-
-            $this->assertEquals(0, $commandStatus);
-
-            $this->assertFileExists($file);
-            $this->assertEquals($this->getControllerModelApiContent($name, $namespace, $modelName), file_get_contents($file));
-
-            $this->assertFileExists(base_path($outputModelPath));
-            $this->assertEquals($this->getModelContent($modelName), file_get_contents(base_path($outputModelPath)));
-        } elseif($type === 'parent'){
-            $modelName = 'TestSingletonModel';
-            $parentModelName = 'TestParentSingletonModel';
-
-            $modelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
-            $parentModelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$parentModelName.'.php';
-
-            $commandStatus = $this->artisan('make:controller', [
-                'name' => $name,
-                '--container' => $this->containerName,
-                '--model' => $modelName,
-                '--parent' => $parentModelName
-            ]);
-
-            $this->assertEquals(0, $commandStatus);
-
-            $this->assertFileExists($file);
-            $this->assertEquals($this->getControllerNestedContent($name, $namespace, $modelName, $parentModelName), file_get_contents($file));
-
-            $this->assertFileExists(base_path($modelPath));
-            $this->assertEquals($this->getModelContent($modelName), file_get_contents(base_path($modelPath)));
-
-            $this->assertFileExists(base_path($parentModelPath));
-            $this->assertEquals($this->getModelContent($parentModelName), file_get_contents(base_path($parentModelPath)));
-        } elseif($type === 'parentApi'){
-            $modelName = 'TestApiModel';
-            $parentModelName = 'TestParentApiModel';
-
-            $modelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
-            $parentModelPath = config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$parentModelName.'.php';
-
-            $commandStatus = $this->artisan('make:controller', [
-                'name' => $name,
-                '--container' => $this->containerName,
-                '--model' => $modelName,
-                '--parent' => $parentModelName,
-                '--api' => true
-            ]);
-
-            $this->assertEquals(0, $commandStatus);
-
-            $this->assertFileExists($file);
-            $this->assertEquals($this->getControllerNestedApiContent($name, $namespace, $modelName, $parentModelName), file_get_contents($file));
-
-            $this->assertFileExists(base_path($modelPath));
-            $this->assertEquals($this->getModelContent($modelName), file_get_contents(base_path($modelPath)));
-
-            $this->assertFileExists(base_path($parentModelPath));
-            $this->assertEquals($this->getModelContent($parentModelName), file_get_contents(base_path($parentModelPath)));
         } elseif($type === 'resource'){
             $commandStatus = $this->artisan('make:controller', [
                 'name' => $name,

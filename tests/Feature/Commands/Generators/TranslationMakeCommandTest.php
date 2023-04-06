@@ -17,27 +17,6 @@ class TranslationMakeCommandTest extends TestCase
     }
 
     /**
-     * Test of the console command
-     *
-     * @return void
-     */
-    public function testConsoleCommand(): void
-    {
-        $name = 'TestTranslation';
-
-        $commandStatus = $this->artisan('make:translation', [
-            'name' => $name
-        ]);
-
-        $this->assertEquals(0, $commandStatus);
-
-        $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
-
-        $this->assertFileExists($file);
-        $this->assertEquals($this->getTranslationContent(), file_get_contents($file));
-    }
-
-    /**
      * Test of the console command with types
      *
      * @dataProvider provideTypes

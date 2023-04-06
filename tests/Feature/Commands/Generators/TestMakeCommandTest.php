@@ -53,6 +53,7 @@ class TestMakeCommandTest extends TestCase
 
         $commandStatus = $this->artisan('make:test', [
             'name' => $name,
+            '--uiType' => $ui,
             '--container' => $this->containerName
         ]);
 
