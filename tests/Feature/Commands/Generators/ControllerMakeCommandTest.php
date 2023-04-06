@@ -124,7 +124,6 @@ class ControllerMakeCommandTest extends TestCase
         } elseif($type === 'modelApi'){
             $modelName = 'TestModelApiForController';
             $outputModelPath = $this->portoPath.'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
-            $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
             $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Controllers/'.$name.'.php';
 
             $commandStatus = $this->artisan('make:controller', [

@@ -47,15 +47,15 @@ class SeederMakeCommand extends LaravelSeederMakeCommand
     protected function replaceNamespace(&$stub, $name)
     {
         $searches = [
-            ['DummyNamespace', 'DummyRootNamespace', 'NamespacedDummyUserModel'],
-            ['{{ namespace }}', '{{ rootNamespace }}', '{{ namespacedUserModel }}'],
-            ['{{namespace}}', '{{rootNamespace}}', '{{namespacedUserModel}}'],
+            ['DummyNamespace', 'DummyRootNamespace'],
+            ['{{ namespace }}', '{{ rootNamespace }}'],
+            ['{{namespace}}', '{{rootNamespace}}']
         ];
 
         foreach ($searches as $search) {
             $stub = str_replace(
                 $search,
-                [$this->getCurrentNamespace(), $this->rootNamespace(), $this->userProviderModel()],
+                [$this->getCurrentNamespace(), $this->rootNamespace()],
                 $stub
             );
         }

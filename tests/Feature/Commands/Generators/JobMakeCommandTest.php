@@ -48,10 +48,12 @@ class JobMakeCommandTest extends TestCase
         $name = 'Test2Job';
         $namespace = 'Containers\\'.$this->containerName.'\Jobs';
 
-        $this->artisan('make:job', [
+        $commandStatus = $this->artisan('make:job', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
 
@@ -70,11 +72,13 @@ class JobMakeCommandTest extends TestCase
         $name = 'Test2'.(ucfirst($type)).'Job';
         $namespace = 'Containers\\'.$this->containerName.'\Jobs';
 
-        $this->artisan('make:job', [
+        $commandStatus = $this->artisan('make:job', [
             'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Jobs/'.$name.'.php';
 

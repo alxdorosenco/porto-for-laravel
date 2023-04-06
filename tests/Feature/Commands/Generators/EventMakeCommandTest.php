@@ -29,10 +29,12 @@ class EventMakeCommandTest extends TestCase
     {
         $name = 'TestEvent';
 
-        $this->artisan('make:event', [
+        $commandStatus = $this->artisan('make:event', [
             'name' => $name,
             '--container' => $this->containerName
-        ])->assertExitCode(0);
+        ]);
+
+        $this->assertEquals(0, $commandStatus);
 
         $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Events/'.$name.'.php';
 
