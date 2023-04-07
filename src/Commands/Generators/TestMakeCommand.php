@@ -4,7 +4,7 @@ namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Foundation\Console\TestMakeCommand as LaravelTestMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Symfony\Component\Console\Input\InputOption;
 
 class TestMakeCommand extends LaravelTestMakeCommand
@@ -53,13 +53,13 @@ class TestMakeCommand extends LaravelTestMakeCommand
      *
      * @return string
      */
-    protected function getStub(): string
+    protected function getStub()
     {
-        if(!$this->option('unit')){
-            return __DIR__.'/stubs/test.stub';
+        if ($this->option('unit')) {
+            return __DIR__.'/stubs/unit-test.stub';
         }
 
-        return parent::getStub();
+        return __DIR__.'/stubs/test.stub';
     }
 
     /**

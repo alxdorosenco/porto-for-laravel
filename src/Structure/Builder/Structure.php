@@ -60,8 +60,8 @@ abstract class Structure
      */
     public function showInCli(Command $command)
     {
-        $structureData = [['directory' => $this->getRootDirectory()]];
-        $structureData += $this->getStructure();
+        $structureData = $this->getStructure();
+        array_unshift($structureData, ['directory' => $this->getRootDirectory()]);
 
         $rows = [];
         foreach ($structureData as $data){

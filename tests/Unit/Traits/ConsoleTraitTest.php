@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Unit\Traits;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
-use AlxDorosenco\PortoForLaravel\Traits\Console;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\Console;
 
 class ConsoleTraitTest extends TestCase
 {

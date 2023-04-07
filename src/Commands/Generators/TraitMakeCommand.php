@@ -2,8 +2,9 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Console\GeneratorCommand;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\Console\Input\InputOption;
 
 class TraitMakeCommand extends GeneratorCommand
@@ -80,7 +81,7 @@ class TraitMakeCommand extends GeneratorCommand
     protected function getDefaultNamespace($rootNamespace): string
     {
         if($this->option('test')){
-            $this->getNecessaryNamespace().'\Tests\Traits';
+            return $this->getNecessaryNamespace().'\Tests\Traits';
         }
 
         return $this->getNecessaryNamespace().'\Traits';

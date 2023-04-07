@@ -1,23 +1,12 @@
 <?php
 
-namespace {{ factoryNamespace }};
+/** @var \DummyRootNamespaceShip\Abstracts\Factories\Factory $factory */
 
-use {{ rootNamespace }}Ship\Abstracts\Factories\Factory;
+use Faker\Generator as Faker;
+use NamespacedDummyModel;
 
-/**
- * @extends \{{ rootNamespace }}Ship\Abstracts\Factories\Factory<\{{ namespacedModel }}>
- */
-class {{ factory }}Factory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            //
-        ];
-    }
-}
+$factory->define(DummyModel::class, function (Faker $faker) {
+    return [
+        //
+    ];
+});

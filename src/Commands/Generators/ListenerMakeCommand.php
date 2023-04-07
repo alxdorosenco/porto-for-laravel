@@ -3,7 +3,8 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ListenerMakeCommand as LaravelListenerMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
+use Illuminate\Support\Str;
 
 class ListenerMakeCommand extends LaravelListenerMakeCommand
 {
@@ -23,6 +24,33 @@ class ListenerMakeCommand extends LaravelListenerMakeCommand
         }
 
         return $this->handleFromTrait();
+    }
+
+    /**
+     * Build the class with the given name.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function buildClass($name)
+    {
+        $event = $this->option('event');
+
+        if (! Str::startsWith($event, [
+            $this->getNecessaryNamespace(),
+            'Illuminate',
+            '\\',
+        ])) {
+            $event = $this->getNecessaryNamespace().'\Events\\'.str_replace('/', '\\', $event);
+        }
+
+        $stub = str_replace(
+            ['DummyEvent', '{{ event }}'], class_basename($event), $this->buildClassCurrent($name)
+        );
+
+        return str_replace(
+            ['DummyFullEvent', '{{ eventNamespace }}'], trim($event, '\\'), $stub
+        );
     }
 
     /**

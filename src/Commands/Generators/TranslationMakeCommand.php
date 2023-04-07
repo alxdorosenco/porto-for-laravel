@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\Console;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\Console;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -14,6 +14,13 @@ class TranslationMakeCommand extends GeneratorCommand
      * @var string
      */
     private $lang;
+
+    /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Translation';
 
     /**
      * Get the console command arguments.

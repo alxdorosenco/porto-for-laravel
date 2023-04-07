@@ -24,11 +24,34 @@ class TranslationMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type)
     {
+        $name = 'Test'.(ucfirst($type)).'Translation';
+
         $commandStatus = $this->artisan('make:translation', [
-            'name' => 'Test2'.(ucfirst($type)).'Translation',
+            'name' => $name,
             '--'.$type => 'en'
         ]);
 
         $this->assertEquals(0, $commandStatus);
+
+        $file = base_path($this->portoPath).'/Ship/Translations/en/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getTranslationContent(), file_get_contents($file));
+    }
+
+    /**
+     * @return string
+     */
+    private function getTranslationContent(): string
+    {
+        return <<<File
+<?php
+
+return [
+   // translation arrays
+];
+
+File;
+
     }
 }

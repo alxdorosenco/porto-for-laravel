@@ -3,7 +3,8 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\RequestMakeCommand as LaravelRequestMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Symfony\Component\Console\Input\InputOption;
 
 class RequestMakeCommand extends LaravelRequestMakeCommand
@@ -55,14 +56,13 @@ class RequestMakeCommand extends LaravelRequestMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return  __DIR__.$stub;
+        return __DIR__.'/stubs/request.stub';
     }
 
     /**

@@ -3,9 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use AlxDorosenco\PortoForLaravel\Tests\Traits\PolicyContent;
 
 class PolicyMakeCommandTest extends TestCase
 {
+    use PolicyContent;
+
     /**
      * @return array[]
      */
@@ -23,12 +26,19 @@ class PolicyMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer()
     {
+        $name = 'TestPolicy';
+
         $commandStatus = $this->artisan('make:policy', [
-            'name' => 'Test1Policy',
+            'name' => $name,
             '--container' => $this->containerName
         ]);
 
         $this->assertEquals(0, $commandStatus);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getPolicyContent($name), file_get_contents($file));
     }
 
     /**
@@ -39,18 +49,36 @@ class PolicyMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type)
     {
-        $typeValue = true;
+        $name = 'Test'.(ucfirst($type)).'Policy';
+        $modelName = 'ModelForPolicy';
+        $guardName = 'GuardForPolicy';
+
+        $params = [
+            'name' => $name,
+            '--container' => $this->containerName,
+        ];
 
         if($type === 'model'){
-            $typeValue = 'ModelForPolicy';
+            $params['--'.$type] = $modelName;
         }
 
-        $commandStatus = $this->artisan('make:policy', [
-            'name' => 'Test2'.(ucfirst($type)).'Policy',
-            '--container' => $this->containerName,
-            '--'.$type => $typeValue
-        ]);
+        if($type === 'guard'){
+            $params['--'.$type] = $guardName;
+            $this->expectException(\LogicException::class);
+        }
+
+        $commandStatus = $this->artisan('make:policy', $params);
 
         $this->assertEquals(0, $commandStatus);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Policies/'.$name.'.php';
+
+        $this->assertFileExists($file);
+
+        if($type === 'model'){
+            $this->assertEquals($this->getPolicyModelContent($name, $modelName), file_get_contents($file));
+        } else {
+            $this->assertEquals($this->getPolicyContent($name), file_get_contents($file));
+        }
     }
 }

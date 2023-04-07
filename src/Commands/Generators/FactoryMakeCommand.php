@@ -3,7 +3,8 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Database\Console\Factories\FactoryMakeCommand as LaravelFactoryMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
+use Illuminate\Support\Str;
 
 class FactoryMakeCommand extends LaravelFactoryMakeCommand
 {
@@ -26,14 +27,36 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return  __DIR__.$stub;
+        return __DIR__.'/stubs/factory.stub';
+    }
+
+    /**
+     * Parse the class name and format according to the root namespace.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function qualifyClass($name)
+    {
+        $name = ltrim($name, '\\/');
+
+        $rootNamespace = $this->getNecessaryNamespace().'\Models';
+
+        if (Str::startsWith($name, $rootNamespace)) {
+            return $name;
+        }
+
+        $name = str_replace('/', '\\', $name);
+
+        return $this->qualifyClass(
+            $this->getDefaultNamespace(trim($rootNamespace, '\\')).'\\'.$name
+        );
     }
 
     /**
@@ -46,7 +69,7 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
     {
         $namespaceModel = $this->option('model')
             ? $this->qualifyClass($this->option('model'))
-            : trim($this->rootNamespace(), '\\').'\\Model';
+            : trim($this->getShipNamespace(), '\\').'\Models\Model';
 
         $model = class_basename($namespaceModel);
 
@@ -59,7 +82,8 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
                 $namespaceModel,
                 $model,
             ],
-            parent::buildClass($name)
+
+            $this->buildClassCurrent($name)
         );
     }
 
@@ -71,10 +95,10 @@ class FactoryMakeCommand extends LaravelFactoryMakeCommand
      */
     protected function getPath($name): string
     {
-        $nameFactory = str_replace(
+        $name = str_replace(
             ['\\', '/'], '', $this->argument('name')
         );
 
-        return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.$nameFactory.'.php';
+        return config('porto.root').'/Containers/'.$this->option('container').'/Data/Factories/'.str_replace('\\', '/', $name).'.php';
     }
 }

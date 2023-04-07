@@ -2,9 +2,9 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\NotificationMakeCommand as LaravelNotificationMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 
 class NotificationMakeCommand extends LaravelNotificationMakeCommand
 {
@@ -14,6 +14,7 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
 
     /**
      * @return bool|null
+     * @throws FileNotFoundException
      */
     public function handle()
     {
@@ -27,14 +28,15 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
     }
 
     /**
-     * Resolve the fully-qualified path to the stub.
+     * Get the stub file for the generator.
      *
-     * @param  string  $stub
      * @return string
      */
-    protected function resolveStubPath($stub): string
+    protected function getStub()
     {
-        return __DIR__.$stub;
+        return $this->option('markdown')
+            ? __DIR__.'/stubs/markdown-notification.stub'
+            : __DIR__.'/stubs/notification.stub';
     }
 
     /**
@@ -57,13 +59,13 @@ class NotificationMakeCommand extends LaravelNotificationMakeCommand
      */
     protected function writeMarkdownTemplate()
     {
-        $path = $this->viewPath(str_replace('.', '/', $this->option('markdown')).'.blade.php');
+        $path = $this->viewPath(str_replace('.', '/', $this->option('markdown'))).'.blade.php';
 
         if (! $this->files->isDirectory(dirname($path))) {
             $this->files->makeDirectory(dirname($path), 0755, true);
         }
 
-        $this->files->put($path, file_get_contents(dirname((new \ReflectionClass(new parent(new Filesystem())))->getFileName()).'/stubs/markdown.stub'));
+        $this->files->put($path, file_get_contents(__DIR__.'/stubs/markdown.stub'));
     }
 
     /**

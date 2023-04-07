@@ -1,6 +1,6 @@
 <?php
 
-namespace AlxDorosenco\PortoForLaravel\Traits;
+namespace AlxDorosenco\PortoForLaravel\Commands\Traits;
 
 use Symfony\Component\Console\Input\InputOption;
 
@@ -48,6 +48,21 @@ trait ConsoleGenerator
         }
 
         return $stub;
+    }
+
+    /**
+     * Build the class with the given name.
+     *
+     * @param  string  $name
+     * @return string
+     *
+     * @throws FileNotFoundException
+     */
+    protected function buildClassCurrent($name): string
+    {
+        $stub = $this->files->get($this->getStub());
+
+        return $this->replaceNamespace($stub, $name)->replaceClass($stub, $name);
     }
 
     /**

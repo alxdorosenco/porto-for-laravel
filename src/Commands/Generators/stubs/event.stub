@@ -1,15 +1,19 @@
 <?php
 
-namespace {{ namespace }};
+namespace DummyNamespace;
 
-use {{ rootNamespace }}Ship\Events\Event;
-use {{ rootNamespace }}Ship\Broadcasting\Channel;
-use {{ rootNamespace }}Ship\Broadcasting\PresenceChannel;
-use {{ rootNamespace }}Ship\Broadcasting\PrivateChannel;
+use DummyRootNamespaceShip\Broadcasting\Channel;
+use DummyRootNamespaceShip\Broadcasting\PresenceChannel;
+use DummyRootNamespaceShip\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
-class {{ class }} extends Event
+class DummyClass
 {
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
     /**
      * Create a new event instance.
      *
@@ -23,7 +27,7 @@ class {{ class }} extends Event
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return PrivateChannel
+     * @return Channel|array
      */
     public function broadcastOn()
     {

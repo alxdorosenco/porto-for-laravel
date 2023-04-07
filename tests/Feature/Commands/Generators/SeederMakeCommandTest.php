@@ -3,9 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use AlxDorosenco\PortoForLaravel\Tests\Traits\SeedContent;
 
 class SeederMakeCommandTest extends TestCase
 {
+    use SeedContent;
+
     /**
      * Test of the console command
      *
@@ -13,11 +16,18 @@ class SeederMakeCommandTest extends TestCase
      */
     public function testConsoleCommand()
     {
+        $name = 'TestSeeder';
+
         $commandStatus = $this->artisan('make:seeder', [
-            'name' => 'TestSeeder',
+            'name' => $name
         ]);
 
         $this->assertEquals(0, $commandStatus);
+
+        $file = base_path($this->portoPath).'/Ship/Seeders/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getSeederContent($name, 'Ship\Seeders'), file_get_contents($file));
     }
 
     /**
@@ -27,11 +37,18 @@ class SeederMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer()
     {
+        $name = 'TestSeeder';
+
         $commandStatus = $this->artisan('make:seeder', [
-            'name' => 'Test1Seeder',
+            'name' => $name,
             '--container' => $this->containerName
         ]);
 
         $this->assertEquals(0, $commandStatus);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Seeders/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getSeederContent($name, 'Containers\\'.$this->containerName.'\Data\Seeders'), file_get_contents($file));
     }
 }

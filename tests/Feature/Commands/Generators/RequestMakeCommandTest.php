@@ -25,12 +25,62 @@ class RequestMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(string $ui)
     {
+        $name = 'TestRequest';
+
         $commandStatus = $this->artisan('make:request', [
-            'name' => 'Test1Request',
+            'name' => $name,
             '--uiType' => $ui,
             '--container' => $this->containerName
         ]);
 
         $this->assertEquals(0, $commandStatus);
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Requests/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getRequestContent($name, 'Containers\\'.$this->containerName.'\UI\API\Requests'), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
+    private function getRequestContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Ship\Requests\FormRequest;
+
+class $name extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return false;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            //
+        ];
+    }
+}
+
+Class;
+
     }
 }

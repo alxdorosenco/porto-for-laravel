@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Foundation\Console\ConsoleMakeCommand as LaravelConsoleMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Console\Command;
 
 class ConsoleMakeCommand extends LaravelConsoleMakeCommand
@@ -47,19 +47,18 @@ class ConsoleMakeCommand extends LaravelConsoleMakeCommand
      */
     protected function replaceClass($stub, $name): string
     {
-        $searches = [
-            ['DummyClass', 'DummyParentClass'],
-            ['{{ class }}', '{{ parentClass }}'],
-            ['{{class}}', '{{parentClass}}']
-        ];
+        $stub = parent::replaceClass($stub, $name);
 
-        $class = str_replace($this->getNamespace($name).'\\', '', $name);
-        $parentClass = 'AbstractConsoleCommand';
+        $searches = [
+            ['DummyParentClass'],
+            ['{{ parentClass }}'],
+            ['{{parentClass}}']
+        ];
 
         foreach ($searches as $search) {
             $stub = str_replace(
                 $search,
-                [$class, $parentClass],
+                ['AbstractConsoleCommand'],
                 $stub
             );
         }
