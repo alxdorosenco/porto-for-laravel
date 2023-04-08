@@ -119,13 +119,23 @@ class $name extends AbstractConsoleCommand
     protected ".'$description'." = 'Command description';
 
     /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
      * Execute the console command.
      *
-     * @return int
+     * @return mixed
      */
     public function handle()
     {
-        return 0;
+        //
     }
 }
 ";

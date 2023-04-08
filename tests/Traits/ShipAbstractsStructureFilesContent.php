@@ -485,7 +485,6 @@ CLASS;
 
 namespace {$this->portoPathUcFirst()}\Ship\Abstracts\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as LaravelAuthenticate;
 use Illuminate\Notifications\Notifiable;
 

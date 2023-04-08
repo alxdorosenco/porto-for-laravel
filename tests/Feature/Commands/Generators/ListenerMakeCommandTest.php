@@ -23,7 +23,7 @@ class ListenerMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:listener', [
             'name' => 'TestListener',
@@ -238,7 +238,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class $name implements ShouldQueue
 {
     use InteractsWithQueue;
-
+    
     /**
      * Create the event listener.
      *

@@ -113,50 +113,53 @@ CLASS;
 
 namespace {$this->portoPathUcFirst()}\Ship\Exceptions;
 
+use Exception;
 use {$this->portoPathUcFirst()}\Ship\Abstracts\Exceptions\Handler as AbstractHandler;
-use Throwable;
 
 class Handler extends AbstractHandler
 {
     /**
-     * A list of exception types with their corresponding custom log levels.
-     *
-     * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
-     */
-    protected ".'$levels'." = [
-        //
-    ];
-
-    /**
      * A list of the exception types that are not reported.
      *
-     * @var array<int, class-string<\Throwable>>
+     * @var array
      */
     protected ".'$dontReport'." = [
         //
     ];
 
     /**
-     * A list of the inputs that are never flashed to the session on validation exceptions.
+     * A list of the inputs that are never flashed for validation exceptions.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected ".'$dontFlash'." = [
-        'current_password',
         'password',
-        'password_confirmation',
+        'password_confirmation'
     ];
 
     /**
-     * Register the exception handling callbacks for the application.
+     * Report or log an exception.
      *
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     *
+     * @param  \Exception  ".'$exception'."
      * @return void
      */
-    public function register()
+    public function report(Exception ".'$exception'.")
     {
-        ".'$this->reportable'."(function (Throwable ".'$e'.") {
-            //
-        });
+        parent::report(".'$exception'.");
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  ".'$request'."
+     * @param  \Exception  ".'$exception'."
+     * @return \Illuminate\Http\Response
+     */
+    public function render(".'$request'.", Exception ".'$exception'.")
+    {
+        return parent::render(".'$request'.", ".'$exception'.");
     }
 }
 ";
@@ -171,6 +174,7 @@ class Handler extends AbstractHandler
 
 namespace {$this->portoPathUcFirst()}\Ship\Kernels;
 
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 use AlxDorosenco\PortoForLaravel\Loaders\RoutesLoader;
 use Illuminate\Console\Scheduling\Schedule;
@@ -178,6 +182,7 @@ use Illuminate\Foundation\Console\Kernel as LaravelConsoleKernel;
 
 class ConsoleKernel extends LaravelConsoleKernel
 {
+    use FilesAndDirectories;
     use CommandsLoader;
     use RoutesLoader;
 
@@ -227,13 +232,11 @@ class HttpKernel extends LaravelHttpKernel
      * @var array<int, class-string|string>
      */
     protected ".'$middleware'." = [
-        // \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustHosts::class,
-        \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
-        \\{$this->portoPathUcFirst()}\Ship\Middleware\PreventRequestsDuringMaintenance::class,
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Ship\Middleware\TrustProxies::class
     ];
 
     /**
@@ -246,15 +249,15 @@ class HttpKernel extends LaravelHttpKernel
             \\{$this->portoPathUcFirst()}\Ship\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \\{$this->portoPathUcFirst()}\Ship\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:60,1',
+            'bindings'
         ],
     ];
 
@@ -266,16 +269,12 @@ class HttpKernel extends LaravelHttpKernel
      * @var array<string, class-string|string>
      */
     protected ".'$routeMiddleware'." = [
-        'auth' => \\{$this->portoPathUcFirst()}\Ship\Middleware\Authenticate::class,
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \\{$this->portoPathUcFirst()}\Ship\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \\{$this->portoPathUcFirst()}\\Ship\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }
 ";
@@ -409,9 +408,7 @@ class PreventRequestsDuringMaintenance extends AbstractMiddleware
 
 namespace {$this->portoPathUcFirst()}\Ship\Middleware;
 
-use {$this->portoPathUcFirst()}\Ship\Providers\RouteServiceProvider;
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
@@ -420,18 +417,14 @@ class RedirectIfAuthenticated
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  ".'$request'."
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  ".'$next'."
-     * @param  string|null  ...".'$guards'."
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param  \Closure  ".'$next'."
+     * @param  string|null  ".'$guard'."
+     * @return mixed
      */
-    public function handle(Request ".'$request'.", Closure ".'$next'.", ...".'$guards'.")
+    public function handle(".'$request'.", Closure ".'$next'.", ".'$guard'." = null)
     {
-        ".'$guards'." = empty(".'$guards'.") ? [null] : ".'$guards'.";
-
-        foreach (".'$guards'." as ".'$guard'.") {
-            if (Auth::guard(".'$guard'.")->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+        if (Auth::guard(".'$guard'.")->check()) {
+            return redirect('/home');
         }
 
         return ".'$next($request)'.";
@@ -517,16 +510,17 @@ class TrustProxies extends AbstractMiddleware
     protected ".'$proxies'.";
 
     /**
-     * The headers that should be used to detect proxies.
+     * The current proxy header mappings.
      *
      * @var int
      */
-    protected ".'$headers'." =
-        Request::HEADER_X_FORWARDED_FOR |
-        Request::HEADER_X_FORWARDED_HOST |
-        Request::HEADER_X_FORWARDED_PORT |
-        Request::HEADER_X_FORWARDED_PROTO |
-        Request::HEADER_X_FORWARDED_AWS_ELB;
+    protected ".'$headers'." = [
+        Request::HEADER_FORWARDED => 'FORWARDED',
+        Request::HEADER_X_FORWARDED_FOR => 'X_FORWARDED_FOR',
+        Request::HEADER_X_FORWARDED_HOST => 'X_FORWARDED_HOST',
+        Request::HEADER_X_FORWARDED_PORT => 'X_FORWARDED_PORT',
+        Request::HEADER_X_FORWARDED_PROTO => 'X_FORWARDED_PROTO',
+    ];
 }
 ";
     }
@@ -622,31 +616,19 @@ class UserModel extends AbstractUserModel
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected ".'$fillable'." = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected ".'$hidden'." = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected ".'$casts'." = [
-        'email_verified_at' => 'datetime',
+        'password', 'remember_token',
     ];
 }
 ";
@@ -804,18 +786,18 @@ CLASS;
 
 namespace {$this->portoPathUcFirst()}\Ship\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use {$this->portoPathUcFirst()}\Ship\Abstracts\Providers\AuthServiceProvider as AbstractAuthServiceProvider;
 
 class AuthServiceProvider extends AbstractAuthServiceProvider
 {
     /**
-     * The model to policy mappings for the application.
+     * The policy mappings for the application.
      *
-     * @var array<class-string, class-string>
+     * @var array
      */
     protected ".'$policies'." = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -871,21 +853,19 @@ class BroadcastServiceProvider extends AbstractServiceProvider
 
 namespace {$this->portoPathUcFirst()}\Ship\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Providers\EventServiceProvider as AbstractEventServiceProvider;
 use Illuminate\Support\Facades\Event;
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Providers\EventServiceProvider as AbstractEventServiceProvider;
 
 class EventServiceProvider extends AbstractEventServiceProvider
 {
     /**
-     * The event to listener mappings for the application.
+     * The event listener mappings for the application.
      *
-     * @var array<class-string, array<int, class-string>>
+     * @var array
      */
     protected ".'$listen'." = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        'App\Events\Event' => [
+            'App\Listeners\EventListener',
         ],
     ];
 
@@ -896,17 +876,9 @@ class EventServiceProvider extends AbstractEventServiceProvider
      */
     public function boot()
     {
-        //
-    }
+        parent::boot();
 
-    /**
-     * Determine if events and listeners should be automatically discovered.
-     *
-     * @return bool
-     */
-    public function shouldDiscoverEvents()
-    {
-        return false;
+        //
     }
 }
 ";
@@ -921,30 +893,21 @@ class EventServiceProvider extends AbstractEventServiceProvider
 
 namespace {$this->portoPathUcFirst()}\Ship\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\Route;
 use {$this->portoPathUcFirst()}\Ship\Abstracts\Providers\RouteServiceProvider as AbstractRouteServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 
 class RouteServiceProvider extends AbstractRouteServiceProvider
 {
     /**
-     * The path to the \"home\" route for your application.
-     *
-     * Typically, users are redirected here after authentication.
-     *
-     * @var string
-     */
-    public const HOME = '/home';
-
-    /**
-     * Define your route model bindings, pattern filters, and other route configuration.
+     * Define your route model bindings, pattern filters, etc.
      *
      * @return void
      */
     public function boot()
     {
+        //
 
+        parent::boot();
     }
 }
 ";

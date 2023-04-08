@@ -56,7 +56,6 @@ class ConsoleGeneratorTraitTest extends TestCase
         return [
             'console.stub' => ['console.stub'],
             'controller.model.stub' => ['controller.model.stub'],
-            'controller.nested.api.stub' => ['controller.nested.api.stub'],
             'controller.nested.stub' => ['controller.nested.stub'],
             'controller.plain.stub' => ['controller.plain.stub'],
             'controller.stub' => ['controller.stub'],

@@ -11,7 +11,7 @@ class TaskMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:task', [
             'name' => 'TestTask',

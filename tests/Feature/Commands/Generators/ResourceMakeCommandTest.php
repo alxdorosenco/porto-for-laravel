@@ -21,7 +21,7 @@ class ResourceMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:resource', [
             'name' => 'TestResource',

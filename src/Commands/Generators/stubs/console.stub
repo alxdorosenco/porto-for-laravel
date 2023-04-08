@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use {{ parentNamespace }};
+use DummyParentNamespace;
 
 class DummyClass extends {{ parentClass }}
 {
@@ -21,12 +21,22 @@ class DummyClass extends {{ parentClass }}
     protected $description = 'Command description';
 
     /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
      * Execute the console command.
      *
-     * @return int
+     * @return mixed
      */
     public function handle()
     {
-        return 0;
+        //
     }
 }

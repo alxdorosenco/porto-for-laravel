@@ -3,7 +3,6 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Routing\Console\ControllerMakeCommand as LaravelControllerMakeCommand;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
@@ -43,34 +42,17 @@ class ControllerMakeCommand extends LaravelControllerMakeCommand
         return $this->handleFromTrait();
     }
 
-    /**
-     * Get the stub file for the generator.
-     *
-     * @return string
-     */
     protected function getStub()
     {
-        $stub = null;
-
         if ($this->option('parent')) {
-            $stub = '/stubs/controller.nested.stub';
+            return __DIR__.'/stubs/controller.nested.stub';
         } elseif ($this->option('model')) {
-            $stub = '/stubs/controller.model.stub';
-        } elseif ($this->option('invokable')) {
-            $stub = '/stubs/controller.invokable.stub';
+            return __DIR__.'/stubs/controller.model.stub';
         } elseif ($this->option('resource')) {
-            $stub = '/stubs/controller.stub';
+            return __DIR__.'/stubs/controller.stub';
         }
 
-        if ($this->option('api') && is_null($stub)) {
-            $stub = '/stubs/controller.api.stub';
-        } elseif ($this->option('api') && ! is_null($stub) && ! $this->option('invokable')) {
-            $stub = str_replace('.stub', '.api.stub', $stub);
-        }
-
-        $stub = $stub ?? '/stubs/controller.plain.stub';
-
-        return __DIR__.$stub;
+        return __DIR__.'/stubs/controller.plain.stub';
     }
 
     /**

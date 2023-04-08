@@ -23,23 +23,15 @@ class PortoInstallCommandTest extends TestCase
             'Ship.Abstracts.Broadcasting.PresenceChannel.php' => ['Ship/Abstracts/Broadcasting/PresenceChannel.php'],
             'Ship.Abstracts.Broadcasting.PrivateChannel.php' => ['Ship/Abstracts/Broadcasting/PrivateChannel.php'],
             'Ship.Abstracts.Commands.ConsoleCommand.php' => ['Ship/Abstracts/Commands/ConsoleCommand.php'],
-            'Ship.Abstracts.Components.Component.php' => ['Ship/Abstracts/Components/Component.php'],
             'Ship.Abstracts.Controllers.Controller.php' => ['Ship/Abstracts/Controllers/Controller.php'],
             'Ship.Abstracts.Events.Event.php' => ['Ship/Abstracts/Events/Event.php'],
             'Ship.Abstracts.Exceptions.Handler.php' => ['Ship/Abstracts/Exceptions/Handler.php'],
-            'Ship.Abstracts.Factories.Factory.php' => ['Ship/Abstracts/Factories/Factory.php'],
             'Ship.Abstracts.Jobs.Job.php' => ['Ship/Abstracts/Jobs/Job.php'],
             'Ship.Abstracts.Jobs.JobQueued.php' => ['Ship/Abstracts/Jobs/JobQueued.php'],
             'Ship.Abstracts.Mails.Mailable.php' => ['Ship/Abstracts/Mails/Mailable.php'],
-            'Ship.Abstracts.Mails.Mailables.Content.php' => ['Ship/Abstracts/Mails/Mailables/Content.php'],
-            'Ship.Abstracts.Mails.Mailables.Envelope.php' => ['Ship/Abstracts/Mails/Mailables/Envelope.php'],
             'Ship.Abstracts.Middleware.Authenticate.php' => ['Ship/Abstracts/Middleware/Authenticate.php'],
             'Ship.Abstracts.Middleware.EncryptCookies.php' => ['Ship/Abstracts/Middleware/EncryptCookies.php'],
-            'Ship.Abstracts.Middleware.PreventRequestsDuringMaintenance.php' => ['Ship/Abstracts/Middleware/PreventRequestsDuringMaintenance.php'],
             'Ship.Abstracts.Middleware.TrimStrings.php' => ['Ship/Abstracts/Middleware/TrimStrings.php'],
-            'Ship.Abstracts.Middleware.TrustHosts.php' => ['Ship/Abstracts/Middleware/TrustHosts.php'],
-            'Ship.Abstracts.Middleware.TrustProxies.php' => ['Ship/Abstracts/Middleware/TrustProxies.php'],
-            'Ship.Abstracts.Middleware.ValidateSignature.php' => ['Ship/Abstracts/Middleware/ValidateSignature.php'],
             'Ship.Abstracts.Middleware.VerifyCsrfToken.php' => ['Ship/Abstracts/Middleware/VerifyCsrfToken.php'],
             'Ship.Abstracts.Models.BaseModel.php' => ['Ship/Abstracts/Models/BaseModel.php'],
             'Ship.Abstracts.Models.UserModel.php' => ['Ship/Abstracts/Models/UserModel.php'],
@@ -57,12 +49,9 @@ class PortoInstallCommandTest extends TestCase
             'Ship.Abstracts.Requests.FormRequest.php' => ['Ship/Abstracts/Requests/FormRequest.php'],
             'Ship.Abstracts.Responses.Response.php' => ['Ship/Abstracts/Responses/Response.php'],
             'Ship.Abstracts.Responses.RedirectResponse.php' => ['Ship/Abstracts/Responses/RedirectResponse.php'],
-            'Ship.Abstracts.Resources.JsonResource.php' => ['Ship/Abstracts/Resources/JsonResource.php'],
             'Ship.Abstracts.Resources.ResourceCollection.php' => ['Ship/Abstracts/Resources/ResourceCollection.php'],
             'Ship.Abstracts.Seeders.Seeder.php' => ['Ship/Abstracts/Seeders/Seeder.php'],
             'Ship.Abstracts.Tests.PhpUnit.TestCase.php' => ['Ship/Abstracts/Tests/PhpUnit/TestCase.php'],
-            'Ship.Abstracts.Translations.PotentiallyTranslatedString.php' => ['Ship/Abstracts/Translations/PotentiallyTranslatedString.php'],
-            'Ship.Abstracts.Views.Component.php' => ['Ship/Abstracts/Views/Component.php'],
             'Ship.Broadcasting.Channel.php' => ['Ship/Broadcasting/Channel.php'],
             'Ship.Broadcasting.PresenceChannel.php' => ['Ship/Broadcasting/PresenceChannel.php'],
             'Ship.Broadcasting.PrivateChannel.php' => ['Ship/Broadcasting/PrivateChannel.php'],
@@ -74,16 +63,11 @@ class PortoInstallCommandTest extends TestCase
             'Ship.Helpers' => ['Ship/Helpers'],
             'Ship.Kernels.ConsoleKernel.php' => ['Ship/Kernels/ConsoleKernel.php'],
             'Ship.Kernels.HttpKernel.php' => ['Ship/Kernels/HttpKernel.php'],
-            'Ship.Mails.Mailables.Content.php' => ['Ship/Mails/Mailables/Content.php'],
-            'Ship.Mails.Mailables.Envelope.php' => ['Ship/Mails/Mailables/Envelope.php'],
             'Ship.Middleware.Authenticate.php' => ['Ship/Middleware/Authenticate.php'],
             'Ship.Middleware.EncryptCookies.php' => ['Ship/Middleware/EncryptCookies.php'],
-            'Ship.Middleware.PreventRequestsDuringMaintenance.php' => ['Ship/Middleware/PreventRequestsDuringMaintenance.php'],
             'Ship.Middleware.RedirectIfAuthenticated.php' => ['Ship/Middleware/RedirectIfAuthenticated.php'],
             'Ship.Middleware.TrimStrings.php' => ['Ship/Middleware/TrimStrings.php'],
-            'Ship.Middleware.TrustHosts.php' => ['Ship/Middleware/TrustHosts.php'],
             'Ship.Middleware.TrustProxies.php' => ['Ship/Middleware/TrustProxies.php'],
-            'Ship.Middleware.ValidateSignature.php' => ['Ship/Middleware/ValidateSignature.php'],
             'Ship.Middleware.VerifyCsrfToken.php' => ['Ship/Middleware/VerifyCsrfToken.php'],
             'Ship.Migrations' => ['Ship/Migrations'],
             'Ship.Models.Model.php' => ['Ship/Models/Model.php'],
@@ -91,7 +75,6 @@ class PortoInstallCommandTest extends TestCase
             'Ship.Models.Pivot.php' => ['Ship/Models/Pivot.php'],
             'Ship.Models.MorphPivot.php' => ['Ship/Models/MorphPivot.php'],
             'Ship.Models.Builder.php' => ['Ship/Models/Builder.php'],
-            'Ship.Models.Scope.php' => ['Ship/Models/Scope.php'],
             'Ship.Notifications.Notification.php' => ['Ship/Notifications/Notification.php'],
             'Ship.Notifications.Messages/MailMessage.php' => ['Ship/Notifications/Messages/MailMessage.php'],
             'Ship.Policies.Policy.php' => ['Ship/Policies/Policy.php'],
@@ -135,11 +118,11 @@ class PortoInstallCommandTest extends TestCase
      * @dataProvider provideShip
      * @return void
      */
-    public function testExistenceOfTheCreatedShipFilesAndDirectories(string $param): void
+    public function testExistenceOfTheCreatedShipFilesAndDirectories(string $param)
     {
         $path = base_path($this->portoPath).'/'.$param;
 
-        if(str_ends_with($param, '.php')){
+        if(stripos($param, '.php')){
             $this->assertFileExists($path);
 
             $content = file_get_contents($path);

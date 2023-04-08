@@ -202,7 +202,7 @@ class $name extends Exception
     /**
      * Report the exception.
      */
-    public function report(): void
+    public function report()
     {
         //
     }

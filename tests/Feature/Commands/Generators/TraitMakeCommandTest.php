@@ -21,7 +21,7 @@ class TraitMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommand(): void
+    public function testConsoleCommand()
     {
         $commandStatus = $this->artisan('make:trait', [
             'name' => 'TestTrait',

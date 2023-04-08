@@ -30,7 +30,7 @@ class ConsoleMakeCommand extends LaravelConsoleMakeCommand
     protected function replaceNamespace(&$stub, $name)
     {
         $stub = str_replace(
-            ['DummyParentNamespace', '{{ parentNamespace }}','{{parentNamespace}}'],
+            ['DummyParentNamespace'],
             [$this->getParentNamespace()],
             $stub
         );

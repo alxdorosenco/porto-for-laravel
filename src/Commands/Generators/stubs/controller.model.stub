@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use {{ namespacedModel }};
+use DummyFullModelClass;
 use DummyRootNamespaceShip\Controllers\Controller;
 use {{ namespaceRequest }};
 
@@ -42,10 +42,10 @@ class DummyClass extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \DummyFullModelClass  $DummyModelVariable
      * @return \{{ namespaceResponse }}
      */
-    public function show({{ model }} ${{ modelVariable }})
+    public function show(DummyModelClass $DummyModelVariable)
     {
         //
     }
@@ -53,10 +53,10 @@ class DummyClass extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \DummyFullModelClass  $DummyModelVariable
      * @return \{{ namespaceResponse }}
      */
-    public function edit({{ model }} ${{ modelVariable }})
+    public function edit(DummyModelClass $DummyModelVariable)
     {
         //
     }
@@ -65,10 +65,10 @@ class DummyClass extends Controller
      * Update the specified resource in storage.
      *
      * @param  \{{ namespaceRequest }}  $request
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \DummyFullModelClass  $DummyModelVariable
      * @return \{{ namespaceResponse }}
      */
-    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    public function update(Request $request, DummyModelClass $DummyModelVariable)
     {
         //
     }
@@ -76,10 +76,10 @@ class DummyClass extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
+     * @param  \DummyFullModelClass  $DummyModelVariable
      * @return \{{ namespaceResponse }}
      */
-    public function destroy({{ model }} ${{ modelVariable }})
+    public function destroy(DummyModelClass $DummyModelVariable)
     {
         //
     }

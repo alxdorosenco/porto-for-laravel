@@ -133,7 +133,7 @@ class ContainerMakeCommandTest extends TestCase
      *
      * @return void
      */
-    public function testConsoleCommandWithWrongName(): void
+    public function testConsoleCommandWithWrongName()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Container name contains invalid characters.');
@@ -149,7 +149,7 @@ class ContainerMakeCommandTest extends TestCase
      * @dataProvider provideContainerType
      * @return void
      */
-    public function testConsoleCommand(string $type): void
+    public function testConsoleCommand(string $type)
     {
         $commandStatus = $this->artisan('make:container', [
             'name'  => $type === 'default' ? ucfirst($type).'Container' : ucfirst($type),
@@ -166,13 +166,13 @@ class ContainerMakeCommandTest extends TestCase
      * @dataProvider provideContainerTypeAndStructure
      * @return void
      */
-    public function testExistenceOfTheCreatedContainerFilesAndDirectories(string $type, string $param): void
+    public function testExistenceOfTheCreatedContainerFilesAndDirectories(string $type, string $param)
     {
         $type = $type === 'default' ? 'defaultContainer' : $type;
 
         $path = base_path($this->portoPath).'/Containers/'.ucfirst($type).'/'.$param;
 
-        if(str_ends_with($param, '.php')){
+        if(stripos($param, '.php')){
             $this->assertFileExists($path);
 
             $content = file_get_contents($path);
