@@ -13,7 +13,7 @@ class {{ class }}
      *
      * @return void
      */
-    public function __construct($model)
+    public function __construct({{ model }} $model)
     {
         $this->model = $model;
     }
