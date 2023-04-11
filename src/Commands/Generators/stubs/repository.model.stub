@@ -13,7 +13,7 @@ class DummyClass
      *
      * @return void
      */
-    public function __construct({{ model }} $model)
+    public function __construct($model)
     {
         $this->model = $model;
     }
