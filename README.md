@@ -1,6 +1,6 @@
 # Porto for Laravel
 
-### For Laravel 9.x and older, please use the latest 1.0 version.
+For Laravel [9.x, 8.x, 7.x, 6.x, 5.8, 5.7, 5.6, 5.5] please use the latest [9.0, 8.0, 7.0, 6.0, 5.8, 5.7, 5.6, 5.5] version.
 
 This is a package who gives flexible way to build a structure of the Porto (Software Architectural Pattern) in your Laravel project.
 You should no longer to migrate a lot of files and folders handle. 
