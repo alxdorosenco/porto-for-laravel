@@ -25,7 +25,9 @@ class RequestMakeCommandTest extends TestCase
     {
         $this->artisan('make:request', [
             'name' => 'TestRequest',
-        ])->assertFailed();
+        ])
+            ->expectsOutputToContain('Request must be in the container.')
+            ->assertFailed();
     }
 
     /**
@@ -35,12 +37,20 @@ class RequestMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestRequest';
+
         $this->artisan('make:request', [
-            'name' => 'Test1Request',
+            'name' => $name,
             '--container' => $this->containerName
         ])
             ->expectsChoice('Please, select type of the user\'s interface', 'api', ['api' => 'api', 'web' => 'web'])
+            ->expectsOutputToContain('Request ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/API/Requests/'.$name.'.php] created successfully.')
             ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/API/Requests/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getRequestContent($name, 'Containers\\'.$this->containerName.'\UI\API\Requests'), file_get_contents($file));
     }
 
     /**
@@ -51,12 +61,63 @@ class RequestMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
+        $name = 'Test'.(ucfirst($type)).'Request';
+
         $this->artisan('make:request', [
-            'name' => 'Test2'.(ucfirst($type)).'Request',
+            'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
         ])
             ->expectsChoice('Please, select type of the user\'s interface', 'web', ['api' => 'api', 'web' => 'web'])
+            ->expectsOutputToContain('Request ['.$this->portoPath.'/Containers/'.$this->containerName.'/UI/WEB/Requests/'.$name.'.php] created successfully.')
             ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/UI/WEB/Requests/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getRequestContent($name, 'Containers\\'.$this->containerName.'\UI\WEB\Requests'), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @param string $namespace
+     * @return string
+     */
+    private function getRequestContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Ship\Requests\FormRequest;
+
+class $name extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return false;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public function rules()
+    {
+        return [
+            //
+        ];
+    }
+}
+
+Class;
+
     }
 }

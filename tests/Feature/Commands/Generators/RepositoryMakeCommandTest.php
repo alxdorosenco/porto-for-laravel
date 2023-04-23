@@ -3,9 +3,12 @@
 namespace AlxDorosenco\PortoForLaravel\Tests\Feature\Commands\Generators;
 
 use AlxDorosenco\PortoForLaravel\Tests\TestCase;
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 
 class RepositoryMakeCommandTest extends TestCase
 {
+    use FilesAndDirectories;
+
     /**
      * @return array[]
      */
@@ -25,7 +28,9 @@ class RepositoryMakeCommandTest extends TestCase
     {
         $this->artisan('make:repository', [
             'name' => 'TestRepository',
-        ])->assertFailed();
+        ])
+            ->expectsOutputToContain('Repository must be in the container.')
+            ->assertFailed();
     }
 
     /**
@@ -35,10 +40,19 @@ class RepositoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestRepository';
+
         $this->artisan('make:repository', [
-            'name' => 'Test1Repository',
+            'name' => $name,
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Repository ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getRepositoryContent($name), file_get_contents($file));
     }
 
     /**
@@ -49,17 +63,71 @@ class RepositoryMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
-        $testCommand = $this->artisan('make:repository', [
-            'name' => 'Test2'.(ucfirst($type)).'Repository',
+        $name = 'Test'.(ucfirst($type)).'Repository';
+        $modelName = 'TestModelForRepository';
+        $modelNamespace = $this->getNamespaceFromPath(config('porto.path').'/Containers/'.$this->containerName.'/Models/'.$modelName);
+
+        $this->artisan('make:repository', [
+            'name' => $name,
             '--container' => $this->containerName,
-            '--'.$type => 'TestModelForRepository'
-        ]);
+            '--'.$type => $modelName
+        ])
+            ->expectsQuestion('A '.$modelNamespace.' model does not exist. Do you want to generate it?', 'yes')
+            ->expectsOutputToContain('Repository ['.$this->portoPath.'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
 
-        if($type === 'model'){
-            $namespace = config('porto.path').'\Containers\\'.$this->containerName.'\Models\TestModelForRepository';
-            $testCommand->expectsConfirmation('A '.$namespace.' model does not exist. Do you want to generate it?', 'yes');
-        }
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Data/Repositories/'.$name.'.php';
+        $modelFile = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Models/'.$modelName.'.php';
 
-        $testCommand->assertSuccessful();
+        $this->assertFileExists($file);
+        $this->assertFileExists($modelFile);
+        $this->assertEquals($this->getRepositoryModelContent($name, $modelName), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getRepositoryContent(string $name): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Data\Repositories;
+
+class $name
+{
+    // repository class
+}
+
+Class;
+
+    }
+
+    /**
+     * @param string $name
+     * @param string $model
+     * @return string
+     */
+    private function getRepositoryModelContent(string $name, string $model): string
+    {
+        return "<?php
+
+namespace {$this->portoPathUcFirst()}\Containers\\$this->containerName\Data\Repositories;
+
+use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
+
+class $name
+{
+    /**
+     * Model in the constructor property promotion
+     *
+     * @return void
+     */
+    public function __construct(
+        private $model ".'$model'."
+    ){}
+}
+";
     }
 }

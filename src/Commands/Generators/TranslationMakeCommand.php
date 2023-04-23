@@ -2,7 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
-use AlxDorosenco\PortoForLaravel\Traits\Console;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\Console;
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,6 +15,13 @@ class TranslationMakeCommand extends GeneratorCommand
      * @var string|null
      */
     private ?string $lang;
+
+    /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Translation';
 
     /**
      * Get the console command arguments.
@@ -31,10 +38,10 @@ class TranslationMakeCommand extends GeneratorCommand
     }
 
     /**
-     * @return bool|void|null
+     * @return bool|int|null
      * @throws FileNotFoundException
      */
-    public function handle()
+    public function handle(): bool|int|null
     {
         $this->lang = $this->option('lang');
 

@@ -3,7 +3,7 @@
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
 use Illuminate\Database\Console\Seeds\SeederMakeCommand as LaravelSeederMakeCommand;
-use AlxDorosenco\PortoForLaravel\Traits\ConsoleGenerator;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleGenerator;
 use Illuminate\Support\Str;
 
 class SeederMakeCommand extends LaravelSeederMakeCommand

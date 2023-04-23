@@ -23,9 +23,18 @@ class ProviderMakeCommandTest extends TestCase
      */
     public function testConsoleCommand(): void
     {
+        $name = 'TestProvider';
+
         $this->artisan('make:provider', [
-            'name' => 'TestProvider',
-        ])->assertSuccessful();
+            'name' => $name
+        ])
+            ->expectsOutputToContain('Provider ['.$this->portoPath.'/Ship/Providers/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Ship/Providers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getProviderContent($name, 'Ship\Providers'), file_get_contents($file));
     }
 
     /**
@@ -35,10 +44,19 @@ class ProviderMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithContainer(): void
     {
+        $name = 'TestProvider';
+
         $this->artisan('make:provider', [
-            'name' => 'Test1Provider',
+            'name' => $name,
             '--container' => $this->containerName
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Provider ['.$this->portoPath.'/Containers/'.$this->containerName.'/Providers/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Providers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getProviderContent($name, 'Containers\\'.$this->containerName.'\Providers'), file_get_contents($file));
     }
 
     /**
@@ -49,10 +67,59 @@ class ProviderMakeCommandTest extends TestCase
      */
     public function testConsoleCommandWithTypes(string $type): void
     {
+        $name = 'Test'.(ucfirst($type)).'Provider';
+
         $this->artisan('make:provider', [
-            'name' => 'Test2'.(ucfirst($type)).'Provider',
+            'name' => $name,
             '--container' => $this->containerName,
             '--'.$type => true
-        ])->assertSuccessful();
+        ])
+            ->expectsOutputToContain('Provider ['.$this->portoPath.'/Containers/'.$this->containerName.'/Providers/'.$name.'.php] created successfully.')
+            ->assertSuccessful();
+
+        $file = base_path($this->portoPath).'/Containers/'.$this->containerName.'/Providers/'.$name.'.php';
+
+        $this->assertFileExists($file);
+        $this->assertEquals($this->getProviderContent($name, 'Containers\\'.$this->containerName.'\Providers'), file_get_contents($file));
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getProviderContent(string $name, string $namespace): string
+    {
+        return <<<Class
+<?php
+
+namespace {$this->portoPathUcFirst()}\\$namespace;
+
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Providers\ServiceProvider;
+
+class $name extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}
+
+Class;
+
     }
 }

@@ -9,10 +9,10 @@ use {{ rootNamespace }}Ship\Mails\Mailable\Envelope;
 
 class {{ class }} extends Mailable
 {
+    use Queueable, SerializesModels;
+
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -21,10 +21,8 @@ class {{ class }} extends Mailable
 
     /**
      * Get the message envelope.
-     *
-     * @return \{{ rootNamespace }}Ship\Mails\Mailable\Envelope
      */
-    public function envelope()
+    public function envelope(): Envelope
     {
         return new Envelope(
             subject: '{{ subject }}',
@@ -33,10 +31,8 @@ class {{ class }} extends Mailable
 
     /**
      * Get the message content definition.
-     *
-     * @return \{{ rootNamespace }}Ship\Mails\Mailable\Content
      */
-    public function content()
+    public function content(): Content
     {
         return new Content(
             markdown: '{{ view }}',
@@ -46,9 +42,9 @@ class {{ class }} extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments()
+    public function attachments(): array
     {
         return [];
     }

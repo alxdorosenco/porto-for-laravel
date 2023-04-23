@@ -2,18 +2,23 @@
 
 namespace AlxDorosenco\PortoForLaravel\Tests\Extensions;
 
-use PHPUnit\Runner\AfterLastTestHook;
+use PHPUnit\Runner\Extension\Extension as PhpunitExtension;
+use PHPUnit\Runner\Extension\Facade as EventFacade;
+use PHPUnit\Runner\Extension\ParameterCollection;
+use PHPUnit\TextUI\Configuration\Configuration;
 
-class BootstrapExtension implements AfterLastTestHook
+class BootstrapExtension implements PhpunitExtension
 {
-    public function executeAfterLastTest(): void
+    /**
+     * @param Configuration $configuration
+     * @param EventFacade $facade
+     * @param ParameterCollection $collection
+     * @return void
+     */
+    public function bootstrap(Configuration $configuration, EventFacade $facade, ParameterCollection $collection): void
     {
-        $path = base_path().DIRECTORY_SEPARATOR.'PortoTestStructure';
-
-        if(PHP_OS_FAMILY === 'Windows'){
-            exec('rmdir /S /Q '. $path);
-        } else {
-            exec('rm -rf '. $path);
-        }
+        $facade->registerSubscriber(
+            new ApplicationFinishedSubscriber()
+        );
     }
 }
