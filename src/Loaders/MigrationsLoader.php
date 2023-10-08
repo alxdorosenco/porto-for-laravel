@@ -28,7 +28,7 @@ trait MigrationsLoader
         $shipMigrations = $this->getMigrationsFromShip();
         $containersMigrations = $this->getMigrationsFromContainers();
 
-        $migrations = $containersMigrations + [$shipMigrations];
+        $migrations = array_merge($containersMigrations, [$shipMigrations]);
 
         $this->loadMigrationsFrom($migrations);
     }
