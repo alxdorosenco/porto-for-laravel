@@ -2,6 +2,8 @@
 
 namespace {{ namespace }};
 
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel;
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 use AlxDorosenco\PortoForLaravel\Loaders\RoutesLoader;
 use Illuminate\Console\Scheduling\Schedule;
@@ -9,6 +11,8 @@ use {{ parentClass }} as {{ parentAlias }};
 
 class ConsoleKernel extends {{ parentAlias }}
 {
+    use FilesAndDirectories;
+    use ConsoleKernel;
     use CommandsLoader;
     use RoutesLoader;
 
