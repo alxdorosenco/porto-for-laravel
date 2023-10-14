@@ -115,14 +115,17 @@ use {$this->portoPathUcFirst()}\Containers\\$this->containerName\Models\\$model;
 
 class $name
 {
+    private ".'$model'.";
+
     /**
      * Model in the constructor property promotion
      *
      * @return void
      */
-    public function __construct(
-        private $model ".'$model'."
-    ){}
+    public function __construct($model ".'$model'.")
+    {
+        ".'$this->model'." = ".'$model'.";
+    }
 }
 ";
     }

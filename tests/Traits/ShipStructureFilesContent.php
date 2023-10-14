@@ -171,6 +171,8 @@ class Handler extends AbstractHandler
 
 namespace {$this->portoPathUcFirst()}\Ship\Kernels;
 
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel;
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 use AlxDorosenco\PortoForLaravel\Loaders\RoutesLoader;
 use Illuminate\Console\Scheduling\Schedule;
@@ -178,6 +180,8 @@ use Illuminate\Foundation\Console\Kernel as LaravelConsoleKernel;
 
 class ConsoleKernel extends LaravelConsoleKernel
 {
+    use FilesAndDirectories;
+    use ConsoleKernel;
     use CommandsLoader;
     use RoutesLoader;
 
@@ -229,7 +233,6 @@ class HttpKernel extends LaravelHttpKernel
     protected ".'$middleware'." = [
         // \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustHosts::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrimStrings::class,

@@ -16,7 +16,6 @@ class HttpKernel extends {{ parentAlias }}
     protected $middleware = [
         // \{{ middlewareNamespace }}\TrustHosts::class,
         \{{ middlewareNamespace }}\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
         \{{ middlewareNamespace }}\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \{{ middlewareNamespace }}\TrimStrings::class,
