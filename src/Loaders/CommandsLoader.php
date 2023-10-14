@@ -2,11 +2,11 @@
 
 namespace AlxDorosenco\PortoForLaravel\Loaders;
 
-use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel;
 
 trait CommandsLoader
 {
-    use FilesAndDirectories;
+    use ConsoleKernel;
 
     /**
      * @return array
