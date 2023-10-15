@@ -341,14 +341,6 @@
     {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
-        "class": "Authenticate",
-        "parentClass": "{namespace}\\Abstracts\\Middleware\\Authenticate",
-        "parentAlias": "AbstractMiddleware",
-        "template": "middleware-authenticate.class.stub"
-    },
-    {
-        "directory": "{path}/Middleware",
-        "namespace": "{namespace}\\Middleware",
         "class": "EncryptCookies",
         "parentClass": "{namespace}\\Abstracts\\Middleware\\EncryptCookies",
         "parentAlias": "AbstractMiddleware",

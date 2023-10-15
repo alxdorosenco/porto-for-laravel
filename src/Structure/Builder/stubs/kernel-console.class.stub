@@ -2,6 +2,7 @@
 
 namespace {{ namespace }};
 
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel as TConsoleKernel;
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 use AlxDorosenco\PortoForLaravel\Loaders\RoutesLoader;
@@ -11,6 +12,7 @@ use {{ parentClass }} as {{ parentAlias }};
 class ConsoleKernel extends {{ parentAlias }}
 {
     use FilesAndDirectories;
+    use TConsoleKernel;
     use CommandsLoader;
     use RoutesLoader;
 

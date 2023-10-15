@@ -63,7 +63,6 @@ class PortoInstallCommandTest extends TestCase
             'Ship.Helpers' => ['Ship/Helpers'],
             'Ship.Kernels.ConsoleKernel.php' => ['Ship/Kernels/ConsoleKernel.php'],
             'Ship.Kernels.HttpKernel.php' => ['Ship/Kernels/HttpKernel.php'],
-            'Ship.Middleware.Authenticate.php' => ['Ship/Middleware/Authenticate.php'],
             'Ship.Middleware.EncryptCookies.php' => ['Ship/Middleware/EncryptCookies.php'],
             'Ship.Middleware.RedirectIfAuthenticated.php' => ['Ship/Middleware/RedirectIfAuthenticated.php'],
             'Ship.Middleware.TrimStrings.php' => ['Ship/Middleware/TrimStrings.php'],

@@ -47,7 +47,6 @@ class StubsTraitTest extends TestCase
             'loader-aliases.class.stub' => ['loader-aliases.class.stub'],
             'loader-middleware.class.stub'  => ['loader-middleware.class.stub'],
             'loader-providers.class.stub' => ['loader-providers.class.stub'],
-            'middleware-authenticate.class.stub' => ['middleware-authenticate.class.stub'],
             'middleware-encrypt-cookies.class.stub' => ['middleware-encrypt-cookies.class.stub'],
             'middleware-redirect-If-authenticated.class.stub' => ['middleware-redirect-If-authenticated.class.stub'],
             'middleware-trim-strings.class.stub' => ['middleware-trim-strings.class.stub'],

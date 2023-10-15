@@ -174,6 +174,7 @@ class Handler extends AbstractHandler
 
 namespace {$this->portoPathUcFirst()}\Ship\Kernels;
 
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel as TConsoleKernel;
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 use AlxDorosenco\PortoForLaravel\Loaders\RoutesLoader;
@@ -183,6 +184,7 @@ use Illuminate\Foundation\Console\Kernel as LaravelConsoleKernel;
 class ConsoleKernel extends LaravelConsoleKernel
 {
     use FilesAndDirectories;
+    use TConsoleKernel;
     use CommandsLoader;
     use RoutesLoader;
 
