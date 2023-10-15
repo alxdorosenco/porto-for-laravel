@@ -452,10 +452,10 @@
     {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
-        "class": "PreventRequestsDuringMaintenance",
-        "parentClass": "{namespace}\\Abstracts\\Middleware\\PreventRequestsDuringMaintenance",
+        "class": "CheckForMaintenanceMode",
+        "parentClass": "{namespace}\\Abstracts\\Middleware\\CheckForMaintenanceMode",
         "parentAlias": "AbstractMiddleware",
-        "template": "middleware-prevent-requests-during-maintenance.class.stub"
+        "template": "middleware-check-for-maintenance-mode.class.stub"
     },
     {
         "directory": "{path}/Middleware",
@@ -475,26 +475,10 @@
     {
         "directory": "{path}/Middleware",
         "namespace": "{namespace}\\Middleware",
-        "class": "TrustHosts",
-        "parentClass": "{namespace}\\Abstracts\\Middleware\\TrustHosts",
-        "parentAlias": "AbstractMiddleware",
-        "template": "middleware-trust-hosts.class.stub"
-    },
-    {
-        "directory": "{path}/Middleware",
-        "namespace": "{namespace}\\Middleware",
         "class": "TrustProxies",
         "parentClass": "{namespace}\\Abstracts\\Middleware\\TrustProxies",
         "parentAlias": "AbstractMiddleware",
         "template": "middleware-trust-proxies.class.stub"
-    },
-    {
-        "directory": "{path}/Middleware",
-        "namespace": "{namespace}\\Middleware",
-        "class": "ValidateSignature",
-        "parentClass": "{namespace}\\Abstracts\\Middleware\\ValidateSignature",
-        "parentAlias": "AbstractMiddleware",
-        "template": "middleware-validate-signature.class.stub"
     },
     {
         "directory": "{path}/Middleware",
