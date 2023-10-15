@@ -171,6 +171,8 @@ class Handler extends AbstractHandler
 
 namespace {$this->portoPathUcFirst()}\Ship\Kernels;
 
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel as TConsoleKernel;
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 use AlxDorosenco\PortoForLaravel\Loaders\RoutesLoader;
 use Illuminate\Console\Scheduling\Schedule;
@@ -178,6 +180,8 @@ use Illuminate\Foundation\Console\Kernel as LaravelConsoleKernel;
 
 class ConsoleKernel extends LaravelConsoleKernel
 {
+    use FilesAndDirectories;
+    use TConsoleKernel;
     use CommandsLoader;
     use RoutesLoader;
 
@@ -227,9 +231,7 @@ class HttpKernel extends LaravelHttpKernel
      * @var array<int, class-string|string>
      */
     protected ".'$middleware'." = [
-        // \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustHosts::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrimStrings::class,
@@ -246,15 +248,15 @@ class HttpKernel extends LaravelHttpKernel
             \\{$this->portoPathUcFirst()}\Ship\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \\{$this->portoPathUcFirst()}\Ship\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:60,1',
+            'bindings',
         ],
     ];
 
@@ -272,10 +274,25 @@ class HttpKernel extends LaravelHttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \\{$this->portoPathUcFirst()}\Ship\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \\{$this->portoPathUcFirst()}\\Ship\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    ];
+
+    /**
+     * The priority-sorted list of middleware.
+     *
+     * This forces non-global middleware to always be in the given order.
+     *
+     * @var array
+     */
+    protected ".'$middlewarePriority'." = [
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \\{$this->portoPathUcFirst()}\Ship\Middleware\Authenticate::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
     ];
 }
 ";
