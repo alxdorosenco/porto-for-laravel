@@ -171,6 +171,8 @@ class Handler extends AbstractHandler
 
 namespace {$this->portoPathUcFirst()}\Ship\Kernels;
 
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel as TConsoleKernel;
+use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 use AlxDorosenco\PortoForLaravel\Loaders\RoutesLoader;
 use Illuminate\Console\Scheduling\Schedule;
@@ -178,6 +180,8 @@ use Illuminate\Foundation\Console\Kernel as LaravelConsoleKernel;
 
 class ConsoleKernel extends LaravelConsoleKernel
 {
+    use FilesAndDirectories;
+    use TConsoleKernel;
     use CommandsLoader;
     use RoutesLoader;
 
@@ -227,13 +231,11 @@ class HttpKernel extends LaravelHttpKernel
      * @var array<int, class-string|string>
      */
     protected ".'$middleware'." = [
-        // \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustHosts::class,
-        \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
-        \\{$this->portoPathUcFirst()}\Ship\Middleware\PreventRequestsDuringMaintenance::class,
+        \\{$this->portoPathUcFirst()}\Ship\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustProxies::class,
     ];
 
     /**
@@ -246,15 +248,15 @@ class HttpKernel extends LaravelHttpKernel
             \\{$this->portoPathUcFirst()}\Ship\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \\{$this->portoPathUcFirst()}\Ship\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:60,1',
+            'bindings',
         ],
     ];
 
@@ -266,16 +268,14 @@ class HttpKernel extends LaravelHttpKernel
      * @var array<string, class-string|string>
      */
     protected ".'$routeMiddleware'." = [
-        'auth' => \\{$this->portoPathUcFirst()}\Ship\Middleware\Authenticate::class,
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \\{$this->portoPathUcFirst()}\Ship\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \\{$this->portoPathUcFirst()}\\Ship\Middleware\ValidateSignature::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }
 ";
@@ -378,15 +378,15 @@ class EncryptCookies extends AbstractMiddleware
     /**
      * @return string
      */
-    protected function contentShipMiddlewarePreventRequestsDuringMaintenance(): string
+    protected function contentShipMiddlewareCheckForMaintenanceMode(): string
     {
         return "<?php
 
 namespace {$this->portoPathUcFirst()}\Ship\Middleware;
 
-use {$this->portoPathUcFirst()}\Ship\Abstracts\Middleware\PreventRequestsDuringMaintenance as AbstractMiddleware;
+use {$this->portoPathUcFirst()}\Ship\Abstracts\Middleware\CheckForMaintenanceMode as AbstractMiddleware;
 
-class PreventRequestsDuringMaintenance extends AbstractMiddleware
+class CheckForMaintenanceMode extends AbstractMiddleware
 {
     /**
      * The URIs that should be reachable while maintenance mode is enabled.

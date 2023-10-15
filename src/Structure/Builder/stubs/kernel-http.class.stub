@@ -14,13 +14,11 @@ class HttpKernel extends {{ parentAlias }}
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        // \{{ middlewareNamespace }}\TrustHosts::class,
-        \{{ middlewareNamespace }}\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
-        \{{ middlewareNamespace }}\PreventRequestsDuringMaintenance::class,
+        \{{ middlewareNamespace }}\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \{{ middlewareNamespace }}\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \{{ middlewareNamespace }}\TrustProxies::class,
     ];
 
     /**
@@ -33,15 +31,15 @@ class HttpKernel extends {{ parentAlias }}
             \{{ middlewareNamespace }}\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \{{ middlewareNamespace }}\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:60,1',
+            'bindings',
         ],
     ];
 
@@ -53,15 +51,13 @@ class HttpKernel extends {{ parentAlias }}
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-        'auth' => \{{ middlewareNamespace }}\Authenticate::class,
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \{{ middlewareNamespace }}\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \{{ middlewareNamespace }}\ValidateSignature::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
 }

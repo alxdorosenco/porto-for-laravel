@@ -2,6 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel;
 
+use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleKernel;
 use AlxDorosenco\PortoForLaravel\Traits\FilesAndDirectories;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +20,7 @@ use AlxDorosenco\PortoForLaravel\Loaders\CommandsLoader;
 class PortoServiceProvider extends ServiceProvider
 {
     use FilesAndDirectories;
+    use ConsoleKernel;
     use ConfigsLoader;
     use RoutesLoader;
     use TranslationsLoader;
