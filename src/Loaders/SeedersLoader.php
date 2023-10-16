@@ -37,7 +37,9 @@ trait SeedersLoader
         $files = array_merge($shipFiles, $containersFiles);
 
         foreach ($files as $file){
-            $this->call($file);
+            $this->call(
+                $this->getClassFromFile($file)
+            );
         }
     }
 }
