@@ -229,7 +229,6 @@ class HttpKernel extends LaravelHttpKernel
     protected ".'$middleware'." = [
         // \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustHosts::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \\{$this->portoPathUcFirst()}\Ship\Middleware\TrimStrings::class,

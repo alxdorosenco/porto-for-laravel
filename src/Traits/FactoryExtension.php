@@ -33,6 +33,10 @@ trait FactoryExtension
             }
         }
 
+        if(!$factoryNamespace) {
+            return null;
+        }
+
         Factory::useNamespace($factoryNamespace);
         $className = class_basename($object::class);
 
