@@ -2,6 +2,7 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands;
 
+use AlxDorosenco\PortoForLaravel\Enums\ContainerTypes;
 use Illuminate\Console\Command as LaravelCommand;
 
 use AlxDorosenco\PortoForLaravel\Structure\Builder\ContainersBuilder;
@@ -89,25 +90,31 @@ class PortoInstallCommand extends LaravelCommand
         $shipBuilder = new ShipBuilder($rootPath, $namespace);
         $containersBuilder = new ContainersBuilder($rootPath, $namespace);
 
+        if($this->option('container')){
+            $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_STANDARD;
+
+            if($this->option('container-default')){
+                $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_DEFAULT;
+            } elseif($this->option('container-full')){
+                $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_FULL;
+            } elseif($this->option('container-api')){
+                $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_API;
+            } elseif($this->option('container-web')){
+                $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_WEB;
+            } elseif($this->option('container-cli')){
+                $containerType = ContainerTypes::PORTO_CONTAINER_TYPE_CLI;
+            }
+
+            $containersBuilder
+                ->setContainerName($this->option('container'))
+                ->setContainerType($containerType);
+        }
+
         (new StructureMaker($this, $shipBuilder))->execute();
         (new StructureMaker($this, $containersBuilder))->execute();
 
         $this->output->newLine();
-
         $this->info('Porto structure in the ['.$rootPath.'] directory has been successfully installed');
-
-        if($this->option('container')){
-            $containerCommandParams = [
-                'name'         => $this->option('container'),
-                '--default'    => $this->option('container-default'),
-                '--api'        => $this->option('container-api'),
-                '--cli'        => $this->option('container-cli'),
-                '--web'        => $this->option('container-web'),
-                '--full'       => $this->option('container-full')
-            ];
-
-            $this->call('make:container', $containerCommandParams);
-        }
 
         return 0;
     }
