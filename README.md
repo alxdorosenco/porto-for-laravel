@@ -24,6 +24,7 @@ This package will do the job for you in some clicks.
       - [make:command](#makeCommand)
       - [make:component](#makeComponent)
       - [make:controller](#makeController)
+      - [make:enum](#makeEnum)
       - [make:event](#makeEvent)
       - [make:exception](#makeException)
       - [make:factory](#makeFactory)
@@ -478,6 +479,7 @@ Container
 	├── Exceptions
 	├── Contracts
 	├── Traits
+	├── Enums
 	├── Jobs
 	├── Notifications
 	├── Providers
@@ -568,6 +570,13 @@ php artisan make:component <Name> --container=<Container Name>
 
 ```
 php artisan make:controller <Name> --container=<Container Name>
+```
+
+<a id="makeEnum"></a>
+### make:enum
+
+```
+php artisan make:enum <Name> --container=<Container Name>
 ```
 
 <a id="makeEvent"></a>

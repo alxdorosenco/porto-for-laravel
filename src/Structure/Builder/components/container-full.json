@@ -30,6 +30,9 @@
         "directory": "{path}/Traits"
     },
     {
+        "directory": "{path}/Enums"
+    },
+    {
         "directory": "{path}/Jobs"
     },
     {

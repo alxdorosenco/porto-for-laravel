@@ -95,6 +95,7 @@ class ContainerMakeCommandTest extends TestCase
             'full.Exceptions' => ['full', 'Exceptions'],
             'full.Contracts' => ['full', 'Contracts'],
             'full.Traits' => ['full', 'Traits'],
+            'full.Enums' => ['full', 'Enums'],
             'full.Jobs' => ['full', 'Jobs'],
             'full.Notifications' => ['full', 'Notifications'],
             'full.Providers' => ['full', 'Providers'],
