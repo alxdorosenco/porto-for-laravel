@@ -18,6 +18,7 @@ trait FilesAndDirectories
 
         $needleArray = explode(DIRECTORY_SEPARATOR, $needle);
         $needleFirst = $needleArray[0];
+
         $needleAdditions = null;
 
         if(count($needleArray) > 1){
