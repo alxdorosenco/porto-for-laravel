@@ -31,7 +31,7 @@ class ComponentsTraitTest extends TestCase
     /**
      * @return array
      */
-    protected function provideComponentsFilename(): array
+    public static function provideComponentsFilename(): array
     {
         return [
             'container-api' => ['container-api'],

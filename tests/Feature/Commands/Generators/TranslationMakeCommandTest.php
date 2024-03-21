@@ -9,7 +9,7 @@ class TranslationMakeCommandTest extends TestCase
     /**
      * @return array[]
      */
-    public function provideTypes(): array
+    public static function provideTypes(): array
     {
         return [
             'lang'  => ['lang']

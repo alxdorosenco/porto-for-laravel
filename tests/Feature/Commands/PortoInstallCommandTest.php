@@ -14,7 +14,7 @@ class PortoInstallCommandTest extends TestCase
     /**
      * @return array[]
      */
-    public function provideShip(): array
+    public static function provideShip(): array
     {
         return [
             'Ship' => ['Ship'],

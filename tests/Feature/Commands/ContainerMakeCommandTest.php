@@ -12,7 +12,7 @@ class ContainerMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideContainerType(): array
+    public static function provideContainerType(): array
     {
         return [
             'standard' => ['standard'],
@@ -27,7 +27,7 @@ class ContainerMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideContainerTypeAndStructure(): array
+    public static function provideContainerTypeAndStructure(): array
     {
         return [
             'standard.Actions' => ['standard', 'Actions'],

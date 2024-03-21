@@ -9,7 +9,7 @@ class ProviderMakeCommandTest extends TestCase
     /**
      * @return array[]
      */
-    public function provideTypes(): array
+    public static function provideTypes(): array
     {
         return [
             'force' => ['force']

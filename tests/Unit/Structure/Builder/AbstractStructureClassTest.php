@@ -32,7 +32,7 @@ class AbstractStructureClassTest extends TestCase
     /**
      * @return array
      */
-    protected function provideBuilderStructure(): array
+    public static function provideBuilderStructure(): array
     {
         $shipBuilder = new ShipBuilder('path', 'Namespace');
         $containerBuilder = new ContainersBuilder('path', 'Namespace');

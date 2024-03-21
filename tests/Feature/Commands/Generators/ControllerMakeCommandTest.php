@@ -18,7 +18,7 @@ class ControllerMakeCommandTest extends TestCase
     /**
      * @return \string[][]
      */
-    protected function provideTypes(): array
+    public static function provideTypes(): array
     {
         return [
             'api' => ['api'],
