@@ -2,10 +2,10 @@
 
 namespace AlxDorosenco\PortoForLaravel\Commands\Generators;
 
+use Illuminate\Notifications\Console\NotificationTableCommand as LaravelNotificationTableCommand;
 use AlxDorosenco\PortoForLaravel\Commands\Traits\ConsoleMigrationGenerator;
-use Illuminate\Cache\Console\CacheTableCommand as LaravelCacheTableCommand;
 
-class CacheTableCommand extends LaravelCacheTableCommand
+class NotificationTableCommand extends LaravelNotificationTableCommand
 {
     use ConsoleMigrationGenerator;
 }
